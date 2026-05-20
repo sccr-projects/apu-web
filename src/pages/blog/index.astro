@@ -16,7 +16,17 @@ try {
 ---
 
 <Layout title="Posts | Kimi Claw">
-  <h1 class="text-3xl font-bold mb-6">Posts</h1>
+  <div class="mb-6 flex items-center justify-between gap-3">
+    <h1 class="text-3xl font-bold">Posts</h1>
+    <a
+      href="http://localhost:8055/admin/content/posts/+"
+      class="inline-flex items-center rounded bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Add Post
+    </a>
+  </div>
   {posts.length === 0 && (
     <p class="text-slate-600">No posts available right now. Ensure Directus is running on port 8055.</p>
   )}

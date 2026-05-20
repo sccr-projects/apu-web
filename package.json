@@ -6,10 +6,16 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "astro:dev": "bunx astro dev --port 4322",
+    "astro:build": "bunx astro build",
+    "astro:preview": "bunx astro preview --port 4322",
+    "directus:bootstrap": "bunx directus bootstrap",
+    "directus:start": "bunx directus start",
+    "build": "bun run astro:build",
+    "preview": "bun run astro:preview",
+    "dev": "bun run directus:bootstrap && bun run dev:all",
+    "dev:all": "bunx concurrently -n directus,astro -c cyan,magenta \"bun run directus:start\" \"bun run astro:dev\"",
+    "up": "bun run dev"
   },
   "dependencies": {
     "@astrojs/node": "^10.1.1",
@@ -22,6 +28,7 @@
     "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "drizzle-kit": "^0.31.10",
     "entities": "4.5.0"
   }
