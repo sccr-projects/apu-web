@@ -1,0 +1,38 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: kimi-claw-db
+    environment:
+      POSTGRES_USER: directus
+      POSTGRES_PASSWORD: directus
+      POSTGRES_DB: kimi_claw
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  directus:
+    image: directus/directus:10.13
+    container_name: kimi-claw-cms
+    ports:
+      - "8055:8055"
+    environment:
+      KEY: local-key-change-in-production
+      SECRET: local-secret-change-in-production
+      DB_CLIENT: pg
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: kimi_claw
+      DB_USER: directus
+      DB_PASSWORD: directus
+      ADMIN_EMAIL: admin@kimiclaw.local
+      ADMIN_PASSWORD: admin12345
+      WEBSOCKETS_ENABLED: true
+    volumes:
+      - directus_uploads:/directus/uploads
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
+  directus_uploads:
