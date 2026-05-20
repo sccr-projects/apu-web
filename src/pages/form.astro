@@ -4,5 +4,42 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Submit | Kimi Claw">
   <h1 class="text-3xl font-bold mb-6">Submit a Message</h1>
-  <p class="text-slate-600">Form submissions will write directly to PostgreSQL.</p>
+  <form id="submissionForm" class="bg-white p-6 rounded-lg shadow-sm border max-w-lg space-y-4">
+    <div>
+      <label class="block text-sm font-medium mb-1">Name</label>
+      <input name="name" required class="w-full border rounded px-3 py-2" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium mb-1">Email</label>
+      <input name="email" type="email" required class="w-full border rounded px-3 py-2" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium mb-1">Message</label>
+      <textarea name="message" required rows="4" class="w-full border rounded px-3 py-2"></textarea>
+    </div>
+    <button type="submit" class="bg-slate-900 text-white px-4 py-2 rounded hover:bg-slate-700">
+      Submit
+    </button>
+    <p id="status" class="text-sm"></p>
+  </form>
 </Layout>
+
+<script>
+  const form = document.getElementById('submissionForm') as HTMLFormElement;
+  const status = document.getElementById('status') as HTMLParagraphElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form));
+
+    const res = await fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    const result = await res.json();
+    status!.textContent = result.success ? 'Saved to PostgreSQL!' : `Error: ${result.error}`;
+    if (result.success) form.reset();
+  });
+</script>
