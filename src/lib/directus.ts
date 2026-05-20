@@ -1,6 +1,9 @@
 import { createDirectus, rest, readItems, readItem } from '@directus/sdk';
 
-const directusUrl = import.meta.env.DIRECTUS_URL || 'http://localhost:8055';
+const envUrl = import.meta.env.DIRECTUS_URL as string | undefined;
+const directusUrl = (envUrl && envUrl.length > 0
+  ? envUrl
+  : 'http://127.0.0.1:8055').replace('http://localhost:', 'http://127.0.0.1:');
 
 interface Post {
   id: number;

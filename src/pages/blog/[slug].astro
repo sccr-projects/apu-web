@@ -3,11 +3,16 @@ import Layout from '../../layouts/Layout.astro';
 import { client, readItems } from '../../lib/directus';
 
 export async function getStaticPaths() {
-  const posts = await client.request(
-    readItems('posts', {
-      filter: { status: { _eq: 'published' } }
-    })
-  );
+  let posts: any[] = [];
+  try {
+    posts = await client.request(
+      readItems('posts', {
+        filter: { status: { _eq: 'published' } }
+      })
+    );
+  } catch (error) {
+    console.error('Failed to load Directus paths:', error);
+  }
   return posts.map((p: any) => ({ params: { slug: p.slug }, props: p }));
 }
 

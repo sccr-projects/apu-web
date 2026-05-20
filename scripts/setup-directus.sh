@@ -1,6 +1,6 @@
 #!/bin/bash
 # Setup Directus collection and sample post via REST API
-# Run after: docker compose up -d
+# Run after: local Directus server is running on localhost:8055
 
 set -e
 

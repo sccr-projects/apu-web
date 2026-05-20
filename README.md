@@ -13,22 +13,40 @@ Astro (localhost:4321)  ← REST →  Directus (localhost:8055)  ← SQL →  Po
 
 ## Prerequisites
 
-- Docker & Docker Compose
+- PostgreSQL 15+ running locally on `localhost:5432`
 - Node.js 20+
 
 ## Quick Start
 
-### 1. Start Infrastructure
+### 1. Prepare Local PostgreSQL
+
+Create the app database (one-time):
 
 ```bash
-docker compose up -d
+psql -U postgres -d postgres -c "CREATE DATABASE kimi_claw;"
 ```
 
+If your `postgres` user password is not `postgres`, update `.env` accordingly.
+
+### 2. Start Directus Locally
+
+```bash
+# copy env file first
+cp .env.example .env
+
+# one-time project init
+npx directus bootstrap
+
+# run directus server
+npx directus start
+```
+
+If `bunx directus` works in your environment, you can use `bunx` instead of `npx`.
+
 Verify:
-- PostgreSQL: `docker exec -it kimi-claw-db psql -U directus -d kimi_claw -c "\dt"`
 - Directus: open http://localhost:8055/admin (login: `admin@kimiclaw.local` / `admin12345`)
 
-### 2. Configure Directus
+### 3. Configure Directus
 
 Run the automated setup script (requires `curl` and `python3`):
 
@@ -43,32 +61,28 @@ Or manually:
 4. Settings → Roles & Permissions → Public → `posts` Read → filter `status` Equals `published`
 5. Content → Posts → Create a post with status `published`
 
-### 3. Run Application
+### 4. Run Application
 
 ```bash
-# Copy environment variables
-cp .env.example .env
-
-# Run migrations (requires PostgreSQL running)
-npx drizzle-kit migrate
+# Run migrations (requires local PostgreSQL running)
+bunx drizzle-kit migrate
 
 # Start dev server
-npm run dev
+bun run dev
 ```
 
 Visit http://localhost:4321
 
-### 4. Verify
+### 5. Verify
 
 - **Posts:** http://localhost:4321/blog — pulls from Directus
 - **Form:** http://localhost:4321/form — writes to PostgreSQL directly
-- **Database:** `docker exec -it kimi-claw-db psql -U directus -d kimi_claw -c "SELECT * FROM submissions;"`
+- **Database:** `psql "postgres://postgres:postgres@localhost:5432/kimi_claw" -c "SELECT * FROM submissions;"`
 
 ## Project Structure
 
 ```
 kimi-claw/
-├── docker-compose.yml          # PostgreSQL + Directus
 ├── drizzle/                    # Migration files
 ├── scripts/
 │   └── setup-directus.sh       # Automated Directus config
@@ -100,7 +114,7 @@ kimi-claw/
 | Commit | Description |
 |--------|-------------|
 | `chore: initial repository setup` | README, repo init |
-| `feat: add docker compose for local postgres and directus` | Infrastructure |
+| `chore: run stack fully local` | Infrastructure |
 | `feat: initialize astro with tailwind` | Frontend framework |
 | `feat: add layout and navigation` | Shared UI shell + routes |
 | `feat: fetch and display posts from directus` | CMS integration |

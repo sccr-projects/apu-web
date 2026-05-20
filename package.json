@@ -12,14 +12,17 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^10.1.1",
     "@directus/sdk": "^21.3.0",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.3.5",
+    "directus": "^11.17.4",
     "drizzle-orm": "^0.45.2",
     "postgres": "^3.4.9",
     "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.31.10"
+    "drizzle-kit": "^0.31.10",
+    "entities": "4.5.0"
   }
 }

@@ -5,6 +5,6 @@ export default defineConfig({
   out: './drizzle',
   dialect: 'postgresql',
   dbCredentials: {
-    url: 'postgres://directus:directus@localhost:5432/kimi_claw',
+    url: process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/kimi_claw',
   },
 });

@@ -4,7 +4,22 @@ import { submissions } from '../../db/schema';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const body = await request.json();
+    const raw = await request.text();
+    if (!raw) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'Empty request body' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const body = JSON.parse(raw);
+
+    if (!body?.name || !body?.email || !body?.message) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'Missing required fields' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
 
     await db.insert(submissions).values({
       name: body.name,
