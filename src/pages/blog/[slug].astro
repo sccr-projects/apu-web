@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { client, readItems } from '../../lib/directus';
+
+export async function getStaticPaths() {
+  const posts = await client.request(
+    readItems('posts', {
+      filter: { status: { _eq: 'published' } }
+    })
+  );
+  return posts.map((p: any) => ({ params: { slug: p.slug }, props: p }));
+}
+
+const post = Astro.props;
+---
+
+<Layout title={`${post.title} | Kimi Claw`}>
+  <article class="prose max-w-none">
+    <h1 class="text-3xl font-bold mb-2">{post.title}</h1>
+    <time class="text-slate-500 block mb-6">{post.published_date}</time>
+    <div class="mt-6" set:html={post.content} />
+  </article>
+</Layout>

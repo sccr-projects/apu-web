@@ -1,8 +1,26 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { client, readItems } from '../../lib/directus';
+
+const posts = await client.request(
+  readItems('posts', {
+    filter: { status: { _eq: 'published' } },
+    sort: ['-published_date'],
+  })
+);
 ---
 
 <Layout title="Posts | Kimi Claw">
   <h1 class="text-3xl font-bold mb-6">Posts</h1>
-  <p class="text-slate-600">Blog posts will appear here once Directus is configured.</p>
+  <div class="grid gap-4">
+    {posts.map(post => (
+      <article class="bg-white p-6 rounded-lg shadow-sm border">
+        <h2 class="text-xl font-semibold">
+          <a href={`/blog/${post.slug}`} class="hover:text-blue-600">{post.title}</a>
+        </h2>
+        <p class="text-slate-600 mt-2">{post.excerpt}</p>
+        <time class="text-sm text-slate-400 mt-2 block">{post.published_date}</time>
+      </article>
+    ))}
+  </div>
 </Layout>
