@@ -1,0 +1,21 @@
+export const contact = {
+  whatsapp: '0811 37 5555 2',
+  whatsappLink: 'https://wa.me/628113755552',
+  address: 'Gedung Admisi APU, Jl. Nongkosawit, Gunungpati, Semarang',
+  website: 'kmb.ac.id',
+  websiteLink: 'https://kmb.ac.id',
+  scholarshipLink: 'https://scholarship.kmb.ac.id/daftar-beasiswa/',
+  email: 'info@kmb.ac.id',
+  social: {
+    instagram: '@ikmb.official',
+    instagramLink: 'https://instagram.com/ikmb.official',
+    tiktok: '@ikmb.official',
+    tiktokLink: 'https://tiktok.com/@ikmb.official',
+    twitter: '@ikmb.official',
+    twitterLink: 'https://twitter.com/ikmb.official',
+    youtube: '@ikmb_official',
+    youtubeLink: 'https://youtube.com/@ikmb_official',
+  },
+  pmbLink: 'https://kmb.ac.id/informasi-pendaftaran',
+  gelombangLink: 'https://pmb.ikmb.ac.id',
+};

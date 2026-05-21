@@ -2,27 +2,38 @@
 import Layout from '../../layouts/Layout.astro';
 import { client, readItems } from '../../lib/directus';
 
-export async function getStaticPaths() {
-  let posts: any[] = [];
-  try {
-    posts = await client.request(
-      readItems('posts', {
-        filter: { status: { _eq: 'published' } }
-      })
-    );
-  } catch (error) {
-    console.error('Failed to load Directus paths:', error);
-  }
-  return posts.map((p: any) => ({ params: { slug: p.slug }, props: p }));
-}
+const slug = Astro.params.slug;
 
-const post = Astro.props;
+let post: any | null = null;
+try {
+  const posts = await client.request(
+    readItems('posts', {
+      filter: {
+        _and: [
+          { status: { _eq: 'published' } },
+          { slug: { _eq: slug } },
+        ],
+      },
+      limit: 1,
+    })
+  );
+  post = posts[0] ?? null;
+} catch (error) {
+  console.error('Failed to load Directus post:', error);
+}
 ---
 
-<Layout title={`${post.title} | Kimi Claw`}>
-  <article class="prose max-w-none">
-    <h1 class="text-3xl font-bold mb-2">{post.title}</h1>
-    <time class="text-slate-500 block mb-6">{post.published_date}</time>
-    <div class="mt-6" set:html={post.content} />
-  </article>
+<Layout title={post ? `${post.title} | Kimi Claw` : 'Post Not Found | Kimi Claw'}>
+  {post ? (
+    <article class="prose max-w-none">
+      <h1 class="text-3xl font-bold mb-2">{post.title}</h1>
+      <time class="text-slate-500 block mb-6">{post.published_date}</time>
+      <div class="mt-6" set:html={post.content} />
+    </article>
+  ) : (
+    <article class="prose max-w-none">
+      <h1 class="text-3xl font-bold mb-2">Post not found</h1>
+      <p class="text-slate-600">This post does not exist or is not published.</p>
+    </article>
+  )}
 </Layout>

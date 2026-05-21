@@ -1,0 +1,251 @@
+---
+const navLinks = [
+    { label: "Beranda", href: "#beranda-orange-navy" },
+    { label: "Jalur Masuk", href: "#jalur-masuk" },
+    { label: "Program", href: "#program" },
+    { label: "Kontak", href: "#kontak" },
+];
+---
+
+<nav
+    id="apu-nav"
+    data-scrolled="false"
+    class="fixed top-0 left-0 z-50 w-full transition-transform duration-300 backdrop-blur-xl"
+>
+    <div
+        class="content-max flex h-[72px] w-full items-center justify-between gap-6"
+    >
+        <a href="#beranda-orange-navy" class="flex items-center gap-3 group">
+            <img
+                src="/images/apu.webp"
+                alt="Agung Putra University"
+                class="h-14 w-auto"
+                loading="eager"
+            />
+            <span class="brand-copy hidden text-sm font-semibold sm:block"
+                >Agung Putra University</span
+            >
+        </a>
+
+        <div class="hidden items-center gap-8 md:flex">
+            {
+                navLinks.map((link) => (
+                    <a
+                        href={link.href}
+                        class="nav-link border-b-2 border-transparent pb-1 text-body-s font-medium transition-colors duration-300"
+                        data-section={link.href.slice(1)}
+                    >
+                        {link.label}
+                    </a>
+                ))
+            }
+        </div>
+
+        <a
+            href="https://wa.me/628113755552?text=Halo, saya ingin menanyakan informasi pendaftaran mahasiswa baru APU 2026/2027."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nav-cta hidden items-center rounded-full px-6 py-2.5 text-body-s font-medium transition-all duration-300 md:inline-flex"
+        >
+            Daftar Sekarang
+        </a>
+
+        <button
+            id="apu-menu-toggle"
+            class="menu-toggle flex flex-col gap-1.5 p-2 transition-colors duration-300 md:hidden"
+            aria-label="Toggle menu"
+            aria-expanded="false"
+        >
+            <span
+                class="menu-line w-5 h-0.5 bg-current transition-all duration-300"
+            ></span>
+            <span
+                class="menu-line w-5 h-0.5 bg-current transition-all duration-300"
+            ></span>
+        </button>
+    </div>
+
+    <div
+        id="apu-mobile-menu"
+        class="fixed inset-0 z-40 px-4 pb-6 pt-5 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"
+        style="top: 72px;"
+    >
+        <div
+            class="mobile-menu-panel mx-auto flex w-full max-w-sm flex-col gap-3 rounded-[28px] p-5"
+        >
+            <p class="mobile-menu-label text-mono">Menu</p>
+            <div class="flex flex-col gap-2">
+                {
+                    navLinks.map((link) => (
+                        <a
+                            href={link.href}
+                            class="mobile-nav-link text-body font-medium transition-colors duration-300"
+                        >
+                            {link.label}
+                        </a>
+                    ))
+                }
+            </div>
+            <a
+                href="https://wa.me/628113755552?text=Halo, saya ingin menanyakan informasi pendaftaran mahasiswa baru APU 2026/2027."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mobile-cta mt-2 inline-flex items-center justify-center rounded-xl px-6 py-3.5 text-body font-medium transition-colors duration-300"
+            >
+                Daftar Sekarang
+            </a>
+        </div>
+    </div>
+</nav>
+
+<script>
+    (function () {
+        const nav = document.getElementById("apu-nav");
+        const menuToggle = document.getElementById("apu-menu-toggle");
+        const mobileMenu = document.getElementById("apu-mobile-menu");
+        const menuLines =
+            menuToggle?.querySelectorAll<HTMLElement>(".menu-line");
+        const mobileLinks = mobileMenu?.querySelectorAll("a");
+
+        let lastScroll = 0;
+        let isMenuOpen = false;
+
+        function updateTheme() {
+            const isScrolled = window.scrollY > 24;
+            nav?.setAttribute("data-scrolled", String(isScrolled));
+        }
+
+        function handleScroll() {
+            updateTheme();
+            if (isMenuOpen) return;
+            const currentScroll = window.scrollY;
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                nav!.style.transform = "translateY(-100%)";
+            } else {
+                nav!.style.transform = "translateY(0)";
+            }
+            lastScroll = currentScroll;
+        }
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        updateTheme();
+
+        menuToggle?.addEventListener("click", () => {
+            isMenuOpen = !isMenuOpen;
+            menuToggle.setAttribute("aria-expanded", String(isMenuOpen));
+
+            if (isMenuOpen) {
+                mobileMenu!.classList.remove(
+                    "opacity-0",
+                    "pointer-events-none",
+                );
+                mobileMenu!.classList.add("opacity-100", "pointer-events-auto");
+                menuLines![0].style.transform = "rotate(45deg) translateY(4px)";
+                menuLines![1].style.transform =
+                    "rotate(-45deg) translateY(-4px)";
+                document.body.style.overflow = "hidden";
+            } else {
+                mobileMenu!.classList.add("opacity-0", "pointer-events-none");
+                mobileMenu!.classList.remove(
+                    "opacity-100",
+                    "pointer-events-auto",
+                );
+                menuLines![0].style.transform = "";
+                menuLines![1].style.transform = "";
+                document.body.style.overflow = "";
+            }
+        });
+
+        mobileLinks?.forEach((link) => {
+            link.addEventListener("click", () => {
+                if (isMenuOpen) menuToggle?.click();
+            });
+        });
+
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll("#apu-nav .nav-link");
+
+        const sectionObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        navLinks.forEach((link) => {
+                            if (link.getAttribute("data-section") === id) {
+                                link.setAttribute("data-active", "true");
+                            } else {
+                                link.removeAttribute("data-active");
+                            }
+                        });
+                    }
+                });
+            },
+            { rootMargin: "-40% 0px -60% 0px", threshold: 0 },
+        );
+
+        sections.forEach((section) => sectionObserver.observe(section));
+    })();
+</script>
+
+<style>
+    #apu-nav {
+        background: rgb(var(--color-brand-surface) / 0.88);
+        border-bottom: 1px solid rgb(var(--color-apu-navy) / 0.2);
+        box-shadow: 0 10px 28px rgb(var(--color-apu-navy) / 0.08);
+    }
+
+    #apu-nav[data-scrolled="true"] {
+        background: rgb(var(--color-brand-surface) / 0.97);
+        border-bottom-color: rgb(var(--color-apu-navy) / 0.36);
+    }
+
+    #apu-nav .brand-copy,
+    #apu-nav .menu-toggle,
+    #apu-nav .nav-link,
+    #apu-nav .mobile-menu-label,
+    #apu-nav .mobile-nav-link {
+        color: rgb(var(--color-apu-navy));
+    }
+
+    #apu-nav .nav-link:hover,
+    #apu-nav .nav-link[data-active] {
+        color: rgb(var(--color-apu-navy));
+        border-bottom-color: rgb(var(--color-brand-accent));
+    }
+
+    #apu-nav .nav-cta {
+        background: rgb(var(--color-apu-navy));
+        color: rgb(var(--color-brand-surface));
+    }
+
+    #apu-nav .nav-cta:hover,
+    #apu-nav .mobile-cta:hover {
+        background: rgb(var(--color-apu-accent));
+        color: rgb(var(--color-apu-navy));
+    }
+
+    #apu-mobile-menu {
+        background: rgb(var(--color-brand-surface) / 0.45);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+
+    #apu-mobile-menu .mobile-menu-panel {
+        background: rgb(var(--color-brand-surface) / 0.99);
+        border: 1px solid rgb(var(--color-apu-navy) / 0.22);
+        box-shadow: 0 24px 48px rgb(var(--color-apu-navy) / 0.14);
+    }
+
+    #apu-mobile-menu .mobile-nav-link {
+        padding: 0.95rem 1rem;
+        border-radius: 1rem;
+        background: rgb(var(--color-brand-surface-alt) / 0.78);
+        border: 1px solid rgb(var(--color-apu-navy) / 0.15);
+    }
+
+    #apu-mobile-menu .mobile-cta {
+        background: rgb(var(--color-apu-navy));
+        color: rgb(var(--color-brand-surface));
+        box-shadow: 0 16px 28px rgb(var(--color-apu-navy) / 0.2);
+    }
+</style>

@@ -1,0 +1,696 @@
+---
+import ScrollReveal from "../components/ScrollReveal.astro";
+import { programs } from "../data/programs";
+
+type ProgramTone = {
+    hoverBg: string;
+    overlayStart: string;
+    overlayEnd: string;
+    footerBg: string;
+    labelColor: string;
+    arrowStroke: string;
+};
+
+const defaultTone: ProgramTone = {
+    hoverBg: "rgb(var(--color-brand-primary-deeper) / 0.9)",
+    overlayStart: "rgb(var(--color-brand-primary-deep) / 0.78)",
+    overlayEnd: "rgb(var(--color-brand-primary) / 0.9)",
+    footerBg: "rgb(var(--color-brand-primary-deeper))",
+    labelColor: "rgb(var(--color-brand-accent-soft))",
+    arrowStroke: "rgb(var(--color-brand-primary))",
+};
+
+const programTones: Record<string, ProgramTone> = {
+    "biomedical-science": {
+        hoverBg: "rgb(6 46 112 / 0.7)",
+        overlayStart: "rgb(var(--color-info-600) / 0.8)",
+        overlayEnd: "rgb(var(--color-info-500) / 0.9)",
+        footerBg: "rgb(var(--color-info-700))",
+        labelColor: "rgb(var(--color-brand-surface-soft))",
+        arrowStroke: "rgb(var(--color-info-600))",
+    },
+    biotechnology: {
+        hoverBg: "rgb(var(--color-brand-primary) / 0.9)",
+        overlayStart: "rgb(var(--color-brand-primary) / 0.76)",
+        overlayEnd: "rgb(var(--color-brand-accent-soft) / 0.88)",
+        footerBg: "rgb(var(--color-brand-primary-deep))",
+        labelColor: "rgb(var(--color-brand-accent-soft))",
+        arrowStroke: "rgb(var(--color-brand-primary))",
+    },
+    law: {
+        hoverBg: "rgb(var(--color-brand-accent) / 0.84)",
+        overlayStart: "rgb(var(--color-brand-accent) / 0.72)",
+        overlayEnd: "rgb(var(--color-brand-primary-deeper) / 0.86)",
+        footerBg: "rgb(var(--color-brand-accent))",
+        labelColor: "rgb(var(--color-brand-accent-soft))",
+        arrowStroke: "rgb(var(--color-brand-accent))",
+    },
+    management: {
+        hoverBg: "rgb(var(--color-brand-surface-soft) / 0.4)",
+        overlayStart: "rgb(var(--color-brand-surface-soft) / 0.74)",
+        overlayEnd: "rgb(var(--color-brand-primary-deeper) / 0.88)",
+        footerBg: "rgb(var(--color-brand-primary-deep))",
+        labelColor: "rgb(var(--color-brand-primary))",
+        arrowStroke: "rgb(var(--color-brand-primary-deep))",
+    },
+    communication: {
+        hoverBg: "rgb(98 6 112 / 0.7)",
+        overlayStart: "rgb(var(--color-brand-accent-soft) / 0.72)",
+        overlayEnd: "rgb(var(--color-brand-primary) / 0.84)",
+        footerBg: "rgb(var(--color-brand-accent-soft))",
+        labelColor: "rgb(var(--color-brand-accent))",
+        arrowStroke: "rgb(var(--color-brand-primary))",
+    },
+    "midwifery-s1": {
+        hoverBg: "rgb(112 3 3 / 0.7)",
+        overlayStart: "rgb(var(--color-brand-primary-deep) / 0.74)",
+        overlayEnd: "rgb(var(--color-brand-accent) / 0.82)",
+        footerBg: "rgb(var(--color-brand-primary-deep))",
+        labelColor: "rgb(var(--color-brand-surface-soft))",
+        arrowStroke: "rgb(var(--color-brand-accent))",
+    },
+    "midwifery-d3": {
+        hoverBg: "rgb(var(--color-brand-primary) / 0.88)",
+        overlayStart: "rgb(var(--color-brand-primary) / 0.74)",
+        overlayEnd: "rgb(var(--color-brand-accent-soft) / 0.82)",
+        footerBg: "rgb(var(--color-brand-primary))",
+        labelColor: "rgb(var(--color-brand-surface-soft))",
+        arrowStroke: "rgb(var(--color-brand-primary))",
+    },
+};
+
+const getToneForProgram = (id: string) => programTones[id] || defaultTone;
+
+const toneVars = (tone: ProgramTone) =>
+    `--hover-bg: ${tone.hoverBg}; --overlay-start: ${tone.overlayStart}; --overlay-end: ${tone.overlayEnd}; --program-footer-bg: ${tone.footerBg}; --program-label-color: ${tone.labelColor}; --program-arrow-stroke: ${tone.arrowStroke};`;
+---
+
+<section
+    id="program"
+    class="bungkus-prodi motion-aurora-shell motion-aurora-shell--programs relative overflow-hidden bg-gradient-to-b from-brand-surface via-brand-surface-alt to-brand-surface pt-8 pb-20"
+>
+    <style>
+        .desktop-only {
+            display: block;
+        }
+        .mobile-only {
+            display: none;
+        }
+
+        @media (max-width: 899px) {
+            .desktop-only {
+                display: none !important;
+            }
+            .mobile-only {
+                display: block !important;
+            }
+        }
+
+        /* ================= DESKTOP (grid + smooth expand) ================= */
+        .desktop-only .dsk-progdi-section {
+            width: 100%;
+            padding: 24px 0;
+        }
+
+        .desktop-only .dsk-progdi-grid {
+            max-width: 80dvw;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns:
+                var(--g0, 1fr) var(--g1, 1fr) var(--g2, 1fr)
+                var(--g3, 1fr) var(--g4, 1fr) var(--g5, 1fr);
+            gap: var(--gap);
+            transition: grid-template-columns 0.45s
+                cubic-bezier(0.2, 0.9, 0.2, 1);
+            align-items: stretch;
+        }
+
+        .desktop-only .dsk-progdi-grid > a {
+            display: block;
+        }
+
+        .desktop-only .dsk-progdi-slide {
+            position: relative;
+            height: 820px;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            border-radius: 6px;
+            isolation: isolate;
+            transition:
+                transform 0.45s cubic-bezier(0.2, 0.9, 0.2, 1),
+                box-shadow 0.35s ease;
+            will-change: transform, box-shadow;
+            backface-visibility: hidden;
+        }
+
+        .desktop-only .dsk-progdi-slide::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(
+                --hover-bg,
+                rgb(var(--color-brand-primary-deeper) / 0.35)
+            );
+            opacity: 0.88;
+            transition:
+                opacity 0.35s ease,
+                transform 0.35s ease;
+            z-index: 1;
+        }
+
+        @media (min-width: 900px) {
+            .desktop-only .dsk-progdi-slide:hover::before {
+                opacity: 0.5;
+            }
+            .desktop-only .dsk-progdi-slide:hover {
+                transform: scale(1.02);
+                box-shadow: 0 18px 44px
+                    rgb(var(--color-brand-primary-deeper) / 0.22);
+                z-index: 4;
+            }
+            .desktop-only .dsk-progdi-slide:hover .dsk-progdi-card {
+                transform: rotate(0deg) translate(0, 0);
+                left: 24px;
+                bottom: 88px;
+                white-space: normal;
+                width: calc(100% - 48px);
+            }
+
+            .desktop-only
+                .dsk-progdi-grid:has(.dsk-progdi-slide:nth-child(1):hover) {
+                --g0: 2.5fr;
+                --g1: 1fr;
+                --g2: 1fr;
+                --g3: 1fr;
+                --g4: 1fr;
+                --g5: 1fr;
+            }
+            .desktop-only
+                .dsk-progdi-grid:has(.dsk-progdi-slide:nth-child(2):hover) {
+                --g0: 1fr;
+                --g1: 2.5fr;
+                --g2: 1fr;
+                --g3: 1fr;
+                --g4: 1fr;
+                --g5: 1fr;
+            }
+            .desktop-only
+                .dsk-progdi-grid:has(.dsk-progdi-slide:nth-child(3):hover) {
+                --g0: 1fr;
+                --g1: 1fr;
+                --g2: 2.5fr;
+                --g3: 1fr;
+                --g4: 1fr;
+                --g5: 1fr;
+            }
+            .desktop-only
+                .dsk-progdi-grid:has(.dsk-progdi-slide:nth-child(4):hover) {
+                --g0: 1fr;
+                --g1: 1fr;
+                --g2: 1fr;
+                --g3: 2.5fr;
+                --g4: 1fr;
+                --g5: 1fr;
+            }
+            .desktop-only
+                .dsk-progdi-grid:has(.dsk-progdi-slide:nth-child(5):hover) {
+                --g0: 1fr;
+                --g1: 1fr;
+                --g2: 1fr;
+                --g3: 1fr;
+                --g4: 2.5fr;
+                --g5: 1fr;
+            }
+            .desktop-only
+                .dsk-progdi-grid:has(.dsk-progdi-slide:nth-child(6):hover) {
+                --g0: 1fr;
+                --g1: 1fr;
+                --g2: 1fr;
+                --g3: 1fr;
+                --g4: 1fr;
+                --g5: 2.5fr;
+            }
+        }
+
+        .desktop-only .dsk-progdi-card {
+            position: absolute;
+            left: 50%;
+            bottom: 88px;
+            transform-origin: left bottom;
+            transform: rotate(-90deg) translate(0, 50%);
+            font-size: 32px;
+            font-weight: 700;
+            color: rgb(var(--color-brand-surface));
+            text-align: left;
+            letter-spacing: 0.6px;
+            z-index: 4;
+            text-shadow: 0 10px 28px
+                rgb(var(--color-brand-primary-deeper) / 0.38);
+            line-height: 1.1;
+            pointer-events: none;
+            white-space: nowrap;
+            transition: all 0.5s cubic-bezier(0.2, 0.9, 0.2, 1);
+        }
+
+        .desktop-only .dsk-progdi-footer {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 64px;
+            background: var(
+                --program-footer-bg,
+                rgb(var(--color-brand-primary-deeper))
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: rgb(var(--color-brand-surface));
+            z-index: 4;
+            padding-left: 10px;
+        }
+
+        @media (max-width: 1200px) {
+            .desktop-only .dsk-progdi-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 899px) {
+            .desktop-only .dsk-progdi-grid {
+                grid-template-columns: 1fr;
+                transition: none;
+            }
+            .desktop-only .dsk-progdi-slide {
+                height: 520px;
+                border-radius: 0;
+            }
+            .desktop-only .dsk-progdi-card {
+                writing-mode: horizontal-tb;
+                transform: none;
+                left: 24px;
+                bottom: 96px;
+                font-size: 24px;
+                text-align: left;
+            }
+        }
+
+        /* ================= MOBILE (Swiper) ================= */
+        .mobile-only .progdi-section {
+            max-width: 1400px;
+            margin: 16px auto 36px;
+            padding: 0 16px;
+            position: relative;
+        }
+
+        .mobile-only .progdi-swiper.swiper {
+            width: 100%;
+            padding: 18px 0;
+            position: relative;
+        }
+
+        .mobile-only .progdi-slide.swiper-slide {
+            aspect-ratio: 1 / 1;
+            border-radius: 6px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transform-origin: center;
+            transition:
+                transform 260ms ease,
+                box-shadow 260ms ease;
+            box-shadow: 0 6px 16px rgb(var(--color-brand-primary-deeper) / 0.18);
+        }
+
+        .mobile-only .swiper-slide {
+            min-width: 140px;
+            width: auto;
+        }
+
+        @media (max-width: 479px) {
+            .mobile-only .swiper-wrapper {
+                display: flex;
+            }
+            .mobile-only .swiper-slide {
+                width: 100% !important;
+                min-width: 100% !important;
+                max-width: 100% !important;
+            }
+        }
+
+        .mobile-only .progdi-slide::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgb(var(--color-brand-primary-deeper) / 0.16) 8%,
+                rgb(var(--color-brand-primary-deeper) / 0.34) 75%
+            );
+            pointer-events: none;
+            transition: background 220ms ease;
+            z-index: 0;
+        }
+
+        .mobile-only .progdi-slide::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.72;
+            transition:
+                opacity 220ms ease,
+                background 220ms ease;
+            background: linear-gradient(
+                180deg,
+                var(--overlay-start) 0%,
+                var(--overlay-end) 100%
+            );
+        }
+
+        .mobile-only .progdi-card {
+            position: absolute;
+            left: 22px;
+            bottom: 22px;
+            z-index: 3;
+            color: rgb(var(--color-brand-surface));
+            max-width: 72%;
+            text-decoration: none;
+        }
+
+        .mobile-only .progdi-label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(
+                --program-label-color,
+                rgb(var(--color-brand-accent-soft))
+            );
+            margin-bottom: 8px;
+            letter-spacing: 0.2px;
+        }
+
+        .mobile-only .progdi-title {
+            font-size: 20px;
+            line-height: 1.02;
+            margin: 0;
+            font-weight: 700;
+            text-shadow: 0 6px 18px
+                rgb(var(--color-brand-primary-deeper) / 0.38);
+            font-family: "Instrument Serif", "Merriweather", Georgia, serif;
+        }
+
+        .mobile-only .progdi-swiper-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgb(var(--color-brand-surface));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 22px rgb(var(--color-brand-primary-deeper) / 0.12);
+            z-index: 30;
+            cursor: pointer;
+            border: none;
+            opacity: 0.98;
+        }
+
+        .mobile-only .progdi-swiper-button-prev {
+            left: -6px;
+        }
+        .mobile-only .progdi-swiper-button-next {
+            right: -6px;
+        }
+
+        @media (max-width: 420px) {
+            .mobile-only .progdi-swiper-button {
+                width: 36px;
+                height: 36px;
+            }
+            .mobile-only .progdi-swiper-button-prev {
+                left: -10px;
+            }
+            .mobile-only .progdi-swiper-button-next {
+                right: -10px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .mobile-only .progdi-swiper-button {
+                display: none !important;
+            }
+        }
+
+        .mobile-only .progdi-swiper .swiper-wrapper {
+            align-items: stretch;
+        }
+
+        .mobile-only .progdi-swiper-button svg path {
+            stroke: var(
+                --program-arrow-stroke,
+                rgb(var(--color-brand-primary))
+            );
+        }
+    </style>
+
+    <!-- Swiper CSS -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <ScrollReveal class="text-center mb-10 pt-8">
+        <span class="text-mono tracking-widest block mb-4">PROGRAM STUDI</span>
+        <h2 class="text-h2 text-brand-primary-deep mb-4">
+            Program Unggulan, Masa Depan Cerah
+        </h2>
+    </ScrollReveal>
+
+    <!-- DESKTOP -->
+    <section
+        class="desktop-only dsk-progdi-section"
+        aria-label="Daftar Program Studi (Desktop)"
+    >
+        <div class="dsk-progdi-grid" role="list">
+            {
+                programs.map((program) => (
+                    <a
+                        id={`dsk-progdi-${program.id}`}
+                        class="dsk-progdi-slide"
+                        href={`${program.link}`}
+                        aria-label={program.name}
+                        style={`${toneVars(getToneForProgram(program.id))} background-image:url('${program.image}')`}
+                    >
+                        <div class="dsk-progdi-card">{program.name}</div>
+                    </a>
+                ))
+            }
+        </div>
+    </section>
+
+    <!-- MOBILE (Swiper) -->
+    <section
+        id="progdi-programs"
+        class="mobile-only progdi-section"
+        aria-label="Program Studi Unggulan (Mobile)"
+    >
+        <div
+            class="progdi-swiper swiper"
+            aria-roledescription="carousel"
+            role="region"
+        >
+            <div class="swiper-wrapper">
+                {
+                    programs.map((program) => (
+                        <a
+                            id={`progdi-${program.id}`}
+                            class="progdi-slide swiper-slide"
+                            href={`${program.link}`}
+                            style={`${toneVars(getToneForProgram(program.id))} background-image:url('${program.image}');`}
+                        >
+                            <div class="progdi-card">
+                                <div class="progdi-label">
+                                    Program {program.degree}
+                                </div>
+                                <h3 class="progdi-title">{program.name}</h3>
+                            </div>
+                        </a>
+                    ))
+                }
+            </div>
+
+            <!-- nav -->
+            <button
+                class="progdi-swiper-button progdi-swiper-button-prev"
+                aria-label="Previous"
+            >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path
+                        d="M15 18L9 12L15 6"
+                        stroke-width="2.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                </svg>
+            </button>
+            <button
+                class="progdi-swiper-button progdi-swiper-button-next"
+                aria-label="Next"
+            >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path
+                        d="M9 6L15 12L9 18"
+                        stroke-width="2.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Swiper JS -->
+    <script
+        is:inline
+        src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
+    ></script>
+
+    <script is:inline define:vars={{ count: programs.length }}>
+        /* ================= DESKTOP fallback: set CSS vars on pointer enter/leave ================= */
+        (function () {
+            const GRID_MIN_DESKTOP = 900;
+            const grid = document.querySelector(
+                ".desktop-only .dsk-progdi-grid",
+            );
+            if (!grid) return;
+            const slides = Array.from(grid.children);
+
+            function setVarsFor(index) {
+                for (let i = 0; i < count; i++) {
+                    grid.style.setProperty(
+                        `--g${i}`,
+                        i === index ? "2.5fr" : "1fr",
+                    );
+                }
+            }
+            function resetVars() {
+                for (let i = 0; i < count; i++)
+                    grid.style.setProperty(`--g${i}`, "1fr");
+            }
+
+            slides.forEach((s, i) => {
+                s.addEventListener("pointerenter", () => {
+                    if (window.innerWidth >= GRID_MIN_DESKTOP) setVarsFor(i);
+                });
+                s.addEventListener(
+                    "focus",
+                    () => {
+                        if (window.innerWidth >= GRID_MIN_DESKTOP)
+                            setVarsFor(i);
+                    },
+                    true,
+                );
+            });
+            grid.addEventListener("pointerleave", () => {
+                if (window.innerWidth >= GRID_MIN_DESKTOP) resetVars();
+            });
+            grid.addEventListener(
+                "blur",
+                () => {
+                    if (window.innerWidth >= GRID_MIN_DESKTOP) resetVars();
+                },
+                true,
+            );
+
+            window.addEventListener("resize", () => {
+                if (window.innerWidth < GRID_MIN_DESKTOP) resetVars();
+            });
+        })();
+
+        /* ================= MOBILE: Swiper init ================= */
+        (function () {
+            const container = document.querySelector(
+                ".mobile-only .progdi-swiper",
+            );
+            if (!container) return;
+            const wrapper = container.querySelector(".swiper-wrapper");
+            if (!wrapper) return;
+
+            const prevEl = container.querySelector(
+                ".progdi-swiper-button-prev",
+            );
+            const nextEl = container.querySelector(
+                ".progdi-swiper-button-next",
+            );
+
+            const originalCount = count || 1;
+            let swiper = null;
+
+            function initSwiper() {
+                if (swiper) return;
+                const enableLoop = originalCount > 1;
+
+                swiper = new Swiper(container, {
+                    loop: enableLoop,
+                    slidesPerView: 1,
+                    spaceBetween: 12,
+                    breakpoints: {
+                        0: {
+                            slidesPerView: Math.min(1, originalCount),
+                            spaceBetween: 12,
+                        },
+                        480: {
+                            slidesPerView: Math.min(2, originalCount),
+                            spaceBetween: 14,
+                        },
+                        820: {
+                            slidesPerView: Math.min(3, originalCount),
+                            spaceBetween: 16,
+                        },
+                    },
+                    navigation: { prevEl, nextEl },
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: false,
+                    },
+                    keyboard: { enabled: true, onlyInViewport: true },
+                    a11y: { enabled: true },
+                    grabCursor: true,
+                    speed: 600,
+                    observer: true,
+                    observeParents: true,
+                    observeSlideChildren: true,
+                });
+            }
+
+            if (document.readyState === "loading") {
+                window.addEventListener("DOMContentLoaded", initSwiper);
+            } else {
+                initSwiper();
+            }
+
+            window.addEventListener("orientationchange", () => {
+                setTimeout(() => {
+                    swiper?.update?.();
+                }, 250);
+            });
+            window.addEventListener("resize", () => {
+                setTimeout(() => {
+                    swiper?.update?.();
+                }, 200);
+            });
+        })();
+    </script>
+</section>

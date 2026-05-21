@@ -1,0 +1,435 @@
+---
+import { contact } from "../data/contact";
+---
+
+<section
+    id="beranda-orange-navy"
+    class="hero-on relative min-h-[100dvh] flex items-end overflow-hidden"
+>
+    <div
+        id="hero-on-bg"
+        class="absolute inset-0 z-[1] will-change-transform opacity-0 scale-[1.04]"
+    >
+        <img
+            src="/images/ikmb-background.webp"
+            alt="Kampus Futuristik Agung Putra University"
+            class="w-full h-full object-cover"
+            loading="eager"
+            id="hero-on-bg-img"
+        />
+
+        <div class="absolute inset-0 hero-on-overlay-main"></div>
+        <div class="absolute inset-0 hero-on-overlay-side"></div>
+        <div class="absolute inset-0 hero-on-overlay-soft"></div>
+    </div>
+
+    <div
+        id="hero-on-particles"
+        class="absolute inset-0 z-[2] overflow-hidden pointer-events-none"
+    >
+    </div>
+
+    <div class="relative z-[3] w-full pb-20 md:pb-28">
+        <div
+            class="content-max grid items-start gap-10 lg:grid-cols-[1.08fr_0.92fr]"
+        >
+            <div>
+                <!-- <div id="hero-on-tagline" class="mb-6 opacity-0 translate-y-2">
+                    <span class="text-mono tracking-widest hero-on-tagline-text"
+                        >UNDER TRANSITION FROM IKMB</span
+                    >
+                </div> -->
+
+                <h1
+                    id="hero-on-headline"
+                    class="text-h1 mb-6 max-w-4xl opacity-0 translate-y-3 hero-on-headline"
+                >
+                    <span class="block"
+                        >Build your <span class="text-brand-accent-soft"
+                            >future</span
+                        ></span
+                    >
+                    <span class="block">at Agung Putra</span>
+                    <span class="block">University.</span>
+                </h1>
+
+                <p
+                    id="hero-on-subtitle"
+                    class="text-body max-w-2xl mb-10 opacity-0 translate-y-2 hero-on-subtitle"
+                >
+                    A bright, future-ready university ecosystem connecting
+                    strong academics, applied research, and real industry
+                    pathways — designed for ambitious learners.
+                </p>
+
+                <div
+                    id="hero-on-cta"
+                    class="flex flex-wrap gap-4 opacity-0 translate-y-2"
+                >
+                    <a
+                        href={contact.pmbLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold transition-all duration-300 hero-on-btn-primary"
+                    >
+                        <span>Apply Now</span>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"
+                            ></path></svg
+                        >
+                    </a>
+                    <a
+                        href="#program"
+                        class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold transition-all duration-300 hero-on-btn-secondary"
+                    >
+                        <span>Explore Programs</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- <aside
+                id="hero-on-facts"
+                class="hero-on-facts opacity-0 translate-y-2"
+            >
+                <h2 class="text-h3 mb-5 hero-on-facts-title">Key Facts</h2>
+                <div class="grid grid-cols-2 gap-3.5 lg:grid-cols-4">
+                    <div class="hero-on-fact-item">
+                        <p class="hero-on-fact-number">7</p>
+                        <p class="hero-on-fact-label">Study Programs</p>
+                    </div>
+                    <div class="hero-on-fact-item">
+                        <p class="hero-on-fact-number">4</p>
+                        <p class="hero-on-fact-label">Research Centers</p>
+                    </div>
+                    <div class="hero-on-fact-item">
+                        <p class="hero-on-fact-number">4</p>
+                        <p class="hero-on-fact-label">Scholarship Types*</p>
+                    </div>
+                    <div class="hero-on-fact-item">
+                        <p class="hero-on-fact-number">2023</p>
+                        <p class="hero-on-fact-label">Founding Decree Year</p>
+                    </div>
+                </div>
+                <p class="hero-on-fact-note">
+                    *Fourth scholarship type name pending official publication.
+                </p>
+            </aside> -->
+        </div>
+
+        <div
+            id="hero-on-scroll-indicator"
+            class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0"
+        >
+            <span class="text-caption hero-on-indicator-text"
+                >Scroll to explore</span
+            >
+            <svg
+                class="animate-bounce-slow hero-on-indicator-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg
+            >
+        </div>
+    </div>
+</section>
+
+<style>
+    .hero-on {
+        --on-navy: #132842;
+        --on-navy-deep: #0b1f35;
+        --on-navy-soft: #274977;
+        --on-orange: #f4bf61;
+        --on-orange-soft: #ffd992;
+        --on-ivory: #fffaf0;
+        --on-accent: #fcbc55;
+    }
+
+    .hero-on-overlay-main {
+        background: linear-gradient(
+            to top,
+            rgb(244 191 97 / 0.58),
+            rgb(21 48 87 / 0.42),
+            transparent
+        );
+    }
+    .hero-on-overlay-side {
+        background: linear-gradient(
+            to right,
+            rgb(15 39 71 / 0.36),
+            transparent,
+            rgb(15 39 71 / 0.36)
+        );
+    }
+    .hero-on-overlay-soft {
+        background: rgb(250 246 238 / 0.18);
+    }
+
+    .hero-on-tagline-text,
+    .hero-on-subtitle,
+    .hero-on-indicator-text,
+    .hero-on-indicator-icon {
+        color: var(--on-ivory);
+    }
+
+    .hero-on-tagline-text {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid rgb(252 188 85 / 0.45);
+        border-radius: 999px;
+        padding: 0.45rem 0.9rem;
+        background: rgb(255 250 240 / 0.1);
+    }
+
+    .hero-on-headline {
+        color: var(--on-ivory);
+        text-shadow: 0 8px 26px rgb(15 39 71 / 0.3);
+    }
+
+    .hero-on-btn-primary {
+        background: var(--on-navy);
+        color: var(--on-ivory);
+        border: 1px solid rgb(255 255 255 / 0.14);
+        box-shadow: 0 12px 24px rgb(15 39 71 / 0.28);
+    }
+    .hero-on-btn-primary:hover {
+        background: var(--on-accent);
+        color: var(--on-navy);
+        transform: translateY(-1px) scale(1.02);
+    }
+
+    .hero-on-btn-secondary {
+        border: 1px solid rgb(255 250 240 / 0.5);
+        color: var(--on-ivory);
+        background: rgb(255 255 255 / 0.06);
+        backdrop-filter: blur(2px);
+    }
+    .hero-on-btn-secondary:hover {
+        background: rgb(255 250 240 / 0.14);
+        border-color: rgb(255 250 240 / 0.82);
+    }
+
+    .hero-on-facts {
+        border: 1px solid rgb(255 250 240 / 0.3);
+        border-radius: 1rem;
+        background: rgb(255 255 255 / 0.1);
+        backdrop-filter: blur(4px);
+        padding: 1.2rem;
+    }
+
+    .hero-on-facts-title,
+    .hero-on-fact-number,
+    .hero-on-fact-label,
+    .hero-on-fact-note {
+        color: var(--on-ivory);
+    }
+
+    .hero-on-fact-item {
+        border: 1px solid rgb(255 250 240 / 0.34);
+        border-radius: 0.8rem;
+        padding: 0.85rem;
+        background: rgb(255 255 255 / 0.06);
+        min-height: 92px;
+    }
+
+    .hero-on-fact-number {
+        font-size: 1.4rem;
+        line-height: 1.1;
+        font-weight: 700;
+        margin-bottom: 0.35rem;
+    }
+
+    .hero-on-fact-label {
+        font-size: 0.96rem;
+        line-height: 1.35;
+    }
+
+    .hero-on-fact-note {
+        margin-top: 0.9rem;
+        font-size: 0.9rem;
+        opacity: 0.92;
+    }
+</style>
+
+<script>
+    (function () {
+        const particleContainer = document.getElementById("hero-on-particles");
+        if (particleContainer) {
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement("div");
+                const size = Math.random() * 3 + 1;
+                particle.className = "absolute rounded-full";
+                particle.style.cssText = `
+          width: ${size}px;
+          height: ${size}px;
+          left: ${Math.random() * 100}%;
+          top: ${Math.random() * 100}%;
+          background: rgba(255, 223, 153, 0.3);
+          animation: heroOnFloat ${Math.random() * 6 + 4}s ease-in-out infinite;
+          animation-delay: ${Math.random() * 5}s;
+        `;
+                particleContainer.appendChild(particle);
+            }
+        }
+
+        const style = document.createElement("style");
+        style.textContent = `
+      @keyframes heroOnFloat {
+        0%, 100% { transform: translateY(0) translateX(0); opacity: 0.2; }
+        25% { transform: translateY(-20px) translateX(10px); opacity: 0.5; }
+        50% { transform: translateY(-40px) translateX(-5px); opacity: 0.3; }
+        75% { transform: translateY(-20px) translateX(15px); opacity: 0.4; }
+      }
+    `;
+        document.head.appendChild(style);
+
+        const headline = document.getElementById("hero-on-headline");
+        const tagline = document.getElementById("hero-on-tagline");
+        const subtitle = document.getElementById("hero-on-subtitle");
+        const cta = document.getElementById("hero-on-cta");
+        const facts = document.getElementById("hero-on-facts");
+        const scrollIndicator = document.getElementById(
+            "hero-on-scroll-indicator",
+        );
+        const bg = document.getElementById("hero-on-bg");
+
+        document.fonts.ready.then(() => {
+            if (bg) {
+                bg.style.transition =
+                    "opacity 2.2s ease-out, transform 2.6s ease-out";
+                bg.style.opacity = "1";
+                bg.style.transform = "scale(1)";
+            }
+
+            setTimeout(() => {
+                if (tagline) {
+                    tagline.style.transition =
+                        "opacity 0.8s ease-out, transform 0.8s ease-out";
+                    tagline.style.opacity = "1";
+                    tagline.style.transform = "translateY(0)";
+                }
+            }, 450);
+
+            setTimeout(() => {
+                if (headline) {
+                    headline.style.transition =
+                        "opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1)";
+                    headline.style.opacity = "1";
+                    headline.style.transform = "translateY(0)";
+                }
+            }, 760);
+
+            setTimeout(() => {
+                if (subtitle) {
+                    subtitle.style.transition =
+                        "opacity 0.8s ease-out, transform 0.8s ease-out";
+                    subtitle.style.opacity = "1";
+                    subtitle.style.transform = "translateY(0)";
+                }
+            }, 1120);
+
+            setTimeout(() => {
+                if (cta) {
+                    cta.style.transition =
+                        "opacity 0.6s ease-out, transform 0.6s ease-out";
+                    cta.style.opacity = "1";
+                    cta.style.transform = "translateY(0)";
+                }
+            }, 1480);
+
+            setTimeout(() => {
+                if (facts) {
+                    facts.style.transition =
+                        "opacity 0.7s ease-out, transform 0.7s ease-out";
+                    facts.style.opacity = "1";
+                    facts.style.transform = "translateY(0)";
+                }
+            }, 1680);
+
+            setTimeout(() => {
+                if (scrollIndicator) {
+                    scrollIndicator.style.transition = "opacity 0.6s ease-out";
+                    scrollIndicator.style.opacity = "1";
+                }
+            }, 2100);
+        });
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        const bgImg = document.getElementById("hero-on-bg-img");
+
+        document.addEventListener("mousemove", (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 20;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 20;
+        });
+
+        function animateParallax() {
+            currentX += (mouseX - currentX) * 0.08;
+            currentY += (mouseY - currentY) * 0.08;
+            if (bgImg) {
+                bgImg.style.transform = `translate(${currentX}px, ${currentY}px) scale(1.05)`;
+            }
+            requestAnimationFrame(animateParallax);
+        }
+        animateParallax();
+
+        let ticking = false;
+        window.addEventListener(
+            "scroll",
+            () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        const scrollY = window.scrollY;
+                        const heroHeight =
+                            document.querySelector("#beranda-orange-navy")
+                                ?.clientHeight || window.innerHeight;
+                        const progress = Math.min(scrollY / heroHeight, 1);
+
+                        if (headline) {
+                            const scale = 1 - progress * 0.08;
+                            const yOffset = -progress * 12;
+                            const opacity = 1 - progress * 0.85;
+                            headline.style.transform = `scale(${scale}) translateY(${yOffset}%)`;
+                            headline.style.opacity = String(
+                                Math.max(opacity, 0),
+                            );
+                        }
+
+                        if (tagline) {
+                            tagline.style.transform = `translateY(${-progress * 25}%)`;
+                            tagline.style.opacity = String(
+                                Math.max(1 - progress, 0),
+                            );
+                        }
+
+                        if (scrollIndicator) {
+                            scrollIndicator.style.opacity = String(
+                                Math.max(1 - progress * 3, 0),
+                            );
+                        }
+
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            },
+            { passive: true },
+        );
+    })();
+</script>

@@ -1,0 +1,62 @@
+---
+import ScrollReveal from '../components/ScrollReveal.astro';
+import { requirements } from '../data/requirements';
+import { contact } from '../data/contact';
+
+const requirementIcons = [
+  '<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.24 3 5 3s5-1.34 5-3v-5"/></svg>',
+  '<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
+  '<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4"/><path d="M16 2v4"/><path d="M3 10h18"/></svg>',
+  '<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
+  '<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>',
+];
+---
+
+<section id="persyaratan" class="motion-aurora-shell motion-aurora-shell--requirements relative isolate overflow-hidden bg-gradient-to-b from-brand-surface via-brand-surface-soft to-brand-surface-alt py-24 md:py-32">
+  <div class="content-max">
+    <!-- Section Header -->
+    <ScrollReveal class="text-center mb-16">
+      <span class="text-mono text-brand-accent tracking-widest block mb-4">PERSYARATAN</span>
+      <h2 class="text-h2 text-brand-text mb-4">Siapkan Berkasmu, Raih Masa Depanmu</h2>
+      <p class="text-body text-brand-text-muted max-w-xl mx-auto">
+        Pastikan kamu memenuhi persyaratan berikut sebelum melakukan pendaftaran.
+      </p>
+    </ScrollReveal>
+
+    <!-- Requirements Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-16">
+      {requirements.map((req, index) => (
+        <ScrollReveal delay={index * 120} direction="left">
+          <div class="bg-white/75 rounded-xl p-6 text-center h-full transition-all duration-300 hover:shadow-md border border-brand-border/32 hover:border-brand-primary/32">
+            <!-- Icon -->
+            <div class="w-20 h-20 rounded-full border border-brand-border/28 bg-brand-surface-alt/72 flex items-center justify-center mx-auto mb-4 text-brand-primary-deep">
+              <Fragment set:html={requirementIcons[index]} />
+            </div>
+            
+            <!-- Number -->
+            <span class="text-mono text-brand-primary-deep block mb-2">{req.number}</span>
+            
+            <!-- Title -->
+            <h4 class="text-body-s font-medium text-brand-text mb-2">{req.title}</h4>
+            
+            <!-- Description -->
+            <p class="text-caption text-brand-text-muted leading-relaxed">{req.description}</p>
+          </div>
+        </ScrollReveal>
+      ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <ScrollReveal class="text-center">
+      <a
+        href={contact.pmbLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-3 px-10 py-4 bg-brand-primary-deep text-brand-surface text-body font-medium rounded-md transition-all duration-300 hover:bg-brand-primary-deeper hover:scale-[1.02]"
+      >
+        <span>Daftar Sekarang</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </ScrollReveal>
+  </div>
+</section>

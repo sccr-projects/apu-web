@@ -1,0 +1,282 @@
+---
+import { contact } from "../data/contact";
+---
+
+<footer
+    class="border-t border-brand-border/40 bg-gradient-to-b from-brand-surface-alt via-brand-surface to-brand-surface-soft/60 text-brand-text"
+>
+    <div class="py-18 lg:py-20 px-32">
+        <!-- Row 1: 4-column grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+            <!-- Brand -->
+            <div class="space-y-4">
+                <img
+                    src="/images/ikmb.png"
+                    alt="Agung Putra University"
+                    class="h-10 w-auto"
+                />
+                <p
+                    class="font-sans text-sm font-medium text-brand-primary-deep"
+                >
+                    Institut Karya Mulia Bangsa
+                </p>
+                <p class="text-caption leading-relaxed text-brand-text-muted">
+                    {contact.address}
+                </p>
+            </div>
+
+            <!-- Jalur Masuk -->
+            <div class="space-y-4">
+                <h4
+                    class="text-caption font-medium uppercase tracking-widest text-brand-accent"
+                >
+                    Jalur Masuk
+                </h4>
+                <ul class="space-y-2">
+                    <li>
+                        <a
+                            href="#jalur-masuk"
+                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary"
+                            >Jalur Reguler</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#jalur-masuk"
+                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary"
+                            >Jalur Beasiswa</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#jalur-masuk"
+                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary"
+                            >Gelombang Pendaftaran</a
+                        >
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Program Studi -->
+            <div class="space-y-4">
+                <h4
+                    class="text-caption font-medium uppercase tracking-widest text-brand-accent"
+                >
+                    Program Studi
+                </h4>
+                <ul class="space-y-2">
+                    <li>
+                        <a
+                            href="#program"
+                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary"
+                            >S1 Biomedical Science</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#program"
+                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary"
+                            >S1 Biotechnology</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#program"
+                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary"
+                            >S1 Hukum</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#program"
+                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary"
+                            >S1 Manajemen</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#program"
+                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary"
+                            >S1 Ilmu Komunikasi</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#program"
+                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary"
+                            >S1 Ilmu Komunikasi</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#program"
+                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary"
+                            >S1 Kebidanan</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#program"
+                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary"
+                            >D3 Kebidanan</a
+                        >
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Kontak -->
+            <div class="space-y-4">
+                <h4
+                    class="text-caption font-medium uppercase tracking-widest text-brand-accent"
+                >
+                    Kontak
+                </h4>
+                <ul class="space-y-2">
+                    <li>
+                        <a
+                            href={contact.whatsappLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary"
+                        >
+                            WA: {contact.whatsapp}
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href={contact.websiteLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary"
+                        >
+                            {contact.website}
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href={contact.scholarshipLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary"
+                        >
+                            scholarship.kmb.ac.id
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary"
+                        >
+                            {contact.address}
+                        </a>
+                    </li>
+                </ul>
+                <div class="pt-2 flex items-center gap-4">
+                    <a
+                        href={contact.social.instagramLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram"
+                        class="text-brand-primary transition-colors duration-300 hover:text-brand-accent"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><rect
+                                x="2"
+                                y="2"
+                                width="20"
+                                height="20"
+                                rx="5"
+                                ry="5"></rect><path
+                                d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                            ></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"
+                            ></line></svg
+                        >
+                    </a>
+                    <a
+                        href={contact.social.tiktokLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="TikTok"
+                        class="text-brand-primary transition-colors duration-300 hover:text-brand-accent"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"
+                            ></path></svg
+                        >
+                    </a>
+                    <a
+                        href={contact.social.twitterLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="X"
+                        class="text-brand-primary transition-colors duration-300 hover:text-brand-accent"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            ><path
+                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                            ></path></svg
+                        >
+                    </a>
+                    <a
+                        href={contact.social.youtubeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="YouTube"
+                        class="text-brand-primary transition-colors duration-300 hover:text-brand-accent"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path
+                                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"
+                            ></path><polygon
+                                points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"
+                            ></polygon></svg
+                        >
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-brand-border/35 my-10"></div>
+
+        <!-- Copyright -->
+        <div class="text-center">
+            <p class="text-caption text-brand-text-muted">
+                &copy; 2025 Institut Karya Mulia Bangsa. All rights reserved.
+            </p>
+        </div>
+    </div>
+</footer>

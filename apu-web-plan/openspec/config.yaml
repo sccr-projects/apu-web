@@ -1,0 +1,59 @@
+schema: spec-driven
+
+context: |
+  Project: resto (restaurant POS and operations platform)
+
+  Primary stack:
+  - PHP 8.2, Laravel 12
+  - Filament 5 + Livewire 4 for admin UI
+  - Tailwind CSS 4 + Vite 7 frontend tooling
+  - Pest 3 + PHPUnit 11 for tests
+  - Laravel Pint for PHP formatting
+
+  Architecture and domain:
+  - Filament admin panel is the main UI surface (POS, kitchen, CRUD resources).
+  - Core domain entities include categories, menu items, restaurant tables, orders, and order items.
+  - Business logic should prefer service classes for reusable workflows and exports.
+  - Keep route surface small and use named routes.
+
+  Data and model conventions:
+  - Models should extend BaseModel when working with first-party domain entities.
+  - Use audit conventions consistently (audit columns/traits where applicable).
+  - Soft delete and status-based lifecycle patterns exist; preserve previous status transitions.
+
+  Coding standards:
+  - Follow existing Laravel + Filament patterns in sibling files.
+  - Use explicit types/return types and constructor property promotion in PHP.
+  - Use braces for all control structures.
+  - Prefer PHPDoc for non-trivial behavior; avoid noisy inline comments.
+  - Do not introduce new top-level folders or dependencies without explicit approval.
+
+  Quality and verification:
+  - Prefer feature tests for behavior; use Pest style and existing test conventions.
+  - Run focused tests first, then broader suites as risk increases.
+  - Run Pint after PHP changes.
+
+  Delivery norms:
+  - Keep changes minimal, iterative, and rollback-friendly.
+  - Avoid speculative refactors outside the approved scope.
+  - Do not create new documentation files unless explicitly requested.
+
+rules:
+  proposal:
+    - Start with problem statement, goals, non-goals, constraints, and acceptance criteria.
+    - Include domain impact: POS flow, kitchen flow, and admin CRUD implications when relevant.
+    - Call out migration risk, data integrity concerns, and backward compatibility explicitly.
+    - Prefer incremental rollout plan over big-bang changes.
+
+  design:
+    - Reference concrete files/components to change (Pages, Resources, Schemas, Tables, Services, Models).
+    - Preserve Laravel 12 and Filament 5 idioms; avoid custom frameworks or novel abstractions.
+    - Separate UI concerns (Filament schema/table/page) from domain logic (services/models).
+    - Define validation, authorization, and error handling paths explicitly.
+    - Document test strategy: happy path, validation failures, and edge/status transition cases.
+
+  tasks:
+    - Break work into small, independently verifiable tasks (prefer <=2 hours each).
+    - Include explicit verification step per task (test command or manual acceptance check).
+    - Sequence risky operations safely: schema/data changes before dependent UI logic.
+    - Include final cleanup tasks: run formatter, run relevant tests, and confirm no unintended file drift.

@@ -1,0 +1,47 @@
+---
+interface Props {
+  class?: string;
+  delay?: number;
+  direction?: 'up' | 'left' | 'right';
+}
+
+const { class: className = '', delay = 0, direction = 'up' } = Astro.props;
+
+const getInitialTransform = () => {
+  switch (direction) {
+    case 'left': return 'translateX(-30px)';
+    case 'right': return 'translateX(30px)';
+    default: return 'translateY(30px)';
+  }
+};
+---
+
+<div 
+  class={`scroll-reveal opacity-0 ${className}`}
+  style={`transform: ${getInitialTransform()}; transition-delay: ${delay}ms;`}
+>
+  <slot />
+</div>
+
+<script>
+  (function() {
+    const reveals = document.querySelectorAll('.scroll-reveal');
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            el.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0) translateX(0)';
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    
+    reveals.forEach((el) => observer.observe(el));
+  })();
+</script>
