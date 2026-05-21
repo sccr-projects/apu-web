@@ -1,5 +1,7 @@
 ---
 import ScrollReveal from '../components/ScrollReveal.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CtaButton from '../components/CtaButton.astro';
 import { pathways } from '../data/pathways';
 import { scholarships as scholarshipDetails } from '../data/scholarships';
 
@@ -23,17 +25,14 @@ const getBadgeClasses = (type: string) => {
   </div>
   <div class="content-max">
     <!-- Section Header -->
-    <ScrollReveal class="text-center mb-16">
-      <span class="apu-section-kicker mb-5">
-        JALUR PENDAFTARAN
-      </span>
-      <h2 class="text-h2 text-[rgb(var(--color-apu-navy))] mb-4">
-        Dua Jalur Menuju Kampus Impian
-        <span class="apu-gradient-line mx-auto mt-4 w-216"></span>
-      </h2>
-      <p class="text-body text-brand-text-muted max-w-xl mx-auto leading-relaxed">
-        Pilih jalur yang sesuai dengan potensi dan persiapanmu. Kami membuka kesempatan seluas-luasnya untuk calon mahasiswa berprestasi.
-      </p>
+    <ScrollReveal>
+      <SectionHeader
+        kicker="JALUR PENDAFTARAN"
+        title="Dua Jalur Menuju Kampus Impian"
+        description="Pilih jalur yang sesuai dengan potensi dan persiapanmu. Kami membuka kesempatan seluas-luasnya untuk calon mahasiswa berprestasi."
+        class="text-center mb-16"
+        titleClass="text-h2 text-[rgb(var(--color-apu-navy))] mb-4"
+      />
     </ScrollReveal>
 
     <!-- Two Column Cards -->
@@ -116,15 +115,16 @@ const getBadgeClasses = (type: string) => {
             )}
 
             <!-- CTA -->
-            <a
+            <CtaButton
               href={pathway.ctaLink}
               target="_blank"
               rel="noopener noreferrer"
-              class="apu-btn apu-btn--primary w-full justify-between gap-3 px-5 py-3 text-body-s font-medium sm:w-auto"
+              variant="primary"
+              class="w-full justify-between gap-3 px-5 py-3 text-body-s font-medium sm:w-auto"
             >
               <span>{pathway.ctaText}</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
+            </CtaButton>
           </div>
         </ScrollReveal>
       ))}

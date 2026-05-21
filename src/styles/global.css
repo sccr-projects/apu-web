@@ -565,6 +565,13 @@
         --motion-grid-speed: 37s;
     }
 
+    .motion-aurora-shell--ecosystem {
+        --motion-aurora-opacity: 1.04;
+        --motion-aurora-speed: 22s;
+        --motion-grid-opacity: 0.48;
+        --motion-grid-speed: 32s;
+    }
+
     @keyframes aurora-drift {
         0% {
             transform: translate3d(-2%, -1%, 0) scale(1.08);

@@ -1,5 +1,6 @@
 ---
 import ScrollReveal from "../components/ScrollReveal.astro";
+import SectionHeader from "../components/SectionHeader.astro";
 import { programs } from "../data/programs";
 
 type ProgramTone = {
@@ -472,12 +473,13 @@ const toneVars = (tone: ProgramTone) =>
         href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
 
-    <ScrollReveal class="text-center mb-10 pt-8">
-        <span class="apu-section-kicker mb-4">PROGRAM STUDI</span>
-        <h2 class="text-h2 text-brand-primary-deep mb-4">
-            Program Unggulan, Masa Depan Cerah
-            <span class="apu-gradient-line mx-auto mt-4 w-216"></span>
-        </h2>
+    <ScrollReveal>
+        <SectionHeader
+            kicker="PROGRAM STUDI"
+            title="Program Unggulan, Masa Depan Cerah"
+            class="text-center mb-10 pt-8"
+            titleClass="text-h2 text-brand-primary-deep mb-4"
+        />
     </ScrollReveal>
 
     <!-- DESKTOP -->

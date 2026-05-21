@@ -1,0 +1,30 @@
+---
+type Props = {
+  kicker: string;
+  title: string;
+  description?: string;
+  class?: string;
+  titleClass?: string;
+  descriptionClass?: string;
+  dividerClass?: string;
+};
+
+const {
+  kicker,
+  title,
+  description,
+  class: className = "text-center mb-16",
+  titleClass = "text-h2 mb-4",
+  descriptionClass = "text-body text-brand-text-muted max-w-xl mx-auto leading-relaxed",
+  dividerClass = "apu-gradient-line mx-auto mt-4 w-216",
+} = Astro.props as Props;
+---
+
+<header class={className}>
+  <span class="apu-section-kicker mb-5">{kicker}</span>
+  <h2 class={titleClass}>
+    {title}
+    <span class={dividerClass}></span>
+  </h2>
+  {description && <p class={descriptionClass}>{description}</p>}
+</header>

@@ -176,3 +176,153 @@ When moving to pure v4 theme config:
 - replace dynamic safelist dependence with explicit utility maps where possible
 
 Keep this file updated whenever tokens/primitives change.
+
+---
+
+## 8) Reusable section components extracted from `src/sections/*`
+
+These patterns are now part of the design system contract and should be reused across projects.
+
+### Implemented Astro components (must reuse first)
+
+- `src/components/SectionHeader.astro`
+  - props:
+    - `kicker: string`
+    - `title: string`
+    - `description?: string`
+    - `class?: string`
+    - `titleClass?: string`
+    - `descriptionClass?: string`
+    - `dividerClass?: string`
+  - purpose: standard section header block with kicker + title + gradient line + optional lead copy.
+
+- `src/components/CtaButton.astro`
+  - props:
+    - `href: string`
+    - `variant?: "primary" | "secondary" | "requirements"`
+    - `target?: string`
+    - `rel?: string`
+    - `class?: string` (for per-section size/layout adjustments)
+    - `withArrow?: boolean`
+    - `arrowSize?: number`
+  - purpose: reusable CTA anchor component that keeps section-specific color identity through variants (do not force navy globally).
+
+Adoption rule:
+
+- use these Astro components before writing repeated section markup.
+- only bypass when a section has clearly different IA/interaction that cannot fit via props/slots.
+
+### A) Section header block (standardized)
+
+Use a shared header structure in every section:
+
+- kicker: `.apu-section-kicker`
+- title: `.text-h2`
+- divider: `.apu-gradient-line`
+- lead copy: `.text-body` + muted color
+
+Canonical structure:
+
+```html
+<header class="text-center mb-16">
+  <span class="apu-section-kicker mb-5">SECTION LABEL</span>
+  <h2 class="text-h2 mb-4">
+    Section headline
+    <span class="apu-gradient-line mx-auto mt-4 w-216"></span>
+  </h2>
+  <p class="text-body text-brand-text-muted max-w-xl mx-auto leading-relaxed">
+    Section supporting copy.
+  </p>
+</header>
+```
+
+### B) Feature/info card stack
+
+From pathways + requirements + program cards:
+
+- base shell: `.apu-glass-card`
+- interaction: `.apu-interactive-card`
+- optional glow accent: absolute blurred orb layer
+- optional icon: `.apu-icon-chip`
+- optional status chip: `.apu-pill-badge`
+
+Rule: for any repeatable card/list UI, default to `.apu-glass-card.apu-interactive-card` before creating a one-off style.
+
+### C) Contact row item pattern
+
+From contact section, reusable for any "icon + label + value/link" line item.
+
+- left icon in circular chip (fixed 48x48)
+- right content with caption (`.text-caption`) + value (`.text-body`)
+- hover only on value/link text
+
+Use this as default for contact/meta lists (address, phone, web, email, social).
+
+### D) Primary section CTA pattern
+
+All high-emphasis section CTAs should use:
+
+- `apu-btn apu-btn--primary`
+
+Secondary action:
+
+- `apu-btn apu-btn--secondary`
+
+Rule: avoid custom CTA button styling unless the variant is reused in 3+ places.
+
+### E) Motion + reveal pattern
+
+Use `ScrollReveal.astro` as default entry animation wrapper for section blocks, cards, and CTAs.
+
+Guidelines:
+
+- reveal header first
+- then list/grid items with progressive delay (`index * 100–150ms`)
+- keep micro interaction transitions in 220–300ms range
+
+### F) Interactive list item with detail popover
+
+From scholarship items in pathways:
+
+- trigger row inside card
+- hover/focus detail popover on desktop
+- click/tap toggle (`.is-active`) on mobile
+- close on outside click
+
+Use this pattern for compact "summary row + deep detail" use-cases (scholarships, requirements detail, benefit tiers).
+
+### G) Responsive dual-mode collection (desktop grid + mobile carousel)
+
+From programs section:
+
+- desktop: dense visual grid, hover-expand behavior
+- mobile: carousel/swiper with navigation and keyboard support
+
+Adoption rule:
+
+- only use external carousel dependency when card count + art direction needs it
+- if simple horizontal scroll is enough, prefer native overflow first
+
+### H) Section ambient shell
+
+Section wrappers should compose:
+
+- `.apu-section-shell`
+- optional `motion-aurora-shell` variant class per section
+- subtle top divider and radial/blur ambient decorations
+
+This is default for premium/futuristic mood consistency.
+
+---
+
+## 9) Implementation checklist for new sections (cross-project)
+
+Before shipping any new section/component:
+
+1. Reuse section header block (8A)
+2. Reuse card primitives first (8B)
+3. Use standard CTA primitives (8D)
+4. Apply reveal/motion pattern (8E)
+5. Validate keyboard + focus-visible states
+6. Keep token overrides at section root only
+7. Do not duplicate inline SVG/UI patterns if equivalent `apu-*` primitive exists

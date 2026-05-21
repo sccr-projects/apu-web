@@ -2,7 +2,7 @@
 interface Props {
   class?: string;
   delay?: number;
-  direction?: 'up' | 'left' | 'right';
+  direction?: 'up' | 'left' | 'right' | 'zoom-out';
 }
 
 const { class: className = '', delay = 0, direction = 'up' } = Astro.props;
@@ -11,7 +11,15 @@ const getInitialTransform = () => {
   switch (direction) {
     case 'left': return 'translateX(-30px)';
     case 'right': return 'translateX(30px)';
+    case 'zoom-out': return 'scale(1.12)';
     default: return 'translateY(30px)';
+  }
+};
+
+const getFinalTransform = () => {
+  switch (direction) {
+    case 'zoom-out': return 'scale(1)';
+    default: return 'translateY(0) translateX(0)';
   }
 };
 ---
@@ -19,13 +27,14 @@ const getInitialTransform = () => {
 <div 
   class={`scroll-reveal opacity-0 ${className}`}
   style={`transform: ${getInitialTransform()}; transition-delay: ${delay}ms;`}
+  data-scroll-reveal-final={getFinalTransform()}
 >
   <slot />
 </div>
 
 <script>
   (function() {
-    const reveals = document.querySelectorAll('.scroll-reveal');
+    const reveals = document.querySelectorAll('.scroll-reveal:not([data-scroll-reveal-bound])');
     
     const observer = new IntersectionObserver(
       (entries) => {
@@ -34,7 +43,7 @@ const getInitialTransform = () => {
             const el = entry.target as HTMLElement;
             el.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
             el.style.opacity = '1';
-            el.style.transform = 'translateY(0) translateX(0)';
+            el.style.transform = el.dataset.scrollRevealFinal || 'translateY(0) translateX(0)';
             observer.unobserve(el);
           }
         });
@@ -42,6 +51,9 @@ const getInitialTransform = () => {
       { threshold: 0.15 }
     );
     
-    reveals.forEach((el) => observer.observe(el));
+    reveals.forEach((el) => {
+      el.setAttribute('data-scroll-reveal-bound', 'true');
+      observer.observe(el);
+    });
   })();
 </script>

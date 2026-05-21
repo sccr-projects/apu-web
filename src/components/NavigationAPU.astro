@@ -1,4 +1,6 @@
 ---
+import CtaButton from "./CtaButton.astro";
+
 const navLinks = [
     { label: "Beranda", href: "#beranda-orange-navy" },
     { label: "Jalur Masuk", href: "#jalur-masuk" },
@@ -41,14 +43,14 @@ const navLinks = [
             }
         </div>
 
-        <a
+        <CtaButton
             href="https://wa.me/628113755552?text=Halo, saya ingin menanyakan informasi pendaftaran mahasiswa baru APU 2026/2027."
             target="_blank"
             rel="noopener noreferrer"
             class="nav-cta hidden items-center rounded-full px-6 py-2.5 text-body-s font-medium transition-all duration-300 md:inline-flex"
         >
             Daftar Sekarang
-        </a>
+        </CtaButton>
 
         <button
             id="apu-menu-toggle"
@@ -86,14 +88,14 @@ const navLinks = [
                     ))
                 }
             </div>
-            <a
+            <CtaButton
                 href="https://wa.me/628113755552?text=Halo, saya ingin menanyakan informasi pendaftaran mahasiswa baru APU 2026/2027."
                 target="_blank"
                 rel="noopener noreferrer"
                 class="mobile-cta mt-2 inline-flex items-center justify-center rounded-xl px-6 py-3.5 text-body font-medium transition-colors duration-300"
             >
                 Daftar Sekarang
-            </a>
+            </CtaButton>
         </div>
     </div>
 </nav>

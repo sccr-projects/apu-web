@@ -1,7 +1,7 @@
 ---
 import ScrollReveal from "../components/ScrollReveal.astro";
+import SectionHeader from "../components/SectionHeader.astro";
 import { contact } from "../data/contact";
-import { programs } from "../data/programs";
 ---
 
 <section
@@ -13,19 +13,14 @@ import { programs } from "../data/programs";
       <!-- Left Column - Contact Info -->
       <ScrollReveal direction="left">
         <div class="space-y-8">
-          <!-- Header -->
-          <div>
-            <span class="text-mono text-brand-accent tracking-widest block mb-4"
-              >KONTAK KAMI</span
-            >
-            <h2 class="text-h2 text-brand-text mb-4">
-              Hubungi Tim Admisi Kami
-            </h2>
-            <p class="text-body text-brand-text-muted">
-              Ada pertanyaan seputar pendaftaran? Tim admisi kami siap membantu
-              kamu.
-            </p>
-          </div>
+          <SectionHeader
+            kicker="KONTAK KAMI"
+            title="Hubungi Tim Admisi Kami"
+            description="Ada pertanyaan seputar pendaftaran? Tim admisi kami siap membantu kamu."
+            class=""
+            titleClass="text-h2 text-brand-text mb-4"
+            descriptionClass="text-body text-brand-text-muted"
+          />
 
           <!-- Contact Items -->
           <div class="space-y-6">
@@ -394,7 +389,7 @@ import { programs } from "../data/programs";
 <script>
   (function () {
     const form = document.getElementById("contact-form");
-    const submitBtn = document.getElementById("submit-btn");
+    const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement | null;
     const btnText = document.getElementById("btn-text");
     const successState = document.getElementById("success-state");
 
