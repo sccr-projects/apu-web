@@ -87,7 +87,7 @@ const toneVars = (tone: ProgramTone) =>
 
 <section
     id="program"
-    class="bungkus-prodi motion-aurora-shell motion-aurora-shell--programs relative overflow-hidden bg-gradient-to-b from-brand-surface via-brand-surface-alt to-brand-surface pt-8 pb-20"
+    class="bungkus-prodi apu-section-shell motion-aurora-shell motion-aurora-shell--programs relative overflow-hidden bg-gradient-to-b from-brand-surface via-brand-surface-alt to-brand-surface pt-8 pb-20"
 >
     <style>
         .desktop-only {
@@ -473,9 +473,10 @@ const toneVars = (tone: ProgramTone) =>
     />
 
     <ScrollReveal class="text-center mb-10 pt-8">
-        <span class="text-mono tracking-widest block mb-4">PROGRAM STUDI</span>
+        <span class="apu-section-kicker mb-4">PROGRAM STUDI</span>
         <h2 class="text-h2 text-brand-primary-deep mb-4">
             Program Unggulan, Masa Depan Cerah
+            <span class="apu-gradient-line mx-auto mt-4 w-[216px]"></span>
         </h2>
     </ScrollReveal>
 
@@ -489,7 +490,7 @@ const toneVars = (tone: ProgramTone) =>
                 programs.map((program) => (
                     <a
                         id={`dsk-progdi-${program.id}`}
-                        class="dsk-progdi-slide"
+                        class="dsk-progdi-slide apu-interactive-card"
                         href={`${program.link}`}
                         aria-label={program.name}
                         style={`${toneVars(getToneForProgram(program.id))} background-image:url('${program.image}')`}
@@ -517,7 +518,7 @@ const toneVars = (tone: ProgramTone) =>
                     programs.map((program) => (
                         <a
                             id={`progdi-${program.id}`}
-                            class="progdi-slide swiper-slide"
+                            class="progdi-slide swiper-slide apu-interactive-card"
                             href={`${program.link}`}
                             style={`${toneVars(getToneForProgram(program.id))} background-image:url('${program.image}');`}
                         >

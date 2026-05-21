@@ -70,7 +70,7 @@ import { contact } from "../data/contact";
                         href={contact.pmbLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold transition-all duration-300 hero-on-btn-primary"
+                        class="apu-btn apu-btn--primary"
                     >
                         <span>Apply Now</span>
                         <svg
@@ -89,7 +89,7 @@ import { contact } from "../data/contact";
                     </a>
                     <a
                         href="#program"
-                        class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold transition-all duration-300 hero-on-btn-secondary"
+                        class="apu-btn apu-btn--secondary"
                     >
                         <span>Explore Programs</span>
                     </a>
@@ -157,6 +157,28 @@ import { contact } from "../data/contact";
         --on-orange-soft: #ffd992;
         --on-ivory: #fffaf0;
         --on-accent: #fcbc55;
+
+        --apu-surface: 255 250 240;
+        --apu-surface-alt: 245 238 222;
+        --apu-surface-soft: 235 223 202;
+        --apu-navy: 19 40 66;
+        --apu-accent: 252 188 85;
+        --apu-text: 255 250 240;
+        --apu-text-muted: 239 232 218;
+        --apu-border: 255 255 255;
+        --apu-badge-bg: rgb(255 250 240 / 0.1);
+        --apu-badge-border: rgb(252 188 85 / 0.45);
+        --apu-badge-color: rgb(255 250 240);
+        --apu-btn-primary-bg: var(--on-navy);
+        --apu-btn-primary-color: var(--on-ivory);
+        --apu-btn-primary-border: rgb(255 255 255 / 0.14);
+        --apu-btn-primary-hover-bg: var(--on-accent);
+        --apu-btn-primary-hover-color: var(--on-navy);
+        --apu-btn-secondary-bg: rgb(255 255 255 / 0.06);
+        --apu-btn-secondary-color: var(--on-ivory);
+        --apu-btn-secondary-border: rgb(255 250 240 / 0.5);
+        --apu-btn-secondary-hover-bg: rgb(255 250 240 / 0.14);
+        --apu-btn-secondary-hover-border: rgb(255 250 240 / 0.82);
     }
 
     .hero-on-overlay-main {
@@ -198,29 +220,6 @@ import { contact } from "../data/contact";
     .hero-on-headline {
         color: var(--on-ivory);
         text-shadow: 0 8px 26px rgb(15 39 71 / 0.3);
-    }
-
-    .hero-on-btn-primary {
-        background: var(--on-navy);
-        color: var(--on-ivory);
-        border: 1px solid rgb(255 255 255 / 0.14);
-        box-shadow: 0 12px 24px rgb(15 39 71 / 0.28);
-    }
-    .hero-on-btn-primary:hover {
-        background: var(--on-accent);
-        color: var(--on-navy);
-        transform: translateY(-1px) scale(1.02);
-    }
-
-    .hero-on-btn-secondary {
-        border: 1px solid rgb(255 250 240 / 0.5);
-        color: var(--on-ivory);
-        background: rgb(255 255 255 / 0.06);
-        backdrop-filter: blur(2px);
-    }
-    .hero-on-btn-secondary:hover {
-        background: rgb(255 250 240 / 0.14);
-        border-color: rgb(255 250 240 / 0.82);
     }
 
     .hero-on-facts {
