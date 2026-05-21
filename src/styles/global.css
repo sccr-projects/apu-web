@@ -1,4 +1,3 @@
-@config "../../tailwind.config.mjs";
 @import "tailwindcss";
 
 @import "@fontsource/instrument-serif/400.css";
@@ -6,6 +5,76 @@
 @import "@fontsource/space-grotesk/400.css";
 @import "@fontsource/space-grotesk/500.css";
 @import "@fontsource/space-mono/400.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-display: "Instrument Serif", Georgia, serif;
+    --font-sans: "Space Grotesk", system-ui, sans-serif;
+    --font-mono: "Space Mono", monospace;
+
+    --color-semantic-surface: 247 250 243;
+    --color-semantic-surface-alt: 236 243 227;
+    --color-semantic-surface-soft: 222 234 210;
+    --color-semantic-primary: 43 122 74;
+    --color-semantic-primary-deep: 28 86 51;
+    --color-semantic-primary-deeper: 17 58 34;
+    --color-semantic-text: 27 41 32;
+    --color-semantic-text-muted: 87 112 94;
+    --color-semantic-border: 176 201 164;
+    --color-semantic-accent: 228 152 78;
+    --color-semantic-accent-soft: 245 208 149;
+    --color-semantic-glow: 113 185 138;
+    --color-semantic-aurora: 239 176 110;
+
+    --color-brand-surface: var(--color-base-surface);
+    --color-brand-surface-alt: var(--color-base-surface-alt);
+    --color-brand-surface-soft: var(--color-base-surface-soft);
+    --color-brand-primary: var(--color-base-primary);
+    --color-brand-primary-deep: var(--color-base-primary-deep);
+    --color-brand-primary-deeper: var(--color-base-primary-deeper);
+    --color-brand-text: var(--color-base-text);
+    --color-brand-text-muted: var(--color-base-text-muted);
+    --color-brand-border: var(--color-base-border);
+    --color-brand-accent: var(--color-base-accent);
+    --color-brand-accent-soft: var(--color-base-accent-soft);
+    --color-brand-glow: var(--color-base-glow);
+    --color-brand-aurora: var(--color-base-aurora);
+
+    --color-deep-space: var(--color-brand-primary-deeper);
+    --color-warm-ivory: var(--color-brand-surface);
+    --color-soft-sage: var(--color-brand-border);
+    --color-burnt-copper: var(--color-brand-accent);
+    --color-deep-sage: var(--color-brand-primary);
+    --color-charcoal: var(--color-brand-text);
+
+    --color-slate-50: var(--color-brand-surface);
+    --color-slate-100: var(--color-brand-surface-alt);
+    --color-slate-200: var(--color-brand-surface-soft);
+    --color-slate-300: var(--color-brand-border);
+    --color-slate-400: var(--color-brand-text-muted);
+    --color-slate-500: var(--color-brand-text-muted);
+    --color-slate-600: var(--color-brand-text);
+    --color-slate-700: var(--color-brand-primary-deep);
+    --color-slate-800: var(--color-brand-primary-deeper);
+    --color-slate-900: var(--color-brand-primary-deeper);
+
+    --color-gold-300: var(--color-brand-surface-soft);
+    --color-gold-400: var(--color-brand-accent-soft);
+    --color-gold-500: var(--color-brand-accent);
+
+    --color-teal-400: var(--color-brand-primary);
+    --color-teal-500: var(--color-brand-surface-soft);
+
+    --color-navy-800: var(--color-brand-primary-deep);
+    --color-navy-900: var(--color-brand-primary-deeper);
+
+    --color-apu-navy: 19 40 66;
+    --color-apu-accent: 252 188 85;
+
+    --animate-bounce-slow: bounceSlow 1.5s ease-in-out infinite;
+    --animate-shimmer: shimmer 0.8s ease-in-out forwards;
+}
 
 :root {
     --color-semantic-surface: 247 250 243;
@@ -94,7 +163,8 @@
     --apu-border: var(--color-brand-border);
     --apu-glow: var(--color-brand-glow);
     --apu-shadow-card: 0 18px 50px rgb(var(--color-brand-primary-deeper) / 0.08);
-    --apu-shadow-card-hover: 0 28px 70px rgb(var(--color-brand-primary-deeper) / 0.14);
+    --apu-shadow-card-hover: 0 28px 70px
+        rgb(var(--color-brand-primary-deeper) / 0.14);
     --apu-shadow-btn: 0 12px 24px rgb(var(--color-brand-primary-deeper) / 0.24);
     --apu-radius-card: 1.5rem;
     --apu-radius-pill: 999px;
@@ -190,7 +260,10 @@
         background: var(--apu-badge-bg, rgb(255 255 255 / 0.72));
         color: var(--apu-badge-color, rgb(var(--apu-navy)));
         padding: 0.55rem 1rem;
-        box-shadow: var(--apu-badge-shadow, 0 10px 24px rgb(var(--apu-navy) / 0.08));
+        box-shadow: var(
+            --apu-badge-shadow,
+            0 10px 24px rgb(var(--apu-navy) / 0.08)
+        );
     }
 
     .apu-btn {
@@ -241,7 +314,10 @@
 
     .apu-btn--secondary:hover {
         background: var(--apu-btn-secondary-hover-bg, rgb(255 255 255 / 0.14));
-        border-color: var(--apu-btn-secondary-hover-border, rgb(255 255 255 / 0.82));
+        border-color: var(
+            --apu-btn-secondary-hover-border,
+            rgb(255 255 255 / 0.82)
+        );
     }
 
     .apu-icon-chip {
@@ -259,19 +335,22 @@
             )
         );
         color: var(--apu-chip-color, rgb(var(--apu-accent)));
-        box-shadow: var(--apu-chip-shadow, 0 14px 28px rgb(var(--apu-navy) / 0.18));
+        box-shadow: var(
+            --apu-chip-shadow,
+            0 14px 28px rgb(var(--apu-navy) / 0.18)
+        );
     }
 
     .apu-gradient-line {
         display: block;
         height: 0.375rem;
-        border-radius: var(--apu-radius-pill);
-        background: linear-gradient(
-            90deg,
-            transparent,
-            rgb(var(--apu-accent)),
-            transparent
+        background-image: linear-gradient(
+            to right,
+            rgb(var(--color-apu-navy)) 0%,
+            rgb(var(--color-apu-accent) / 0.86) 50%,
+            rgb(var(--color-apu-navy) / 0.86) 100%
         );
+        border-radius: var(--apu-radius-pill);
     }
 
     .apu-section-kicker {
@@ -282,7 +361,10 @@
         border: 1px solid var(--apu-badge-border, rgb(var(--apu-navy) / 0.14));
         background: var(--apu-badge-bg, rgb(255 255 255 / 0.72));
         color: var(--apu-badge-color, rgb(var(--apu-navy)));
-        box-shadow: var(--apu-badge-shadow, 0 10px 24px rgb(var(--apu-navy) / 0.08));
+        box-shadow: var(
+            --apu-badge-shadow,
+            0 10px 24px rgb(var(--apu-navy) / 0.08)
+        );
         padding: 0.45rem 0.9rem;
         font-family: "Space Mono", monospace;
         font-size: 0.75rem;
@@ -511,5 +593,52 @@
                 160px 0,
                 220px 220px;
         }
+    }
+
+    @keyframes bounceSlow {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(8px);
+        }
+    }
+
+    @keyframes shimmer {
+        0% {
+            background-position: 200% 0;
+        }
+
+        100% {
+            background-position: -200% 0;
+        }
+    }
+}
+
+@layer utilities {
+    .bg-apu-navy {
+        background-color: rgb(var(--color-apu-navy));
+    }
+
+    .bg-apu-accent {
+        background-color: rgb(var(--color-apu-accent));
+    }
+
+    .text-apu-navy {
+        color: rgb(var(--color-apu-navy));
+    }
+
+    .text-apu-accent {
+        color: rgb(var(--color-apu-accent));
+    }
+
+    .border-apu-navy {
+        border-color: rgb(var(--color-apu-navy));
+    }
+
+    .border-apu-accent {
+        border-color: rgb(var(--color-apu-accent));
     }
 }

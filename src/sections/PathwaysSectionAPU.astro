@@ -25,12 +25,11 @@ const getBadgeClasses = (type: string) => {
     <!-- Section Header -->
     <ScrollReveal class="text-center mb-16">
       <span class="apu-section-kicker mb-5">
-        <span class="h-2 w-2 rounded-full bg-[rgb(var(--color-apu-accent))]"></span>
         JALUR PENDAFTARAN
       </span>
       <h2 class="text-h2 text-[rgb(var(--color-apu-navy))] mb-4">
         Dua Jalur Menuju Kampus Impian
-        <span class="apu-gradient-line mx-auto mt-4 w-[216px]"></span>
+        <span class="apu-gradient-line mx-auto mt-4 w-216"></span>
       </h2>
       <p class="text-body text-brand-text-muted max-w-xl mx-auto leading-relaxed">
         Pilih jalur yang sesuai dengan potensi dan persiapanmu. Kami membuka kesempatan seluas-luasnya untuk calon mahasiswa berprestasi.
@@ -41,10 +40,8 @@ const getBadgeClasses = (type: string) => {
     <div class="grid md:grid-cols-2 gap-8">
       {pathways.map((pathway, index) => (
         <ScrollReveal delay={index * 150}>
-          <div class="group relative h-full apu-glass-card apu-interactive-card p-8 hover:border-[rgb(var(--color-apu-accent)_/_0.85)] hover:shadow-[0_28px_70px_rgb(var(--color-apu-navy)_/_0.14)]">
-            {index !== 0 && (
-              <div class="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[rgb(var(--color-apu-navy))] via-[rgb(var(--color-apu-accent))] to-[rgb(var(--color-apu-navy))]"></div>
-            )}
+          <div class="group relative h-full apu-glass-card apu-interactive-card p-8 hover:border-2 hover:border-[rgb(var(--color-apu-accent)_/_0.85)] hover:shadow-[0_28px_70px_rgb(var(--color-apu-navy)_/_0.14)]">
+
             <div class="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[rgb(var(--color-apu-accent)_/_0.12)] blur-2xl transition-opacity duration-300 group-hover:opacity-80"></div>
             <!-- Icon -->
             <div class="flex flex-row gap-4 items-center mb-6"><div class="apu-icon-chip flex h-16 w-16 rounded-2xl ring-4 ring-[rgb(var(--color-apu-accent)_/_0.08)]">
