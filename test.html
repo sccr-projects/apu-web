@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glowing Main Road Map</title>
+
+    <style>
+      body {
+        margin: 0;
+        background: #f5f7f8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+      }
+
+      .map-wrapper {
+        position: relative;
+        width: min(100vw, 1448px);
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .map-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .road-overlay {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .main-road-base {
+        fill: none;
+        stroke: rgba(10, 180, 90, 0.35);
+        stroke-width: 24;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .main-road-glow {
+        fill: none;
+        stroke: #00ff7f;
+        stroke-width: 13;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        filter: drop-shadow(0 0 6px #00ff7f) drop-shadow(0 0 14px #00ff7f)
+          drop-shadow(0 0 28px #00ff7f);
+        animation: pulseGlow 1.6s ease-in-out infinite;
+      }
+
+      .main-road-flow {
+        fill: none;
+        stroke: rgba(255, 255, 255, 0.95);
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 35 45;
+        animation: roadFlow 1.2s linear infinite;
+        opacity: 0.9;
+      }
+
+      @keyframes pulseGlow {
+        0%,
+        100% {
+          opacity: 0.45;
+          stroke-width: 10;
+          filter: drop-shadow(0 0 4px #00ff7f) drop-shadow(0 0 10px #00ff7f)
+            drop-shadow(0 0 18px #00ff7f);
+        }
+
+        50% {
+          opacity: 1;
+          stroke-width: 17;
+          filter: drop-shadow(0 0 10px #00ff7f) drop-shadow(0 0 24px #00ff7f)
+            drop-shadow(0 0 42px #00ff7f);
+        }
+      }
+
+      @keyframes roadFlow {
+        from {
+          stroke-dashoffset: 0;
+        }
+
+        to {
+          stroke-dashoffset: -80;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="map-wrapper">
+      <img src="ecosystem-2.webp" alt="Map" />
+
+      <svg
+        class="road-overlay"
+        viewBox="0 0 1448 1086"
+        preserveAspectRatio="none"
+      >
+        <!-- Main road path -->
+        <path
+          class="main-road-base"
+          d="M 0 820
+           C 130 825, 260 830, 390 815
+           C 470 805, 500 765, 565 745
+           C 720 730, 890 720, 1040 700
+           C 1180 685, 1310 655, 1448 650"
+        />
+
+        <path
+          class="main-road-glow"
+          d="M 0 820
+           C 130 825, 260 830, 390 815
+           C 470 805, 500 765, 565 745
+           C 720 730, 890 720, 1040 700
+           C 1180 685, 1310 655, 1448 650"
+        />
+
+        <path
+          class="main-road-flow"
+          d="M 0 820
+           C 130 825, 260 830, 390 815
+           C 470 805, 500 765, 565 745
+           C 720 730, 890 720, 1040 700
+           C 1180 685, 1310 655, 1448 650"
+        />
+      </svg>
+    </div>
+  </body>
+</html>

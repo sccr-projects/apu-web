@@ -1,0 +1,189 @@
+---
+import ScrollReveal from "../components/ScrollReveal.astro";
+import CtaButton from "../components/CtaButton.astro";
+
+const admissionsWhatsApp =
+  "https://wa.me/628113755552?text=Halo, saya ingin menanyakan informasi pendaftaran mahasiswa baru APU 2026/2027.";
+
+const OSM_CENTER = {
+  lat: -7.071300,
+  lon: 110.362306,
+};
+
+
+
+const OSM_ZOOM = 19;
+
+const zoomToSpan = (zoom: number) => {
+  const base = 0.028;
+  const factor = Math.pow(2, 16 - zoom);
+  return {
+    lat: base * factor,
+    lon: base * factor,
+  };
+};
+
+const OSM_SPAN = zoomToSpan(OSM_ZOOM);
+
+const OSM_BBOX = {
+  minLon: OSM_CENTER.lon - OSM_SPAN.lon / 2,
+  minLat: OSM_CENTER.lat - OSM_SPAN.lat / 2,
+  maxLon: OSM_CENTER.lon + OSM_SPAN.lon / 2,
+  maxLat: OSM_CENTER.lat + OSM_SPAN.lat / 2,
+};
+
+const osmEmbedSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${OSM_BBOX.minLon}%2C${OSM_BBOX.minLat}%2C${OSM_BBOX.maxLon}%2C${OSM_BBOX.maxLat}&layer=mapnik&marker=${OSM_CENTER.lat}%2C${OSM_CENTER.lon}`;
+---
+
+<section
+  id="ekosistem"
+  class="apu-anchor-campus apu-section-shell motion-aurora-shell relative isolate overflow-hidden bg-gradient-to-b from-brand-surface to-brand-surface-alt"
+  aria-label="Ekosistem kampus Agung Putra University"
+>
+  <div class="w-full relative z-[1]">
+    <ScrollReveal>
+      <div class="apu-anchor-campus__frame relative isolate grid min-h-[min(760px,90svh)] w-full overflow-hidden bg-gradient-to-br from-brand-surface/96 to-brand-surface-alt/94 shadow-[0_30px_72px_rgb(var(--color-brand-primary-deeper)/0.16)] lg:grid-cols-[1.2fr_0.8fr]">
+        <section class="apu-anchor-campus__map-zone relative min-h-[420px] overflow-hidden lg:min-h-full" aria-label="Visual map kampus APU">
+          <div class="apu-anchor-campus__map-stage absolute inset-[-26%]">
+            <iframe
+              class="apu-anchor-campus__map-plate absolute inset-0 h-full w-full border-0"
+              src={osmEmbedSrc}
+              title="Peta OpenStreetMap area kampus APU"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              aria-label="Peta OpenStreetMap area kampus APU"
+              tabindex="-1"
+            ></iframe>
+          </div>
+
+          <div class="apu-anchor-campus__map-vignette pointer-events-none absolute inset-0 z-[2]"></div>
+
+          <div
+            class="apu-anchor-campus__pin-wrap absolute left-[50%] top-[50%] z-[4] grid aspect-square w-44 -translate-x-1/2 -translate-y-1/2 place-items-center md:w-36 max-[980px]:left-[50%] max-[980px]:top-[50%]"
+            aria-label="Pin lokasi kampus APU"
+          >
+            <div
+              class="apu-anchor-campus__pulse pointer-events-none absolute inset-0 rounded-full border-2 border-apu-accent/75 [animation:apu-anchor-pulse_2.8s_ease-out_infinite] before:pointer-events-none before:absolute before:inset-0 before:rounded-full before:border-2 before:border-apu-accent/75 before:content-[''] before:[animation:apu-anchor-pulse_2.8s_ease-out_infinite] before:[animation-delay:0.7s] after:pointer-events-none after:absolute after:inset-0 after:rounded-full after:border-2 after:border-apu-accent/75 after:content-[''] after:[animation:apu-anchor-pulse_2.8s_ease-out_infinite] after:[animation-delay:1.4s]"
+            ></div>
+            <span class="apu-anchor-campus__pin-dot relative z-[2] inline-flex h-5 w-5 rounded-full border border-apu-navy/35 bg-apu-accent shadow-[0_0_0_6px_rgb(var(--color-brand-surface)/0.46)]"></span>
+            <p class="text-caption absolute left-1/2 top-[calc(100%+14px)] m-0 -translate-x-1/2 whitespace-nowrap rounded-full border border-apu-navy/24 bg-brand-surface/86 px-3 py-1.5 font-semibold text-apu-navy">
+              APU Campus
+            </p>
+          </div>
+        </section>
+
+        <section class="apu-anchor-campus__text-zone relative z-[5] grid content-center gap-5 px-[clamp(1.4rem,4vw,3rem)] py-[clamp(1.8rem,4vw,3.6rem)] lg:px-[clamp(2rem,4.2vw,4rem)]">
+          <span class="apu-section-kicker mb-1 w-fit">Anchor Campus · 360° View</span>
+          <h2 class="text-h2 m-0 max-w-[18ch] text-apu-navy">
+            Kampus APU menjadi poros ekosistem yang terus bergerak
+          </h2>
+          <p class="text-body m-0 max-w-[35ch] text-brand-text-muted">
+            Dari Semarang, Agung Putra University terhubung dengan mitra akademik, industri, dan komunitas. Pusatnya tetap satu: kampus yang menyiapkan langkah kuliahmu dengan arah yang jelas.
+          </p>
+          <p class="text-body-s m-0 max-w-[34ch] rounded-xl border border-apu-navy/15 bg-brand-surface/72 px-4 py-3 text-brand-text-muted">
+            Jelajahi program, siapkan berkas, lalu konsultasikan rencana masuk bersama tim admisi.
+          </p>
+          <div class="flex flex-wrap gap-3 pt-2">
+            <CtaButton href={admissionsWhatsApp} target="_blank" rel="noopener noreferrer" withArrow>
+              Daftar Sekarang
+            </CtaButton>
+            <CtaButton href="#jalur-masuk" variant="secondary">
+              Lihat Jalur Masuk
+            </CtaButton>
+          </div>
+        </section>
+      </div>
+    </ScrollReveal>
+  </div>
+</section>
+
+<style>
+  @keyframes apu-anchor-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes apu-anchor-pulse {
+    0% {
+      transform: scale(0.34);
+      opacity: 0.9;
+    }
+    80% {
+      opacity: 0.08;
+    }
+    100% {
+      transform: scale(1.45);
+      opacity: 0;
+    }
+  }
+
+  .apu-anchor-campus {
+    --anchor-pin-x: 50%;
+    --anchor-pin-y: 50%;
+  }
+
+  .apu-anchor-campus__frame {
+    --apu-shell-glow-opacity: 0.92;
+  }
+
+  .apu-anchor-campus__map-stage {
+    transform-origin: var(--anchor-pin-x) var(--anchor-pin-y);
+    animation: apu-anchor-spin 220s linear infinite;
+    will-change: transform;
+  }
+
+  .apu-anchor-campus__map-plate {
+    pointer-events: none;
+    transform: scale(1.06);
+    filter: saturate(1.05) contrast(1.02);
+  }
+
+  .apu-anchor-campus__map-vignette {
+    background:
+      linear-gradient(
+        90deg,
+        rgb(var(--color-brand-surface) / 0.08) 0 46%,
+        rgb(var(--color-brand-surface) / 0.62) 72%,
+        rgb(var(--color-brand-surface) / 0.94) 100%
+      ),
+      radial-gradient(
+        circle at 18% 22%,
+        rgb(var(--color-apu-accent) / 0.22),
+        transparent 38%
+      );
+  }
+
+  @media (max-width: 980px) {
+    .apu-anchor-campus__map-vignette {
+      background:
+        linear-gradient(
+          180deg,
+          rgb(var(--color-brand-surface) / 0.04) 0 52%,
+          rgb(var(--color-brand-surface) / 0.5) 76%,
+          rgb(var(--color-brand-surface) / 0.92) 100%
+        ),
+        radial-gradient(
+          circle at 24% 22%,
+          rgb(var(--color-apu-accent) / 0.2),
+          transparent 42%
+        );
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .apu-anchor-campus__map-stage,
+    .apu-anchor-campus__pulse,
+    .apu-anchor-campus__pulse::before,
+    .apu-anchor-campus__pulse::after {
+      animation: none !important;
+    }
+
+    .apu-anchor-campus__map-stage {
+      transform: none !important;
+    }
+  }
+</style>

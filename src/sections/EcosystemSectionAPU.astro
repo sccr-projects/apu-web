@@ -1,0 +1,134 @@
+---
+import ScrollReveal from "../components/ScrollReveal.astro";
+---
+
+<section
+    id="ekosistem"
+    class="apu-ecosystem motion-aurora-shell relative isolate overflow-hidden bg-gradient-to-b from-brand-surface to-brand-surface-alt"
+>
+    <div class="w-full">
+        <ScrollReveal>
+            <div
+                class="apu-ecosystem__frame relative isolate h-[min(760px,88svh)] md:h-[min(760px,90svh)] w-full overflow-hidden rounded-[20px] border border-brand-border/65 bg-gradient-to-b from-brand-surface/95 to-brand-surface-alt/95 shadow-[0_28px_60px_rgb(var(--color-brand-primary-deeper)/0.14)]"
+                id="ecosystemFrame"
+                aria-label="APU ecosystem interactive map"
+            >
+                <section
+                    class="apu-ecosystem__map-zone absolute inset-0 z-0 bg-[radial-gradient(circle_at_20%_22%,rgb(var(--color-apu-accent)/0.18),transparent_40%)]"
+                    aria-label="Map area"
+                >
+                    <div class="apu-ecosystem__map-stage absolute inset-0 origin-[24.8%_57%] transition-transform duration-[1100ms] [transition-timing-function:cubic-bezier(0.2,0.75,0.15,1)] will-change-transform">
+                        <img
+                            class="apu-ecosystem__map-local absolute inset-0 h-full w-full object-contain object-left opacity-100 transition-[opacity,transform] duration-[800ms,1100ms] ease-[ease,cubic-bezier(0.2,0.75,0.15,1)]"
+                            src="/images/apu-map-bg.webp"
+                            alt="APU location map with campus pin"
+                            loading="lazy"
+                        />
+                        <img
+                            class="apu-ecosystem__map-global absolute inset-0 h-full w-full scale-[1.08] bg-brand-surface-alt object-contain object-center opacity-0 transition-[opacity,transform] duration-[800ms,1100ms] ease-[ease,cubic-bezier(0.2,0.75,0.15,1)]"
+                            src="/images/ecosystem-2.webp"
+                            alt="Agung Putra ecosystem map"
+                            loading="lazy"
+                        />
+                    </div>
+
+                    <div class="apu-ecosystem__map-vignette pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(90deg,transparent_0_54%,rgb(var(--color-brand-surface)/0.82)_78%,rgb(var(--color-brand-surface))_100%)] opacity-100 transition-opacity duration-450"></div>
+
+                    <div
+                        class="apu-ecosystem__pin-wrap absolute left-[24.8%] top-[57%] z-[4] grid aspect-square w-48 -translate-x-1/2 -translate-y-1/2 place-items-center transition-opacity duration-450 md:w-[140px] max-[980px]:left-[31%] max-[980px]:top-1/2"
+                        aria-label="APU location pin"
+                    >
+                        <button
+                            class="apu-ecosystem__pin-button absolute inset-0 z-[3] m-0 cursor-pointer rounded-full border-0 bg-transparent p-0"
+                            id="pinButton"
+                            aria-label="Expand ecosystem map"
+                        ></button>
+                        <div
+                            class="apu-ecosystem__pulse pointer-events-none absolute inset-0 rounded-full border-2 border-apu-accent/75 [animation:apu-eco-pulse_2.8s_ease-out_infinite] before:pointer-events-none before:absolute before:inset-0 before:rounded-full before:border-2 before:border-apu-accent/75 before:content-[''] before:[animation:apu-eco-pulse_2.8s_ease-out_infinite] before:[animation-delay:0.7s] after:pointer-events-none after:absolute after:inset-0 after:rounded-full after:border-2 after:border-apu-accent/75 after:content-[''] after:[animation:apu-eco-pulse_2.8s_ease-out_infinite] after:[animation-delay:1.4s]"
+                        ></div>
+                        <p class="apu-ecosystem__pin-label text-caption absolute left-1/2 top-[calc(100%+16px)] m-0 -translate-x-1/2 whitespace-nowrap border border-apu-navy/25 bg-brand-surface/85 px-3 py-2 font-bold text-apu-navy pointer-events-none">
+                            APU Campus
+                        </p>
+                    </div>
+                </section>
+
+                <section
+                    class="apu-ecosystem__text-zone relative z-[5] ml-auto grid min-h-full w-full content-center gap-[22px] p-[clamp(28px,6vw,80px)] pt-[48svh] text-start transition-[opacity,transform] duration-[450ms,500ms] ease-[ease,ease] lg:w-[min(48%,640px)] lg:pt-[clamp(28px,6vw,80px)]"
+                >
+                    <p class="apu-ecosystem__eyebrow text-mono m-0 inline-block w-fit border border-apu-navy/18 bg-brand-surface/78 px-[10px] py-[6px] font-semibold text-brand-text-muted">
+                        Ecosystem view · Step 1
+                    </p>
+                    <h2 class="text-h2 apu-ecosystem__title m-0 max-w-full text-apu-navy lg:max-w-[14ch]">
+                        APU is part of a thriving ecosystem
+                    </h2>
+                    <p class="text-body-s apu-ecosystem__support m-0 max-w-[35ch] rounded-xl border border-apu-navy/15 bg-brand-surface/72 px-4 py-[14px] text-brand-text-muted">
+                        Click the APU pin to zoom out and reveal the full ecosystem map.
+                    </p>
+                </section>
+
+                <p class="apu-ecosystem__phase2-title text-h3 pointer-events-none absolute right-[14px] top-3 z-[7] m-0 translate-y-[-8px] rounded-[10px] border border-apu-navy/22 bg-brand-surface/82 px-4 py-3 text-apu-navy opacity-0 transition-[opacity,transform] duration-500 ease-[ease] delay-180 md:right-7 md:top-6">
+                    The Agung Putra Ecosystem
+                </p>
+            </div>
+        </ScrollReveal>
+    </div>
+</section>
+
+<script>
+    const frame = document.getElementById("ecosystemFrame");
+    const pinButton = document.getElementById("pinButton");
+
+    pinButton?.addEventListener("click", () => {
+        frame?.classList.add("step-2");
+    });
+</script>
+
+<style>
+    @keyframes apu-eco-pulse {
+        0% {
+            transform: scale(0.34);
+            opacity: 0.9;
+        }
+        80% {
+            opacity: 0.08;
+        }
+        100% {
+            transform: scale(1.45);
+            opacity: 0;
+        }
+    }
+
+    .apu-ecosystem__frame.step-2 .apu-ecosystem__text-zone {
+        opacity: 0;
+        transform: translateX(24px);
+        pointer-events: none;
+    }
+
+    .apu-ecosystem__frame.step-2 .apu-ecosystem__map-stage {
+        transform: scale(0.86) translateX(2.5%) translateY(-1.5%);
+    }
+
+    .apu-ecosystem__frame.step-2 .apu-ecosystem__map-local {
+        opacity: 0;
+    }
+
+    .apu-ecosystem__frame.step-2 .apu-ecosystem__map-global {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .apu-ecosystem__frame.step-2 .apu-ecosystem__map-vignette {
+        opacity: 0;
+    }
+
+    .apu-ecosystem__frame.step-2 .apu-ecosystem__pin-wrap,
+    .apu-ecosystem__frame.step-2 .apu-ecosystem__hint {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .apu-ecosystem__frame.step-2 .apu-ecosystem__phase2-title {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>

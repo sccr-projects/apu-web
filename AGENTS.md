@@ -1,22 +1,22 @@
-# APU Website Design System (Tailwind v4)
+# Sistem Desain Website APU (Tailwind v4)
 
-Purpose: keep UI consistent as site grows. Use this as the default style contract for all new sections/components.
+Tujuan: menjaga konsistensi UI saat situs berkembang. Gunakan dokumen ini sebagai kontrak gaya default untuk semua section/komponen baru.
 
-Main Vibe : Vibrant yet elegant, premium, and futuristic.
+Nuansa utama: vibran namun elegan, premium, futuristik, tetap hangat untuk audiens siswa dan orang tua.
 
-## 1) Source of truth
+## 1) Sumber kebenaran
 
-- Primary file: `src/styles/global.css`
-- Current implementation style: Tailwind v4 runtime + CSS token layer + component utility classes.
-- Reuse existing primitives first. Add new primitives only when repetition appears in 3+ places.
+- File utama: `src/styles/global.css`
+- Gaya implementasi saat ini: runtime Tailwind v4 + lapisan token CSS + kelas utilitas komponen.
+- Utamakan pakai primitive yang sudah ada. Tambah primitive baru hanya jika pola berulang di 3+ tempat.
 
 ---
 
-## 2) Design tokens
+## 2) Token desain
 
-Use these semantic aliases (already defined in `:root`):
+Gunakan alias semantik ini (sudah didefinisikan di `:root`):
 
-### Core palette
+### Palet inti
 
 - `--apu-surface`
 - `--apu-surface-alt`
@@ -28,7 +28,7 @@ Use these semantic aliases (already defined in `:root`):
 - `--apu-border`
 - `--apu-glow`
 
-### Elevation + shape
+### Elevasi + bentuk
 
 - `--apu-shadow-card`
 - `--apu-shadow-card-hover`
@@ -37,14 +37,14 @@ Use these semantic aliases (already defined in `:root`):
 - `--apu-radius-pill`
 - `--apu-radius-surface`
 
-### Layout spacing
+### Spasi layout
 
 - `--apu-section-spacing-y`
 - `--apu-section-spacing-x`
 
-### Section-local overrides
+### Override lokal per section
 
-Each section may override tokens locally (example already done in hero):
+Setiap section boleh override token secara lokal (contoh sudah diterapkan di hero):
 
 - `--apu-btn-primary-bg`
 - `--apu-btn-primary-color`
@@ -60,130 +60,130 @@ Each section may override tokens locally (example already done in hero):
 - `--apu-badge-border`
 - `--apu-badge-color`
 
-Rule: override only what needed for section identity. keep semantic names stable.
+Aturan: override hanya yang dibutuhkan untuk identitas section. Jaga nama semantik tetap stabil.
 
 ---
 
-## 3) Shared primitives (must reuse)
+## 3) Primitive bersama (wajib dipakai ulang)
 
-Defined in `@layer components` inside `global.css`.
+Didefinisikan di `@layer components` dalam `global.css`.
 
-### Section shell
+### Shell section
 
 - `.apu-section-shell`
-  - base section wrapper with ambient radial glow
+  - pembungkus section dasar dengan ambient radial glow.
 
-### Card primitives
+### Primitive kartu
 
 - `.apu-glass-card`
-  - frosted surface, border, blur, radius, shadow
+  - permukaan frosted, border, blur, radius, shadow.
 - `.apu-interactive-card`
-  - hover/focus transitions and elevated interaction
+  - transisi hover/focus dan elevasi interaksi.
 
-### Badge + header primitives
+### Primitive badge + header
 
 - `.apu-pill-badge`
-  - rounded pill badge with tokenized bg/border/text
+  - badge pill membulat dengan token bg/border/text.
 - `.apu-section-kicker`
-  - mono uppercase section label / eyebrow
+  - label section mono uppercase / eyebrow.
 - `.apu-gradient-line`
-  - decorative accent divider line
+  - garis aksen dekoratif.
 
-### CTA primitives
+### Primitive CTA
 
 - `.apu-btn`
-  - shared button base (layout, transition, focus-visible)
+  - basis tombol bersama (layout, transisi, focus-visible).
 - `.apu-btn--primary`
-  - primary CTA surface
+  - permukaan CTA utama.
 - `.apu-btn--secondary`
-  - secondary/glass CTA
+  - CTA sekunder bergaya glass.
 
-### Icon primitive
+### Primitive ikon
 
 - `.apu-icon-chip`
-  - gradient chip for feature/pathway icons
+  - chip gradien untuk ikon fitur/jalur.
 
 ---
 
-## 4) Typography + layout utilities
+## 4) Utilitas tipografi + layout
 
-Keep using existing type scale classes:
+Tetap gunakan kelas skala tipe yang sudah ada:
 
 - `.text-h1`, `.text-h2`, `.text-h3`
 - `.text-body`, `.text-body-s`, `.text-caption`, `.text-mono`
 
-Layout container:
+Kontainer layout:
 
 - `.content-max`
 
 ---
 
-## 5) Applied patterns from migrated sections
+## 5) Pola terapan dari section yang sudah migrasi
 
 ### Hero (`HeroSectionAPU.astro`)
 
-- CTA buttons use:
+- Tombol CTA menggunakan:
   - `apu-btn apu-btn--primary`
   - `apu-btn apu-btn--secondary`
-- Section keeps local token overrides for navy/ivory/orange mood.
+- Section menjaga override token lokal untuk mood navy/ivory/orange.
 
-### Programs (`ProgramsSectionAPU.astro`)
+### Program (`ProgramsSectionAPU.astro`)
 
-- Section header uses:
+- Header section menggunakan:
   - `.apu-section-kicker`
   - `.apu-gradient-line`
-- program cards/slides use `.apu-interactive-card` for consistent motion/focus.
+- Kartu/slide program menggunakan `.apu-interactive-card` untuk konsistensi motion/focus.
 
-### Pathways (`PathwaysSectionAPU.astro`)
+### Jalur (`PathwaysSectionAPU.astro`)
 
-- section wrapper uses `.apu-section-shell`
-- main cards use `.apu-glass-card.apu-interactive-card`
-- badges use `.apu-pill-badge`
-- icon uses `.apu-icon-chip`
-- CTA uses `apu-btn apu-btn--primary`
+- Wrapper section menggunakan `.apu-section-shell`
+- Kartu utama menggunakan `.apu-glass-card.apu-interactive-card`
+- Badge menggunakan `.apu-pill-badge`
+- Ikon menggunakan `.apu-icon-chip`
+- CTA menggunakan `apu-btn apu-btn--primary`
 
 ---
 
-## 6) Rules for future development
+## 6) Aturan pengembangan ke depan
 
 1. **Token-first**
-   - no hardcoded random colors if token can express intent.
+   - jangan hardcode warna acak jika intensi bisa diekspresikan token.
 2. **Primitive-first**
-   - use `apu-*` class before composing one-off utility pile.
-3. **Accessibility non-negotiable**
-   - preserve/extend `focus-visible` styles.
-   - keep contrast strong for navy/accent surfaces.
-4. **Section theming via overrides**
-   - override token vars at section root, not inside many child nodes.
-5. **Low-fragmentation class naming**
-   - new reusable classes use `apu-*` prefix.
-6. **Motion consistency**
-   - keep transition duration around 220–300ms for micro-interactions.
-7. **Do not break existing behavior scripts**
-   - visual refactor must not change JS interaction contracts.
+   - gunakan kelas `apu-*` sebelum membuat tumpukan utilitas one-off.
+3. **Aksesibilitas tidak bisa ditawar**
+   - pertahankan/perluas style `focus-visible`.
+   - jaga kontras kuat untuk permukaan navy/aksen.
+4. **Theming section lewat override token**
+   - override variabel token di root section, bukan di banyak child node.
+5. **Penamaan kelas minim fragmentasi**
+   - kelas reusable baru wajib prefiks `apu-*`.
+6. **Konsistensi motion**
+   - durasi transisi sekitar 220–300ms untuk mikro-interaksi.
+7. **Jangan merusak kontrak skrip perilaku yang ada**
+   - refactor visual tidak boleh mengubah kontrak interaksi JS.
 
 ---
 
-## 7) Tailwind v4 direction (next)
+## 7) Arah Tailwind v4 (lanjutan)
 
-Current state is hybrid v4 (`@import "tailwindcss"` + `@config`).
+Status saat ini: hybrid v4 (`@import "tailwindcss"` + `@config`).
 
-When moving to pure v4 theme config:
+Saat migrasi ke konfigurasi tema v4 murni:
 
-- migrate token authority into `@theme`
-- move keyframes/animation tokens into CSS theme layer
-- reduce/remove `tailwind.config.mjs` extension surface
-- replace dynamic safelist dependence with explicit utility maps where possible
+- pindahkan otoritas token ke `@theme`
+- pindahkan keyframes/token animasi ke lapisan tema CSS
+- kurangi/hilangkan perluasan `tailwind.config.mjs`
+- ganti ketergantungan safelist dinamis dengan peta utilitas eksplisit bila memungkinkan
 
-Keep this file updated whenever tokens/primitives change.
+Jaga file ini tetap terbarui setiap kali token/primitive berubah.
 
 ---
 
-## 8) Reusable section components extracted from `src/sections/*`
+## 8) Komponen section reusable yang diekstrak dari `src/sections/*`
 
-These patterns are now part of the design system contract and should be reused across projects.
+Pola ini sekarang bagian dari kontrak sistem desain dan wajib dipakai ulang lintas proyek.
 
-### Implemented Astro components (must reuse first)
+### Komponen Astro yang sudah ada (prioritas pemakaian)
 
 - `src/components/SectionHeader.astro`
   - props:
@@ -194,7 +194,7 @@ These patterns are now part of the design system contract and should be reused a
     - `titleClass?: string`
     - `descriptionClass?: string`
     - `dividerClass?: string`
-  - purpose: standard section header block with kicker + title + gradient line + optional lead copy.
+  - tujuan: blok header section standar (kicker + judul + gradient line + lead copy opsional).
 
 - `src/components/CtaButton.astro`
   - props:
@@ -202,127 +202,217 @@ These patterns are now part of the design system contract and should be reused a
     - `variant?: "primary" | "secondary" | "requirements"`
     - `target?: string`
     - `rel?: string`
-    - `class?: string` (for per-section size/layout adjustments)
+    - `class?: string` (untuk penyesuaian ukuran/layout per section)
     - `withArrow?: boolean`
     - `arrowSize?: number`
-  - purpose: reusable CTA anchor component that keeps section-specific color identity through variants (do not force navy globally).
+  - tujuan: komponen anchor CTA reusable yang menjaga identitas warna tiap section melalui varian (jangan paksa navy global).
 
-Adoption rule:
+Aturan adopsi:
 
-- use these Astro components before writing repeated section markup.
-- only bypass when a section has clearly different IA/interaction that cannot fit via props/slots.
+- gunakan komponen Astro ini sebelum menulis markup section berulang.
+- hanya lewati jika section punya IA/interaksi yang jelas berbeda dan tidak bisa ditangani props/slots.
 
-### A) Section header block (standardized)
+### A) Blok header section (standar)
 
-Use a shared header structure in every section:
+Gunakan struktur header bersama di setiap section:
 
 - kicker: `.apu-section-kicker`
 - title: `.text-h2`
 - divider: `.apu-gradient-line`
-- lead copy: `.text-body` + muted color
+- lead copy: `.text-body` + warna muted
 
-Canonical structure:
+Struktur kanonik:
 
 ```html
 <header class="text-center mb-16">
-  <span class="apu-section-kicker mb-5">SECTION LABEL</span>
+  <span class="apu-section-kicker mb-5">LABEL SECTION</span>
   <h2 class="text-h2 mb-4">
-    Section headline
+    Judul section
     <span class="apu-gradient-line mx-auto mt-4 w-216"></span>
   </h2>
   <p class="text-body text-brand-text-muted max-w-xl mx-auto leading-relaxed">
-    Section supporting copy.
+    Copy pendukung section.
   </p>
 </header>
 ```
 
-### B) Feature/info card stack
+### B) Tumpukan kartu fitur/informasi
 
-From pathways + requirements + program cards:
+Dari section jalur + persyaratan + kartu program:
 
-- base shell: `.apu-glass-card`
-- interaction: `.apu-interactive-card`
-- optional glow accent: absolute blurred orb layer
-- optional icon: `.apu-icon-chip`
-- optional status chip: `.apu-pill-badge`
+- shell dasar: `.apu-glass-card`
+- interaksi: `.apu-interactive-card`
+- aksen glow opsional: layer orb blur absolut
+- ikon opsional: `.apu-icon-chip`
+- chip status opsional: `.apu-pill-badge`
 
-Rule: for any repeatable card/list UI, default to `.apu-glass-card.apu-interactive-card` before creating a one-off style.
+Aturan: untuk UI kartu/list yang berulang, default ke `.apu-glass-card.apu-interactive-card` sebelum membuat style one-off.
 
-### C) Contact row item pattern
+### C) Pola item baris kontak
 
-From contact section, reusable for any "icon + label + value/link" line item.
+Dari section kontak, reusable untuk item “ikon + label + value/link”.
 
-- left icon in circular chip (fixed 48x48)
-- right content with caption (`.text-caption`) + value (`.text-body`)
-- hover only on value/link text
+- ikon kiri dalam chip lingkaran (tetap 48x48)
+- konten kanan dengan caption (`.text-caption`) + value (`.text-body`)
+- hover hanya pada teks value/link
 
-Use this as default for contact/meta lists (address, phone, web, email, social).
+Gunakan sebagai default untuk daftar kontak/meta (alamat, telepon, web, email, sosial).
 
-### D) Primary section CTA pattern
+### D) Pola CTA utama section
 
-All high-emphasis section CTAs should use:
+Semua CTA section dengan penekanan tinggi gunakan:
 
 - `apu-btn apu-btn--primary`
 
-Secondary action:
+Aksi sekunder:
 
 - `apu-btn apu-btn--secondary`
 
-Rule: avoid custom CTA button styling unless the variant is reused in 3+ places.
+Aturan: hindari styling tombol custom kecuali varian itu dipakai ulang di 3+ tempat.
 
-### E) Motion + reveal pattern
+### E) Pola motion + reveal
 
-Use `ScrollReveal.astro` as default entry animation wrapper for section blocks, cards, and CTAs.
+Gunakan `ScrollReveal.astro` sebagai wrapper animasi masuk default untuk blok section, kartu, dan CTA.
 
-Guidelines:
+Panduan:
 
-- reveal header first
-- then list/grid items with progressive delay (`index * 100–150ms`)
-- keep micro interaction transitions in 220–300ms range
+- tampilkan header lebih dulu
+- lanjut item list/grid dengan delay progresif (`index * 100–150ms`)
+- pertahankan transisi mikro-interaksi di rentang 220–300ms
 
-### F) Interactive list item with detail popover
+### F) Item list interaktif dengan popover detail
 
-From scholarship items in pathways:
+Dari item beasiswa di section jalur:
 
-- trigger row inside card
-- hover/focus detail popover on desktop
-- click/tap toggle (`.is-active`) on mobile
-- close on outside click
+- trigger row di dalam kartu
+- popover detail hover/focus di desktop
+- toggle klik/tap (`.is-active`) di mobile
+- tutup saat klik area luar
 
-Use this pattern for compact "summary row + deep detail" use-cases (scholarships, requirements detail, benefit tiers).
+Gunakan pola ini untuk kasus “ringkasan + detail mendalam” (beasiswa, detail persyaratan, tier benefit).
 
-### G) Responsive dual-mode collection (desktop grid + mobile carousel)
+### G) Koleksi dual-mode responsif (grid desktop + carousel mobile)
 
-From programs section:
+Dari section program:
 
-- desktop: dense visual grid, hover-expand behavior
-- mobile: carousel/swiper with navigation and keyboard support
+- desktop: grid visual padat, perilaku hover-expand
+- mobile: carousel/swiper dengan navigasi dan dukungan keyboard
 
-Adoption rule:
+Aturan adopsi:
 
-- only use external carousel dependency when card count + art direction needs it
-- if simple horizontal scroll is enough, prefer native overflow first
+- pakai dependensi carousel eksternal hanya jika jumlah kartu + art direction memang perlu
+- jika scroll horizontal sederhana cukup, utamakan overflow native dulu
 
-### H) Section ambient shell
+### H) Shell ambient section
 
-Section wrappers should compose:
+Wrapper section sebaiknya menggabungkan:
 
 - `.apu-section-shell`
-- optional `motion-aurora-shell` variant class per section
-- subtle top divider and radial/blur ambient decorations
+- kelas varian opsional `motion-aurora-shell` per section
+- divider atas halus + dekorasi ambient radial/blur
 
-This is default for premium/futuristic mood consistency.
+Ini default untuk konsistensi nuansa premium/futuristik.
 
 ---
 
-## 9) Implementation checklist for new sections (cross-project)
+## 9) Checklist implementasi section baru (lintas proyek)
 
-Before shipping any new section/component:
+Sebelum merilis section/komponen baru:
 
-1. Reuse section header block (8A)
-2. Reuse card primitives first (8B)
-3. Use standard CTA primitives (8D)
-4. Apply reveal/motion pattern (8E)
-5. Validate keyboard + focus-visible states
-6. Keep token overrides at section root only
-7. Do not duplicate inline SVG/UI patterns if equivalent `apu-*` primitive exists
+1. Pakai ulang blok header section (8A)
+2. Pakai ulang primitive kartu terlebih dahulu (8B)
+3. Gunakan primitive CTA standar (8D)
+4. Terapkan pola reveal/motion (8E)
+5. Validasi state keyboard + focus-visible
+6. Simpan override token hanya di root section
+7. Jangan duplikasi pola SVG/UI inline jika primitive `apu-*` setara sudah ada
+
+---
+
+## 10) Integrasi bahasa desain APU (gabungan dari `design-language-apu.md`)
+
+### Inti karakter desain
+
+- Nada utama: aspiratif, informatif, menenangkan orang tua, menggerakkan siswa untuk aksi.
+- Rasa visual: akademik modern, bersih, natural-hijau dengan aksen hangat.
+- Gaya komunikasi: kalimat pendek, manfaat dulu, lalu langkah tindakan.
+
+### Aturan voice & copy (wajib Bahasa Indonesia)
+
+Pola diksi yang dipertahankan:
+- Ajakan jelas: “Daftar Sekarang”, “Pilih jalur”, “Siapkan berkasmu”.
+- Manfaat langsung: “potongan biaya”, “jalur yang sesuai potensi”, “tim admisi siap membantu”.
+- Aspirasi masa depan: “masa depan”, “kampus impian”, “program unggulan”.
+
+Template kalimat:
+- **[Manfaat] + [Kejelasan langkah] + [Ajakan]**
+- Contoh: “Pilih jalur yang sesuai potensimu, lengkapi berkas, lalu kirim pendaftaran online.”
+
+Larangan copy:
+- Jangan gunakan bahasa Inggris pada UI/copy publik.
+- Jangan klaim bombastis tanpa konteks/verifikasi.
+- Hindari kalimat panjang dengan lebih dari 2 klausa.
+
+### Pola komponen konten (berdasarkan halaman referensi)
+
+1. Hero admisi (judul besar + subjudul + CTA primer + CTA sekunder + petunjuk lanjut baca).
+2. Navigasi informasi terstruktur (rencana daftar, kenal kampus, institusi & cerita, aksi cepat).
+3. Blok jalur pendaftaran (Reguler/Beasiswa + ringkasan + syarat inti + tombol tindakan).
+4. Timeline gelombang (Gelombang I/II/III: periode + benefit).
+5. Checklist persyaratan bernomor (01–05) untuk menekan beban kognitif.
+6. Kontak admisi cepat (WhatsApp, alamat, situs, email).
+
+### Token visual referensi (untuk validasi konsistensi)
+
+Font:
+- `--font-sans: "Space Grotesk", system-ui, sans-serif`
+- `--font-mono: "Space Mono", monospace`
+- Font yang digunakan: Instrument Serif, Space Grotesk, Space Mono.
+
+Warna basis referensi:
+- `--color-apu-navy: 19 40 66`
+- `--color-apu-accent: 252 188 85`
+- `--color-semantic-surface: 247 250 243`
+- `--color-semantic-surface-alt: 236 243 227`
+- `--color-semantic-surface-soft: 222 234 210`
+- `--color-semantic-primary: 43 122 74`
+- `--color-semantic-primary-deep: 28 86 51`
+- `--color-semantic-primary-deeper: 17 58 34`
+- `--color-semantic-text: 27 41 32`
+- `--color-semantic-text-muted: 87 112 94`
+- `--color-semantic-border: 176 201 164`
+- `--color-semantic-accent: 228 152 78`
+
+Ritme visual:
+- radius umum: 10px, 20px, 28px (plus varian `lg/xl/2xl/3xl`)
+- border tipis 1px dominan dengan opacity untuk layering halus
+- bayangan lembut-menengah untuk elevasi kartu/CTA
+- spacing kelipatan 4px
+
+### Pola interaksi
+
+- Navigasi anchor ke section penting (`#program`, `#jalur-masuk`, `#kontak`) tetap didukung saat fase transisi.
+- CTA primer ke pendaftaran, CTA sekunder ke info jalur.
+- Status “Segera Hadir” untuk fitur/rute belum aktif wajib non-breaking.
+- Menu mobile/drawer harus punya state buka/tutup yang jelas.
+
+### Adaptasi audiens (siswa SMA + orang tua)
+
+Urutan prioritas informasi atas-bawah:
+1. Kejelasan jalur masuk.
+2. Ringkasan biaya/potongan.
+3. Checklist berkas.
+4. Kontak manusia (bukan hanya formulir).
+
+Nada bahasa:
+- Untuk siswa: motivasional tapi konkret.
+- Untuk orang tua: meyakinkan, transparan, minim jargon.
+
+### Blueprint reusable ringkas
+
+1. Hero admisi (judul + subjudul + 2 tombol)
+2. Ringkasan jalur (Reguler / Beasiswa)
+3. Timeline gelombang
+4. Checklist berkas
+5. FAQ mini
+6. Blok kontak admisi
