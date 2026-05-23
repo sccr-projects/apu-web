@@ -12,7 +12,7 @@ const OSM_CENTER = {
 
 
 
-const OSM_ZOOM = 19;
+const OSM_ZOOM = 17;
 
 const zoomToSpan = (zoom: number) => {
   const base = 0.028;
@@ -37,14 +37,14 @@ const osmEmbedSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${OSM_
 
 <section
   id="ekosistem"
-  class="apu-anchor-campus apu-section-shell motion-aurora-shell relative isolate overflow-hidden bg-gradient-to-b from-brand-surface to-brand-surface-alt"
+  class="apu-anchor-campus apu-section-shell motion-aurora-shell relative isolate overflow-hidden bg-white "
   aria-label="Ekosistem kampus Agung Putra University"
 >
   <div class="w-full relative z-[1]">
     <ScrollReveal>
-      <div class="apu-anchor-campus__frame relative isolate grid min-h-[min(760px,90svh)] w-full overflow-hidden bg-gradient-to-br from-brand-surface/96 to-brand-surface-alt/94 shadow-[0_30px_72px_rgb(var(--color-brand-primary-deeper)/0.16)] lg:grid-cols-[1.2fr_0.8fr]">
-        <section class="apu-anchor-campus__map-zone relative min-h-[420px] overflow-hidden lg:min-h-full" aria-label="Visual map kampus APU">
-          <div class="apu-anchor-campus__map-stage absolute inset-[-26%]">
+      <div class="apu-anchor-campus__frame relative isolate aspect-video w-full overflow-hidden bg-white shadow-[0_30px_72px_rgb(var(--color-brand-primary-deeper)/0.16)]">
+        <section class="apu-anchor-campus__map-zone absolute inset-0 overflow-hidden" aria-label="Visual map kampus APU">
+          <div class="apu-anchor-campus__map-stage absolute left-1/2 top-1/2 aspect-square w-[150%] translate-x-[-61%] -translate-y-1/2">
             <iframe
               class="apu-anchor-campus__map-plate absolute inset-0 h-full w-full border-0"
               src={osmEmbedSrc}
@@ -59,7 +59,7 @@ const osmEmbedSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${OSM_
           <div class="apu-anchor-campus__map-vignette pointer-events-none absolute inset-0 z-[2]"></div>
 
           <div
-            class="apu-anchor-campus__pin-wrap absolute left-[50%] top-[50%] z-[4] grid aspect-square w-44 -translate-x-1/2 -translate-y-1/2 place-items-center md:w-36 max-[980px]:left-[50%] max-[980px]:top-[50%]"
+            class="apu-anchor-campus__pin-wrap absolute left-[33.4%] top-[50%] z-[4] grid aspect-square w-44 -translate-x-1/2 -translate-y-1/2 place-items-center md:w-36 max-[980px]:left-[50%] max-[980px]:top-[50%]"
             aria-label="Pin lokasi kampus APU"
           >
             <div
@@ -72,7 +72,7 @@ const osmEmbedSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${OSM_
           </div>
         </section>
 
-        <section class="apu-anchor-campus__text-zone relative z-[5] grid content-center gap-5 px-[clamp(1.4rem,4vw,3rem)] py-[clamp(1.8rem,4vw,3.6rem)] lg:px-[clamp(2rem,4.2vw,4rem)]">
+        <section class="apu-anchor-campus__text-zone absolute inset-x-0 bottom-0 z-[5] grid content-end gap-5 bg-gradient-to-t from-brand-surface/92 via-brand-surface/70 to-transparent px-[clamp(1.4rem,4vw,3rem)] py-[clamp(1.8rem,4vw,3.6rem)] lg:inset-y-0 lg:left-auto lg:w-[min(42%,620px)] lg:content-center lg:bg-gradient-to-l lg:from-brand-surface/94 lg:via-brand-surface/76 lg:to-transparent lg:px-[clamp(2rem,4.2vw,4rem)]">
           <span class="apu-section-kicker mb-1 w-fit">Anchor Campus · 360° View</span>
           <h2 class="text-h2 m-0 max-w-[18ch] text-apu-navy">
             Kampus APU menjadi poros ekosistem yang terus bergerak
@@ -132,7 +132,7 @@ const osmEmbedSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${OSM_
 
   .apu-anchor-campus__map-stage {
     transform-origin: var(--anchor-pin-x) var(--anchor-pin-y);
-    animation: apu-anchor-spin 220s linear infinite;
+    animation: apu-anchor-spin 160s linear infinite;
     will-change: transform;
   }
 
@@ -175,15 +175,10 @@ const osmEmbedSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${OSM_
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .apu-anchor-campus__map-stage,
     .apu-anchor-campus__pulse,
     .apu-anchor-campus__pulse::before,
     .apu-anchor-campus__pulse::after {
       animation: none !important;
-    }
-
-    .apu-anchor-campus__map-stage {
-      transform: none !important;
     }
   }
 </style>
