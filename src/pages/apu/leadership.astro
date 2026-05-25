@@ -4,6 +4,7 @@ import NavigationAPU from "../../components/NavigationAPU.astro";
 import Footer from "../../components/Footer.astro";
 import WireframePageHeroAPU from "../../sections/WireframePageHeroAPU.astro";
 import WireframePageSectionAPU from "../../sections/WireframePageSectionAPU.astro";
+import MessageFromLeadership from "../../sections/MessageFromLeadership.astro";
 ---
 
 <MainLayout title="Pimpinan APU" description="Struktur pimpinan dan arah strategis pengembangan APU.">
@@ -12,7 +13,7 @@ import WireframePageSectionAPU from "../../sections/WireframePageSectionAPU.astr
     <WireframePageHeroAPU kicker="Pimpinan" title="Kepemimpinan yang Visioner" description="Tim pimpinan APU mengarahkan transformasi kampus berbasis mutu, kolaborasi, dan dampak." primaryHref="#arah-strategis" primaryLabel="Lihat Arah Strategis" secondaryHref="/apu/about" secondaryLabel="Kembali ke Profil Kampus" />
     <WireframePageSectionAPU id="arah-strategis" kicker="Strategi" title="Prioritas Pengembangan" description="Arah strategis disusun untuk mendukung pertumbuhan institusi dan keberhasilan mahasiswa." bullets={["Penguatan kualitas akademik dan riset terapan.","Perluasan kemitraan industri dan komunitas.","Digitalisasi layanan kampus yang lebih responsif."]} />
     <WireframePageSectionAPU id="struktur" kicker="Struktur" title="Peran Kepemimpinan" description="Setiap unit kepemimpinan memiliki mandat jelas untuk mendorong capaian institusi." bullets={["Pimpinan akademik untuk mutu kurikulum dan pembelajaran.","Pimpinan kemahasiswaan untuk pembinaan karakter dan layanan.","Pimpinan kemitraan untuk jejaring nasional dan internasional."]} ctaHref="/apu/contact" ctaLabel="Hubungi Kantor Pimpinan" />
-    <WireframePageSectionAPU id="profil-pimpinan" kicker="Profil" title="Profil Lengkap Pimpinan" description="Profil individual pimpinan sedang dipersiapkan bersama dokumentasi resmi institusi." />
+    <MessageFromLeadership />
   </main>
   <Footer />
 </MainLayout>

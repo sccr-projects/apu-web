@@ -83,28 +83,28 @@ const navSections: NavSection[] = [
     href: `${HOME_PATH}/research`,
     kind: "route",
     placeholder: true,
-    badge: "Segera Hadir",
+    // badge: "Segera Hadir",
   },
   {
     label: "Scholarships",
     href: `${HOME_PATH}/scholarships`,
     kind: "route",
     placeholder: true,
-    badge: "Segera Hadir",
+    // badge: "Segera Hadir",
   },
   {
     label: "News & Stories",
     href: `${HOME_PATH}/news-stories`,
     kind: "route",
     placeholder: true,
-    badge: "Segera Hadir",
+    // badge: "Segera Hadir",
   },
   {
     label: "About APU",
     href: `${HOME_PATH}/about`,
     kind: "route",
     placeholder: true,
-    badge: "Segera Hadir",
+    // badge: "Segera Hadir",
     items: [
       {
         label: "About",
@@ -219,7 +219,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
   <div class="nav-topline"></div>
 
   <div class="nav-bar">
-    <div class="content-max nav-bar-inner">
+    <div class="nav-bar-inner">
       <a href={HOME_PATH} class="nav-brand">
         <img
           src="/images/apu.webp"
@@ -686,21 +686,35 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
       const dropdown = parent?.querySelector('.nav-dropdown');
       if (!dropdown) return;
 
-      trigger.addEventListener('mouseenter', () => {
-        window.clearTimeout(hoverTimer);
-        hoverTimer = window.setTimeout(() => {
+      /** @type {number | null} */
+      let enterTimer = null;
+      /** @type {number | null} */
+      let leaveTimer = null;
+
+      function openDropdown() {
+        window.clearTimeout(leaveTimer);
+        leaveTimer = null;
+        window.clearTimeout(enterTimer);
+        enterTimer = window.setTimeout(() => {
           trigger.setAttribute('aria-expanded', 'true');
           dropdown.setAttribute('data-open', 'true');
         }, 150);
-      });
+      }
 
-      parent.addEventListener('mouseleave', () => {
-        window.clearTimeout(hoverTimer);
-        hoverTimer = window.setTimeout(() => {
+      function closeDropdown() {
+        window.clearTimeout(enterTimer);
+        enterTimer = null;
+        window.clearTimeout(leaveTimer);
+        leaveTimer = window.setTimeout(() => {
           trigger.setAttribute('aria-expanded', 'false');
           dropdown.setAttribute('data-open', 'false');
-        }, 200);
-      });
+        }, 400);
+      }
+
+      trigger.addEventListener('mouseenter', openDropdown);
+      dropdown.addEventListener('mouseenter', openDropdown);
+      trigger.addEventListener('mouseleave', closeDropdown);
+      dropdown.addEventListener('mouseleave', closeDropdown);
 
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
@@ -806,6 +820,9 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
 
   /* ===== NAV BAR ===== */
   #apu-nav .nav-bar {
+      padding-left: 5rem;
+      padding-right: 5rem;
+
     position: relative;
     z-index: 2;
     border-bottom: 1px solid rgb(var(--color-apu-navy) / 0.1);
