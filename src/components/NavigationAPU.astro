@@ -14,9 +14,6 @@ const routePathFromHref = (href: string) => {
   }
 };
 
-const toDomId = (value: string) =>
-  value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-
 const currentPath = normalizePath(Astro.url.pathname);
 const admissionsWhatsApp =
   "https://wa.me/628113755552?text=Halo, saya ingin menanyakan informasi pendaftaran mahasiswa baru APU 2026/2027.";
@@ -33,60 +30,43 @@ type NavItem = {
   rel?: string;
 };
 
-const groupedNav: Array<{
-  title: string;
-  description: string;
-  items: NavItem[];
-}> = [
+type NavSection = {
+  label: string;
+  href?: string;
+  items?: NavItem[];
+  kind?: "route" | "anchor" | "external";
+  section?: string;
+  placeholder?: boolean;
+  badge?: string;
+  target?: string;
+  rel?: string;
+};
+
+const navSections: NavSection[] = [
   {
-    title: "Plan & Apply",
-    description: "Masuk APU dengan alur yang jelas, bantuan cepat, dan titik kontak resmi.",
-    items: [
-      {
-        label: "Admissions",
-        href: `${HOME_PATH}#jalur-masuk`,
-        description: "Jalur pendaftaran, intake, dan langkah awal menuju kampus.",
-        kind: "anchor",
-        section: "jalur-masuk",
-        badge: "Live on home",
-      },
-      {
-        label: "Scholarships",
-        href: `${HOME_PATH}/scholarships`,
-        description: "Katalog beasiswa, benefit, timeline, dan bantuan pembiayaan.",
-        kind: "route",
-        placeholder: true,
-        badge: "Segera Hadir",
-      },
-      {
-        label: "Contact",
-        href: `${HOME_PATH}#kontak`,
-        description: "WhatsApp, alamat kampus, dan kanal bantuan resmi APU.",
-        kind: "anchor",
-        section: "kontak",
-        badge: "Live on home",
-      },
-    ],
+    label: "Home",
+    href: HOME_PATH,
+    kind: "route",
   },
   {
-    title: "Discover APU",
-    description: "Jelajahi akademik, riset, kehidupan mahasiswa, dan jejaring global APU.",
+    label: "Admissions",
+    href: `${HOME_PATH}#jalur-masuk`,
+    kind: "anchor",
+    section: "jalur-masuk",
+  },
+  {
+    label: "Academics",
+    href: `${HOME_PATH}#program`,
+    kind: "anchor",
+    section: "program",
     items: [
       {
-        label: "Academics",
+        label: "Programs",
         href: `${HOME_PATH}#program`,
         description: "Program studi, diferensiasi pembelajaran, dan arah karier lulusan.",
         kind: "anchor",
         section: "program",
         badge: "Live on home",
-      },
-      {
-        label: "Research",
-        href: `${HOME_PATH}/research`,
-        description: "Pusat riset, publikasi, ekosistem laboratorium, dan kolaborasi.",
-        kind: "route",
-        placeholder: true,
-        badge: "Segera Hadir",
       },
       {
         label: "Student Life & Services",
@@ -96,28 +76,36 @@ const groupedNav: Array<{
         placeholder: true,
         badge: "Segera Hadir",
       },
-      {
-        label: "International",
-        href: `${HOME_PATH}/international`,
-        description: "Kemitraan global, mobility, dan layanan untuk mahasiswa internasional.",
-        kind: "route",
-        placeholder: true,
-        badge: "Segera Hadir",
-      },
     ],
   },
   {
-    title: "Institution & Stories",
-    description: "Bangun kepercayaan melalui profil institusi, kepemimpinan, dan cerita kampus.",
+    label: "Research",
+    href: `${HOME_PATH}/research`,
+    kind: "route",
+    placeholder: true,
+    badge: "Segera Hadir",
+  },
+  {
+    label: "Scholarships",
+    href: `${HOME_PATH}/scholarships`,
+    kind: "route",
+    placeholder: true,
+    badge: "Segera Hadir",
+  },
+  {
+    label: "News & Stories",
+    href: `${HOME_PATH}/news-stories`,
+    kind: "route",
+    placeholder: true,
+    badge: "Segera Hadir",
+  },
+  {
+    label: "About APU",
+    href: `${HOME_PATH}/about`,
+    kind: "route",
+    placeholder: true,
+    badge: "Segera Hadir",
     items: [
-      {
-        label: "News & Stories",
-        href: `${HOME_PATH}/news-stories`,
-        description: "Berita institusi, cerita mahasiswa, event, dan sorotan kampus.",
-        kind: "route",
-        placeholder: true,
-        badge: "Segera Hadir",
-      },
       {
         label: "About",
         href: `${HOME_PATH}/about`,
@@ -134,7 +122,21 @@ const groupedNav: Array<{
         placeholder: true,
         badge: "Segera Hadir",
       },
+      {
+        label: "International",
+        href: `${HOME_PATH}/international`,
+        description: "Kemitraan global, mobility, dan layanan untuk mahasiswa internasional.",
+        kind: "route",
+        placeholder: true,
+        badge: "Segera Hadir",
+      },
     ],
+  },
+  {
+    label: "Contact",
+    href: `${HOME_PATH}#kontak`,
+    kind: "anchor",
+    section: "kontak",
   },
 ];
 
@@ -143,14 +145,6 @@ const utilityActions: NavItem[] = [
     label: "Apply Now",
     href: admissionsWhatsApp,
     description: "Konsultasi pendaftaran langsung dengan tim admissions.",
-    kind: "external",
-    target: "_blank",
-    rel: "noopener noreferrer",
-  },
-  {
-    label: "WhatsApp Admissions",
-    href: admissionsWhatsApp,
-    description: "Tanya cepat soal intake, biaya, atau proses daftar.",
     kind: "external",
     target: "_blank",
     rel: "noopener noreferrer",
@@ -211,7 +205,7 @@ const homeAnchors: NavItem[] = [
   },
 ];
 
-const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slice(0, 2);
+const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slice(0, 1);
 ---
 
 <nav
@@ -224,34 +218,127 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
 >
   <div class="nav-topline"></div>
 
-  <div class="content-max">
-    <div class="nav-shell">
-      <a href={HOME_PATH} class="nav-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--color-apu-accent))] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(var(--color-brand-surface))]">
+  <div class="nav-bar">
+    <div class="content-max nav-bar-inner">
+      <a href={HOME_PATH} class="nav-brand">
         <img
           src="/images/apu.webp"
           alt="Agung Putra University"
-          class="h-14 w-auto shrink-0"
+          class="h-12 w-auto shrink-0"
           loading="eager"
         />
-
         <span class="nav-brand-copy hidden sm:flex">
           <span class="nav-brand-title">Agung Putra University</span>
           <span class="nav-brand-meta">Future-ready university · Semarang</span>
         </span>
       </a>
 
+      <ul class="nav-desktop" role="menubar">
+        {
+          navSections.map((section) => (
+            <li
+              class="nav-item"
+              role="none"
+              data-has-dropdown={section.items ? "true" : "false"}
+            >
+              {section.items ? (
+                <>
+                  <button
+                    type="button"
+                    class="nav-trigger"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    data-nav-kind={section.kind}
+                    data-section={section.section}
+                  >
+                    <span>{section.label}</span>
+                    <svg
+                      class="nav-chevron"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M2.5 4.5L6 8L9.5 4.5"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  <div class="nav-dropdown" role="menu">
+                    <ul class="nav-dropdown-list">
+                      {section.items.map((item) => {
+                        const routePath = item.kind === "route" ? routePathFromHref(item.href) : undefined;
+                        const isCurrentRoute =
+                          item.kind === "route" && !item.placeholder && routePath === currentPath;
+
+                        return item.placeholder ? (
+                          <li role="none">
+                            <button
+                              type="button"
+                              class="nav-dropdown-item nav-dropdown-item--placeholder"
+                              data-placeholder-item
+                              data-placeholder-label={item.label}
+                              data-placeholder-path={routePath}
+                              role="menuitem"
+                            >
+                              <span class="nav-dropdown-label">{item.label}</span>
+                              {item.badge && <span class="nav-dropdown-badge">{item.badge}</span>}
+                            </button>
+                          </li>
+                        ) : (
+                          <li role="none">
+                            <a
+                              href={item.href}
+                              target={item.target}
+                              rel={item.rel}
+                              class:list={["nav-dropdown-item", isCurrentRoute && "is-current-route"]}
+                              data-menu-link
+                              data-nav-kind={item.kind}
+                              data-section={item.section}
+                              data-route-path={routePath}
+                              aria-current={isCurrentRoute ? "page" : undefined}
+                              role="menuitem"
+                            >
+                              <span class="nav-dropdown-label">{item.label}</span>
+                              {item.badge && <span class="nav-dropdown-badge nav-dropdown-badge--live">{item.badge}</span>}
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </>
+              ) : (
+                <a
+                  href={section.href}
+                  class="nav-link"
+                  data-nav-kind={section.kind}
+                  data-section={section.section}
+                  data-route-path={section.kind === "route" ? routePathFromHref(section.href || "") : undefined}
+                  role="menuitem"
+                >
+                  <span>{section.label}</span>
+                  {section.badge && <span class="nav-link-badge">{section.badge}</span>}
+                </a>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+
       <div class="nav-actions">
         {
-          visibleUtilities.map((item, index) => (
+          visibleUtilities.map((item) => (
             <a
               href={item.href}
               target={item.target}
               rel={item.rel}
-              class:list={[
-                "nav-utility-chip hidden min-[560px]:inline-flex",
-                index === 0 ? "nav-utility-chip--secondary" : "nav-utility-chip--primary",
-                index > 0 && "hidden md:inline-flex",
-              ]}
+              class="nav-cta"
             >
               {item.label}
             </a>
@@ -262,9 +349,8 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
           id="apu-menu-toggle"
           type="button"
           class="menu-toggle"
-          aria-controls="apu-menu-overlay"
+          aria-controls="apu-mobile-menu"
           aria-expanded="false"
-          aria-haspopup="dialog"
           aria-label="Buka menu utama APU"
         >
           <span class="menu-toggle-label">Menu</span>
@@ -278,226 +364,121 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     </div>
   </div>
 
-  <div id="apu-menu-overlay" class="nav-overlay" hidden aria-hidden="true">
-    <div
-      id="apu-menu-panel"
-      class="nav-panel"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="apu-menu-title"
-      tabindex="-1"
-    >
-      <div class="nav-panel-head">
-        <div class="nav-panel-copy">
-          <span class="apu-section-kicker">APU Directory</span>
-          <h2 id="apu-menu-title" class="text-h3 nav-panel-title">
-            Institutional navigation, disederhanakan.
-          </h2>
-          <p class="text-body-s nav-panel-description">
-            Struktur menu ini mengikuti arsitektur kampus utama: kategori institusi,
-            tindakan cepat, dan akses ke ringkasan homepage yang sudah aktif.
-          </p>
-        </div>
-
+  <div id="apu-mobile-menu" class="mobile-menu" hidden aria-hidden="true">
+    <div class="mobile-menu-backdrop"></div>
+    <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Menu navigasi APU">
+      <div class="mobile-menu-header">
+        <span class="apu-section-kicker">Menu Navigasi</span>
         <button
           id="apu-menu-close"
           type="button"
-          class="nav-close"
-          data-menu-close
-          aria-label="Tutup menu utama APU"
+          class="mobile-menu-close"
+          aria-label="Tutup menu"
         >
           <span aria-hidden="true">×</span>
-          <span>Tutup</span>
         </button>
       </div>
 
-      <div class="nav-panel-grid">
-        <div class="nav-panel-main">
-          {
-            groupedNav.map((group) => (
-              <section class="nav-group" aria-labelledby={`nav-group-${toDomId(group.title)}`}>
-                <div class="nav-group-head">
-                  <h3 id={`nav-group-${toDomId(group.title)}`} class="nav-group-title">
-                    {group.title}
-                  </h3>
-                  <p class="text-caption nav-group-description">{group.description}</p>
-                </div>
-
-                <ul class="nav-card-grid" role="list">
-                  {
-                    group.items.map((item) => {
+      <ul class="mobile-nav-list" role="menu">
+        {
+          navSections.map((section) => (
+            <li class="mobile-nav-item" role="none">
+              {section.items ? (
+                <div class="mobile-nav-group">
+                  <button
+                    type="button"
+                    class="mobile-nav-trigger"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    <span>{section.label}</span>
+                    <svg
+                      class="mobile-nav-chevron"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M2.5 4.5L6 8L9.5 4.5"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  <ul class="mobile-nav-submenu" role="menu">
+                    {section.items.map((item) => {
                       const routePath = item.kind === "route" ? routePathFromHref(item.href) : undefined;
-                      const isCurrentRoute =
-                        item.kind === "route" && !item.placeholder && routePath === currentPath;
 
-                      return (
-                        <li>
-                          {
-                            item.placeholder ? (
-                              <button
-                                type="button"
-                                class="nav-card nav-card--placeholder"
-                                data-placeholder-item
-                                data-placeholder-label={item.label}
-                                data-placeholder-path={routePath}
-                                aria-describedby="apu-placeholder-guidance"
-                              >
-                                <span class="nav-card-topline">
-                                  <span class="nav-card-label">{item.label}</span>
-                                  {item.badge && <span class="nav-card-badge">{item.badge}</span>}
-                                </span>
-                                <span class="nav-card-description">{item.description}</span>
-                                <span class="nav-card-meta">Rute disiapkan untuk fase berikutnya</span>
-                              </button>
-                            ) : (
-                              <a
-                                href={item.href}
-                                target={item.target}
-                                rel={item.rel}
-                                class:list={["nav-card", isCurrentRoute && "is-current-route"]}
-                                data-menu-link
-                                data-nav-kind={item.kind}
-                                data-section={item.section}
-                                data-route-path={routePath}
-                                aria-current={isCurrentRoute ? "page" : undefined}
-                              >
-                                <span class="nav-card-topline">
-                                  <span class="nav-card-label">{item.label}</span>
-                                  {item.badge && <span class="nav-card-badge nav-card-badge--live">{item.badge}</span>}
-                                </span>
-                                <span class="nav-card-description">{item.description}</span>
-                                <span class="nav-card-meta">Open section / route</span>
-                              </a>
-                            )
-                          }
+                      return item.placeholder ? (
+                        <li role="none">
+                          <button
+                            type="button"
+                            class="mobile-nav-submenu-item mobile-nav-submenu-item--placeholder"
+                            data-placeholder-item
+                            data-placeholder-label={item.label}
+                            data-placeholder-path={routePath}
+                            role="menuitem"
+                          >
+                            <span>{item.label}</span>
+                            {item.badge && <span class="mobile-nav-badge">{item.badge}</span>}
+                          </button>
+                        </li>
+                      ) : (
+                        <li role="none">
+                          <a
+                            href={item.href}
+                            target={item.target}
+                            rel={item.rel}
+                            class="mobile-nav-submenu-item"
+                            data-menu-link
+                            data-nav-kind={item.kind}
+                            data-section={item.section}
+                            data-route-path={routePath}
+                            role="menuitem"
+                          >
+                            <span>{item.label}</span>
+                            {item.badge && <span class="mobile-nav-badge mobile-nav-badge--live">{item.badge}</span>}
+                          </a>
                         </li>
                       );
-                    })
-                  }
-                </ul>
-              </section>
-            ))
-          }
+                    })}
+                  </ul>
+                </div>
+              ) : (
+                <a
+                  href={section.href}
+                  class="mobile-nav-link"
+                  data-nav-kind={section.kind}
+                  data-section={section.section}
+                  data-route-path={section.kind === "route" ? routePathFromHref(section.href || "") : undefined}
+                  role="menuitem"
+                >
+                  <span>{section.label}</span>
+                  {section.badge && <span class="mobile-nav-badge">{section.badge}</span>}
+                </a>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mobile-menu-footer">
+        <div class="mobile-menu-contact">
+          <p class="mobile-menu-contact-label">Admissions WhatsApp</p>
+          <a
+            href={admissionsWhatsApp}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mobile-menu-contact-link"
+          >
+            +62 811 3755 552
+          </a>
         </div>
-
-        <aside class="nav-panel-side">
-          <section class="nav-side-block" aria-labelledby="nav-utility-title">
-            <div class="nav-side-head">
-              <h3 id="nav-utility-title" class="nav-side-title">Utility Actions</h3>
-              <p class="text-caption nav-side-description">
-                Akses cepat untuk kebutuhan utama calon mahasiswa.
-              </p>
-            </div>
-
-            <div class="nav-utility-list">
-              {
-                utilityActions.map((item, index) => {
-                  const routePath = item.kind === "route" ? routePathFromHref(item.href) : undefined;
-
-                  return item.placeholder ? (
-                    <button
-                      type="button"
-                      class="nav-utility-row nav-utility-row--placeholder"
-                      data-placeholder-item
-                      data-placeholder-label={item.label}
-                      data-placeholder-path={routePath}
-                      aria-describedby="apu-placeholder-guidance"
-                    >
-                      <span class="nav-utility-row-copy">
-                        <span class="nav-utility-row-label">{item.label}</span>
-                        <span class="nav-utility-row-description">{item.description}</span>
-                      </span>
-                      <span class="nav-card-badge">{item.badge}</span>
-                    </button>
-                  ) : (
-                    <a
-                      href={item.href}
-                      target={item.target}
-                      rel={item.rel}
-                      class:list={[
-                        "nav-utility-row",
-                        index === 0 && "nav-utility-row--accent",
-                      ]}
-                      data-menu-link
-                    >
-                      <span class="nav-utility-row-copy">
-                        <span class="nav-utility-row-label">{item.label}</span>
-                        <span class="nav-utility-row-description">{item.description}</span>
-                      </span>
-                      <span class="nav-utility-arrow" aria-hidden="true">↗</span>
-                    </a>
-                  );
-                })
-              }
-            </div>
-          </section>
-
-          <section class="nav-side-block" aria-labelledby="nav-home-anchor-title">
-            <div class="nav-side-head">
-              <h3 id="nav-home-anchor-title" class="nav-side-title">On This Homepage</h3>
-              <p class="text-caption nav-side-description">
-                Tetap sediakan akses ke section penting selama rollout halaman penuh.
-              </p>
-            </div>
-
-            <ul class="nav-anchor-list" role="list">
-              {
-                homeAnchors.map((item) => (
-                  <li>
-                    <a
-                      href={item.href}
-                      class="nav-anchor-link"
-                      data-menu-link
-                      data-nav-kind="anchor"
-                      data-section={item.section}
-                    >
-                      <span>{item.label}</span>
-                      <span aria-hidden="true">↘</span>
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </section>
-
-          <section class="nav-side-block nav-side-block--contact" aria-labelledby="nav-contact-title">
-            <div class="nav-side-head">
-              <h3 id="nav-contact-title" class="nav-side-title">Need a fast answer?</h3>
-              <p class="text-caption nav-side-description">
-                Jalur tercepat saat ini tetap melalui admissions dan kontak kampus resmi.
-              </p>
-            </div>
-
-            <div class="nav-contact-card">
-              <p class="nav-contact-label">Admissions WhatsApp</p>
-              <a
-                href={admissionsWhatsApp}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="nav-contact-link"
-                data-menu-link
-              >
-                +62 811 3755 552
-              </a>
-
-              <p class="nav-contact-label">Campus Address</p>
-              <p class="nav-contact-copy">
-                Jl. Nongkosawit Raya, Gn. Pati, Kota Semarang, Jawa Tengah 50224
-              </p>
-            </div>
-
-            <p id="apu-placeholder-guidance" class="nav-placeholder-guidance">
-              Item dengan badge <strong>Segera Hadir</strong> aman dipilih, tetapi rutenya
-              belum dipublikasikan pada fase ini.
-            </p>
-            <p
-              id="apu-placeholder-status"
-              class="nav-placeholder-status"
-              aria-live="polite"
-              hidden
-            ></p>
-          </section>
-        </aside>
+        <p id="apu-placeholder-status" class="mobile-placeholder-status" aria-live="polite" hidden></p>
       </div>
     </div>
   </div>
@@ -508,16 +489,14 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
   (function () {
     const nav = document.getElementById("apu-nav");
     const menuToggle = document.getElementById("apu-menu-toggle");
-    const menuOverlay = document.getElementById("apu-menu-overlay");
-    const menuPanel = document.getElementById("apu-menu-panel");
+    const mobileMenu = document.getElementById("apu-mobile-menu");
     const menuClose = document.getElementById("apu-menu-close");
     const placeholderStatus = document.getElementById("apu-placeholder-status");
 
     if (
       !(nav instanceof HTMLElement) ||
       !(menuToggle instanceof HTMLButtonElement) ||
-      !(menuOverlay instanceof HTMLDivElement) ||
-      !(menuPanel instanceof HTMLDivElement) ||
+      !(mobileMenu instanceof HTMLDivElement) ||
       !(menuClose instanceof HTMLButtonElement)
     ) {
       return;
@@ -525,26 +504,25 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
 
     const navEl = /** @type {HTMLElement} */ (nav);
     const menuToggleEl = /** @type {HTMLButtonElement} */ (menuToggle);
-    const menuOverlayEl = /** @type {HTMLDivElement} */ (menuOverlay);
-    const menuPanelEl = /** @type {HTMLDivElement} */ (menuPanel);
+    const mobileMenuEl = /** @type {HTMLDivElement} */ (mobileMenu);
     const menuCloseEl = /** @type {HTMLButtonElement} */ (menuClose);
 
     const homePath = normalizePath(navEl.getAttribute("data-home-path") || "/apu");
-    const menuLinks = menuOverlayEl.querySelectorAll("a[data-menu-link]");
-    const placeholderItems = menuOverlayEl.querySelectorAll("[data-placeholder-item]");
+    const menuLinks = mobileMenuEl.querySelectorAll("a[data-menu-link]");
+    const placeholderItems = mobileMenuEl.querySelectorAll("[data-placeholder-item]");
     const routeLinks = navEl.querySelectorAll('[data-nav-kind="route"]');
     const anchorLinks = navEl.querySelectorAll('[data-nav-kind="anchor"]');
+    const desktopTriggers = navEl.querySelectorAll('.nav-trigger');
+    const mobileTriggers = navEl.querySelectorAll('.mobile-nav-trigger');
 
     let isOpen = false;
     let bodyOverflow = "";
     let bodyPaddingRight = "";
     let closeTimer = 0;
+    let hoverTimer = 0;
     /** @type {IntersectionObserver | null} */
     let sectionObserver = null;
 
-    /**
-     * @param {string} path
-     */
     function normalizePath(path) {
       const cleaned = (path || "").replace(/\/+$/, "");
       return cleaned || "/";
@@ -557,10 +535,8 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     function lockBodyScroll() {
       bodyOverflow = document.body.style.overflow;
       bodyPaddingRight = document.body.style.paddingRight;
-
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = "hidden";
-
       if (scrollbarWidth > 0) {
         document.body.style.paddingRight = `${scrollbarWidth}px`;
       }
@@ -571,10 +547,6 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
       document.body.style.paddingRight = bodyPaddingRight;
     }
 
-    /**
-     * @param {HTMLElement} link
-     * @param {boolean} isActive
-     */
     function setTrackedActiveState(link, isActive) {
       if (isActive) {
         link.setAttribute("data-active", "true");
@@ -590,7 +562,6 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
 
     function updateRouteActiveState() {
       const pathname = normalizePath(window.location.pathname);
-
       routeLinks.forEach((link) => {
         const routePath = normalizePath(link.getAttribute("data-route-path") || "");
         setTrackedActiveState(link, routePath === pathname);
@@ -601,9 +572,6 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
       anchorLinks.forEach((link) => setTrackedActiveState(link, false));
     }
 
-    /**
-     * @param {string} sectionId
-     */
     function syncAnchorActiveState(sectionId) {
       anchorLinks.forEach((link) => {
         setTrackedActiveState(link, link.getAttribute("data-section") === sectionId);
@@ -621,15 +589,13 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
         return;
       }
 
-      /** @type {string[]} */
-      const ids = (Array.from(anchorLinks)
+      const ids = Array.from(anchorLinks)
         .map((link) => link.getAttribute("data-section"))
-        .filter((id) => typeof id === "string"));
+        .filter((id) => typeof id === "string");
 
-      /** @type {HTMLElement[]} */
-      const sections = ([...new Set(ids)]
+      const sections = [...new Set(ids)]
         .map((id) => document.getElementById(id))
-        .filter((section) => section instanceof HTMLElement));
+        .filter((section) => section instanceof HTMLElement);
 
       if (!sections.length) {
         clearAnchorActiveState();
@@ -644,7 +610,6 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
               if (entryB.intersectionRatio !== entryA.intersectionRatio) {
                 return entryB.intersectionRatio - entryA.intersectionRatio;
               }
-
               return Math.abs(entryA.boundingClientRect.top) - Math.abs(entryB.boundingClientRect.top);
             })[0];
 
@@ -659,7 +624,6 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
       );
 
       sectionObserver = observer;
-
       sections.forEach((section) => observer.observe(section));
 
       const currentHash = window.location.hash.replace(/^#/, "");
@@ -668,22 +632,10 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
       }
     }
 
-    /**
-     * @param {boolean} nextState
-     * @param {{ returnFocus?: boolean }=} options
-     */
-    function setMenuOpen(
-      nextState,
-      options,
-    ) {
-      const settings = {
-        returnFocus: true,
-        ...options,
-      };
+    function setMenuOpen(nextState, options = {}) {
+      const settings = { returnFocus: true, ...options };
 
-      if (nextState === isOpen) {
-        return;
-      }
+      if (nextState === isOpen) return;
 
       window.clearTimeout(closeTimer);
       isOpen = nextState;
@@ -696,10 +648,9 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
       );
 
       if (nextState) {
-        menuOverlayEl.hidden = false;
-        menuOverlayEl.setAttribute("aria-hidden", "false");
+        mobileMenuEl.hidden = false;
+        mobileMenuEl.setAttribute("aria-hidden", "false");
         lockBodyScroll();
-        menuPanelEl.scrollTop = 0;
 
         if (placeholderStatus instanceof HTMLElement) {
           placeholderStatus.hidden = true;
@@ -707,20 +658,20 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
         }
 
         requestAnimationFrame(() => {
-          menuOverlayEl.setAttribute("data-state", "open");
+          mobileMenuEl.setAttribute("data-state", "open");
         });
 
         menuCloseEl.focus();
         return;
       }
 
-      menuOverlayEl.setAttribute("data-state", "closed");
-      menuOverlayEl.setAttribute("aria-hidden", "true");
+      mobileMenuEl.setAttribute("data-state", "closed");
+      mobileMenuEl.setAttribute("aria-hidden", "true");
       unlockBodyScroll();
 
       closeTimer = window.setTimeout(() => {
         if (!isOpen) {
-          menuOverlayEl.hidden = true;
+          mobileMenuEl.hidden = true;
         }
       }, 280);
 
@@ -728,6 +679,63 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
         menuToggleEl.focus();
       }
     }
+
+    // Desktop hover dropdowns
+    desktopTriggers.forEach((trigger) => {
+      const parent = trigger.closest('.nav-item');
+      const dropdown = parent?.querySelector('.nav-dropdown');
+      if (!dropdown) return;
+
+      trigger.addEventListener('mouseenter', () => {
+        window.clearTimeout(hoverTimer);
+        hoverTimer = window.setTimeout(() => {
+          trigger.setAttribute('aria-expanded', 'true');
+          dropdown.setAttribute('data-open', 'true');
+        }, 150);
+      });
+
+      parent.addEventListener('mouseleave', () => {
+        window.clearTimeout(hoverTimer);
+        hoverTimer = window.setTimeout(() => {
+          trigger.setAttribute('aria-expanded', 'false');
+          dropdown.setAttribute('data-open', 'false');
+        }, 200);
+      });
+
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        trigger.setAttribute('aria-expanded', String(!isExpanded));
+        dropdown.setAttribute('data-open', String(!isExpanded));
+      });
+
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+          trigger.setAttribute('aria-expanded', String(!isExpanded));
+          dropdown.setAttribute('data-open', String(!isExpanded));
+        }
+        if (e.key === 'Escape') {
+          trigger.setAttribute('aria-expanded', 'false');
+          dropdown.setAttribute('data-open', 'false');
+          trigger.focus();
+        }
+      });
+    });
+
+    // Mobile accordion
+    mobileTriggers.forEach((trigger) => {
+      const parent = trigger.closest('.mobile-nav-group');
+      const submenu = parent?.querySelector('.mobile-nav-submenu');
+      if (!submenu) return;
+
+      trigger.addEventListener('click', () => {
+        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        trigger.setAttribute('aria-expanded', String(!isExpanded));
+        submenu.setAttribute('data-open', String(!isExpanded));
+      });
+    });
 
     menuToggleEl.addEventListener("click", () => {
       setMenuOpen(!isOpen, { returnFocus: false });
@@ -737,8 +745,8 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
       setMenuOpen(false, { returnFocus: true });
     });
 
-    menuOverlayEl.addEventListener("click", (event) => {
-      if (event.target === menuOverlayEl) {
+    mobileMenuEl.addEventListener("click", (event) => {
+      if (event.target === mobileMenuEl.querySelector('.mobile-menu-backdrop')) {
         setMenuOpen(false, { returnFocus: true });
       }
     });
@@ -758,9 +766,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
 
     placeholderItems.forEach((item) => {
       item.addEventListener("click", () => {
-        if (!(placeholderStatus instanceof HTMLElement)) {
-          return;
-        }
+        if (!(placeholderStatus instanceof HTMLElement)) return;
 
         const label = item.getAttribute("data-placeholder-label") || "Halaman ini";
         const path = item.getAttribute("data-placeholder-path");
@@ -782,6 +788,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
 </script>
 
 <style>
+  /* ===== BASE ===== */
   #apu-nav {
     color: rgb(var(--color-apu-navy));
   }
@@ -797,45 +804,40 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     );
   }
 
-  #apu-nav .nav-shell {
-    display: flex;
+  /* ===== NAV BAR ===== */
+  #apu-nav .nav-bar {
     position: relative;
     z-index: 2;
-    min-height: 78px;
+    border-bottom: 1px solid rgb(var(--color-apu-navy) / 0.1);
+    background:
+      linear-gradient(180deg, rgb(var(--color-brand-surface) / 0.98), rgb(var(--color-brand-surface) / 0.94)),
+      radial-gradient(circle at top right, rgb(var(--color-apu-accent) / 0.1), transparent 30%);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    transition: box-shadow 260ms ease;
+  }
+
+  #apu-nav[data-scrolled="true"] .nav-bar,
+  #apu-nav[data-open="true"] .nav-bar {
+    box-shadow: 0 8px 32px rgb(var(--color-apu-navy) / 0.1);
+  }
+
+  #apu-nav .nav-bar-inner {
+    display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    border: 1px solid rgb(var(--color-apu-navy) / 0.14);
-    border-top: 0;
-    border-radius: 0 0 26px 26px;
-    background:
-      linear-gradient(180deg, rgb(var(--color-brand-surface) / 0.97), rgb(var(--color-brand-surface) / 0.91)),
-      radial-gradient(circle at top right, rgb(var(--color-apu-accent) / 0.12), transparent 34%);
-    box-shadow: 0 14px 36px rgb(var(--color-apu-navy) / 0.08);
-    padding: 0.85rem 1.1rem;
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    transition:
-      background 260ms ease,
-      border-color 260ms ease,
-      box-shadow 260ms ease,
-      transform 260ms ease;
+    min-height: 64px;
+    padding-block: 0.5rem;
   }
 
-  #apu-nav[data-scrolled="true"] .nav-shell,
-  #apu-nav[data-open="true"] .nav-shell {
-    border-color: rgb(var(--color-apu-navy) / 0.22);
-    background:
-      linear-gradient(180deg, rgb(var(--color-brand-surface) / 0.99), rgb(var(--color-brand-surface) / 0.96)),
-      radial-gradient(circle at top right, rgb(var(--color-apu-accent) / 0.14), transparent 34%);
-    box-shadow: 0 18px 44px rgb(var(--color-apu-navy) / 0.12);
-  }
-
+  /* ===== BRAND ===== */
   #apu-nav .nav-brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.85rem;
+    gap: 0.75rem;
     min-width: 0;
+    flex-shrink: 0;
   }
 
   #apu-nav .nav-brand-copy {
@@ -844,7 +846,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
   }
 
   #apu-nav .nav-brand-title {
-    font-size: 0.98rem;
+    font-size: 0.92rem;
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -852,108 +854,254 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
   }
 
   #apu-nav .nav-brand-meta {
-    margin-top: 0.2rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.16em;
+    margin-top: 0.15rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: rgb(var(--color-brand-text-muted));
   }
 
-  #apu-nav .nav-actions {
-    display: flex;
+  /* ===== DESKTOP NAV ===== */
+  #apu-nav .nav-desktop {
+    display: none;
     align-items: center;
-    gap: 0.7rem;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
-  #apu-nav .nav-utility-chip {
+  @media (min-width: 1024px) {
+    #apu-nav .nav-desktop {
+      display: flex;
+    }
+  }
+
+  #apu-nav .nav-item {
+    position: relative;
+  }
+
+  #apu-nav .nav-link,
+  #apu-nav .nav-trigger {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    min-height: 2.65rem;
-    border-radius: 999px;
-    border: 1px solid rgb(var(--color-apu-navy) / 0.16);
-    padding: 0.72rem 1rem;
-    font-size: 0.78rem;
+    gap: 0.35rem;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.85rem;
     font-weight: 600;
     line-height: 1;
-    transition:
-      transform 260ms ease,
-      background-color 260ms ease,
-      border-color 260ms ease,
-      color 260ms ease,
-      box-shadow 260ms ease;
+    color: rgb(var(--color-apu-navy));
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 200ms ease, color 200ms ease;
+    white-space: nowrap;
   }
 
-  #apu-nav .nav-utility-chip:hover {
-    transform: translateY(-1px);
+  #apu-nav .nav-link:hover,
+  #apu-nav .nav-trigger:hover {
+    background: rgb(var(--color-apu-accent) / 0.12);
   }
 
-  #apu-nav .nav-utility-chip:focus-visible,
-  #apu-nav .menu-toggle:focus-visible,
-  #apu-nav .nav-close:focus-visible,
-  #apu-nav .nav-card:focus-visible,
-  #apu-nav .nav-anchor-link:focus-visible,
-  #apu-nav .nav-contact-link:focus-visible,
-  #apu-nav .nav-utility-row:focus-visible {
-    outline: none;
-    box-shadow:
-      0 0 0 2px rgb(var(--color-brand-surface)),
-      0 0 0 4px rgb(var(--color-apu-accent) / 0.92);
-  }
-
-  #apu-nav .nav-utility-chip--secondary {
-    background: rgb(var(--color-brand-surface-alt) / 0.78);
+  #apu-nav .nav-link[data-active="true"],
+  #apu-nav .nav-trigger[data-active="true"] {
+    background: rgb(var(--color-apu-accent) / 0.18);
     color: rgb(var(--color-apu-navy));
   }
 
-  #apu-nav .nav-utility-chip--secondary:hover {
-    border-color: rgb(var(--color-apu-accent) / 0.46);
+  #apu-nav .nav-chevron {
+    transition: transform 200ms ease;
+    opacity: 0.6;
+  }
+
+  #apu-nav .nav-trigger[aria-expanded="true"] .nav-chevron {
+    transform: rotate(180deg);
+  }
+
+  #apu-nav .nav-link-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.15rem 0.45rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    background: rgb(var(--color-apu-accent) / 0.15);
+    color: rgb(var(--color-apu-navy));
+    border: 1px solid rgb(var(--color-apu-accent) / 0.25);
+  }
+
+  /* ===== DROPDOWN ===== */
+  #apu-nav .nav-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    min-width: 220px;
+    padding: 0.5rem;
+    background: rgb(var(--color-brand-surface) / 0.98);
+    border: 1px solid rgb(var(--color-apu-navy) / 0.1);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgb(var(--color-apu-navy) / 0.15);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 200ms ease, transform 200ms ease, visibility 200ms ease;
+    z-index: 100;
+  }
+
+  #apu-nav .nav-dropdown[data-open="true"] {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  #apu-nav .nav-dropdown::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+    background: rgb(var(--color-brand-surface));
+    border-top: 1px solid rgb(var(--color-apu-navy) / 0.1);
+    border-left: 1px solid rgb(var(--color-apu-navy) / 0.1);
+  }
+
+  #apu-nav .nav-dropdown-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #apu-nav .nav-dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.7rem 0.85rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgb(var(--color-apu-navy));
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 150ms ease;
+    text-align: left;
+  }
+
+  #apu-nav .nav-dropdown-item:hover {
     background: rgb(var(--color-apu-accent) / 0.1);
   }
 
-  #apu-nav .nav-utility-chip--primary {
-    background: rgb(var(--color-apu-navy));
-    border-color: rgb(var(--color-apu-navy));
-    color: rgb(var(--color-brand-surface));
-    box-shadow: 0 16px 28px rgb(var(--color-apu-navy) / 0.18);
+  #apu-nav .nav-dropdown-item.is-current-route,
+  #apu-nav .nav-dropdown-item[data-active="true"] {
+    background: rgb(var(--color-apu-accent) / 0.15);
   }
 
-  #apu-nav .nav-utility-chip--primary:hover {
-    background: rgb(var(--color-apu-accent));
-    border-color: rgb(var(--color-apu-accent));
+  #apu-nav .nav-dropdown-item--placeholder {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  #apu-nav .nav-dropdown-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    background: rgb(var(--color-brand-surface-alt));
+    color: rgb(var(--color-brand-text-muted));
+    border: 1px solid rgb(var(--color-apu-navy) / 0.1);
+    white-space: nowrap;
+  }
+
+  #apu-nav .nav-dropdown-badge--live {
+    background: rgb(var(--color-apu-accent) / 0.15);
     color: rgb(var(--color-apu-navy));
+    border-color: rgb(var(--color-apu-accent) / 0.3);
   }
 
+  /* ===== ACTIONS ===== */
+  #apu-nav .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  #apu-nav .nav-cta {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: rgb(var(--color-brand-surface));
+    background: rgb(var(--color-apu-navy));
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background-color 200ms ease, transform 200ms ease;
+    white-space: nowrap;
+  }
+
+  #apu-nav .nav-cta:hover {
+    background: rgb(var(--color-apu-accent));
+    color: rgb(var(--color-apu-navy));
+    transform: translateY(-1px);
+  }
+
+  @media (min-width: 640px) {
+    #apu-nav .nav-cta {
+      display: inline-flex;
+    }
+  }
+
+  /* ===== HAMBURGER ===== */
   #apu-nav .menu-toggle {
     display: inline-flex;
     align-items: center;
-    gap: 0.85rem;
-    min-height: 2.95rem;
-    border-radius: 999px;
-    border: 1px solid rgb(var(--color-apu-navy) / 0.18);
-    background: rgb(var(--color-brand-surface-alt) / 0.8);
-    padding: 0.72rem 0.95rem 0.72rem 1rem;
+    gap: 0.6rem;
+    padding: 0.6rem 0.85rem;
     font-size: 0.8rem;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    transition:
-      transform 260ms ease,
-      border-color 260ms ease,
-      background-color 260ms ease,
-      box-shadow 260ms ease;
+    color: rgb(var(--color-apu-navy));
+    background: rgb(var(--color-brand-surface-alt) / 0.8);
+    border: 1px solid rgb(var(--color-apu-navy) / 0.15);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 200ms ease, border-color 200ms ease;
   }
 
   #apu-nav .menu-toggle:hover {
-    transform: translateY(-1px);
-    border-color: rgb(var(--color-apu-accent) / 0.5);
-    box-shadow: 0 12px 24px rgb(var(--color-apu-navy) / 0.12);
+    background: rgb(var(--color-apu-accent) / 0.12);
+    border-color: rgb(var(--color-apu-accent) / 0.4);
+  }
+
+  @media (min-width: 1024px) {
+    #apu-nav .menu-toggle {
+      display: none;
+    }
   }
 
   #apu-nav .menu-toggle-icon {
     display: inline-flex;
-    width: 1.2rem;
+    width: 1.1rem;
     flex-direction: column;
-    gap: 0.22rem;
+    gap: 0.2rem;
   }
 
   #apu-nav .menu-line {
@@ -962,13 +1110,11 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     border-radius: 999px;
     background: currentColor;
     transform-origin: center;
-    transition:
-      transform 260ms ease,
-      opacity 220ms ease;
+    transition: transform 200ms ease, opacity 200ms ease;
   }
 
   #apu-nav[data-open="true"] .menu-line:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
+    transform: translateY(5px) rotate(45deg);
   }
 
   #apu-nav[data-open="true"] .menu-line:nth-child(2) {
@@ -976,420 +1122,238 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
   }
 
   #apu-nav[data-open="true"] .menu-line:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
+    transform: translateY(-5px) rotate(-45deg);
   }
 
-  #apu-nav .nav-overlay {
+  /* ===== MOBILE MENU ===== */
+  #apu-nav .mobile-menu {
     position: fixed;
     inset: 0;
     z-index: 1;
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 5.8rem 1rem 1rem;
-    background:
-      linear-gradient(180deg, rgb(var(--color-apu-navy) / 0.3), rgb(var(--color-apu-navy) / 0.58)),
-      radial-gradient(circle at top left, rgb(var(--color-apu-accent) / 0.2), transparent 28%);
+    flex-direction: column;
+  }
+
+  #apu-nav .mobile-menu-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgb(var(--color-apu-navy) / 0.4);
     opacity: 0;
-    pointer-events: none;
-    transition: opacity 260ms ease;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    transition: opacity 280ms ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
-  #apu-nav .nav-overlay[data-state="open"] {
+  #apu-nav .mobile-menu[data-state="open"] .mobile-menu-backdrop {
     opacity: 1;
-    pointer-events: auto;
   }
 
-  #apu-nav .nav-panel {
-    width: min(1180px, 100%);
-    max-height: calc(100vh - 6.8rem);
-    overflow: auto;
-    border: 1px solid rgb(var(--color-apu-navy) / 0.18);
-    border-radius: 30px;
-    background:
-      linear-gradient(180deg, rgb(var(--color-brand-surface) / 0.98), rgb(var(--color-brand-surface-alt) / 0.97)),
-      radial-gradient(circle at top right, rgb(var(--color-apu-accent) / 0.13), transparent 34%);
-    box-shadow: 0 34px 72px rgb(var(--color-apu-navy) / 0.26);
-    padding: 1.35rem;
-    transform: translateY(18px) scale(0.985);
-    transition:
-      transform 260ms ease,
-      opacity 260ms ease;
+  #apu-nav .mobile-menu-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 85vh;
+    margin-top: auto;
+    background: rgb(var(--color-brand-surface) / 0.98);
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -10px 40px rgb(var(--color-apu-navy) / 0.15);
+    transform: translateY(100%);
+    transition: transform 280ms ease;
+    overflow: hidden;
   }
 
-  #apu-nav .nav-overlay[data-state="open"] .nav-panel {
-    transform: translateY(0) scale(1);
+  #apu-nav .mobile-menu[data-state="open"] .mobile-menu-panel {
+    transform: translateY(0);
   }
 
-  #apu-nav .nav-panel-head {
-    display: grid;
-    gap: 1rem;
-    border-bottom: 1px solid rgb(var(--color-apu-navy) / 0.1);
-    padding-bottom: 1.2rem;
+  #apu-nav .mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgb(var(--color-apu-navy) / 0.08);
   }
 
-  #apu-nav .nav-panel-copy {
-    max-width: 44rem;
-  }
-
-  #apu-nav .nav-panel-title {
-    margin-top: 0.7rem;
-    color: rgb(var(--color-apu-navy));
-  }
-
-  #apu-nav .nav-panel-description {
-    margin-top: 0.55rem;
-    color: rgb(var(--color-brand-text-muted));
-    line-height: 1.7;
-  }
-
-  #apu-nav .nav-close {
+  #apu-nav .mobile-menu-close {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.6rem;
-    justify-self: start;
-    min-height: 2.95rem;
-    border-radius: 999px;
-    border: 1px solid rgb(var(--color-apu-navy) / 0.16);
-    background: rgb(var(--color-brand-surface-alt) / 0.76);
-    padding: 0.78rem 1rem;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition:
-      transform 260ms ease,
-      border-color 260ms ease,
-      background-color 260ms ease;
-  }
-
-  #apu-nav .nav-close:hover {
-    transform: translateY(-1px);
-    border-color: rgb(var(--color-apu-accent) / 0.46);
-    background: rgb(var(--color-apu-accent) / 0.08);
-  }
-
-  #apu-nav .nav-panel-grid {
-    display: grid;
-    gap: 1.25rem;
-    padding-top: 1.35rem;
-  }
-
-  #apu-nav .nav-panel-main,
-  #apu-nav .nav-panel-side {
-    display: grid;
-    gap: 1rem;
-  }
-
-  #apu-nav .nav-group,
-  #apu-nav .nav-side-block {
-    border: 1px solid rgb(var(--color-apu-navy) / 0.1);
-    border-radius: 24px;
-    background: rgb(var(--color-brand-surface) / 0.76);
-    padding: 1rem;
-  }
-
-  #apu-nav .nav-group-head,
-  #apu-nav .nav-side-head {
-    margin-bottom: 0.85rem;
-  }
-
-  #apu-nav .nav-group-title,
-  #apu-nav .nav-side-title {
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    width: 36px;
+    height: 36px;
+    font-size: 1.5rem;
+    font-weight: 300;
     color: rgb(var(--color-apu-navy));
-  }
-
-  #apu-nav .nav-group-description,
-  #apu-nav .nav-side-description {
-    margin-top: 0.35rem;
-    color: rgb(var(--color-brand-text-muted));
-    line-height: 1.6;
-  }
-
-  #apu-nav .nav-card-grid,
-  #apu-nav .nav-anchor-list {
-    display: grid;
-    gap: 0.85rem;
-  }
-
-  #apu-nav .nav-card {
-    display: grid;
-    gap: 0.75rem;
-    min-height: 100%;
+    background: rgb(var(--color-brand-surface-alt));
     border: 1px solid rgb(var(--color-apu-navy) / 0.12);
-    border-radius: 22px;
-    background:
-      linear-gradient(180deg, rgb(var(--color-brand-surface) / 0.98), rgb(var(--color-brand-surface-alt) / 0.94));
-    padding: 1rem;
-    text-align: left;
-    transition:
-      transform 260ms ease,
-      border-color 260ms ease,
-      background-color 260ms ease,
-      box-shadow 260ms ease;
-  }
-
-  #apu-nav .nav-card:hover {
-    transform: translateY(-2px);
-    border-color: rgb(var(--color-apu-accent) / 0.42);
-    box-shadow: 0 18px 34px rgb(var(--color-apu-navy) / 0.1);
-  }
-
-  #apu-nav .nav-card--placeholder {
+    border-radius: 999px;
     cursor: pointer;
-    background:
-      linear-gradient(180deg, rgb(var(--color-brand-surface-alt) / 0.94), rgb(var(--color-brand-surface) / 0.96));
+    transition: background-color 200ms ease;
   }
 
-  #apu-nav .nav-card.is-current-route,
-  #apu-nav .nav-card[data-active="true"],
-  #apu-nav .nav-anchor-link[data-active="true"] {
-    border-color: rgb(var(--color-apu-accent) / 0.72);
-    box-shadow:
-      inset 0 0 0 1px rgb(var(--color-apu-accent) / 0.18),
-      0 18px 36px rgb(var(--color-apu-navy) / 0.12);
+  #apu-nav .mobile-menu-close:hover {
+    background: rgb(var(--color-apu-accent) / 0.15);
   }
 
-  #apu-nav .nav-card-topline {
+  #apu-nav .mobile-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0.75rem 0;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  #apu-nav .mobile-nav-item {
+    border-bottom: 1px solid rgb(var(--color-apu-navy) / 0.06);
+  }
+
+  #apu-nav .mobile-nav-link,
+  #apu-nav .mobile-nav-trigger {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 0.75rem;
-  }
-
-  #apu-nav .nav-card-label {
+    width: 100%;
+    padding: 1rem 1.5rem;
     font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: rgb(var(--color-apu-navy));
-  }
-
-  #apu-nav .nav-card-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 1.6rem;
-    border-radius: 999px;
-    border: 1px solid rgb(var(--color-apu-navy) / 0.16);
-    background: rgb(var(--color-brand-surface-alt) / 0.9);
-    padding: 0.26rem 0.6rem;
-    font-size: 0.66rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgb(var(--color-brand-text-muted));
-  }
-
-  #apu-nav .nav-card-badge--live {
-    border-color: rgb(var(--color-apu-accent) / 0.24);
-    background: rgb(var(--color-apu-accent) / 0.12);
-    color: rgb(var(--color-apu-navy));
-  }
-
-  #apu-nav .nav-card-description,
-  #apu-nav .nav-card-meta,
-  #apu-nav .nav-utility-row-description,
-  #apu-nav .nav-contact-copy,
-  #apu-nav .nav-placeholder-guidance,
-  #apu-nav .nav-placeholder-status {
-    color: rgb(var(--color-brand-text-muted));
-    line-height: 1.65;
-  }
-
-  #apu-nav .nav-card-meta {
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  #apu-nav .nav-utility-list {
-    display: grid;
-    gap: 0.75rem;
-  }
-
-  #apu-nav .nav-utility-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    border: 1px solid rgb(var(--color-apu-navy) / 0.12);
-    border-radius: 20px;
-    background: rgb(var(--color-brand-surface-alt) / 0.72);
-    padding: 0.95rem 1rem;
-    text-align: left;
-    transition:
-      transform 260ms ease,
-      border-color 260ms ease,
-      background-color 260ms ease;
-  }
-
-  #apu-nav .nav-utility-row:hover {
-    transform: translateY(-1px);
-    border-color: rgb(var(--color-apu-accent) / 0.42);
-  }
-
-  #apu-nav .nav-utility-row--accent {
-    background: rgb(var(--color-apu-navy));
-    border-color: rgb(var(--color-apu-navy));
-    color: rgb(var(--color-brand-surface));
-    box-shadow: 0 18px 30px rgb(var(--color-apu-navy) / 0.18);
-  }
-
-  #apu-nav .nav-utility-row--accent .nav-utility-row-description,
-  #apu-nav .nav-utility-row--accent .nav-utility-arrow {
-    color: rgb(var(--color-brand-surface) / 0.78);
-  }
-
-  #apu-nav .nav-utility-row--accent:hover {
-    background: rgb(var(--color-apu-accent));
-    border-color: rgb(var(--color-apu-accent));
-    color: rgb(var(--color-apu-navy));
-  }
-
-  #apu-nav .nav-utility-row--accent:hover .nav-utility-row-description,
-  #apu-nav .nav-utility-row--accent:hover .nav-utility-arrow {
-    color: rgb(var(--color-apu-navy) / 0.72);
-  }
-
-  #apu-nav .nav-utility-row-copy {
-    display: grid;
-    gap: 0.25rem;
-  }
-
-  #apu-nav .nav-utility-row-label,
-  #apu-nav .nav-contact-link,
-  #apu-nav .nav-contact-label {
-    font-weight: 700;
-    color: inherit;
-  }
-
-  #apu-nav .nav-utility-arrow {
-    font-size: 1rem;
-    color: rgb(var(--color-apu-navy));
-  }
-
-  #apu-nav .nav-anchor-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    border: 1px solid rgb(var(--color-apu-navy) / 0.12);
-    border-radius: 18px;
-    background: rgb(var(--color-brand-surface-alt) / 0.64);
-    padding: 0.9rem 0.95rem;
-    font-size: 0.9rem;
     font-weight: 600;
-    transition:
-      transform 260ms ease,
-      border-color 260ms ease,
-      background-color 260ms ease;
+    color: rgb(var(--color-apu-navy));
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 150ms ease;
+    text-align: left;
   }
 
-  #apu-nav .nav-anchor-link:hover {
-    transform: translateY(-1px);
-    border-color: rgb(var(--color-apu-accent) / 0.42);
+  #apu-nav .mobile-nav-link:hover,
+  #apu-nav .mobile-nav-trigger:hover {
+    background: rgb(var(--color-apu-accent) / 0.06);
+  }
+
+  #apu-nav .mobile-nav-trigger[aria-expanded="true"] {
     background: rgb(var(--color-apu-accent) / 0.08);
   }
 
-  #apu-nav .nav-contact-card {
-    display: grid;
-    gap: 0.45rem;
-    border-radius: 22px;
-    background:
-      linear-gradient(180deg, rgb(var(--color-brand-surface) / 0.98), rgb(var(--color-brand-surface-alt) / 0.94));
-    border: 1px solid rgb(var(--color-apu-navy) / 0.12);
-    padding: 1rem;
+  #apu-nav .mobile-nav-chevron {
+    transition: transform 200ms ease;
+    opacity: 0.5;
   }
 
-  #apu-nav .nav-contact-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
+  #apu-nav .mobile-nav-trigger[aria-expanded="true"] .mobile-nav-chevron {
+    transform: rotate(180deg);
+  }
+
+  #apu-nav .mobile-nav-submenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 280ms ease;
+    background: rgb(var(--color-brand-surface-alt) / 0.5);
+  }
+
+  #apu-nav .mobile-nav-submenu[data-open="true"] {
+    max-height: 300px;
+  }
+
+  #apu-nav .mobile-nav-submenu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.85rem 1.5rem 0.85rem 2.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgb(var(--color-apu-navy));
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 150ms ease;
+    text-align: left;
+  }
+
+  #apu-nav .mobile-nav-submenu-item:hover {
+    background: rgb(var(--color-apu-accent) / 0.06);
+  }
+
+  #apu-nav .mobile-nav-submenu-item--placeholder {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  #apu-nav .mobile-nav-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    background: rgb(var(--color-brand-surface-alt));
+    color: rgb(var(--color-brand-text-muted));
+    border: 1px solid rgb(var(--color-apu-navy) / 0.1);
+  }
+
+  #apu-nav .mobile-nav-badge--live {
+    background: rgb(var(--color-apu-accent) / 0.15);
+    color: rgb(var(--color-apu-navy));
+    border-color: rgb(var(--color-apu-accent) / 0.3);
+  }
+
+  /* ===== MOBILE FOOTER ===== */
+  #apu-nav .mobile-menu-footer {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid rgb(var(--color-apu-navy) / 0.08);
+    background: rgb(var(--color-brand-surface-alt) / 0.5);
+  }
+
+  #apu-nav .mobile-menu-contact-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgb(var(--color-brand-text-muted));
+    margin-bottom: 0.35rem;
   }
 
-  #apu-nav .nav-contact-link {
-    margin-bottom: 0.45rem;
+  #apu-nav .mobile-menu-contact-link {
+    font-size: 1rem;
+    font-weight: 600;
     color: rgb(var(--color-apu-navy));
     text-decoration: underline;
-    text-decoration-color: rgb(var(--color-apu-accent) / 0.58);
-    text-underline-offset: 0.22em;
+    text-decoration-color: rgb(var(--color-apu-accent) / 0.5);
+    text-underline-offset: 0.2em;
   }
 
-  #apu-nav .nav-placeholder-guidance {
-    margin-top: 0.9rem;
-    font-size: 0.82rem;
-  }
-
-  #apu-nav .nav-placeholder-status {
+  #apu-nav .mobile-placeholder-status {
     margin-top: 0.75rem;
-    border-left: 2px solid rgb(var(--color-apu-accent));
-    padding-left: 0.85rem;
-    font-size: 0.82rem;
+    padding: 0.75rem;
+    font-size: 0.85rem;
     color: rgb(var(--color-apu-navy));
+    background: rgb(var(--color-apu-accent) / 0.08);
+    border-radius: 10px;
+    border-left: 3px solid rgb(var(--color-apu-accent));
   }
 
-  @media (min-width: 768px) {
-    #apu-nav .nav-shell {
-      padding-inline: 1.35rem;
-    }
-
-    #apu-nav .nav-panel-head {
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: end;
-    }
-
-    #apu-nav .nav-close {
-      justify-self: end;
-    }
-
-    #apu-nav .nav-panel-grid {
-      grid-template-columns: minmax(0, 1.7fr) minmax(300px, 0.95fr);
-      align-items: start;
-    }
-
-    #apu-nav .nav-card-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+  /* ===== FOCUS STATES ===== */
+  #apu-nav .nav-link:focus-visible,
+  #apu-nav .nav-trigger:focus-visible,
+  #apu-nav .nav-dropdown-item:focus-visible,
+  #apu-nav .mobile-nav-link:focus-visible,
+  #apu-nav .mobile-nav-trigger:focus-visible,
+  #apu-nav .mobile-nav-submenu-item:focus-visible,
+  #apu-nav .menu-toggle:focus-visible,
+  #apu-nav .mobile-menu-close:focus-visible,
+  #apu-nav .nav-cta:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgb(var(--color-brand-surface)), 0 0 0 4px rgb(var(--color-apu-accent) / 0.92);
   }
 
-  @media (min-width: 1100px) {
-    #apu-nav .nav-card-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 639px) {
-    #apu-nav .nav-shell {
-      min-height: 74px;
-      border-radius: 0 0 22px 22px;
-      padding-inline: 0.95rem;
-    }
-
-    #apu-nav .menu-toggle-label {
-      display: none;
-    }
-
-    #apu-nav .menu-toggle {
-      padding-inline: 0.85rem;
-    }
-
-    #apu-nav .nav-overlay {
-      padding-top: 5.3rem;
-    }
-
-    #apu-nav .nav-panel {
-      max-height: calc(100vh - 6rem);
-      border-radius: 26px;
-      padding: 1rem;
-    }
+  /* ===== SCROLLED STATE ===== */
+  #apu-nav[data-scrolled="true"] .nav-bar {
+    background: rgb(var(--color-brand-surface) / 0.98);
   }
 </style>
