@@ -11,11 +11,10 @@ const OSM_CENTER = {
   lon: 110.362306,
 };
 
-const SHOW_OSM_MARKER = true;
+const SHOW_OSM_MARKER = false;
 
-
-
-const OSM_ZOOM = 17;
+const OSM_ZOOM = 14;
+const OSM_ZOOM_LIMIT = 17;
 
 const zoomToSpan = (zoom: number) => {
   const base = 0.028;
@@ -162,6 +161,15 @@ const osmEmbedSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${OSM_
     }
   }
 
+  @keyframes apu-anchor-zoom {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(8);
+    }
+  }
+
   .apu-anchor-campus {
     --anchor-pin-x: 50%;
     --anchor-pin-y: 50%;
@@ -181,6 +189,8 @@ const osmEmbedSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${OSM_
     pointer-events: none;
     transform: scale(1.06);
     filter: saturate(1.05) contrast(1.02);
+    animation: apu-anchor-zoom 24s ease-in-out infinite alternate;
+    will-change: transform;
   }
 
   .apu-anchor-campus__map-vignette {
@@ -240,7 +250,8 @@ const osmEmbedSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${OSM_
     .apu-anchor-campus__wave,
     .apu-anchor-campus__pulse,
     .apu-anchor-campus__pulse::before,
-    .apu-anchor-campus__pulse::after {
+    .apu-anchor-campus__pulse::after,
+    .apu-anchor-campus__map-plate {
       animation: none !important;
     }
   }
