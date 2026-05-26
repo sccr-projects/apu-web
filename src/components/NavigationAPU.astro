@@ -1,5 +1,5 @@
 ---
-const HOME_PATH = "/apu";
+const HOME_PATH = "/";
 
 const normalizePath = (path: string) => {
   const cleaned = path.replace(/\/+$/, "");
@@ -44,126 +44,69 @@ type NavSection = {
 
 const navSections: NavSection[] = [
   {
-    label: "Home",
+    label: "Beranda",
     href: HOME_PATH,
     kind: "route",
   },
   {
-    label: "Admissions",
-    href: `${HOME_PATH}#jalur-masuk`,
+    label: "Pendaftaran",
+    href: `${HOME_PATH}pendaftaran`,
     kind: "anchor",
     section: "jalur-masuk",
   },
   {
-    label: "Academics",
-    href: `${HOME_PATH}#program`,
+    label: "Akademik",
+    href: `${HOME_PATH}akademik`,
     kind: "anchor",
     section: "program",
-    items: [
-      {
-        label: "Programs",
-        href: `${HOME_PATH}#program`,
-        description: "Program studi, diferensiasi pembelajaran, dan arah karier lulusan.",
-        kind: "anchor",
-        section: "program",
-        badge: "Live on home",
-      },
-      {
-        label: "Student Life & Services",
-        href: `${HOME_PATH}/student-life-services`,
-        description: "SIAKAD, LMS, wellbeing, tutorial, dan dukungan operasional mahasiswa.",
-        kind: "route",
-        placeholder: true,
-        badge: "Segera Hadir",
-      },
-    ],
   },
   {
-    label: "Research",
-    href: `${HOME_PATH}/research`,
+    label: "Riset",
+    href: `${HOME_PATH}riset`,
     kind: "route",
     placeholder: true,
     // badge: "Segera Hadir",
   },
   {
-    label: "Scholarships",
-    href: `${HOME_PATH}/scholarships`,
+    label: "Berita & Cerita",
+    href: `${HOME_PATH}berita`,
     kind: "route",
     placeholder: true,
     // badge: "Segera Hadir",
   },
   {
-    label: "News & Stories",
-    href: `${HOME_PATH}/news-stories`,
+    label: "Tentang APU",
+    href: `${HOME_PATH}informasi`,
     kind: "route",
     placeholder: true,
     // badge: "Segera Hadir",
-  },
-  {
-    label: "About APU",
-    href: `${HOME_PATH}/about`,
-    kind: "route",
-    placeholder: true,
-    // badge: "Segera Hadir",
-    items: [
-      {
-        label: "About",
-        href: `${HOME_PATH}/about`,
-        description: "Profil APU, sejarah transisi, visi, misi, dan identitas universitas.",
-        kind: "route",
-        placeholder: true,
-        badge: "Segera Hadir",
-      },
-      {
-        label: "Leadership",
-        href: `${HOME_PATH}/leadership`,
-        description: "Pesan pimpinan, struktur pengelolaan, dan arah strategis kampus.",
-        kind: "route",
-        placeholder: true,
-        badge: "Segera Hadir",
-      },
-      {
-        label: "International",
-        href: `${HOME_PATH}/international`,
-        description: "Kemitraan global, mobility, dan layanan untuk mahasiswa internasional.",
-        kind: "route",
-        placeholder: true,
-        badge: "Segera Hadir",
-      },
-    ],
-  },
-  {
-    label: "Contact",
-    href: `${HOME_PATH}#kontak`,
-    kind: "anchor",
-    section: "kontak",
   },
 ];
 
 const utilityActions: NavItem[] = [
   {
-    label: "Apply Now",
+    label: "Daftar Sekarang",
     href: admissionsWhatsApp,
-    description: "Konsultasi pendaftaran langsung dengan tim admissions.",
+    description: "Konsultasi pendaftaran langsung dengan tim pendaftaran.",
     kind: "external",
     target: "_blank",
     rel: "noopener noreferrer",
   },
   {
-    label: "Downloads",
+    label: "Unduhan",
     href: `${HOME_PATH}/downloads`,
     description: "Panduan, formulir, dan file referensi APU.",
     kind: "route",
     placeholder: true,
-    badge: "Segera Hadir",
+    // badge: "Segera Hadir",
   },
   {
-    label: "Systems Login",
+    label: "Login Sistem",
     href: `${HOME_PATH}/systems`,
     description: "Portal mahasiswa, LMS, dan akses sistem kampus.",
     kind: "route",
     placeholder: true,
-    badge: "Segera Hadir",
+    // badge: "Segera Hadir",
   },
 ];
 
@@ -171,21 +114,21 @@ const homeAnchors: NavItem[] = [
   {
     label: "Beranda",
     href: `${HOME_PATH}#beranda-orange-navy`,
-    description: "Hero dan positioning utama APU.",
+    description: "Tampilan dan penentuan posisi utama APU.",
     kind: "anchor",
     section: "beranda-orange-navy",
   },
   {
     label: "Program",
     href: `${HOME_PATH}#program`,
-    description: "Snapshot seluruh program studi.",
+    description: "Gambaran seluruh program studi.",
     kind: "anchor",
     section: "program",
   },
   {
     label: "Jalur Masuk",
     href: `${HOME_PATH}#jalur-masuk`,
-    description: "Admissions snapshot di homepage.",
+    description: "Ringkasan pendaftaran di beranda.",
     kind: "anchor",
     section: "jalur-masuk",
   },
@@ -229,7 +172,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
         />
         <span class="nav-brand-copy hidden sm:flex">
           <span class="nav-brand-title">Agung Putra University</span>
-          <span class="nav-brand-meta">Future-ready university · Semarang</span>
+          <span class="nav-brand-meta">Universitas Siap Masa Depan · Semarang</span>
         </span>
       </a>
 
@@ -250,6 +193,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
                     aria-haspopup="true"
                     data-nav-kind={section.kind}
                     data-section={section.section}
+                    data-route-path={section.kind === "route" && section.href ? routePathFromHref(section.href) : undefined}
                   >
                     <span>{section.label}</span>
                     <svg
@@ -468,7 +412,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
 
       <div class="mobile-menu-footer">
         <div class="mobile-menu-contact">
-          <p class="mobile-menu-contact-label">Admissions WhatsApp</p>
+          <p class="mobile-menu-contact-label">WhatsApp Pendaftaran</p>
           <a
             href={admissionsWhatsApp}
             target="_blank"
@@ -563,7 +507,9 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     function updateRouteActiveState() {
       const pathname = normalizePath(window.location.pathname);
       routeLinks.forEach((link) => {
-        const routePath = normalizePath(link.getAttribute("data-route-path") || "");
+        const rawPath = link.getAttribute("data-route-path");
+        if (rawPath == null) return;
+        const routePath = normalizePath(rawPath);
         setTrackedActiveState(link, routePath === pathname);
       });
     }
@@ -923,8 +869,8 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
 
   #apu-nav .nav-link[data-active="true"],
   #apu-nav .nav-trigger[data-active="true"] {
-    background: rgb(var(--color-apu-accent) / 0.18);
-    color: rgb(var(--color-apu-navy));
+    /*background: rgb(var(--color-apu-accent) / 0.18);*/
+    /*color: rgb(var(--color-apu-navy));*/
   }
 
   #apu-nav .nav-chevron {

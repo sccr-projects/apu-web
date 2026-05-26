@@ -19,3 +19,4 @@ postgres_data/
 directus_uploads/
 .aider*
 .env
+nul

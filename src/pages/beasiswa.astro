@@ -1,15 +1,15 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
-import NavigationAPU from "../../components/NavigationAPU.astro";
-import Footer from "../../components/Footer.astro";
-import WireframePageHeroAPU from "../../sections/WireframePageHeroAPU.astro";
-import WireframePageSectionAPU from "../../sections/WireframePageSectionAPU.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import NavigationAPU from "../components/NavigationAPU.astro";
+import Footer from "../components/Footer.astro";
+import WireframePageHeroAPU from "../sections/WireframePageHeroAPU.astro";
+import WireframePageSectionAPU from "../sections/WireframePageSectionAPU.astro";
 ---
 
 <MainLayout title="Beasiswa APU" description="Informasi jenis beasiswa, syarat, dan tahapan seleksi beasiswa APU.">
   <NavigationAPU />
   <main>
-    <WireframePageHeroAPU kicker="Beasiswa" title="Raih Potongan Biaya Sesuai Potensimu" description="Temukan skema beasiswa akademik dan non-akademik yang mendukung perjalananmu ke kampus impian." primaryHref="#jenis" primaryLabel="Lihat Jenis Beasiswa" secondaryHref="/apu/admissions" secondaryLabel="Lihat Jalur Daftar" />
+    <WireframePageHeroAPU kicker="Beasiswa" title="Raih Potongan Biaya Sesuai Potensimu" description="Temukan skema beasiswa akademik dan non-akademik yang mendukung perjalananmu ke kampus impian." primaryHref="#jenis" primaryLabel="Lihat Jenis Beasiswa" secondaryHref="/pendaftaran" secondaryLabel="Lihat Jalur Daftar" />
     <WireframePageSectionAPU id="jenis" kicker="Skema" title="Jenis Beasiswa Utama" description="Setiap skema punya fokus penilaian yang jelas agar proses seleksi lebih transparan." bullets={["Beasiswa Prestasi Akademik untuk nilai rapor konsisten dan capaian olimpiade.","Beasiswa Talenta untuk siswa berprestasi seni, olahraga, atau organisasi.","Beasiswa Mitra Sekolah untuk kerja sama institusi pendidikan terpilih."]} ctaHref="/apu/contact" ctaLabel="Cek Kelayakan" />
     <WireframePageSectionAPU id="syarat" kicker="Persyaratan" title="Berkas Inti Pengajuan" description="Siapkan berkas lengkap sejak awal agar verifikasi berjalan cepat." bullets={["Formulir pendaftaran dan data diri lengkap.","Salinan rapor atau sertifikat prestasi pendukung.","Esai singkat motivasi studi dan kontribusi kampus."]} />
     <WireframePageSectionAPU id="pengumuman" kicker="Pengumuman" title="Portal Status Beasiswa" description="Portal pelacakan status berkas sedang disiapkan agar kamu bisa memantau progres seleksi mandiri." ctaHref="/apu/contact" ctaLabel="Tanya Status via WA" />

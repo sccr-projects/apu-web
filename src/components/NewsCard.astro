@@ -1,0 +1,125 @@
+---
+export interface Props {
+  title: string;
+  excerpt: string;
+  image: string;
+  category: string;
+  date: string;
+  author?: string;
+  href: string;
+  featured?: boolean;
+  class?: string;
+}
+
+const {
+  title,
+  excerpt,
+  image,
+  category,
+  date,
+  author,
+  href,
+  featured = false,
+  class: className = "",
+} = Astro.props;
+---
+
+<article
+  class:list={[
+    "apu-glass-card",
+    "apu-interactive-card",
+    "group",
+    "flex",
+    "flex-col",
+    "overflow-hidden",
+    featured ? "md:col-span-2 md:row-span-2" : "",
+    className,
+  ]}
+>
+  <a href={href} class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--color-apu-accent))] focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-[inherit]">
+    <!-- Image Container -->
+    <div class="relative overflow-hidden" style={featured ? "aspect-ratio: 16/10;" : "aspect-ratio: 16/10;"}>
+      <img
+        src={image}
+        alt={title}
+        loading="lazy"
+        class="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+      />
+      <!-- Category Badge -->
+      <div class="absolute left-4 top-4 z-10">
+        <span class="apu-pill-badge text-caption font-medium">
+          {category}
+        </span>
+      </div>
+      <!-- Gradient Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-t from-[rgb(var(--color-apu-navy))]/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="flex flex-1 flex-col p-6">
+      <!-- Meta -->
+      <div class="mb-3 flex items-center gap-3 text-caption text-brand-text-muted">
+        <time datetime={date} class="text-mono uppercase tracking-wider">
+          {date}
+        </time>
+        {author && (
+          <>
+            <span class="h-1 w-1 rounded-full bg-brand-text-muted/40"></span>
+            <span>{author}</span>
+          </>
+        )}
+      </div>
+
+      <!-- Title -->
+      <h3
+        class:list={[
+          "mb-2 line-clamp-2 font-medium leading-snug text-[rgb(var(--color-apu-navy))]",
+          featured ? "text-h3" : "text-body",
+        ]}
+      >
+        {title}
+      </h3>
+
+      <!-- Excerpt -->
+      <p class="text-body-s line-clamp-3 mb-4 leading-relaxed text-brand-text-muted">
+        {excerpt}
+      </p>
+
+      <!-- Read More Link -->
+      <div class="mt-auto flex items-center gap-2 text-caption font-medium text-[rgb(var(--color-apu-accent))] transition-all duration-260 group-hover:gap-3">
+        <span>Baca Selengkapnya</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="transition-transform duration-260 group-hover:translate-x-1"
+        >
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </div>
+    </div>
+  </a>
+</article>
+
+<style>
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

@@ -1,0 +1,239 @@
+---
+import CtaButton from "../components/CtaButton.astro";
+---
+
+<section
+  id="hero"
+  class="apu-section-shell motion-aurora-shell motion-aurora-shell--news relative isolate flex min-h-[92svh] flex-col items-center justify-center overflow-hidden py-24 md:py-32"
+  style="--apu-hero-title: 'Cerita Nyata dari Ekosistem APU';"
+>
+  <!-- Ambient Background -->
+  <div class="pointer-events-none absolute inset-0 overflow-hidden">
+    <div
+      class="absolute -left-32 top-1/4 h-[500px] w-[500px] rounded-full bg-[rgb(var(--color-apu-accent)_/_0.15)] blur-[100px]"
+    ></div>
+    <div
+      class="absolute -right-32 bottom-1/4 h-[400px] w-[400px] rounded-full bg-[rgb(var(--color-brand-primary)_/_0.12)] blur-[100px]"
+    ></div>
+    <div
+      class="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[rgb(var(--color-apu-navy)_/_0.06)] blur-[80px]"
+    ></div>
+  </div>
+
+  <!-- Floating Particles -->
+  <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    {
+      Array.from({ length: 12 }).map((_, i) => (
+        <div
+          class="news-hero-particle absolute rounded-full bg-[rgb(var(--color-apu-accent)_/_0.3)]"
+          style={`
+            width: ${Math.random() * 6 + 2}px;
+            height: ${Math.random() * 6 + 2}px;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation-delay: ${Math.random() * 8}s;
+            animation-duration: ${Math.random() * 6 + 6}s;
+          `}
+        />
+      ))
+    }
+  </div>
+
+  <!-- Content -->
+  <div class="content-max relative z-10 text-center">
+    <!-- Kicker -->
+    <div class="news-hero-kicker mb-6 opacity-0">
+      <span class="apu-section-kicker">KABAR KAMPUS</span>
+    </div>
+
+    <!-- Headline -->
+    <div class="news-hero-headline mb-6 opacity-0">
+      <h1
+        class="text-h1 mx-auto max-w-4xl text-[rgb(var(--color-apu-navy))]"
+        style="font-family: 'Instrument Serif', serif;"
+      >
+        Cerita Nyata dari
+        <span class="relative inline-block"
+003e
+          <span class="relative z-10">Ekosistem APU</span>
+          <span
+            class="absolute bottom-1 left-0 h-3 w-full bg-[rgb(var(--color-apu-accent)_/_0.3)] -z-0 sm:bottom-2 sm:h-4"
+          ></span>
+        </span>
+      </h1>
+    </div>
+
+    <!-- Subheadline -->
+    <div class="news-hero-subheadline mb-10 opacity-0">
+      <p
+        class="text-body mx-auto max-w-2xl leading-relaxed text-brand-text-muted"
+      >
+        Ikuti perkembangan kegiatan kampus, prestasi mahasiswa, dan agenda
+        institusi terbaru.
+      </p>
+    </div>
+
+    <!-- CTAs -->
+    <div
+      class="news-hero-ctas flex flex-col items-center justify-center gap-4 sm:flex-row opacity-0"
+    >
+      <CtaButton
+        href="#berita"
+        variant="primary"
+        class="px-8 py-4 text-body font-medium"
+        withArrow={true}
+      >
+        Baca Kabar
+      </CtaButton>
+      <CtaButton
+        href="/apu/contact"
+        variant="secondary"
+        class="px-8 py-4 text-body font-medium"
+      >
+        Kirim Pertanyaan
+      </CtaButton>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="news-hero-scroll absolute bottom-8 left-1/2 z-10 -translate-x-1/2 opacity-0">
+    <a
+      href="#berita"
+      class="flex flex-col items-center gap-2 text-caption text-brand-text-muted transition-colors duration-260 hover:text-[rgb(var(--color-apu-navy))]"
+      aria-label="Scroll to news section"
+    >
+      <span class="text-mono uppercase tracking-widest">Gulir ke Bawah</span>
+      <div class="relative h-10 w-6 rounded-full border-2 border-current p-1">
+        <div
+          class="h-2 w-full rounded-full bg-current"
+          style="animation: news-hero-scroll-bounce 2s ease-in-out infinite;"
+        ></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<script>
+  // Parallax and entrance animations
+  (function () {
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+
+    const kicker = hero.querySelector('.news-hero-kicker');
+    const headline = hero.querySelector('.news-hero-headline');
+    const subheadline = hero.querySelector('.news-hero-subheadline');
+    const ctas = hero.querySelector('.news-hero-ctas');
+    const scroll = hero.querySelector('.news-hero-scroll');
+
+    // Entrance animations
+    const elements = [kicker, headline, subheadline, ctas, scroll];
+    elements.forEach((el, i) => {
+      if (el) {
+        setTimeout(() => {
+          el.classList.add('animate-in');
+        }, 200 + i * 150);
+      }
+    });
+
+    // Parallax on scroll
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          const heroHeight = hero.offsetHeight;
+          const progress = Math.min(scrollY / heroHeight, 1);
+
+          // Fade out content
+          const content = hero.querySelector('.content-max');
+          if (content) {
+            content.style.opacity = String(1 - progress * 0.8);
+            content.style.transform = `translateY(${progress * -30}px)`;
+          }
+
+          // Parallax particles
+          const particles = hero.querySelectorAll('.news-hero-particle');
+          particles.forEach((particle, i) => {
+            const speed = 0.1 + (i % 3) * 0.05;
+            (particle as HTMLElement).style.transform = `translateY(${scrollY * speed}px)`;
+          });
+
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  })();
+</script>
+
+<style>
+  /* Aurora shell variant for news */
+  .motion-aurora-shell--news {
+    --motion-aurora-color-1: rgb(var(--color-apu-accent) / 0.15);
+    --motion-aurora-color-2: rgb(var(--color-brand-primary) / 0.1);
+    --motion-aurora-color-3: rgb(var(--color-apu-navy) / 0.08);
+  }
+
+  /* Entrance animations */
+  .news-hero-kicker,
+  .news-hero-headline,
+  .news-hero-subheadline,
+  .news-hero-ctas,
+  .news-hero-scroll {
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.2, 0.75, 0.15, 1),
+      transform 0.6s cubic-bezier(0.2, 0.75, 0.15, 1);
+  }
+
+  .news-hero-kicker.animate-in,
+  .news-hero-headline.animate-in,
+  .news-hero-subheadline.animate-in,
+  .news-hero-ctas.animate-in,
+  .news-hero-scroll.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Particle animation */
+  .news-hero-particle {
+    animation: news-hero-float linear infinite;
+  }
+
+  @keyframes news-hero-float {
+    0%,
+    100% {
+      transform: translateY(0) translateX(0);
+      opacity: 0.3;
+    }
+    25% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(-10px) translateX(-5px);
+      opacity: 0.4;
+    }
+    75% {
+      transform: translateY(-30px) translateX(5px);
+      opacity: 0.5;
+    }
+  }
+
+  /* Scroll bounce animation */
+  @keyframes news-hero-scroll-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(12px);
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .news-hero-headline h1 {
+      font-size: clamp(2rem, 8vw, 3.5rem);
+    }
+  }
+</style>

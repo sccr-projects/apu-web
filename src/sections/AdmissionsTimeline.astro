@@ -1,0 +1,138 @@
+---
+import ScrollReveal from '../components/ScrollReveal.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CtaButton from '../components/CtaButton.astro';
+import { contact } from '../data/contact';
+
+interface TimelineStep {
+  number: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const timelineSteps: TimelineStep[] = [
+  {
+    number: '01',
+    title: 'Pendaftaran Online',
+    description: 'Isi formulir pendaftaran melalui portal resmi APU. Siapkan dokumen persyaratan dalam format digital.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+  },
+  {
+    number: '02',
+    title: 'Pembayaran Biaya',
+    description: 'Lakukan pembayaran biaya pendaftaran sebesar Rp 500.000 ke rekening BRI resmi APU.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>`,
+  },
+  {
+    number: '03',
+    title: 'Tes Seleksi',
+    description: 'Ikuti tes seleksi akademik setiap hari Sabtu pukul 09:00 WIB. Tersedia opsi online atau on-campus.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
+  },
+  {
+    number: '04',
+    title: 'Wawancara',
+    description: 'Wawancara dengan tim akademik dan admisi. Evaluasi kesiapan akademik serta konsultasi program studi.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>`,
+  },
+  {
+    number: '05',
+    title: 'Pengumuman Kelulusan',
+    description: 'Hasil seleksi diumumkan setiap hari Senin. Cek status kelulusanmu melalui portal camaba.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+  },
+  {
+    number: '06',
+    title: 'Daftar Ulang',
+    description: 'Lakukan pembayaran SPI (Sumbangan Pengembangan Institusi) untuk mengamankan tempat. 50% pertama dalam 7 hari.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  },
+  {
+    number: '07',
+    title: 'Kuliah Perdana',
+    description: 'Selamat datang di APU! Mulai perjalanan akademikmu bersama dosen dan teman-teman baru.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.24 3 5 3s5-1.34 5-3v-5"/></svg>`,
+  },
+];
+---
+
+<section id="timeline" class="apu-section-shell motion-aurora-shell motion-aurora-shell--requirements relative isolate overflow-hidden bg-gradient-to-b from-brand-surface via-[rgb(var(--color-apu-navy)_/_0.03)] to-brand-surface-alt py-24 md:py-32 before:content-[''] before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_left,rgb(var(--color-apu-accent)_/_0.14),transparent_34%),radial-gradient(circle_at_bottom_right,rgb(var(--color-apu-navy)_/_0.16),transparent_38%)] after:content-[''] after:pointer-events-none after:absolute after:inset-x-0 after:top-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-[rgb(var(--color-apu-accent)_/_0.65)] after:to-transparent">
+  <div class="pointer-events-none absolute inset-0 overflow-hidden">
+    <div class="absolute -left-24 top-12 h-72 w-72 rounded-full bg-[rgb(var(--color-apu-accent)_/_0.14)] blur-3xl"></div>
+    <div class="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-[rgb(var(--color-apu-navy)_/_0.12)] blur-3xl"></div>
+  </div>
+
+  <div class="content-max">
+    <!-- Section Header -->
+    <ScrollReveal>
+      <SectionHeader
+        kicker="ALUR PENDAFTARAN"
+        title="7 Langkah Menuju Kampus Impian"
+        description="Ikuti alur pendaftaran yang transparan dan terstruktur. Kami siap membantu di setiap tahapan."
+        class="text-center mb-16"
+        titleClass="text-h2 text-[rgb(var(--color-apu-navy))] mb-4"
+      />
+    </ScrollReveal>
+
+    <!-- Timeline -->
+    <div class="relative">
+      <!-- Central Line -->
+      <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[rgb(var(--color-apu-navy))] via-[rgb(var(--color-apu-accent))] to-[rgb(var(--color-apu-navy))] md:-translate-x-px"></div>
+
+      <div class="space-y-12">
+        {timelineSteps.map((step, index) => {
+          const isLeft = index % 2 === 0;
+          return (
+            <ScrollReveal delay={index * 120}>
+              <div class={`relative flex items-start gap-8 ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+                <!-- Content Card -->
+                <div class={`flex-1 ml-16 md:ml-0 ${isLeft ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'}`}>
+                  <div class="apu-glass-card apu-interactive-card p-6 group">
+                    <div class={`flex items-center gap-3 mb-3 ${isLeft ? 'md:justify-end' : 'md:justify-start'}`}>
+                      <span class="text-mono text-[rgb(var(--color-apu-navy))]">{step.number}</span>
+                      <h3 class="text-h3 text-[rgb(var(--color-apu-navy))]">{step.title}</h3>
+                    </div>
+                    <p class="text-body-s text-brand-text-muted leading-relaxed">{step.description}</p>
+                  </div>
+                </div>
+
+                <!-- Timeline Node -->
+                <div class="absolute left-8 md:left-1/2 -translate-x-1/2 flex items-center justify-center">
+                  <div class="relative">
+                    <div class="w-14 h-14 rounded-full bg-gradient-to-br from-[rgb(var(--color-apu-navy))] to-[rgb(var(--color-apu-navy)_/_0.86)] border-2 border-[rgb(var(--color-apu-accent)_/_0.5)] flex items-center justify-center text-[rgb(var(--color-apu-accent))] shadow-[0_0_0_4px_rgb(var(--color-apu-accent)_/_0.15),0_14px_28px_rgb(var(--color-apu-navy)_/_0.18)] z-10 transition-all duration-300 group-hover:scale-110 group-hover:border-[rgb(var(--color-apu-accent))]">
+                      <Fragment set:html={step.icon} />
+                    </div>
+                    <!-- Pulse ring -->
+                    <div class="absolute inset-0 rounded-full bg-[rgb(var(--color-apu-accent)_/_0.2)] animate-ping opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                </div>
+
+                <!-- Spacer for opposite side -->
+                <div class="hidden md:block flex-1"></div>
+              </div>
+            </ScrollReveal>
+          );
+        })}
+      </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <ScrollReveal class="text-center mt-16">
+      <div class="apu-glass-card p-8 inline-block">
+        <p class="text-body-s text-brand-text-muted mb-4">
+          Butuh bantuan? Hubungi tim admisi kami melalui WhatsApp.
+        </p>
+        <CtaButton
+          href={contact.whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="primary"
+          withArrow={true}
+        >
+          <span>Hubungi Tim Admisi</span>
+        </CtaButton>
+      </div>
+    </ScrollReveal>
+  </div>
+</section>

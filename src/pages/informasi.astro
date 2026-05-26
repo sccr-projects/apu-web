@@ -1,15 +1,15 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
-import NavigationAPU from "../../components/NavigationAPU.astro";
-import Footer from "../../components/Footer.astro";
-import WireframePageHeroAPU from "../../sections/WireframePageHeroAPU.astro";
-import WireframePageSectionAPU from "../../sections/WireframePageSectionAPU.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import NavigationAPU from "../components/NavigationAPU.astro";
+import Footer from "../components/Footer.astro";
+import WireframePageHeroAPU from "../sections/WireframePageHeroAPU.astro";
+import WireframePageSectionAPU from "../sections/WireframePageSectionAPU.astro";
 ---
 
 <MainLayout title="Kontak APU" description="Hubungi tim admisi APU untuk konsultasi jalur masuk, biaya, dan berkas.">
   <NavigationAPU />
   <main>
-    <WireframePageHeroAPU kicker="Kontak" title="Tim Admisi Siap Membantu" description="Sampaikan kebutuhanmu, kami bantu pilih jalur, cek berkas, dan rencanakan langkah pendaftaran." primaryHref="#kanal" primaryLabel="Lihat Kanal Kontak" secondaryHref="/apu/admissions" secondaryLabel="Kembali ke Pendaftaran" />
+    <WireframePageHeroAPU kicker="Kontak" title="Tim Admisi Siap Membantu" description="Sampaikan kebutuhanmu, kami bantu pilih jalur, cek berkas, dan rencanakan langkah pendaftaran." primaryHref="#kanal" primaryLabel="Lihat Kanal Kontak" secondaryHref="/pendaftaran" secondaryLabel="Kembali ke Pendaftaran" />
     <WireframePageSectionAPU id="kanal" kicker="Kanal Cepat" title="Hubungi Tim Admisi" description="Pilih kanal komunikasi yang paling nyaman untuk keluargamu." bullets={["WhatsApp untuk respons cepat terkait jalur dan berkas.","Email resmi untuk dokumen dan pertanyaan detail.","Kunjungan kampus dengan jadwal konsultasi terarah."]} ctaHref="https://wa.me/6281391621232" ctaLabel="Chat WhatsApp" />
     <WireframePageSectionAPU id="jam-layanan" kicker="Layanan" title="Jam Operasional" description="Tim admisi melayani konsultasi pada hari kerja dan sesi khusus akhir pekan." bullets={["Senin–Jumat: 08.00–16.00 WIB.","Sabtu: 09.00–13.00 WIB (sesuai janji).","Respons di luar jam layanan diproses pada hari kerja berikutnya."]} />
     <WireframePageSectionAPU id="lokasi-interaktif" kicker="Lokasi" title="Peta Interaktif Kampus" description="Peta interaktif dengan panduan rute sedang disiapkan agar kunjungan kampus lebih mudah." />

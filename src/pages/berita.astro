@@ -1,9 +1,9 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
-import NavigationAPU from "../../components/NavigationAPU.astro";
-import Footer from "../../components/Footer.astro";
-import WireframePageHeroAPU from "../../sections/WireframePageHeroAPU.astro";
-import WireframePageSectionAPU from "../../sections/WireframePageSectionAPU.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import NavigationAPU from "../components/NavigationAPU.astro";
+import Footer from "../components/Footer.astro";
+import WireframePageHeroAPU from "../sections/WireframePageHeroAPU.astro";
+import WireframePageSectionAPU from "../sections/WireframePageSectionAPU.astro";
 ---
 
 <MainLayout title="Kabar & Cerita APU" description="Berita terbaru, cerita mahasiswa, dan agenda kampus APU.">
@@ -11,7 +11,7 @@ import WireframePageSectionAPU from "../../sections/WireframePageSectionAPU.astr
   <main>
     <WireframePageHeroAPU kicker="Kabar Kampus" title="Cerita Nyata dari Ekosistem APU" description="Ikuti perkembangan kegiatan kampus, prestasi mahasiswa, dan agenda institusi terbaru." primaryHref="#berita" primaryLabel="Baca Kabar" secondaryHref="/apu/contact" secondaryLabel="Kirim Pertanyaan" />
     <WireframePageSectionAPU id="berita" kicker="Berita" title="Sorotan Kampus" description="Update rutin untuk aktivitas akademik, kemitraan, dan pencapaian mahasiswa." bullets={["Informasi kegiatan kampus terbaru setiap periode.","Rangkuman prestasi mahasiswa dan dosen lintas bidang.","Publikasi agenda seminar, workshop, dan pengabdian masyarakat."]} />
-    <WireframePageSectionAPU id="cerita" kicker="Cerita" title="Kisah Mahasiswa" description="Kisah inspiratif mahasiswa memberi gambaran perjalanan belajar di APU." bullets={["Perjalanan adaptasi mahasiswa baru di tahun pertama.","Pengalaman magang dan proyek kolaboratif bersama mitra.","Tips belajar efektif dari mahasiswa berprestasi."]} ctaHref="/apu/admissions" ctaLabel="Gabung Sekarang" />
+    <WireframePageSectionAPU id="cerita" kicker="Cerita" title="Kisah Mahasiswa" description="Kisah inspiratif mahasiswa memberi gambaran perjalanan belajar di APU." bullets={["Perjalanan adaptasi mahasiswa baru di tahun pertama.","Pengalaman magang dan proyek kolaboratif bersama mitra.","Tips belajar efektif dari mahasiswa berprestasi."]} ctaHref="/pendaftaran" ctaLabel="Gabung Sekarang" />
     <WireframePageSectionAPU id="arsip" kicker="Arsip" title="Arsip Media" description="Halaman arsip media lengkap sedang disiapkan untuk pencarian konten yang lebih cepat." />
   </main>
   <Footer />

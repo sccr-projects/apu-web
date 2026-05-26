@@ -1,15 +1,15 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
-import NavigationAPU from "../../components/NavigationAPU.astro";
-import Footer from "../../components/Footer.astro";
-import WireframePageHeroAPU from "../../sections/WireframePageHeroAPU.astro";
-import WireframePageSectionAPU from "../../sections/WireframePageSectionAPU.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import NavigationAPU from "../components/NavigationAPU.astro";
+import Footer from "../components/Footer.astro";
+import WireframePageHeroAPU from "../sections/WireframePageHeroAPU.astro";
+import WireframePageSectionAPU from "../sections/WireframePageSectionAPU.astro";
 ---
 
 <MainLayout title="Akademik APU" description="Program studi, kurikulum, dan dukungan belajar di APU.">
   <NavigationAPU />
   <main>
-    <WireframePageHeroAPU kicker="Akademik" title="Belajar Relevan untuk Dunia Kerja" description="Program akademik APU dirancang adaptif, terukur, dan dekat dengan kebutuhan industri." primaryHref="#program" primaryLabel="Jelajahi Program" secondaryHref="/apu/admissions" secondaryLabel="Mulai Pendaftaran" />
+    <WireframePageHeroAPU kicker="Akademik" title="Belajar Relevan untuk Dunia Kerja" description="Program akademik APU dirancang adaptif, terukur, dan dekat dengan kebutuhan industri." primaryHref="#program" primaryLabel="Jelajahi Program" secondaryHref="/pendaftaran" secondaryLabel="Mulai Pendaftaran" />
     <WireframePageSectionAPU id="program" kicker="Program" title="Fokus Pembelajaran" description="Setiap program menyeimbangkan teori, praktik, dan proyek nyata." bullets={["Kurikulum berbasis capaian belajar dan kompetensi profesional.","Praktikum terstruktur dengan dosen pendamping dan evaluasi berkala.","Proyek lintas disiplin untuk melatih kolaborasi dan problem solving."]} />
     <WireframePageSectionAPU id="dukungan" kicker="Dukungan" title="Layanan Akademik Mahasiswa" description="Tim akademik membantu mahasiswa menjaga progres studi dari awal sampai lulus." bullets={["Bimbingan dosen wali untuk perencanaan mata kuliah.","Klinik belajar untuk pendalaman materi inti.","Monitoring capaian semester dan rencana perbaikan terarah."]} ctaHref="/apu/student-life-services" ctaLabel="Lihat Layanan Mahasiswa" />
     <WireframePageSectionAPU id="katalog" kicker="Katalog" title="Katalog Mata Kuliah Digital" description="Katalog interaktif per semester sedang disiapkan agar calon mahasiswa bisa eksplor lebih detail." />

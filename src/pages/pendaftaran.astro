@@ -1,0 +1,24 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import NavigationAPU from "../components/NavigationAPU.astro";
+import Footer from "../components/Footer.astro";
+import AdmissionsHero from "../sections/AdmissionsHero.astro";
+import AdmissionsPathways from "../sections/AdmissionsPathways.astro";
+import AdmissionsTimeline from "../sections/AdmissionsTimeline.astro";
+import AdmissionsRequirements from "../sections/AdmissionsRequirements.astro";
+import AdmissionsPrograms from "../sections/AdmissionsPrograms.astro";
+import AdmissionsContact from "../sections/AdmissionsContact.astro";
+---
+
+<MainLayout title="Penerimaan Mahasiswa Baru | APU" description="Informasi jalur, timeline, dan langkah daftar mahasiswa baru APU.">
+  <NavigationAPU />
+  <main>
+    <AdmissionsHero />
+    <AdmissionsPathways />
+    <AdmissionsTimeline />
+    <AdmissionsRequirements />
+    <AdmissionsPrograms />
+    <AdmissionsContact />
+  </main>
+  <Footer />
+</MainLayout>

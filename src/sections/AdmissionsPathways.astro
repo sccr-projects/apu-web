@@ -1,0 +1,163 @@
+---
+import ScrollReveal from '../components/ScrollReveal.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CtaButton from '../components/CtaButton.astro';
+import { pathways } from '../data/pathways';
+import { scholarships as scholarshipDetails } from '../data/scholarships';
+
+const getBadgeClasses = (type: string) => {
+  switch (type) {
+    case 'active':
+      return 'bg-[rgb(var(--color-apu-accent)_/_0.2)] text-[rgb(var(--color-apu-navy))] border-[rgb(var(--color-apu-accent)_/_0.4)]';
+    case 'upcoming':
+      return 'bg-brand-surface-alt border border-[rgb(var(--color-apu-navy)_/_0.25)] text-brand-text';
+    default:
+      return 'border border-[rgb(var(--color-apu-navy)_/_0.25)] text-brand-text-muted';
+  }
+};
+---
+
+<section id="jalur-masuk" class="apu-section-shell motion-aurora-shell motion-aurora-shell--pathways relative isolate overflow-hidden py-24 md:py-32 bg-gradient-to-b from-brand-surface-alt via-[rgb(var(--color-apu-navy)_/_0.04)] to-brand-surface-soft after:content-[''] after:pointer-events-none after:absolute after:inset-x-0 after:top-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-[rgb(var(--color-apu-accent)_/_0.65)] after:to-transparent">
+  <div class="pointer-events-none absolute inset-0 overflow-hidden">
+    <div class="absolute -left-24 top-16 h-72 w-72 rounded-full bg-[rgb(var(--color-apu-accent)_/_0.18)] blur-3xl"></div>
+    <div class="absolute -right-24 bottom-8 h-80 w-80 rounded-full bg-[rgb(var(--color-apu-navy)_/_0.14)] blur-3xl"></div>
+    <div class="absolute inset-x-0 top-1/3 h-px bg-gradient-to-r from-transparent via-[rgb(var(--color-apu-navy)_/_0.18)] to-transparent"></div>
+  </div>
+
+  <div class="content-max">
+    <!-- Section Header -->
+    <ScrollReveal>
+      <SectionHeader
+        kicker="JALUR PENDAFTARAN"
+        title="Dua Jalur Menuju Kampus Impian"
+        description="Pilih jalur yang sesuai dengan potensi dan persiapanmu. Kami membuka kesempatan seluas-luasnya untuk calon mahasiswa berprestasi."
+        class="text-center mb-16"
+        titleClass="text-h2 text-[rgb(var(--color-apu-navy))] mb-4"
+      />
+    </ScrollReveal>
+
+    <!-- Two Column Cards -->
+    <div class="grid md:grid-cols-2 gap-8">
+      {pathways.map((pathway, index) => (
+        <ScrollReveal delay={index * 150}>
+          <div class="group relative h-full apu-glass-card apu-interactive-card p-8 hover:border-2 hover:border-[rgb(var(--color-apu-accent)_/_0.85)] hover:shadow-[0_28px_70px_rgb(var(--color-apu-navy)_/_0.14)]">
+            <div class="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[rgb(var(--color-apu-accent)_/_0.12)] blur-2xl transition-opacity duration-300 group-hover:opacity-80"></div>
+            
+            <!-- Icon + Title -->
+            <div class="flex flex-row gap-4 items-center mb-6">
+              <div class="apu-icon-chip flex h-16 w-16 rounded-2xl ring-4 ring-[rgb(var(--color-apu-accent)_/_0.08)]">
+                {pathway.icon === 'graduation-cap' ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.24 3 5 3s5-1.34 5-3v-5"/></svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                )}
+              </div>
+              <h3 class="text-h3 text-[rgb(var(--color-apu-navy))] mb-3 leading-tight">{pathway.name}</h3>
+            </div>
+
+            <!-- Description -->
+            <p class="text-body-s text-brand-text-muted mb-6 leading-relaxed">{pathway.description}</p>
+
+            <!-- Waves or Scholarships -->
+            {pathway.waves && (
+              <div class="space-y-3 mb-6">
+                {pathway.waves.map((wave) => (
+                  <div class="flex items-center justify-between gap-4 rounded-2xl border border-[rgb(var(--color-apu-navy)_/_0.12)] bg-gradient-to-r from-[rgb(var(--color-apu-navy)_/_0.04)] to-white/70 p-3 transition-colors duration-300 hover:border-[rgb(var(--color-apu-accent)_/_0.35)] hover:bg-[rgb(var(--color-apu-accent)_/_0.06)]">
+                    <div>
+                      <p class="text-body-s font-medium text-brand-text">{wave.name}</p>
+                      <p class="text-caption text-brand-text-muted">{wave.period}</p>
+                    </div>
+                    <span class={`apu-pill-badge text-caption font-medium whitespace-nowrap ${getBadgeClasses(wave.badgeType)}`}>
+                      {wave.benefit}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {pathway.scholarships && (
+              <div class="space-y-2 mb-6">
+                {pathway.scholarships.map((scholarship) => {
+                  const detail = scholarshipDetails.find(s => s.name === scholarship.name);
+                  return (
+                    <div class="group/item relative scholarship-item cursor-pointer">
+                      <div class="flex items-center gap-3 apu-glass-card p-3 transition-all duration-300 cursor-default hover:border-[rgb(var(--color-apu-accent)_/_0.48)] hover:bg-[rgb(var(--color-apu-accent)_/_0.05)]">
+                        <div class="h-2.5 w-2.5 rounded-full bg-[rgb(var(--color-apu-accent))] shadow-[0_0_0_4px_rgb(var(--color-apu-accent)_/_0.15)] flex-shrink-0"></div>
+                        <span class="text-body-s w-full text-brand-text leading-snug">{scholarship.name}</span>
+                        <div class="w-full text-right text-2xl">
+                          <a href={scholarship.link} target="_blank" rel="noopener noreferrer" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[rgb(var(--color-apu-navy)_/_0.18)] bg-[rgb(var(--color-apu-navy))] text-white shadow-[0_10px_18px_rgb(var(--color-apu-navy)_/_0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[rgb(var(--color-apu-accent))] hover:text-[rgb(var(--color-apu-navy))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--color-apu-accent))] focus-visible:ring-offset-2 focus-visible:ring-offset-white">&gt;</a>
+                        </div>
+                      </div>
+
+                      {detail && (
+                        <div class={`absolute z-50 w-72 p-5 rounded-2xl bg-white/95 border border-[rgb(var(--color-apu-navy)_/_0.18)] shadow-[0_24px_60px_rgb(var(--color-apu-navy)_/_0.18)] opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible group-[.is-active]/item:opacity-100 group-[.is-active]/item:visible transition-all duration-300 pointer-events-none backdrop-blur-sm
+                          bottom-full mb-2 right-1/2 -translate-x-1/2
+                          md:bottom-auto md:mb-0 md:-translate-x-0 md:right-[calc(100%+1rem)] md:top-1/2 md:-translate-y-1/2
+                        `}>
+                          <div class="mb-3 h-1 w-14 rounded-full bg-gradient-to-r from-[rgb(var(--color-apu-navy))] to-[rgb(var(--color-apu-accent))]"></div>
+                          <h3 class="font-bold uppercase tracking-wide text-[rgb(var(--color-apu-navy))] mb-2">{detail.name}</h3>
+                          <p class="text-caption text-brand-text-muted mb-4">{detail.description}</p>
+                          <div class="space-y-1.5 mb-4">
+                            <h4 class="text-brand-text tracking-widest font-bold">Persyaratan Utama</h4>
+                            <ul class="text-caption text-brand-text space-y-1.5">
+                              {detail.requirements.map(req => (
+                                <li class="flex text-caption items-start gap-2"><span class="text-[rgb(var(--color-apu-accent))] mt-0.5">•</span><span class="leading-snug">{req}</span></li>
+                              ))}
+                            </ul>
+                          </div>
+                          <span class="apu-pill-badge px-2 py-1 text-[10px] font-medium">{detail.benefit}</span>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            <!-- CTA -->
+            <CtaButton
+              href={pathway.ctaLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="primary"
+              class="w-full justify-between gap-3 px-5 py-3 text-body-s font-medium sm:w-auto"
+            >
+              <span>{pathway.ctaText}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </CtaButton>
+          </div>
+        </ScrollReveal>
+      ))}
+    </div>
+
+    <!-- Note -->
+    <ScrollReveal class="text-center mt-8">
+      <p class="text-caption text-brand-text-muted">
+        *Syarat dan ketentuan berlaku untuk setiap jalur pendaftaran
+      </p>
+    </ScrollReveal>
+  </div>
+</section>
+
+<script>
+  // Handle mobile tap/click on scholarship items
+  const items = document.querySelectorAll('.scholarship-item');
+
+  items.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      const isActive = item.classList.contains('is-active');
+
+      items.forEach(other => other.classList.remove('is-active'));
+
+      if (!isActive) {
+        item.classList.add('is-active');
+      }
+    });
+  });
+
+  document.addEventListener('click', () => {
+    items.forEach(item => item.classList.remove('is-active'));
+  });
+</script>

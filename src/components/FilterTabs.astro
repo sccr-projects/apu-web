@@ -1,0 +1,111 @@
+---
+export interface Props {
+  tabs: { id: string; label: string }[];
+  activeTab: string;
+  class?: string;
+}
+
+const { tabs, activeTab, class: className = "" } = Astro.props;
+---
+
+<div
+  class:list={["flex flex-wrap gap-2", className]}
+  role="tablist"
+  aria-label="Filter categories"
+>
+  {
+    tabs.map((tab) => {
+      const isActive = tab.id === activeTab;
+      return (
+        <button
+          type="button"
+          role="tab"
+          aria-selected={isActive ? "true" : "false"}
+          aria-controls={`panel-${tab.id}`}
+          id={`tab-${tab.id}`}
+          data-tab-id={tab.id}
+          class:list={[
+            "apu-btn",
+            "text-body-s",
+            "font-medium",
+            "px-5",
+            "py-2.5",
+            "rounded-full",
+            "transition-all",
+            "duration-260",
+            "focus-visible:outline-none",
+            "focus-visible:ring-2",
+            "focus-visible:ring-[rgb(var(--color-apu-accent))]",
+            "focus-visible:ring-offset-2",
+            isActive
+              ? "apu-btn--primary"
+              : "border border-[rgb(var(--color-apu-navy)_/_0.14)] bg-transparent text-brand-text hover:bg-[rgb(var(--color-apu-navy)_/_0.06)] hover:border-[rgb(var(--color-apu-navy)_/_0.25)]",
+          ]}
+        >
+          {tab.label}
+        </button>
+      );
+    })
+  }
+</div>
+
+<script>
+  // Self-contained tab switching logic
+  (function () {
+    const tablists = document.querySelectorAll('[role="tablist"]');
+    
+    tablists.forEach((tablist) => {
+      const tabs = tablist.querySelectorAll('[role="tab"]');
+      
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const tabId = tab.getAttribute('data-tab-id');
+          if (!tabId) return;
+          
+          // Update aria-selected
+          tabs.forEach((t) => {
+            t.setAttribute('aria-selected', 'false');
+            t.classList.remove('apu-btn--primary');
+            t.classList.add('border', 'border-[rgb(var(--color-apu-navy)_/_0.14)]', 'bg-transparent', 'text-brand-text');
+            t.classList.remove('apu-btn--primary');
+          });
+          
+          tab.setAttribute('aria-selected', 'true');
+          tab.classList.add('apu-btn--primary');
+          tab.classList.remove('border', 'border-[rgb(var(--color-apu-navy)_/_0.14)]', 'bg-transparent', 'text-brand-text');
+          
+          // Dispatch custom event for parent components
+          tablist.dispatchEvent(
+            new CustomEvent('tabchange', {
+              detail: { tabId },
+              bubbles: true,
+            })
+          );
+        });
+        
+        // Keyboard navigation
+        tab.addEventListener('keydown', (e) => {
+          const tabArray = Array.from(tabs);
+          const currentIndex = tabArray.indexOf(tab);
+          let nextIndex = currentIndex;
+          
+          if (e.key === 'ArrowRight') {
+            nextIndex = (currentIndex + 1) % tabArray.length;
+          } else if (e.key === 'ArrowLeft') {
+            nextIndex = (currentIndex - 1 + tabArray.length) % tabArray.length;
+          } else if (e.key === 'Home') {
+            nextIndex = 0;
+          } else if (e.key === 'End') {
+            nextIndex = tabArray.length - 1;
+          }
+          
+          if (nextIndex !== currentIndex) {
+            e.preventDefault();
+            (tabArray[nextIndex] as HTMLElement).focus();
+            (tabArray[nextIndex] as HTMLElement).click();
+          }
+        });
+      });
+    });
+  })();
+</script>

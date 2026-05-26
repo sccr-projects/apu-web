@@ -1,15 +1,15 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
-import NavigationAPU from "../../components/NavigationAPU.astro";
-import Footer from "../../components/Footer.astro";
-import WireframePageHeroAPU from "../../sections/WireframePageHeroAPU.astro";
-import WireframePageSectionAPU from "../../sections/WireframePageSectionAPU.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import NavigationAPU from "../components/NavigationAPU.astro";
+import Footer from "../components/Footer.astro";
+import WireframePageHeroAPU from "../sections/WireframePageHeroAPU.astro";
+import WireframePageSectionAPU from "../sections/WireframePageSectionAPU.astro";
 ---
 
 <MainLayout title="Kehidupan Kampus & Layanan" description="Informasi kegiatan mahasiswa dan layanan pendukung di APU.">
   <NavigationAPU />
   <main>
-    <WireframePageHeroAPU kicker="Kehidupan Kampus" title="Belajar, Bertumbuh, dan Berjejaring" description="APU menyiapkan ekosistem mahasiswa yang aktif, suportif, dan selaras kebutuhan masa depan." primaryHref="#layanan" primaryLabel="Lihat Layanan" secondaryHref="/apu/admissions" secondaryLabel="Mulai Daftar" />
+    <WireframePageHeroAPU kicker="Kehidupan Kampus" title="Belajar, Bertumbuh, dan Berjejaring" description="APU menyiapkan ekosistem mahasiswa yang aktif, suportif, dan selaras kebutuhan masa depan." primaryHref="#layanan" primaryLabel="Lihat Layanan" secondaryHref="/pendaftaran" secondaryLabel="Mulai Daftar" />
     <WireframePageSectionAPU id="layanan" kicker="Layanan" title="Dukungan Mahasiswa" description="Layanan mahasiswa hadir untuk menjaga kenyamanan belajar dari awal hingga lulus." bullets={["Layanan konseling dan pendampingan pengembangan diri.","Bantuan administrasi akademik dan non-akademik terintegrasi.","Konsultasi karier dan persiapan magang profesional."]} />
     <WireframePageSectionAPU id="organisasi" kicker="Aktivitas" title="Ruang Aktivitas Mahasiswa" description="Mahasiswa didorong aktif membangun pengalaman kepemimpinan dan kolaborasi." bullets={["Unit kegiatan mahasiswa di bidang seni, olahraga, dan sosial.","Program volunteering dan pengabdian masyarakat.","Agenda kompetisi internal dan eksternal lintas bidang."]} />
     <WireframePageSectionAPU id="kalender" kicker="Kalender" title="Kalender Kegiatan Kampus" description="Kalender kegiatan tahunan sedang dirapikan agar mudah diakses calon dan mahasiswa aktif." ctaHref="/apu/news-stories" ctaLabel="Lihat Kabar Kampus" />
