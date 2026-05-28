@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome — Faculty of Law</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #FAF8F5;
+            --bg-warm: #F5F0EB;
+            --text-primary: #1A1A1A;
+            --text-secondary: #5C5C5C;
+            --text-muted: #8A8A8A;
+            --accent-gold: #B8956B;
+            --accent-burgundy: #6B2D3A;
+            --border-subtle: #E8E2DB;
+            --shadow-soft: 0 4px 24px rgba(0,0,0,0.06);
+            --shadow-hover: 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Welcome Section ── */
+        .welcome-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 100px 40px 80px;
+            position: relative;
+        }
+
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 40px;
+            width: 80px;
+            height: 1px;
+            background: var(--accent-gold);
+        }
+
+        .section-label {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 32px;
+            display: block;
+        }
+
+        .welcome-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(28px, 4.2vw, 52px);
+            font-weight: 300;
+            line-height: 1.25;
+            color: var(--text-primary);
+            max-width: 900px;
+            position: relative;
+            letter-spacing: -0.3px;
+        }
+
+        .welcome-quote::before {
+            content: '"';
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 120px;
+            font-weight: 300;
+            color: var(--accent-gold);
+            opacity: 0.3;
+            position: absolute;
+            top: -50px;
+            left: -20px;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .welcome-quote em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--accent-burgundy);
+        }
+
+        .welcome-body {
+            margin-top: 48px;
+            max-width: 640px;
+            font-size: 17px;
+            font-weight: 300;
+            line-height: 1.85;
+            color: var(--text-secondary);
+        }
+
+        .welcome-body p + p {
+            margin-top: 1.5em;
+        }
+
+        .welcome-signature {
+            margin-top: 48px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .signature-line {
+            width: 50px;
+            height: 1px;
+            background: var(--accent-gold);
+        }
+
+        .signature-text {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .signature-name {
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--text-primary);
+            letter-spacing: 0.5px;
+        }
+
+        .signature-title {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 2px;
+            font-family: 'Crimson Pro', serif;
+        }
+
+        /* ── Lecturers Section ── */
+        .lecturers-section {
+            background: var(--bg-warm);
+            padding: 80px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .lecturers-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
+        }
+
+        .lecturers-header {
+            max-width: 1100px;
+            margin: 0 auto 56px;
+            padding: 0 40px;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .lecturers-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 400;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .lecturers-title span {
+            color: var(--accent-burgundy);
+            font-style: italic;
+        }
+
+        .lecturers-count {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* ── Infinite Scroll Gallery ── */
+        .gallery-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .gallery-container::before,
+        .gallery-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 120px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .gallery-container::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--bg-warm), transparent);
+        }
+
+        .gallery-container::after {
+            right: 0;
+            background: linear-gradient(270deg, var(--bg-warm), transparent);
+        }
+
+        .gallery-track {
+            display: flex;
+            gap: 28px;
+            width: max-content;
+            animation: scroll 40s linear infinite;
+            padding: 20px 60px;
+        }
+
+        .gallery-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .lecturer-card {
+            flex-shrink: 0;
+            width: 260px;
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .lecturer-card:hover {
+            transform: scale(1.08) translateY(-8px);
+        }
+
+        .lecturer-image {
+            width: 260px;
+            height: 320px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-soft);
+            transition: box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .lecturer-card:hover .lecturer-image {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .lecturer-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(1.05);
+            transition: filter 0.6s ease, transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .lecturer-card:hover .lecturer-image img {
+            filter: grayscale(0%) contrast(1);
+            transform: scale(1.05);
+        }
+
+        .lecturer-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(26,26,26,0.4));
+            opacity: 0.6;
+            transition: opacity 0.4s ease;
+        }
+
+        .lecturer-card:hover .lecturer-image::after {
+            opacity: 0.3;
+        }
+
+        .lecturer-info {
+            margin-top: 16px;
+            padding: 0 4px;
+        }
+
+        .lecturer-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text-primary);
+            letter-spacing: 0.3px;
+        }
+
+        .lecturer-role {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--text-muted);
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .welcome-section {
+                padding: 60px 24px 48px;
+            }
+
+            .welcome-section::before {
+                left: 24px;
+            }
+
+            .welcome-quote::before {
+                font-size: 80px;
+                top: -30px;
+                left: -10px;
+            }
+
+            .lecturers-header {
+                padding: 0 24px;
+                margin-bottom: 36px;
+            }
+
+            .lecturer-card {
+                width: 200px;
+            }
+
+            .lecturer-image {
+                width: 200px;
+                height: 260px;
+            }
+
+            .gallery-track {
+                gap: 20px;
+                padding: 16px 40px;
+            }
+
+            .gallery-container::before,
+            .gallery-container::after {
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+        <span class="section-label">A Word from the Dean</span>
+        
+        <blockquote class="welcome-quote">
+            We do not merely teach law. We cultivate <em>thinkers</em> who shape the very fabric of justice in our society.
+        </blockquote>
+
+        <div class="welcome-body">
+            <p>
+                It is my distinct honour to welcome you to the Faculty of Law. For over six decades, we have stood at the forefront of legal education in this region, producing graduates who have gone on to serve as judges, policymakers, advocates for change, and architects of our legal landscape.
+            </p>
+            <p>
+                Our commitment extends beyond academic excellence. We foster a community where rigorous intellectual discourse meets compassion, where tradition informs innovation, and where every voice finds its place in the pursuit of justice.
+            </p>
+        </div>
+
+        <div class="welcome-signature">
+            <div class="signature-line"></div>
+            <div class="signature-text">
+                <div class="signature-name">Professor Eleanor Tan</div>
+                <div class="signature-title">Dean, Faculty of Law</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lecturers Section -->
+    <section class="lecturers-section">
+        <div class="lecturers-header">
+            <h2 class="lecturers-title">Our <span>esteemed</span> lecturers</h2>
+            <span class="lecturers-count">MEET THE MINDS BEHIND THE FACULTY</span>
+        </div>
+
+        <div class="gallery-container">
+            <div class="gallery-track" id="galleryTrack">
+                <!-- Cards will be duplicated via JS for seamless loop -->
+                <div class="lecturer-card">
+                    <div class="lecturer-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=500&fit=crop&crop=face" alt="Dr. Marcus Chen">
+                    </div>
+                    <div class="lecturer-info">
+                        <div class="lecturer-name">Dr. Marcus Chen</div>
+                        <div class="lecturer-role">Professor of Constitutional Law</div>
+                    </div>
+                </div>
+
+                <div class="lecturer-card">
+                    <div class="lecturer-image">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop&crop=face" alt="Prof. Sarah Williams">
+                    </div>
+                    <div class="lecturer-info">
+                        <div class="lecturer-name">Prof. Sarah Williams</div>
+                        <div class="lecturer-role">Deputy Dean, Research</div>
+                    </div>
+                </div>
+
+                <div class="lecturer-card">
+                    <div class="lecturer-image">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&crop=face" alt="Assoc. Prof. David Lim">
+                    </div>
+                    <div class="lecturer-info">
+                        <div class="lecturer-name">Assoc. Prof. David Lim</div>
+                        <div class="lecturer-role">Director, Centre for Maritime Law</div>
+                    </div>
+                </div>
+
+                <div class="lecturer-card">
+                    <div class="lecturer-image">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=500&fit=crop&crop=face" alt="Dr. Priya Sharma">
+                    </div>
+                    <div class="lecturer-info">
+                        <div class="lecturer-name">Dr. Priya Sharma</div>
+                        <div class="lecturer-role">Senior Lecturer, Corporate Law</div>
+                    </div>
+                </div>
+
+                <div class="lecturer-card">
+                    <div class="lecturer-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face" alt="Prof. James Ong">
+                    </div>
+                    <div class="lecturer-info">
+                        <div class="lecturer-name">Prof. James Ong</div>
+                        <div class="lecturer-role">Chair, Criminal Justice Programme</div>
+                    </div>
+                </div>
+
+                <div class="lecturer-card">
+                    <div class="lecturer-image">
+                        <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&h=500&fit=crop&crop=face" alt="Dr. Rebecca Foster">
+                    </div>
+                    <div class="lecturer-info">
+                        <div class="lecturer-name">Dr. Rebecca Foster</div>
+                        <div class="lecturer-role">Associate Professor, International Law</div>
+                    </div>
+                </div>
+
+                <div class="lecturer-card">
+                    <div class="lecturer-image">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop&crop=face" alt="Prof. Ahmad Ibrahim">
+                    </div>
+                    <div class="lecturer-info">
+                        <div class="lecturer-name">Prof. Ahmad Ibrahim</div>
+                        <div class="lecturer-role">Head, Islamic Law Studies</div>
+                    </div>
+                </div>
+
+                <div class="lecturer-card">
+                    <div class="lecturer-image">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=500&fit=crop&crop=face" alt="Dr. Lisa Chang">
+                    </div>
+                    <div class="lecturer-info">
+                        <div class="lecturer-name">Dr. Lisa Chang</div>
+                        <div class="lecturer-role">Lecturer, Intellectual Property Law</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Duplicate cards for seamless infinite scroll
+        const track = document.getElementById('galleryTrack');
+        const cards = track.innerHTML;
+        track.innerHTML = cards + cards; // Double the content
+    </script>
+
+</body>
+</html>

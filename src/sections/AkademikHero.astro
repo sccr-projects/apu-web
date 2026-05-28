@@ -1,0 +1,393 @@
+---
+import CtaButton from "../components/CtaButton.astro";
+
+type Props = {
+  kicker: string;
+  title: string;
+  description: string;
+  primaryHref: string;
+  primaryLabel: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+  backgroundImage?: string;
+};
+
+const {
+  kicker,
+  title,
+  description,
+  primaryHref,
+  primaryLabel,
+  secondaryHref,
+  secondaryLabel,
+  backgroundImage = "/images/akademik1.jpg",
+} = Astro.props as Props;
+---
+
+<section
+  id="akademik-hero"
+  class="akademik-hero relative min-h-[92dvh] flex items-end overflow-hidden"
+>
+  {/* Background Image Layer */}
+  <div
+    id="akademik-hero-bg"
+    class="absolute inset-0 h-dvh z-[1] will-change-transform opacity-0 "
+  >
+    <img
+      src={backgroundImage}
+      alt="Mahasiswa APU dalam aktivitas akademik"
+      class="w-full h-full object-cover"
+      loading="eager"
+      id="akademik-hero-img"
+    />
+    {/* Multi-layer overlay for depth and readability */}
+    <div class="absolute inset-0 akademik-hero-overlay-base"></div>
+    <div class="absolute inset-0 akademik-hero-overlay-bottom"></div>
+    <div class="absolute inset-0 akademik-hero-overlay-vignette"></div>
+  </div>
+
+  {/* Ambient particle field */}
+  <div
+    id="akademik-hero-particles"
+    class="absolute inset-0 z-[2] overflow-hidden pointer-events-none"
+  >
+  </div>
+
+  {/* Content */}
+  <div class="relative z-[3] w-full pb-16 md:pb-24 lg:pb-28">
+    <div class="px-24">
+      {/* Kicker */}
+      <div
+        id="akademik-hero-kicker"
+        class="mb-5 opacity-0 translate-y-3"
+      >
+        <span class="akademik-hero-kicker-text">
+          {kicker}
+        </span>
+      </div>
+
+      {/* Headline */}
+      <h1
+        id="akademik-hero-headline"
+        class="text-h1 mb-6 max-w-3xl opacity-0 translate-y-4 akademik-hero-headline"
+      >
+        {title}
+      </h1>
+
+      {/* Description */}
+      <p
+        id="akademik-hero-desc"
+        class="text-body max-w-xl mb-10 opacity-0 translate-y-3 akademik-hero-desc"
+      >
+        {description}
+      </p>
+
+      {/* CTA Group */}
+      <div
+        id="akademik-hero-cta"
+        class="flex flex-wrap gap-4 opacity-0 translate-y-3"
+      >
+        <CtaButton
+          href={primaryHref}
+          variant="primary"
+          withArrow={true}
+          ariaLabel={primaryLabel}
+        >
+          {primaryLabel}
+        </CtaButton>
+        {
+          secondaryHref && secondaryLabel && (
+            <CtaButton
+              href={secondaryHref}
+              variant="secondary"
+              ariaLabel={secondaryLabel}
+            >
+              {secondaryLabel}
+            </CtaButton>
+          )
+        }
+      </div>
+    </div>
+
+    {/* Scroll Indicator */}
+    <div
+      id="akademik-hero-scroll"
+      class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0"
+    >
+      <span class="text-caption akademik-hero-scroll-text">Gulir ke bawah</span>
+      <svg
+        class="animate-bounce-slow akademik-hero-scroll-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="m6 9 6 6 6-6"></path>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .akademik-hero {
+    --akademik-navy: 19 40 66;
+    --akademik-navy-deep: 10 28 50;
+    --akademik-accent: 252 188 85;
+    --akademik-accent-soft: 255 220 160;
+    --akademik-ivory: 255 250 240;
+    --akademik-ivory-muted: 245 238 225;
+
+    /* Override design system tokens for this section's mood */
+    --apu-surface: 255 250 240;
+    --apu-surface-alt: 245 238 225;
+    --apu-surface-soft: 235 225 205;
+    --apu-navy: 19 40 66;
+    --apu-accent: 252 188 85;
+    --apu-text: 255 250 240;
+    --apu-text-muted: 235 225 205;
+    --apu-border: 255 255 255;
+    --apu-badge-bg: rgb(255 250 240 / 0.12);
+    --apu-badge-border: rgb(252 188 85 / 0.5);
+    --apu-badge-color: rgb(255 250 240);
+    --apu-btn-primary-bg: rgb(var(--akademik-accent));
+    --apu-btn-primary-color: rgb(var(--akademik-navy));
+    --apu-btn-primary-border: rgb(255 255 255 / 0.2);
+    --apu-btn-primary-hover-bg: rgb(var(--akademik-ivory));
+    --apu-btn-primary-hover-color: rgb(var(--akademik-navy));
+    --apu-btn-secondary-bg: rgb(255 255 255 / 0.08);
+    --apu-btn-secondary-color: rgb(var(--akademik-ivory));
+    --apu-btn-secondary-border: rgb(255 250 240 / 0.45);
+    --apu-btn-secondary-hover-bg: rgb(255 255 255 / 0.16);
+    --apu-btn-secondary-hover-border: rgb(255 250 240 / 0.75);
+  }
+
+  .akademik-hero-overlay-base {
+    background: linear-gradient(
+      180deg,
+      rgb(var(--akademik-navy) / 0.15) 0%,
+      rgb(var(--akademik-navy) / 0.35) 40%,
+      rgb(var(--akademik-navy-deep) / 0.82) 100%
+    );
+  }
+
+  .akademik-hero-overlay-bottom {
+    background: linear-gradient(
+      to top,
+      rgb(var(--akademik-navy-deep) / 0.95) 0%,
+      rgb(var(--akademik-navy) / 0.6) 35%,
+      transparent 70%
+    );
+  }
+
+  .akademik-hero-overlay-vignette {
+    background: radial-gradient(
+      ellipse at center,
+      transparent 40%,
+      rgb(var(--akademik-navy-deep) / 0.4) 100%
+    );
+  }
+
+  .akademik-hero-kicker-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "Space Mono", monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgb(var(--akademik-accent));
+    border: 1px solid rgb(var(--akademik-accent) / 0.45);
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    background: rgb(var(--akademik-navy) / 0.35);
+    backdrop-filter: blur(8px);
+    text-shadow: 0 2px 8px rgb(var(--akademik-navy-deep) / 0.5);
+  }
+
+  .akademik-hero-headline {
+    color: rgb(var(--akademik-ivory));
+    text-shadow:
+      0 4px 20px rgb(var(--akademik-navy-deep) / 0.45),
+      0 1px 2px rgb(var(--akademik-navy-deep) / 0.3);
+  }
+
+  .akademik-hero-desc {
+    color: rgb(var(--akademik-ivory-muted));
+    text-shadow: 0 2px 12px rgb(var(--akademik-navy-deep) / 0.4);
+  }
+
+  .akademik-hero-scroll-text,
+  .akademik-hero-scroll-icon {
+    color: rgb(var(--akademik-ivory-muted) / 0.85);
+  }
+</style>
+
+<script>
+  (function () {
+    // Particle system
+    const particleContainer = document.getElementById("akademik-hero-particles");
+    if (particleContainer) {
+      for (let i = 0; i < 24; i++) {
+        const particle = document.createElement("div");
+        const size = Math.random() * 2.5 + 1;
+        particle.className = "absolute rounded-full";
+        particle.style.cssText = `
+          width: ${size}px;
+          height: ${size}px;
+          left: ${Math.random() * 100}%;
+          top: ${Math.random() * 100}%;
+          background: rgba(252, 188, 85, ${Math.random() * 0.25 + 0.1});
+          animation: akademikFloat ${Math.random() * 5 + 5}s ease-in-out infinite;
+          animation-delay: ${Math.random() * 4}s;
+        `;
+        particleContainer.appendChild(particle);
+      }
+    }
+
+    // Inject keyframes
+    const style = document.createElement("style");
+    style.textContent = `
+      @keyframes akademikFloat {
+        0%, 100% { transform: translateY(0) translateX(0); opacity: 0.15; }
+        25% { transform: translateY(-18px) translateX(8px); opacity: 0.4; }
+        50% { transform: translateY(-32px) translateX(-4px); opacity: 0.25; }
+        75% { transform: translateY(-14px) translateX(12px); opacity: 0.35; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Elements
+    const bg = document.getElementById("akademik-hero-bg");
+    const kicker = document.getElementById("akademik-hero-kicker");
+    const headline = document.getElementById("akademik-hero-headline");
+    const desc = document.getElementById("akademik-hero-desc");
+    const cta = document.getElementById("akademik-hero-cta");
+    const scrollIndicator = document.getElementById("akademik-hero-scroll");
+    const bgImg = document.getElementById("akademik-hero-img");
+
+    // Entrance animations
+    document.fonts.ready.then(() => {
+      // Background fade + scale
+      if (bg) {
+        bg.style.transition = "opacity 2s cubic-bezier(0.16, 1, 0.3, 1), transform 2.4s cubic-bezier(0.16, 1, 0.3, 1)";
+        bg.style.opacity = "1";
+        bg.style.transform = "scale(1)";
+      }
+
+      // Kicker
+      setTimeout(() => {
+        if (kicker) {
+          kicker.style.transition = "opacity 0.7s ease-out, transform 0.7s ease-out";
+          kicker.style.opacity = "1";
+          kicker.style.transform = "translateY(0)";
+        }
+      }, 400);
+
+      // Headline
+      setTimeout(() => {
+        if (headline) {
+          headline.style.transition = "opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1)";
+          headline.style.opacity = "1";
+          headline.style.transform = "translateY(0)";
+        }
+      }, 700);
+
+      // Description
+      setTimeout(() => {
+        if (desc) {
+          desc.style.transition = "opacity 0.8s ease-out, transform 0.8s ease-out";
+          desc.style.opacity = "1";
+          desc.style.transform = "translateY(0)";
+        }
+      }, 1050);
+
+      // CTA
+      setTimeout(() => {
+        if (cta) {
+          cta.style.transition = "opacity 0.6s ease-out, transform 0.6s ease-out";
+          cta.style.opacity = "1";
+          cta.style.transform = "translateY(0)";
+        }
+      }, 1400);
+
+      // Scroll indicator
+      setTimeout(() => {
+        if (scrollIndicator) {
+          scrollIndicator.style.transition = "opacity 0.6s ease-out";
+          scrollIndicator.style.opacity = "1";
+        }
+      }, 1900);
+    });
+
+    // Mouse parallax
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    document.addEventListener("mousemove", (e) => {
+      mouseX = (e.clientX / window.innerWidth - 0.5) * 16;
+      mouseY = (e.clientY / window.innerHeight - 0.5) * 16;
+    });
+
+    function animateParallax() {
+      currentX += (mouseX - currentX) * 0.06;
+      currentY += (mouseY - currentY) * 0.06;
+      if (bgImg) {
+        bgImg.style.transform = `translate(${currentX}px, ${currentY}px) scale(1.04)`;
+      }
+      requestAnimationFrame(animateParallax);
+    }
+    animateParallax();
+
+    // Scroll-driven fade
+    let ticking = false;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            const scrollY = window.scrollY;
+            const hero = document.getElementById("akademik-hero");
+            const heroHeight = hero?.clientHeight || window.innerHeight;
+            const progress = Math.min(scrollY / heroHeight, 1);
+
+            if (headline) {
+              const yOffset = -progress * 18;
+              const opacity = 1 - progress * 0.9;
+              headline.style.transform = `translateY(${yOffset}%)`;
+              headline.style.opacity = String(Math.max(opacity, 0));
+            }
+
+            if (kicker) {
+              kicker.style.opacity = String(Math.max(1 - progress * 1.5, 0));
+              kicker.style.transform = `translateY(${-progress * 20}%)`;
+            }
+
+            if (desc) {
+              desc.style.opacity = String(Math.max(1 - progress * 1.2, 0));
+            }
+
+            if (cta) {
+              cta.style.opacity = String(Math.max(1 - progress * 1.4, 0));
+            }
+
+            if (scrollIndicator) {
+              scrollIndicator.style.opacity = String(Math.max(1 - progress * 4, 0));
+            }
+
+            ticking = false;
+          });
+          ticking = true;
+        }
+      },
+      { passive: true },
+    );
+  })();
+</script>

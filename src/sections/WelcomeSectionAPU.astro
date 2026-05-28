@@ -1,0 +1,256 @@
+---
+import ScrollReveal from "../components/ScrollReveal.astro";
+import { lecturers } from "../data/lecturers";
+
+const welcomeKicker = "SAMBUTAN DEKAN";
+const welcomeTitle = "Membangun Generasi Pemikir Hukum";
+const welcomeQuote = "Kami tidak sekadar mengajar hukum. Kami membentuk \u003cem\u003epemikir\u003c/em\u003e yang membentuk struktur keadilan dalam masyarakat.";
+const welcomeBody = [
+  "Merupakan kehormatan bagi saya untuk menyambut Anda di Fakultas Hukum. Selama lebih dari enam dekade, kami telah berada di garis depan pendidikan hukum di wilayah ini, menghasilkan lulusan yang kemudian berkarya sebagai hakim, pembuat kebijakan, advokat perubahan, dan arsitek lanskap hukum kita.",
+  "Komitmen kami melampaui keunggulan akademik. Kami membangun komunitas di mana diskursus intelektual yang ketat bertemu dengan empati, di mana tradisi memberi informasi pada inovasi, dan di mana setiap suara menemukan tempatnya dalam perburuan keadilan.",
+];
+const leaderName = "Prof. Dr. Eleanor Tan, S.H., M.Hum.";
+const leaderTitle = "Dekan Fakultas Hukum";
+const leaderImage = "/images/dean-portrait.webp";
+
+const galleryTitle = "Dosen \u003cem\u003eTerbaik\u003c/em\u003e Kami";
+const galleryKicker = "KENALI TIM PENGAJAR";
+---
+
+<section
+  id="sambutan-dekan"
+  class:list={[
+    "welcome-section",
+    "apu-section-shell",
+    "motion-aurora-shell",
+    "motion-aurora-shell--welcome",
+    "relative",
+    "isolate",
+    "overflow-hidden",
+  ]}
+>
+  <!-- Ambient decorative elements -->
+  <div class="pointer-events-none absolute inset-0 overflow-hidden">
+    <div
+      class="absolute -left-32 top-1/4 h-[500px] w-[500px] rounded-full bg-[rgb(var(--color-brand-primary)_/_0.08)] blur-[120px]"
+    ></div>
+    <div
+      class="absolute right-1/4 bottom-1/4 h-96 w-96 rounded-full bg-[rgb(var(--color-brand-accent)_/_0.08)] blur-[100px]"
+    ></div>
+    <div
+      class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgb(var(--color-brand-border)_/_0.5)] to-transparent"
+    ></div>
+  </div>
+
+  <!-- Welcome Content -->
+  <div class="content-max relative z-10 py-24 md:py-32">
+    <div class="max-w-4xl">
+      <ScrollReveal direction="up" delay={0}>
+        <span class="apu-section-kicker mb-6 inline-flex">{welcomeKicker}</span>
+      </ScrollReveal>
+
+      <ScrollReveal direction="up" delay={100}>
+        <h2 class="text-h2 text-[rgb(var(--welcome-text))] mb-8">
+          {welcomeTitle}
+          <span class="apu-gradient-line mt-4 block w-48"></span>
+        </h2>
+      </ScrollReveal>
+
+      <ScrollReveal direction="up" delay={200}>
+        <div class="welcome-quote relative mb-10">
+          <span
+            class="absolute -left-2 -top-6 text-[5rem] leading-none text-[rgb(var(--color-brand-accent)_/_0.25)] font-display select-none"
+            aria-hidden="true"
+          >" </span>
+          <div class="relative pl-8">
+            <blockquote
+              class="text-h3 text-[rgb(var(--welcome-text))] font-display italic leading-snug"
+              set:html={welcomeQuote}
+            />
+          </div>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal direction="up" delay={300}>
+        <div class="welcome-body space-y-6 mb-10">
+          {welcomeBody.map((paragraph) => (
+            <p class="text-body-s text-[rgb(var(--welcome-text-muted))] leading-relaxed">{paragraph}</p>
+          ))}
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal direction="up" delay={400}>
+        <div class="flex items-center gap-5">
+          <div class="h-px w-12 rounded-full bg-[rgb(var(--color-brand-accent))]"></div>
+          <div>
+            <p class="text-h3 text-[rgb(var(--welcome-text))] font-medium">{leaderName}</p>
+            <p class="text-caption text-[rgb(var(--welcome-text-muted))] mt-1 tracking-wider">{leaderTitle}</p>
+          </div>
+        </div>
+      </ScrollReveal>
+    </div>
+  </div>
+
+  <!-- Lecturers Gallery Section -->
+  <div class="relative border-t border-[rgb(var(--color-brand-border)_/_0.2)]">
+    <div class="content-max relative z-10 py-16 md:py-20">
+      <ScrollReveal direction="up" delay={0}>
+        <div class="flex items-baseline justify-between mb-10">
+          <h3
+            class="text-h2 text-[rgb(var(--welcome-text))]"
+            set:html={galleryTitle}
+          />
+          <span class="text-mono text-[rgb(var(--welcome-text-muted))]">{galleryKicker}</span>
+        </div>
+      </ScrollReveal>
+    </div>
+
+    <!-- Infinite Scroll Gallery -->
+    <div class="gallery-wrapper relative overflow-hidden">
+      <!-- Edge fade masks -->
+      <div class="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-40 bg-gradient-to-r from-[rgb(var(--welcome-bg))] to-transparent z-10"
+      ></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-[rgb(var(--welcome-bg))] to-transparent z-10"
+      ></div>
+
+      <div class="gallery-track flex gap-7 py-5" id="lecturerGalleryTrack">
+        {lecturers.map((lecturer) => (
+          <div class="lecturer-card flex-shrink-0 group cursor-pointer">
+            <div class="lecturer-image relative w-[220px] h-[280px] md:w-[260px] md:h-[320px] rounded-[var(--apu-radius-card)] overflow-hidden shadow-[var(--apu-shadow-card)] transition-all duration-[400ms] ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:shadow-[var(--apu-shadow-card-hover)]"
+            >
+              <img
+                src={lecturer.image}
+                alt={`Foto ${lecturer.name}`}
+                class="w-full h-full object-cover grayscale-[20%] contrast-105 transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:grayscale-0 group-hover:scale-105"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-[rgb(var(--color-brand-primary-deeper)_/_0.35)] via-transparent to-transparent opacity-60 transition-opacity duration-400 group-hover:opacity-30"
+              ></div>
+            </div>
+            <div class="mt-4 px-1">
+              <p class="text-body-s font-medium text-[rgb(var(--welcome-text))]">{lecturer.name}</p>
+              <p class="text-caption text-[rgb(var(--welcome-text-muted))] mt-1">{lecturer.role}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .welcome-section {
+    --welcome-bg: 247 250 243;
+    --welcome-bg-deep: 236 243 227;
+    --welcome-text: 27 41 32;
+    --welcome-text-muted: 87 112 94;
+
+    --apu-surface: var(--welcome-bg);
+    --apu-surface-alt: var(--welcome-bg-deep);
+    --apu-text: var(--welcome-text);
+    --apu-text-muted: var(--welcome-text-muted);
+    --apu-navy: 19 40 66;
+    --apu-accent: 252 188 85;
+
+    --apu-btn-primary-bg: rgb(var(--color-apu-navy));
+    --apu-btn-primary-color: rgb(var(--color-brand-surface));
+    --apu-btn-primary-border: rgb(255 255 255 / 0.14);
+    --apu-btn-primary-hover-bg: rgb(var(--color-apu-accent));
+    --apu-btn-primary-hover-color: rgb(var(--color-apu-navy));
+
+    --apu-badge-bg: rgb(255 255 255 / 0.82);
+    --apu-badge-border: rgb(var(--apu-navy) / 0.14);
+    --apu-badge-color: rgb(var(--apu-navy));
+
+    background-color: rgb(var(--welcome-bg));
+  }
+
+  .welcome-quote blockquote {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-weight: 400;
+  }
+
+  .welcome-quote em {
+    color: rgb(var(--color-brand-primary-deep));
+    font-style: italic;
+  }
+
+  .welcome-body p {
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-weight: 300;
+    font-size: clamp(1rem, 1.1vw, 1.125rem);
+    line-height: 1.75;
+  }
+
+  /* Gallery infinite scroll */
+  .gallery-track {
+    width: max-content;
+    animation: galleryScroll 35s linear infinite;
+  }
+
+  .gallery-wrapper:hover .gallery-track {
+    animation-play-state: paused;
+  }
+
+  .lecturer-card {
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .gallery-wrapper:hover .lecturer-card:hover {
+    transform: scale(1.08) translateY(-8px);
+  }
+
+  @keyframes galleryScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Custom aurora shell variant */
+  .motion-aurora-shell--welcome {
+    --motion-aurora-opacity: 0.7;
+    --motion-aurora-speed: 28s;
+    --motion-grid-opacity: 0.4;
+    --motion-grid-speed: 38s;
+  }
+
+  .motion-aurora-shell--welcome::before {
+    background:
+      radial-gradient(
+        circle at 20% 30%,
+        rgb(var(--color-brand-primary) / 0.18),
+        transparent 38%
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgb(var(--color-brand-accent) / 0.14),
+        transparent 32%
+      ),
+      radial-gradient(
+        circle at 60% 80%,
+        rgb(var(--color-brand-aurora) / 0.12),
+        transparent 40%
+      );
+  }
+
+  /* Focus visible for accessibility */
+  .lecturer-card:focus-visible {
+    outline: none;
+  }
+
+  .lecturer-card:focus-visible .lecturer-image {
+    box-shadow: 0 0 0 2px rgb(var(--color-brand-surface)),
+                0 0 0 4px rgb(var(--color-apu-accent) / 0.82),
+                var(--apu-shadow-card-hover);
+  }
+</style>
+
+<script>
+  (function() {
+    // Duplicate gallery items for seamless infinite scroll
+    const track = document.getElementById('lecturerGalleryTrack');
+    if (track) {
+      const cards = track.innerHTML;
+      track.innerHTML = cards + cards;
+    }
+  })();
+</script>
