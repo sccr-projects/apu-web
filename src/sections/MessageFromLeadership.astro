@@ -3,13 +3,28 @@ import ScrollReveal from "../components/ScrollReveal.astro";
 import CtaButton from "../components/CtaButton.astro";
 import { leadershipMessage } from "../data/leadership";
 
+interface Props {
+  variant?: "dark" | "light";
+}
+
+const { variant = "dark" } = Astro.props;
+
 const { kicker, title, quote, leaderName, leaderTitle, leaderImage, cta } =
   leadershipMessage;
 ---
 
 <section
   id="pesan-pemimpin"
-  class="leadership-section apu-section-shell motion-aurora-shell motion-aurora-shell--leadership relative isolate overflow-hidden"
+  class:list={[
+    "leadership-section",
+    "apu-section-shell",
+    "motion-aurora-shell",
+    "motion-aurora-shell--leadership",
+    "relative",
+    "isolate",
+    "overflow-hidden",
+    { "leadership-section--light": variant === "light" },
+  ]}
 >
   {/* Ambient decorative elements */}
   <div class="pointer-events-none absolute inset-0 overflow-hidden">
@@ -112,10 +127,6 @@ const { kicker, title, quote, leaderName, leaderTitle, leaderImage, cta } =
         <ScrollReveal direction="right" delay={150}>
           <div class="leadership-portrait relative mx-auto max-w-md lg:max-w-none">
             {/* Glow behind portrait */}
-            <div
-              class="absolute inset-0 -z-10 scale-95 rounded-[2rem] bg-gradient-to-br from-[rgb(var(--color-apu-accent)_/_0.3)] via-[rgb(var(--color-brand-primary)_/_0.15)] to-transparent blur-3xl"
-            >
-            </div>
 
             {/* Portrait container with gradient mask */}
             <div
@@ -123,7 +134,7 @@ const { kicker, title, quote, leaderName, leaderTitle, leaderImage, cta } =
             >
               {/* Gradient fade mask on left edge */}
               <div
-                class="absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[rgb(var(--leadership-bg))] to-transparent lg:w-32"
+                class="absolute inset-y-0 left-0 z-10 w-24  to-transparent lg:w-32"
               >
               </div>
 
@@ -145,12 +156,12 @@ const { kicker, title, quote, leaderName, leaderTitle, leaderImage, cta } =
 
             {/* Decorative corner accent */}
             <div
-              class="absolute -bottom-3 -right-3 h-24 w-24 rounded-br-[2rem] border-b-2 border-r-2 border-[rgb(var(--color-apu-accent)_/_0.4)]"
+              class="absolute -bottom-3 -right-3 h-24 w-24 rounded-br-[2rem] border-b-2 border-r-2 border-[rgb(var(--color-apu-navy)_/_0.4)]"
               aria-hidden="true"
             >
             </div>
             <div
-              class="absolute -top-3 -left-3 h-24 w-24 rounded-tl-[2rem] border-l-2 border-t-2 border-[rgb(var(--color-apu-accent)_/_0.4)]"
+              class="absolute -top-3 -left-3 h-24 w-24 rounded-tl-[2rem] border-l-2 border-t-2 border-[rgb(var(--color-apu-navy)_/_0.4)]"
               aria-hidden="true"
             >
             </div>
@@ -191,6 +202,45 @@ const { kicker, title, quote, leaderName, leaderTitle, leaderImage, cta } =
     --apu-badge-color: rgb(255 250 240);
 
     background-color: rgb(var(--leadership-bg));
+  }
+
+  .leadership-section--light {
+    --leadership-bg: 247 250 243;
+    --leadership-bg-deep: 236 243 227;
+    --leadership-text: 27 41 32;
+    --leadership-text-muted: 87 112 94;
+
+    --apu-surface: var(--leadership-bg);
+    --apu-surface-alt: var(--leadership-bg-deep);
+    --apu-text: var(--leadership-text);
+    --apu-text-muted: var(--leadership-text-muted);
+    --apu-navy: 19 40 66;
+    --apu-accent: 252 188 85;
+
+    --apu-btn-primary-bg: rgb(var(--color-apu-navy));
+    --apu-btn-primary-color: rgb(var(--color-brand-surface));
+    --apu-btn-primary-border: rgb(255 255 255 / 0.14);
+    --apu-btn-primary-hover-bg: rgb(var(--color-apu-accent));
+    --apu-btn-primary-hover-color: rgb(var(--color-apu-navy));
+    --apu-btn-secondary-bg: rgb(255 255 255 / 0.72);
+    --apu-btn-secondary-color: rgb(var(--leadership-text));
+    --apu-btn-secondary-border: rgb(var(--leadership-text) / 0.3);
+    --apu-btn-secondary-hover-bg: rgb(255 255 255 / 0.92);
+    --apu-btn-secondary-hover-border: rgb(var(--leadership-text) / 0.5);
+
+    --apu-badge-bg: rgb(255 255 255 / 0.82);
+    --apu-badge-border: rgb(var(--apu-navy) / 0.14);
+    --apu-badge-color: rgb(var(--apu-navy));
+
+    background-color: rgb(var(--leadership-bg));
+  }
+
+  .leadership-section--light .motion-aurora-shell--leadership::before {
+    opacity: 0.5;
+  }
+
+  .leadership-section--light .motion-aurora-shell--leadership::after {
+    opacity: 0.25;
   }
 
   .leadership-quote {
