@@ -6,19 +6,20 @@ import AdmissionsHero from "../sections/AdmissionsHero.astro";
 import AdmissionsPathways from "../sections/AdmissionsPathways.astro";
 import AdmissionsTimeline from "../sections/AdmissionsTimeline.astro";
 import AdmissionsRequirements from "../sections/AdmissionsRequirements.astro";
-import AdmissionsPrograms from "../sections/AdmissionsPrograms.astro";
-import AdmissionsContact from "../sections/AdmissionsContact.astro";
+import ContactSection from "../sections/ContactSection.astro";
+import RequirementsSection from "../sections/RequirementsSection.astro";
 ---
 
 <MainLayout title="Penerimaan Mahasiswa Baru | APU" description="Informasi jalur, timeline, dan langkah daftar mahasiswa baru APU.">
   <NavigationAPU />
   <main>
     <AdmissionsHero />
-    <AdmissionsPathways />
     <AdmissionsTimeline />
-    <AdmissionsRequirements />
-    <AdmissionsPrograms />
-    <AdmissionsContact />
+    <RequirementsSection/>
+    <ContactSection />
+
+
+
   </main>
   <Footer />
 </MainLayout>

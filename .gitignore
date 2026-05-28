@@ -1,24 +1,14 @@
-# Dependencies
-node_modules/
+.local-contexts/
+/foto-apu
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+*.egg-info/
 dist/
-.env.local
+build/
+/node_modules
 
-# Database
-*.db
-
-# IDE
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Docker
-postgres_data/
-directus_uploads/
-.aider*
-.env
 nul
-
-foto-apu/
