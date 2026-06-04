@@ -7,7 +7,13 @@ import SectionHeader from "../../components/SectionHeader.astro";
   id="visi-misi"
   class="apu-section-shell relative overflow-hidden bg-brand-surface-alt"
 >
-  <div class="content-max py-[var(--apu-section-spacing-y)]">
+  <div id="vm-logo-3d-wrapper" class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none" style="perspective: 1000px;">
+    <div id="vm-logo-3d" class="vm-logo-3d-inner pointer-events-auto">
+      <img src="/images/apu-logo.png" alt="APU Logo" class="w-full h-full object-contain" loading="lazy" decoding="async" />
+    </div>
+  </div>
+
+  <div class="content-max relative z-10 py-[var(--apu-section-spacing-y)]">
     <ScrollReveal>
       <SectionHeader
         kicker="VISI & MISI"
@@ -155,4 +161,89 @@ import SectionHeader from "../../components/SectionHeader.astro";
       </ScrollReveal>
     </div>
   </div>
+
+  <style>
+    .vm-logo-3d-inner {
+      width: 50vw;
+      max-width: 600px;
+      aspect-ratio: 1;
+      opacity: 0.15;
+      transition: transform 0.1s ease-out;
+      transform-style: preserve-3d;
+      will-change: transform;
+      cursor: pointer;
+    }
+    .vm-logo-3d-inner.is-flipped {
+      transform: rotateY(180deg);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
+
+  <script is:inline>
+    (function() {
+      const section = document.getElementById('visi-misi');
+      const logo = document.getElementById('vm-logo-3d');
+      if (!section || !logo) return;
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+
+      let isVisible = false;
+      let mouseX = 0, mouseY = 0;
+      let currentRotateX = 0, currentRotateY = 0;
+      let isFlipped = false;
+      let lastFlipTime = 0;
+      let rafId = null;
+
+      // IntersectionObserver to gate rAF
+      const observer = new IntersectionObserver(
+        ([entry]) => { isVisible = entry.isIntersecting; },
+        { threshold: 0.1 }
+      );
+      observer.observe(section);
+
+      // Mouse tracking (viewport-relative, skip on touch)
+      function onMouseMove(e) {
+        if (prefersReducedMotion || isTouchDevice) return;
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 30; // max +/-15deg
+        mouseY = (e.clientY / window.innerHeight - 0.5) * -30; // invert Y for natural tilt
+      }
+      document.addEventListener('mousemove', onMouseMove);
+
+      // rAF loop with lerp
+      function animate() {
+        if (isVisible && !prefersReducedMotion && !isTouchDevice) {
+          currentRotateX += (mouseY - currentRotateX) * 0.08;
+          currentRotateY += (mouseX - currentRotateY) * 0.08;
+          if (!isFlipped) {
+            logo.style.transform = `rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg)`;
+          }
+        }
+        rafId = requestAnimationFrame(animate);
+      }
+      animate();
+
+      // Click flip with 5s debounce
+      function onClick() {
+        if (prefersReducedMotion) return;
+        const now = Date.now();
+        if (isFlipped || now - lastFlipTime < 5000) return;
+        isFlipped = true;
+        lastFlipTime = now;
+        logo.style.transform = '';
+        logo.classList.add('is-flipped');
+      }
+      logo.addEventListener('click', onClick);
+
+      // Cleanup
+      function cleanup() {
+        if (rafId) cancelAnimationFrame(rafId);
+        document.removeEventListener('mousemove', onMouseMove);
+        logo.removeEventListener('click', onClick);
+        observer.disconnect();
+      }
+      window.addEventListener('beforeunload', cleanup);
+      document.addEventListener('astro:unmount', cleanup);
+    })();
+  </script>
 </section>
