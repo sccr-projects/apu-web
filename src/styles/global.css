@@ -704,7 +704,7 @@
 
     /* --- Node wrapper (vertical stacking: node + children) --- */
     .org-node-wrapper {
-        display: flex;
+        display: inline-flex;
         flex-direction: column;
         align-items: center;
         position: relative;
@@ -851,7 +851,7 @@
     .org-node-children {
         display: grid;
         grid-template-rows: 0fr;
-        transition: grid-template-rows 300ms ease;
+        transition: grid-template-rows 400ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .org-node-children.is-expanded {
@@ -860,6 +860,7 @@
 
     .org-node-children-inner {
         overflow: hidden;
+        min-height: 0;
     }
 
     .org-node-children-list {
@@ -868,6 +869,8 @@
         flex-direction: row;
         gap: 1rem;
         padding-top: 2rem;
+        justify-content: center;
+        align-items: flex-start;
     }
 
     /* --- Desktop connectors (≥ 768px) --- */

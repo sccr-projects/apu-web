@@ -4,15 +4,15 @@
 Add `AboutOrgStructure.astro` section to About APU page. Interactive org chart with hover effects, expand/collapse, and category filtering. Built with custom CSS tree + APU design system primitives (zero external chart libraries).
 
 ## Success Criteria
-- [ ] Section renders between VisionMission and Leadership on `/about-apu`
-- [ ] Org chart displays APU hierarchy: Yayasan → Rektor → WR/LPPM/LPMI → Fakultas → Prodi
-- [ ] Hover: node elevation + glow effect
-- [ ] Click: expand/collapse child nodes + rotate toggle icon
-- [ ] Filter tabs: Pimpinan | Fakultas | Unit Pendukung | Semua — switches visible nodes
-- [ ] Mobile: vertical tree layout (not horizontal overflow)
-- [ ] Uses APU glass cards, tokens, SectionHeader, ScrollReveal
-- [ ] Zero console errors on load
-- [ ] Zero new JS dependencies (no jQuery, no chart libraries)
+- [x] Section renders between VisionMission and Leadership on `/about-apu`
+- [x] Org chart displays APU hierarchy: Yayasan → Rektor → WR/LPPM/LPMI → Fakultas → Prodi
+- [x] Hover: node elevation + glow effect
+- [x] Click: expand/collapse child nodes + rotate toggle icon
+- [x] Filter tabs: Pimpinan | Fakultas | Unit Pendukung | Semua — switches visible nodes
+- [x] Mobile: vertical tree layout (not horizontal overflow)
+- [x] Uses APU glass cards, tokens, SectionHeader, ScrollReveal
+- [x] Zero console errors on load
+- [x] Zero new JS dependencies (no jQuery, no chart libraries)
 
 ---
 
@@ -71,7 +71,8 @@ Add `AboutOrgStructure.astro` section to About APU page. Interactive org chart w
   - Insert between `AboutVisionMission` and `MessageFromLeadership`
 - [x] 4.2 Verify section id for anchor linking (`#struktur-organisasi`)
 - [x] 4.3 Run build check: `npm run build` — zero errors
-- [ ] 4.4 Run dev server and verify interactive behavior manually
+- [x] 4.4 Run dev server and verify interactive behavior manually
+  - Verified: section loads, expand/collapse works, filter works, hover shows description
 
 ---
 
