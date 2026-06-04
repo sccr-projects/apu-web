@@ -1,0 +1,93 @@
+---
+import ScrollReveal from "../../components/ScrollReveal.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+---
+
+<section
+  id="legalitas"
+  class="apu-section-shell relative overflow-hidden bg-brand-surface"
+>
+  <div class="content-max py-[var(--apu-section-spacing-y)]">
+    <ScrollReveal>
+      <SectionHeader
+        kicker="DASAR HUKUM"
+        title="Legalitas & Akreditasi"
+        class="text-left mb-10 md:mb-12"
+        titleClass="text-h2 text-brand-primary-deeper mb-4"
+        dividerClass="apu-gradient-line mt-4 w-40"
+      />
+    </ScrollReveal>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+      <ScrollReveal delay={100}>
+        <div class="apu-glass-card apu-interactive-card p-6 md:p-8">
+          <div
+            class="apu-icon-chip h-12 w-12 rounded-xl mb-5 flex items-center justify-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path
+                d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+              ></path><polyline points="14 2 14 8 20 8"
+              ></polyline><path d="M12 18v-6"></path><path
+                d="m9 15 3 3 3-3"></path></svg
+            >
+          </div>
+          <h3 class="text-h3 text-brand-primary-deep text-lg md:text-xl mb-3">
+            Dasar Hukum Pendirian
+          </h3>
+          <p class="text-body-s text-brand-text-muted leading-relaxed mb-4">
+            Agung Putra University didirikan berdasarkan Surat Keputusan Menteri
+            Pendidikan, Kebudayaan, Riset, dan Teknologi Republik Indonesia Nomor
+            813/E/O/2023.
+          </p>
+          <span class="apu-pill-badge text-caption"
+            >SK Resmi Kemendikbudristek</span
+          >
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={200}>
+        <div class="apu-glass-card apu-interactive-card p-6 md:p-8">
+          <div
+            class="apu-icon-chip h-12 w-12 rounded-xl mb-5 flex items-center justify-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path
+                d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"
+              ></path><circle cx="12" cy="10" r="3"></circle></svg
+            >
+          </div>
+          <h3 class="text-h3 text-brand-primary-deep text-lg md:text-xl mb-3">
+            Status Akreditasi
+          </h3>
+          <p class="text-body-s text-brand-text-muted leading-relaxed mb-4">
+            Program studi APU telah melalui proses akreditasi sesuai ketentuan
+            Badan Akreditasi Nasional Perguruan Tinggi untuk menjamin kualitas
+            pembelajaran.
+          </p>
+          <span class="apu-pill-badge text-caption"
+            >Proses Akreditasi BAN-PT</span
+          >
+        </div>
+      </ScrollReveal>
+    </div>
+  </div>
+</section>

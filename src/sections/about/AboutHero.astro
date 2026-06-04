@@ -1,0 +1,41 @@
+---
+import ScrollReveal from "../../components/ScrollReveal.astro";
+---
+
+<section
+  id="tentang-apu"
+  class="apu-section-shell relative overflow-hidden bg-brand-surface"
+>
+  <div class="content-max py-20 md:py-28">
+    <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+      <div class="flex-1 text-left">
+        <ScrollReveal>
+          <h1 class="text-h1 text-brand-primary-deeper mb-6">
+            Tentang APU
+          </h1>
+        </ScrollReveal>
+        <ScrollReveal delay={150}>
+          <p class="text-body text-brand-text-muted max-w-xl leading-relaxed">
+            Agung Putra University adalah institusi pendidikan tinggi swasta yang
+            melangkah maju dengan visi futuristik, berakar pada pengalaman panjang
+            Yayasan Karya Mulia Keluarga sejak 1990.
+          </p>
+        </ScrollReveal>
+      </div>
+      <div class="flex-1 w-full">
+        <ScrollReveal delay={250} direction="right">
+          <div
+            class="relative rounded-[var(--apu-radius-surface)] overflow-hidden shadow-[var(--apu-shadow-card)]"
+          >
+            <img
+              src="https://picsum.photos/seed/apu-campus-aerial/1200/800"
+              alt="Kampus Agung Putra University"
+              class="w-full h-auto object-cover"
+              loading="eager"
+            />
+          </div>
+        </ScrollReveal>
+      </div>
+    </div>
+  </div>
+</section>

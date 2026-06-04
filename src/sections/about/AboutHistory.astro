@@ -1,0 +1,57 @@
+---
+import ScrollReveal from "../../components/ScrollReveal.astro";
+---
+
+<section
+  id="latar-belakang"
+  class="apu-section-shell relative overflow-hidden bg-brand-surface"
+>
+  <div class="content-max py-[var(--apu-section-spacing-y)]">
+    <div class="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
+      <div class="w-full md:w-5/12">
+        <ScrollReveal direction="left">
+          <div
+            class="rounded-[var(--apu-radius-surface)] overflow-hidden shadow-[var(--apu-shadow-card)]"
+          >
+            <img
+              src="https://picsum.photos/seed/apu-history-building/800/600"
+              alt="Sejarah APU"
+              class="w-full h-auto object-cover"
+              loading="lazy"
+            />
+          </div>
+        </ScrollReveal>
+      </div>
+
+      <div class="w-full md:w-7/12">
+        <ScrollReveal>
+          <h2 class="text-h2 text-brand-primary-deeper mb-6">
+            Latar Belakang
+          </h2>
+        </ScrollReveal>
+        <ScrollReveal delay={150}>
+          <div class="space-y-4 text-body-s text-brand-text-muted leading-relaxed">
+            <p>
+              Agung Putra University didirikan pada
+              <strong class="text-brand-text">17 Oktober 2023</strong> berdasarkan
+              Surat Keputusan Kemendikbudristek, menandai babak baru perjalanan
+              panjang Yayasan Karya Mulia Keluarga yang telah berkiprah dalam
+              dunia pendidikan sejak tahun 1990.
+            </p>
+            <p>
+              Lahir dari cita-cita untuk membangun institusi yang tidak hanya
+              unggul secara akademik, tetapi juga mampu menjawab tantangan masa
+              depan, APU menggabungkan warisan kuat IKMB dengan visi futuristik
+              yang berorientasi pada inovasi, karakter, dan daya saing global.
+            </p>
+            <p>
+              Setiap langkah kami didasari komitmen untuk menciptakan ekosistem
+              pembelajaran yang inklusif, adaptif, dan relevan dengan
+              perkembangan ilmu pengetahuan serta kebutuhan industri.
+            </p>
+          </div>
+        </ScrollReveal>
+      </div>
+    </div>
+  </div>
+</section>

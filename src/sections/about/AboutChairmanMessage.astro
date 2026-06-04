@@ -1,0 +1,133 @@
+---
+import ScrollReveal from "../../components/ScrollReveal.astro";
+---
+
+<section
+  id="sambutan-ketua"
+  class="apu-section-shell relative overflow-hidden bg-brand-surface"
+>
+  <div class="content-max py-[var(--apu-section-spacing-y)]">
+    <div class="flex flex-col md:flex-row gap-10 md:gap-16 items-start">
+      <div class="w-full md:w-2/5">
+        <ScrollReveal direction="left">
+          <div
+            class="rounded-[var(--apu-radius-surface)] overflow-hidden shadow-[var(--apu-shadow-card)]"
+          >
+            <img
+              src="https://picsum.photos/seed/apu-chairman-portrait/600/800"
+              alt="Prof. Dr. dr. Agung Putra, M.Si.Med"
+              class="w-full h-auto object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="mt-4 text-center md:text-left">
+            <p class="text-body-s text-brand-text font-medium">
+              Prof. Dr. dr. Agung Putra, M.Si.Med
+            </p>
+            <p class="text-caption text-brand-text-muted">
+              Ketua Yayasan Karya Mulia Keluarga
+            </p>
+          </div>
+        </ScrollReveal>
+      </div>
+
+      <div class="w-full md:w-3/5">
+        <ScrollReveal>
+          <h2 class="text-h2 text-brand-primary-deeper mb-8">
+            Sambutan Ketua Yayasan
+          </h2>
+        </ScrollReveal>
+
+        <ScrollReveal delay={150}>
+          <figure>
+            <blockquote
+              class="relative text-h3 text-brand-primary-deep font-normal leading-snug mb-6 pl-6 border-l-4 border-[rgb(var(--color-apu-accent))]"
+            >
+              "Good Governance adalah kunci untuk mewujudkan potensi institusi
+              yang berkelanjutan dan berdampak luas bagi masyarakat."
+            </blockquote>
+          </figure>
+        </ScrollReveal>
+
+        <ScrollReveal delay={250}>
+          <div
+            id="chairman-full-message"
+            class="text-body-s text-brand-text-muted leading-relaxed space-y-4 overflow-hidden transition-all duration-500 ease-out"
+            style="max-height: 0px;"
+          >
+            <p>
+              Sebagai Ketua Yayasan Karya Mulia Keluarga, saya melihat Agung
+              Putra University bukan sekadar institusi pendidikan, melainkan
+              wadah transformasi bagi generasi muda Indonesia. Dari fondasi yang
+              dibangun sejak 1990, kami berkomitmen untuk terus mengembangkan
+              ekosistem akademik yang menjunjung tinggi tata kelola baik,
+              inovasi berbasis riset, dan nilai-nilai kemanusiaan.
+            </p>
+            <p>
+              APU hadir sebagai jawaban atas kebutuhan akan lulusan yang tidak
+              hanya cerdas secara intelektual, tetapi juga memiliki karakter
+              kuat dan daya saing di kancah internasional. Kami percaya bahwa
+              dengan tata kelola yang transparan dan akuntabel, setiap potensi
+              mahasiswa dapat dikembangkan secara optimal.
+            </p>
+            <p>
+              Mari bersama-sama membangun masa depan yang lebih baik melalui
+              pendidikan yang bermakna dan berdampak nyata.
+            </p>
+          </div>
+
+          <button
+            id="chairman-toggle"
+            type="button"
+            class="apu-btn apu-btn--primary mt-6 text-body-s"
+            aria-expanded="false"
+            aria-controls="chairman-full-message"
+          >
+            <span>Baca Pesan Lengkap</span>
+            <svg
+              id="chairman-toggle-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="transition-transform duration-300"
+              ><path d="m6 9 6 6 6-6"></path></svg
+            >
+          </button>
+        </ScrollReveal>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const btn = document.getElementById("chairman-toggle");
+    const msg = document.getElementById("chairman-full-message");
+    const icon = document.getElementById("chairman-toggle-icon");
+    if (!btn || !msg || !icon) return;
+
+    const label = btn.querySelector("span");
+    if (!label) return;
+
+    btn.addEventListener("click", () => {
+      const isOpen = msg.style.maxHeight !== "0px" && msg.style.maxHeight !== "";
+      if (isOpen) {
+        msg.style.maxHeight = "0px";
+        btn.setAttribute("aria-expanded", "false");
+        label.textContent = "Baca Pesan Lengkap";
+        icon.style.transform = "rotate(0deg)";
+      } else {
+        msg.style.maxHeight = msg.scrollHeight + "px";
+        btn.setAttribute("aria-expanded", "true");
+        label.textContent = "Tutup Pesan";
+        icon.style.transform = "rotate(180deg)";
+      }
+    });
+  })();
+</script>
