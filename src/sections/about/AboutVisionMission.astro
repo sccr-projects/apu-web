@@ -185,7 +185,6 @@ import SectionHeader from "../../components/SectionHeader.astro";
       const logo = document.getElementById('vm-logo-3d');
       if (!section || !logo) return;
 
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
       let isVisible = false;
@@ -197,14 +196,17 @@ import SectionHeader from "../../components/SectionHeader.astro";
 
       // IntersectionObserver to gate rAF
       const observer = new IntersectionObserver(
-        ([entry]) => { isVisible = entry.isIntersecting; },
+        ([entry]) => {
+          isVisible = entry.isIntersecting;
+          if (isVisible && !rafId) animate();
+        },
         { threshold: 0.1 }
       );
       observer.observe(section);
 
       // Mouse tracking (viewport-relative, skip on touch)
       function onMouseMove(e) {
-        if (prefersReducedMotion || isTouchDevice) return;
+        if (isTouchDevice) return;
         mouseX = (e.clientX / window.innerWidth - 0.5) * 30; // max +/-15deg
         mouseY = (e.clientY / window.innerHeight - 0.5) * -30; // invert Y for natural tilt
       }
@@ -212,20 +214,22 @@ import SectionHeader from "../../components/SectionHeader.astro";
 
       // rAF loop with lerp
       function animate() {
-        if (isVisible && !prefersReducedMotion && !isTouchDevice) {
+        if (isVisible && !isTouchDevice) {
           currentRotateX += (mouseY - currentRotateX) * 0.08;
           currentRotateY += (mouseX - currentRotateY) * 0.08;
           if (!isFlipped) {
             logo.style.transform = `rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg)`;
           }
         }
-        rafId = requestAnimationFrame(animate);
+        if (isVisible) {
+          rafId = requestAnimationFrame(animate);
+        } else {
+          rafId = null;
+        }
       }
-      animate();
 
       // Click flip with 5s debounce
       function onClick() {
-        if (prefersReducedMotion) return;
         const now = Date.now();
         if (isFlipped || now - lastFlipTime < 5000) return;
         isFlipped = true;
@@ -238,12 +242,15 @@ import SectionHeader from "../../components/SectionHeader.astro";
       // Cleanup
       function cleanup() {
         if (rafId) cancelAnimationFrame(rafId);
+        rafId = null;
         document.removeEventListener('mousemove', onMouseMove);
         logo.removeEventListener('click', onClick);
         observer.disconnect();
+        window.removeEventListener('beforeunload', cleanup);
+        section.removeEventListener('astro:unmount', cleanup);
       }
       window.addEventListener('beforeunload', cleanup);
-      document.addEventListener('astro:unmount', cleanup);
+      section.addEventListener('astro:unmount', cleanup);
     })();
   </script>
 </section>
