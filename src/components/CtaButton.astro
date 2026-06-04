@@ -1,5 +1,5 @@
 ---
-type Variant = "primary" | "secondary" | "requirements";
+type Variant = "primary" | "secondary" | "requirements" | "tertiary";
 
 type Props = {
   href: string;
@@ -26,8 +26,8 @@ const {
 const variantClasses: Record<Variant, string> = {
   primary: "apu-btn apu-btn--primary",
   secondary: "apu-btn apu-btn--secondary",
-  requirements:
-    "inline-flex text-white items-center justify-center gap-3 rounded-2xl border border-[rgb(var(--color-apu-navy))] bg-gradient-to-r from-[rgb(var(--color-apu-navy))] to-[rgb(var(--color-apu-navy)_/_0.8)] px-10 py-4 text-body font-medium shadow-[0_16px_30px_rgb(var(--color-apu-navy)_/_0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:gap-4 hover:border-[rgb(var(--color-apu-accent))] hover:from-[rgb(var(--color-apu-accent))] hover:to-[rgb(var(--color-apu-accent)_/_0.92)] hover:text-[rgb(var(--color-apu-navy))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--color-apu-accent))] focus-visible:ring-offset-2 focus-visible:ring-offset-white",
+  tertiary: "apu-btn apu-btn--tertiary",
+  requirements: "apu-btn apu-btn--secondary",
 };
 
 const mergedClass = `${variantClasses[variant]} ${className}`.trim();

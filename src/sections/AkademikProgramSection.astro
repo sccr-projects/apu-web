@@ -42,9 +42,9 @@ const pillars = [
 ];
 
 const iconSvgs: Record<string, string> = {
-  'book-open': '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
-  'microscope': '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>',
-  'puzzle': '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 2H8.6c-.4 0-.8.2-1.1.5-.3.3-.5.7-.5 1.1v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8c.4 0 .8-.2 1.1-.5.3-.3.5-.7.5-1.1V6.5L15.5 2z"/><path d="M3 7.6v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8"/><path d="M15 2v5h5"/></svg>',
+  'book-open': '<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
+  'microscope': '<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>',
+  'puzzle': '<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 2H8.6c-.4 0-.8.2-1.1.5-.3.3-.5.7-.5 1.1v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8c.4 0 .8-.2 1.1-.5.3-.3.5-.7.5-1.1V6.5L15.5 2z"/><path d="M3 7.6v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8"/><path d="M15 2v5h5"/></svg>',
 };
 ---
 
@@ -83,10 +83,12 @@ const iconSvgs: Record<string, string> = {
             <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[rgb(var(--color-apu-accent)_/_0.65)] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-t-[var(--apu-radius-card)]"></div>
 
             {/* Icon + Title */}
-            <div class="mb-6">
-              <div class="apu-icon-chip flex h-16 w-16 rounded-2xl ring-4 ring-[rgb(var(--color-apu-accent)_/_0.08)] mb-5" set:html={iconSvgs[pillar.icon]} />
-              <p class="text-caption text-brand-text-muted uppercase tracking-wider font-medium mb-2">{pillar.subtitle}</p>
-              <h3 class="text-h3 text-[rgb(var(--color-apu-navy))] leading-tight">{pillar.title}</h3>
+            <div class="mb-6 flex flex-row gap-4 items-center align-center">
+              <div class="apu-icon-chip flex h-20 w-20 rounded-2xl ring-4 ring-[rgb(var(--color-apu-accent)_/_0.08)]" set:html={iconSvgs[pillar.icon]} />
+              <div class="flex flex-col">
+                <p class="text-caption text-brand-text-muted uppercase tracking-wider font-medium mb-2">{pillar.subtitle}</p>
+                <h3 class="text-3xl font-medium text-[rgb(var(--color-apu-navy))] leading-tight">{pillar.title}</h3>
+              </div>
             </div>
 
             {/* Description */}

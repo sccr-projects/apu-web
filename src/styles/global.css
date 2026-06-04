@@ -272,8 +272,9 @@
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
-        border-radius: var(--apu-radius-pill);
-        border: 1px solid transparent;
+        border-bottom-left-radius: 1.5rem;
+        border-top-right-radius: 1.5rem;
+        border-left: 8px solid rgb(var(--apu-accent));
         padding: 0.875rem 1.75rem;
         font-weight: 600;
         line-height: 1;
@@ -296,29 +297,43 @@
     .apu-btn--primary {
         background: var(--apu-btn-primary-bg, rgb(var(--apu-navy)));
         color: var(--apu-btn-primary-color, rgb(var(--apu-surface)));
-        border-color: var(--apu-btn-primary-border, rgb(255 255 255 / 0.14));
+        border-color: rgb(var(--apu-accent));
         box-shadow: var(--apu-btn-shadow, var(--apu-shadow-btn));
     }
 
     .apu-btn--primary:hover {
         background: var(--apu-btn-primary-hover-bg, rgb(var(--apu-accent)));
-        color: var(--apu-btn-primary-hover-color, rgb(var(--apu-navy)));
+        color: rgb(var(--apu-navy));
         transform: translateY(-1px) scale(1.02);
     }
 
     .apu-btn--secondary {
-        background: var(--apu-btn-secondary-bg, rgb(255 255 255 / 0.06));
-        color: var(--apu-btn-secondary-color, rgb(var(--apu-surface)));
-        border-color: var(--apu-btn-secondary-border, rgb(255 255 255 / 0.5));
+        background: rgb(255 255 255 / 0.7);
+        color: rgb(var(--apu-navy));
+        border-color: rgb(var(--apu-navy));
         backdrop-filter: blur(4px);
     }
 
     .apu-btn--secondary:hover {
-        background: var(--apu-btn-secondary-hover-bg, rgb(255 255 255 / 0.14));
+        background:  rgb(255 255 255 / 0.1);
+        color: white;
         border-color: var(
             --apu-btn-secondary-hover-border,
             rgb(255 255 255 / 0.82)
         );
+    }
+
+    .apu-btn--tertiary {
+        background: rgb(var(--apu-accent));
+        color: rgb(var(--apu-navy));
+        border-color: rgb(var(--apu-navy));
+        box-shadow: var(--apu-btn-shadow, var(--apu-shadow-btn));
+    }
+
+    .apu-btn--tertiary:hover {
+        background: rgb(var(--apu-navy));
+        color: rgb(var(--apu-accent));
+        transform: translateY(-1px) scale(1.02);
     }
 
     .apu-icon-chip {
