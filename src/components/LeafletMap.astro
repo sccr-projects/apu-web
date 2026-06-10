@@ -3,6 +3,7 @@ interface MarkerData {
   lat: number;
   lng: number;
   label?: string;
+  icon?: string;
 }
 
 interface Props {
@@ -22,6 +23,7 @@ const {
   zoomDuration = 4000,
   markers,
   animated = true,
+  markerIcon,
   class: className = "",
 } = Astro.props;
 ---
@@ -35,6 +37,7 @@ const {
   data-zoom-duration={zoomDuration}
   data-markers={markers ? JSON.stringify(markers) : undefined}
   data-animated={String(animated)}
+  data-marker-icon={markerIcon}
 >
 </div>
 
@@ -45,6 +48,7 @@ const {
     lat: number;
     lng: number;
     label?: string;
+    icon?: string;
   }
 
   interface MapData {
@@ -54,6 +58,7 @@ const {
     zoomDuration: number;
     markers?: MarkerData[];
     animated: boolean;
+    markerIcon?: string;
   }
 
   function parseData(container: HTMLElement): MapData {
@@ -64,6 +69,7 @@ const {
       zoomDuration: parseInt(container.dataset.zoomDuration || "4000"),
       markers: container.dataset.markers ? JSON.parse(container.dataset.markers) : undefined,
       animated: container.dataset.animated !== "false",
+      markerIcon: container.dataset.markerIcon || undefined,
     };
   }
 
@@ -87,6 +93,25 @@ const {
       html: `<div class="apu-map-pin__container"><div class="apu-map-pin__dot"></div></div>`,
       iconSize: [24, 24],
       iconAnchor: [12, 12],
+    });
+  }
+
+  function createCustomIcon(iconHtml: string): L.DivIcon {
+    return L.divIcon({
+      className: "apu-map-pin",
+      html: `<div class="apu-map-pin__container apu-map-pin__container--custom">${iconHtml}</div>`,
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+    });
+  }
+
+  function createImageIcon(iconUrl: string): L.Icon {
+    return L.icon({
+      iconUrl: iconUrl,
+      iconSize: [136, 180],
+      iconAnchor: [88, 180],
+      popupAnchor: [0, -120],
+      className: "apu-map-pin-image",
     });
   }
 
@@ -135,6 +160,7 @@ const {
       touchZoom: false,
       boxZoom: false,
       keyboard: false,
+      zoomSnap: 0.1,
     });
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -144,8 +170,12 @@ const {
     const bounds = L.latLngBounds(data.markers.map((m) => [m.lat, m.lng]));
 
     data.markers.forEach((marker) => {
-      const icon = createStaticIcon();
-      const m = L.marker([marker.lat, marker.lng], { icon }).addTo(map);
+      const markerIcon = marker.icon
+        ? createImageIcon(marker.icon)
+        : data.markerIcon
+          ? createCustomIcon(data.markerIcon)
+          : createStaticIcon();
+      const m = L.marker([marker.lat, marker.lng], { icon: markerIcon }).addTo(map);
       if (marker.label) {
         m.bindPopup(marker.label, {
           closeButton: false,
@@ -154,7 +184,8 @@ const {
       }
     });
 
-    map.fitBounds(bounds, { padding: [40, 40] });
+    map.fitBounds(bounds, { padding: [80, 80] });
+    map.setZoom(Math.min(map.getZoom(), 17.6));
 
     return map;
   }
@@ -227,6 +258,27 @@ const {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .apu-map-pin__container--custom {
+    width: 32px;
+    height: 32px;
+  }
+
+  .apu-map-pin__container--custom svg {
+    width: 100%;
+    height: 100%;
+    color: rgb(var(--color-apu-accent));
+    filter: drop-shadow(0 2px 4px rgb(var(--color-apu-navy) / 0.3));
+  }
+
+  .apu-map-pin-image {
+    filter: drop-shadow(0 2px 6px rgb(var(--color-apu-navy) / 0.35));
+    transition: transform 0.2s ease;
+  }
+
+  .apu-map-pin-image:hover {
+    transform: scale(1.15) translateY(-4px);
   }
 
   .apu-map-pin__dot {
