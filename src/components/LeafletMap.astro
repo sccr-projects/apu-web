@@ -173,13 +173,47 @@ const {
     const bounds = L.latLngBounds(data.markers.map((m) => [m.lat, m.lng]));
 
     if (data.route && data.route.length > 1) {
-      L.polyline(data.route, {
+      const routeLatLngs = data.route.map(([lat, lng]) => [lat, lng]);
+
+      // Glow layer — wide, intense, pulsing
+      L.polyline(routeLatLngs, {
         color: "#2B7A4A",
-        weight: 4,
-        opacity: 0.8,
-        dashArray: "8, 6",
+        weight: 20,
+        opacity: 0.35,
         lineCap: "round",
         lineJoin: "round",
+        className: "apu-route-glow",
+      }).addTo(map);
+
+      // Secondary glow — strong spread
+      L.polyline(routeLatLngs, {
+        color: "#43A047",
+        weight: 10,
+        opacity: 0.6,
+        lineCap: "round",
+        lineJoin: "round",
+        className: "apu-route-glow-soft",
+      }).addTo(map);
+
+      // Main animated line — marching dash
+      L.polyline(routeLatLngs, {
+        color: "#2B7A4A",
+        weight: 4,
+        opacity: 1.0,
+        dashArray: "12, 8",
+        lineCap: "round",
+        lineJoin: "round",
+        className: "apu-route-pulse",
+      }).addTo(map);
+
+      // Bright core
+      L.polyline(routeLatLngs, {
+        color: "#81C784",
+        weight: 2,
+        opacity: 1.0,
+        lineCap: "round",
+        lineJoin: "round",
+        className: "apu-route-core",
       }).addTo(map);
     }
 
@@ -331,4 +365,44 @@ const {
       animation: none;
     }
   }
+
+  /* Route Glow & Pulse Effects */
+  .apu-leaflet-map :global(.apu-route-glow) {
+    filter: drop-shadow(0 0 20px #2B7A4A) drop-shadow(0 0 40px #43A047) drop-shadow(0 0 80px #66BB6A);
+    animation: apu-route-glow-pulse 2s ease-in-out infinite;
+  }
+
+  .apu-leaflet-map :global(.apu-route-glow-soft) {
+    filter: drop-shadow(0 0 15px #43A047) drop-shadow(0 0 30px #66BB6A);
+  }
+
+  .apu-leaflet-map :global(.apu-route-pulse) {
+    animation: apu-route-dash 1s linear infinite;
+    filter: drop-shadow(0 0 10px #66BB6A) drop-shadow(0 0 20px #81C784);
+  }
+
+  .apu-leaflet-map :global(.apu-route-core) {
+    filter: drop-shadow(0 0 8px #81C784) drop-shadow(0 0 16px #A5D6A7);
+  }
+
+  @keyframes apu-route-glow-pulse {
+    0%, 100% {
+      opacity: 0.3;
+      filter: drop-shadow(0 0 20px #2B7A4A) drop-shadow(0 0 40px #43A047) drop-shadow(0 0 60px #66BB6A);
+    }
+    50% {
+      opacity: 0.9;
+      filter: drop-shadow(0 0 40px #2B7A4A) drop-shadow(0 0 80px #43A047) drop-shadow(0 0 120px #66BB6A) drop-shadow(0 0 160px #81C784);
+    }
+  }
+
+  @keyframes apu-route-dash {
+    0% {
+      stroke-dashoffset: 20;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
 </style>

@@ -1274,16 +1274,4 @@
         opacity: 1;
         transform: scale(1);
     }
-
-    /* --- Reduced motion --- */
-    @media (prefers-reduced-motion: reduce) {
-        .org-node,
-        .org-node-toggle,
-        .org-node-toggle svg,
-        .org-node-description,
-        .org-node-children,
-        .org-tree[data-filter]:not([data-filter="semua"]) .org-node-wrapper {
-            transition: none !important;
-        }
-    }
 }
