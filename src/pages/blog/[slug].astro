@@ -2,6 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import { client, readItems } from '../../lib/directus';
 
+export async function getStaticPaths() {
+  // TODO: Fetch slugs from Directus when CMS is connected
+  // For now, return empty array to allow static build
+  return [];
+}
+
 const slug = Astro.params.slug;
 
 let post: any | null = null;

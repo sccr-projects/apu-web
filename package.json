@@ -13,6 +13,7 @@
     "docker:down": "docker compose down",
     "docker:logs": "docker compose logs -f",
     "build": "bun run astro:build",
+    "build:frontend": "bunx astro build --config astro.config.static.mjs",
     "preview": "bun run astro:preview",
     "dev": "bun run docker:up && bun run astro:dev",
     "dev:frontend": "bun run astro:dev",

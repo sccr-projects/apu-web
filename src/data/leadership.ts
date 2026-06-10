@@ -20,10 +20,10 @@ export const leadershipMessage: LeadershipMessage = {
     "Bergabunglah dengan kami, dan bersama-sama kita wujudkan impian besar untuk Indonesia yang lebih baik."
   ],
   leaderName: "Prof. Dr. Agung Putra, M.Si.",
-  leaderTitle: "Rektor Agung Putra University",
+  leaderTitle: "Founder and Commisoner PT. SCCR",
   leaderImage: "/images/leadership-portrait.webp",
   cta: {
-    href: "/apu/about",
+    href: "/about-apu",
     label: "Kenali Visi Kampus",
   },
 };

@@ -1,50 +1,96 @@
 ---
+interface MarkerData {
+  lat: number;
+  lng: number;
+  label?: string;
+}
+
 interface Props {
-  center: [number, number];
+  center?: [number, number];
   zoomStart?: number;
   zoomEnd?: number;
   zoomDuration?: number;
+  markers?: MarkerData[];
+  animated?: boolean;
   class?: string;
 }
 
 const {
-  center,
+  center = [-7.071300, 110.362306],
   zoomStart = 10,
   zoomEnd = 16,
   zoomDuration = 4000,
+  markers,
+  animated = true,
   class: className = "",
 } = Astro.props;
 ---
 
 <div
-  id="leaflet-map"
   class={`apu-leaflet-map ${className}`}
+  data-map-instance
   data-center={JSON.stringify(center)}
   data-zoom-start={zoomStart}
   data-zoom-end={zoomEnd}
   data-zoom-duration={zoomDuration}
+  data-markers={markers ? JSON.stringify(markers) : undefined}
+  data-animated={String(animated)}
 >
 </div>
 
 <script>
   import L from "leaflet";
 
+  interface MarkerData {
+    lat: number;
+    lng: number;
+    label?: string;
+  }
+
   interface MapData {
     center: [number, number];
     zoomStart: number;
     zoomEnd: number;
     zoomDuration: number;
+    markers?: MarkerData[];
+    animated: boolean;
   }
 
-  function initMap(container: HTMLElement) {
-    const data: MapData = {
+  function parseData(container: HTMLElement): MapData {
+    return {
       center: JSON.parse(container.dataset.center || "[-7.071300, 110.362306]"),
       zoomStart: parseInt(container.dataset.zoomStart || "10"),
       zoomEnd: parseInt(container.dataset.zoomEnd || "16"),
       zoomDuration: parseInt(container.dataset.zoomDuration || "4000"),
+      markers: container.dataset.markers ? JSON.parse(container.dataset.markers) : undefined,
+      animated: container.dataset.animated !== "false",
     };
+  }
 
-    // Create map with all interactions disabled
+  function createPulseIcon(): L.DivIcon {
+    return L.divIcon({
+      className: "apu-map-pin",
+      html: `
+        <div class="apu-map-pin__container">
+          <div class="apu-map-pin__pulse"></div>
+          <div class="apu-map-pin__dot"></div>
+        </div>
+      `,
+      iconSize: [24, 24],
+      iconAnchor: [12, 12],
+    });
+  }
+
+  function createStaticIcon(): L.DivIcon {
+    return L.divIcon({
+      className: "apu-map-pin",
+      html: `<div class="apu-map-pin__container"><div class="apu-map-pin__dot"></div></div>`,
+      iconSize: [24, 24],
+      iconAnchor: [12, 12],
+    });
+  }
+
+  function initSingleMarkerMap(container: HTMLElement, data: MapData) {
     const map = L.map(container, {
       center: data.center,
       zoom: data.zoomStart,
@@ -56,52 +102,98 @@ const {
       touchZoom: false,
       boxZoom: false,
       keyboard: false,
-
     });
 
-    // Add OpenStreetMap tile layer
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
     }).addTo(map);
 
-    // Add custom APU pin marker
-    const customIcon = L.divIcon({
-      className: "apu-map-pin",
-      html: `
-        <div class="apu-map-pin__container">
-          <div class="apu-map-pin__pulse"></div>
-          <div class="apu-map-pin__dot"></div>
-        </div>
-      `,
-      iconSize: [24, 24],
-      iconAnchor: [12, 12],
+    const icon = data.animated ? createPulseIcon() : createStaticIcon();
+    L.marker(data.center, { icon }).addTo(map);
+
+    if (data.animated) {
+      setTimeout(() => {
+        map.flyTo(data.center, data.zoomEnd, {
+          duration: data.zoomDuration / 1000,
+          easeLinearity: 0.25,
+        });
+      }, 800);
+    }
+
+    return map;
+  }
+
+  function initMultiMarkerMap(container: HTMLElement, data: MapData) {
+    if (!data.markers || data.markers.length === 0) return;
+
+    const map = L.map(container, {
+      zoomControl: false,
+      attributionControl: false,
+      dragging: false,
+      scrollWheelZoom: false,
+      doubleClickZoom: false,
+      touchZoom: false,
+      boxZoom: false,
+      keyboard: false,
     });
 
-    L.marker(data.center, { icon: customIcon }).addTo(map);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+    }).addTo(map);
 
-    // Auto-zoom after a short delay to let tiles load
-    setTimeout(() => {
-      map.flyTo(data.center, data.zoomEnd, {
-        duration: data.zoomDuration / 1000,
-        easeLinearity: 0.25,
-      });
-    }, 800);
+    const bounds = L.latLngBounds(data.markers.map((m) => [m.lat, m.lng]));
 
-    // Cleanup on page navigation (Astro view transitions)
-    document.addEventListener("astro:before-swap", () => {
-      map.remove();
+    data.markers.forEach((marker) => {
+      const icon = createStaticIcon();
+      const m = L.marker([marker.lat, marker.lng], { icon }).addTo(map);
+      if (marker.label) {
+        m.bindPopup(marker.label, {
+          closeButton: false,
+          className: "apu-map-popup",
+        });
+      }
+    });
+
+    map.fitBounds(bounds, { padding: [40, 40] });
+
+    return map;
+  }
+
+  function initMap(container: HTMLElement) {
+    try {
+      const data = parseData(container);
+
+      let map: L.Map | undefined;
+      if (data.markers && data.markers.length > 0) {
+        map = initMultiMarkerMap(container, data);
+      } else {
+        map = initSingleMarkerMap(container, data);
+      }
+
+      if (map) {
+        document.addEventListener("astro:before-swap", () => {
+          map?.remove();
+        });
+      }
+    } catch (err) {
+      console.error("LeafletMap init failed:", err);
+    }
+  }
+
+  function initAllMaps() {
+    const containers = document.querySelectorAll<HTMLElement>("[data-map-instance]");
+    containers.forEach((container) => {
+      if (!container.dataset.mapInitialized) {
+        container.dataset.mapInitialized = "true";
+        initMap(container);
+      }
     });
   }
 
-  // Initialize when DOM is ready
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-      const container = document.getElementById("leaflet-map");
-      if (container) initMap(container);
-    });
+    document.addEventListener("DOMContentLoaded", initAllMaps);
   } else {
-    const container = document.getElementById("leaflet-map");
-    if (container) initMap(container);
+    initAllMaps();
   }
 </script>
 

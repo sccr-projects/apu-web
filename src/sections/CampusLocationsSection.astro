@@ -1,0 +1,84 @@
+---
+import ScrollReveal from "../components/ScrollReveal.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import LeafletMap from "../components/LeafletMap.astro";
+import { campusLocations } from "../data/locations";
+
+const mapMarkers = campusLocations.map((loc) => ({
+  lat: loc.lat,
+  lng: loc.lng,
+  label: loc.name,
+}));
+
+const mapPinIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`;
+---
+
+<section
+  id="lokasi-kampus"
+  class="apu-section-shell motion-aurora-shell motion-aurora-shell--locations relative isolate overflow-hidden"
+  style="padding-top: var(--apu-section-spacing-y); padding-bottom: var(--apu-section-spacing-y);"
+>
+  <div class="pointer-events-none absolute inset-0 overflow-hidden">
+    <div class="absolute -left-24 top-16 h-72 w-72 rounded-full bg-[rgb(var(--color-apu-accent)_/_0.18)] blur-3xl"></div>
+    <div class="absolute -right-24 bottom-8 h-80 w-80 rounded-full bg-[rgb(var(--color-apu-navy)_/_0.14)] blur-3xl"></div>
+    <div class="absolute inset-x-0 top-1/3 h-px bg-gradient-to-r from-transparent via-[rgb(var(--color-apu-navy)_/_0.18)] to-transparent"></div>
+  </div>
+
+  <div class="content-max relative z-[1]">
+    <!-- Section Header -->
+    <ScrollReveal>
+      <SectionHeader
+        kicker="LOKASI KAMPUS"
+        title="Jelajahi Lingkungan Kampus APU"
+        description="Temukan lokasi kampus utama dan fasilitas pendukung yang tersebar di area strategis Semarang."
+        class="text-center mb-12 md:mb-16"
+        titleClass="text-h2 text-[rgb(var(--color-apu-navy))] mb-4"
+        descriptionClass="text-body-s text-brand-text-muted max-w-xl mx-auto leading-relaxed"
+        dividerClass="apu-gradient-line mx-auto mt-4 w-48"
+      />
+    </ScrollReveal>
+
+    <!-- Two-column layout: Map + Location List -->
+    <div class="grid md:grid-cols-[1.2fr_0.8fr] gap-6 lg:gap-8 items-start">
+      <!-- Map -->
+      <ScrollReveal>
+        <div class="apu-glass-card apu-interactive-card relative overflow-hidden" style="aspect-ratio: 16/9;">
+          <LeafletMap
+            markers={mapMarkers}
+            animated={false}
+            class="absolute inset-0 w-full h-full"
+          />
+          <!-- Subtle vignette overlay -->
+          <div
+            class="pointer-events-none absolute inset-0 z-[2]"
+            style="
+              background:
+                radial-gradient(circle at center, transparent 60%, rgb(var(--color-brand-surface) / 0.15) 100%);
+            "
+          ></div>
+        </div>
+      </ScrollReveal>
+
+      <!-- Location List -->
+      <div class="space-y-3">
+        {campusLocations.map((loc, index) => (
+          <ScrollReveal delay={index * 100}>
+            <div class="apu-glass-card apu-interactive-card group flex items-center gap-4 p-4 transition-all duration-220">
+              <div class="apu-icon-chip w-12 h-12 flex-shrink-0">
+                <Fragment set:html={mapPinIcon} />
+              </div>
+              <div class="min-w-0 flex-1">
+                <p class="text-body-s font-medium text-brand-text truncate leading-snug">
+                  {loc.name}
+                </p>
+                <p class="text-caption text-brand-text-muted font-mono mt-0.5">
+                  {loc.lat.toFixed(6)}, {loc.lng.toFixed(6)}
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
