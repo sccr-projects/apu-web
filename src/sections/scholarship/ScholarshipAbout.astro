@@ -1,0 +1,65 @@
+---
+import ScrollReveal from "../../components/ScrollReveal.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+---
+
+<section
+  id="about"
+  class="apu-section-shell motion-aurora-shell motion-aurora-shell--about relative isolate overflow-hidden bg-gradient-to-b from-brand-surface via-[rgb(var(--color-apu-navy)_/_0.03)] to-brand-surface-alt py-24 md:py-32 before:content-[''] before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_left,rgb(var(--color-apu-accent)_/_0.14),transparent_34%),radial-gradient(circle_at_bottom_right,rgb(var(--color-apu-navy)_/_0.16),transparent_38%)] after:content-[''] after:pointer-events-none after:absolute after:inset-x-0 after:top-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-[rgb(var(--color-apu-accent)_/_0.65)] after:to-transparent"
+>
+  <div class="pointer-events-none absolute inset-0 overflow-hidden">
+    <div class="absolute -left-24 top-12 h-72 w-72 rounded-full bg-[rgb(var(--color-apu-accent)_/_0.14)] blur-3xl"></div>
+    <div class="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-[rgb(var(--color-apu-navy)_/_0.12)] blur-3xl"></div>
+  </div>
+
+  <div class="content-max relative z-10">
+    <!-- Section Header -->
+    <ScrollReveal>
+      <SectionHeader
+        kicker="ABOUT THE SCHOLARSHIP"
+        title="Support for High-Achieving Students"
+        description="The APU Academic Scholarship is designed to recognize and support high-achieving students who want to continue their studies at a quality university."
+        class="text-center mb-16"
+        titleClass="text-h2 text-[rgb(var(--color-apu-navy))] mb-4"
+      />
+    </ScrollReveal>
+
+    <!-- Two Column Content -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Left: Description -->
+      <ScrollReveal delay={100}>
+        <div class="apu-glass-card apu-interactive-card p-8 h-full">
+          <h3 class="text-h3 text-[rgb(var(--color-apu-navy))] mb-4">
+            What is the Academic Scholarship?
+          </h3>
+          <p class="text-body text-brand-text-muted leading-relaxed mb-4">
+            The APU Academic Scholarship is a merit-based scholarship program that provides a tuition fee reduction of up to <strong class="text-[rgb(var(--color-apu-navy))]">50%</strong> for students who meet the criteria of a minimum report card average of 80.
+          </p>
+          <p class="text-body text-brand-text-muted leading-relaxed">
+            This program is open to SMA/SMK/equivalent graduates or Grade 12 students who are completing their education. With this scholarship, you can focus on self-development without a heavy financial burden.
+          </p>
+        </div>
+      </ScrollReveal>
+
+      <!-- Right: Benefit Highlight -->
+      <ScrollReveal delay={250}>
+        <div class="apu-glass-card apu-interactive-card p-8 h-full flex flex-col items-center justify-center text-center relative overflow-hidden">
+          <!-- Decorative blur orb -->
+          <div class="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[rgb(var(--color-apu-accent)_/_0.18)] blur-2xl"></div>
+
+          <div class="apu-icon-chip w-20 h-20 mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          </div>
+
+          <div class="text-[5rem] font-bold leading-none text-[rgb(var(--color-apu-navy))] mb-2" style="font-family: 'Space Grotesk', sans-serif;">
+            50<span class="text-[3rem]">%</span>
+          </div>
+          <p class="text-h3 text-[rgb(var(--color-apu-navy))] mb-2">Tuition Fee Reduction</p>
+          <p class="text-body-s text-brand-text-muted max-w-xs leading-relaxed">
+            Enjoy a significant tuition fee reduction throughout your studies by meeting the applicable academic requirements.
+          </p>
+        </div>
+      </ScrollReveal>
+    </div>
+  </div>
+</section>
