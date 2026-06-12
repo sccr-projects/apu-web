@@ -4,86 +4,26 @@ import SectionHeader from "../components/SectionHeader.astro";
 import { programs } from "../data/programs";
 
 type ProgramTone = {
-    hoverBg: string;
-    overlayStart: string;
-    overlayEnd: string;
-    footerBg: string;
-    labelColor: string;
-    arrowStroke: string;
+    accent: string;
 };
 
 const defaultTone: ProgramTone = {
-    hoverBg: "rgb(var(--color-brand-primary-deeper) / 0.9)",
-    overlayStart: "rgb(var(--color-brand-primary-deep) / 0.78)",
-    overlayEnd: "rgb(var(--color-brand-primary) / 0.9)",
-    footerBg: "rgb(var(--color-brand-primary-deeper))",
-    labelColor: "rgb(var(--color-brand-accent-soft))",
-    arrowStroke: "rgb(var(--color-brand-primary))",
+    accent: "rgb(var(--color-brand-primary-deeper))",
 };
 
 const programTones: Record<string, ProgramTone> = {
-    "biomedical-science": {
-        hoverBg: "rgb(6 46 112 / 0.7)",
-        overlayStart: "rgb(var(--color-info-600) / 0.8)",
-        overlayEnd: "rgb(var(--color-info-500) / 0.9)",
-        footerBg: "rgb(var(--color-info-700))",
-        labelColor: "rgb(var(--color-brand-surface-soft))",
-        arrowStroke: "rgb(var(--color-info-600))",
-    },
-    biotechnology: {
-        hoverBg: "rgb(var(--color-brand-primary) / 0.75)",
-        overlayStart: "rgb(var(--color-brand-primary) / 0.76)",
-        overlayEnd: "rgb(var(--color-brand-accent-soft) / 0.88)",
-        footerBg: "rgb(var(--color-brand-primary-deep))",
-        labelColor: "rgb(var(--color-brand-accent-soft))",
-        arrowStroke: "rgb(var(--color-brand-primary))",
-    },
-    law: {
-        hoverBg: "rgb(var(--color-brand-accent) / 0.7)",
-        overlayStart: "rgb(var(--color-brand-accent) / 0.72)",
-        overlayEnd: "rgb(var(--color-brand-primary-deeper) / 0.86)",
-        footerBg: "rgb(var(--color-brand-accent))",
-        labelColor: "rgb(var(--color-brand-accent-soft))",
-        arrowStroke: "rgb(var(--color-brand-accent))",
-    },
-    management: {
-        hoverBg: "rgb(var(--color-brand-surface-soft) / 0.4)",
-        overlayStart: "rgb(var(--color-brand-surface-soft) / 0.74)",
-        overlayEnd: "rgb(var(--color-brand-primary-deeper) / 0.88)",
-        footerBg: "rgb(var(--color-brand-primary-deep))",
-        labelColor: "rgb(var(--color-brand-primary))",
-        arrowStroke: "rgb(var(--color-brand-primary-deep))",
-    },
-    communication: {
-        hoverBg: "rgb(98 6 112 / 0.7)",
-        overlayStart: "rgb(var(--color-brand-accent-soft) / 0.72)",
-        overlayEnd: "rgb(var(--color-brand-primary) / 0.84)",
-        footerBg: "rgb(var(--color-brand-accent-soft))",
-        labelColor: "rgb(var(--color-brand-accent))",
-        arrowStroke: "rgb(var(--color-brand-primary))",
-    },
-    "midwifery-s1": {
-        hoverBg: "rgb(112 3 3 / 0.7)",
-        overlayStart: "rgb(var(--color-brand-primary-deep) / 0.74)",
-        overlayEnd: "rgb(var(--color-brand-accent) / 0.82)",
-        footerBg: "rgb(var(--color-brand-primary-deep))",
-        labelColor: "rgb(var(--color-brand-surface-soft))",
-        arrowStroke: "rgb(var(--color-brand-accent))",
-    },
-    "midwifery-d3": {
-        hoverBg: "rgb(var(--color-brand-primary) / 0.88)",
-        overlayStart: "rgb(var(--color-brand-primary) / 0.74)",
-        overlayEnd: "rgb(var(--color-brand-accent-soft) / 0.82)",
-        footerBg: "rgb(var(--color-brand-primary))",
-        labelColor: "rgb(var(--color-brand-surface-soft))",
-        arrowStroke: "rgb(var(--color-brand-primary))",
-    },
+    "biomedical-science": { accent: "rgb(10, 72, 132)" },
+    "biotechnology": { accent: "rgb(30, 160, 137)" },
+    "law": { accent: "rgb(157, 21, 44)" },
+    "management": { accent: "rgb(176, 153, 51)" },
+    "communication": { accent: "rgb(165, 107, 57)" },
+    "midwifery-s1": { accent: "rgb(108, 52, 166)" },
+    "midwifery-d3": { accent: "rgb(var(--color-brand-primary))" },
 };
 
 const getToneForProgram = (id: string) => programTones[id] || defaultTone;
 
-const toneVars = (tone: ProgramTone) =>
-    `--hover-bg: ${tone.hoverBg}; --overlay-start: ${tone.overlayStart}; --overlay-end: ${tone.overlayEnd}; --program-footer-bg: ${tone.footerBg}; --program-label-color: ${tone.labelColor}; --program-arrow-stroke: ${tone.arrowStroke};`;
+const toneVars = (tone: ProgramTone) => `--program-accent: ${tone.accent};`;
 ---
 
 <section
@@ -149,15 +89,23 @@ const toneVars = (tone: ProgramTone) =>
             backface-visibility: hidden;
         }
 
+        /* ── Auto-derived color variants from single --program-accent ─── */
+        .desktop-only .dsk-progdi-slide,
+        .mobile-only .progdi-slide {
+            --hover-bg: color-mix(in srgb, var(--program-accent) 40%, transparent);
+            --overlay-start: color-mix(in srgb, var(--program-accent) 72%, transparent);
+            --overlay-end: color-mix(in srgb, var(--program-accent) 88%, transparent);
+            --program-footer-bg: var(--program-accent);
+            --program-label-color: rgb(var(--color-brand-surface));
+            --program-arrow-stroke: var(--program-accent);
+        }
+
         .desktop-only .dsk-progdi-slide::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: var(
-                --hover-bg,
-                rgb(var(--color-brand-primary-deeper) / 0.35)
-            );
-            opacity: 0.88;
+            background: var(--program-accent);
+            opacity: 0.55;
             transition:
                 opacity 0.35s ease,
                 transform 0.35s ease;
@@ -166,7 +114,7 @@ const toneVars = (tone: ProgramTone) =>
 
         @media (min-width: 900px) {
             .desktop-only .dsk-progdi-slide:hover::before {
-                opacity: 0.5;
+                opacity: 0.82;
             }
             .desktop-only .dsk-progdi-slide:hover {
                 transform: scale(1.02);
@@ -433,6 +381,10 @@ const toneVars = (tone: ProgramTone) =>
                 var(--overlay-start) 0%,
                 var(--overlay-end) 100%
             );
+        }
+
+        .mobile-only .progdi-slide:hover::after {
+            opacity: 0.9;
         }
 
         .mobile-only .progdi-card {
