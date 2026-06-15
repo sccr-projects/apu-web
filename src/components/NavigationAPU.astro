@@ -52,6 +52,7 @@ const navSections: NavSection[] = [
   {
     label: "Admissions",
     href: `${HOME_PATH}admission`,
+    kind: "route",
     items: [
       {
         label: "Scholarship",
@@ -827,6 +828,11 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
           trigger.focus();
         }
       });
+
+      if (trigger instanceof HTMLAnchorElement) {
+        trigger.addEventListener('focusin', openDropdown);
+        trigger.addEventListener('focusout', closeDropdown);
+      }
     });
 
     // Mobile accordion
