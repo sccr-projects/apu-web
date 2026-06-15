@@ -829,9 +829,14 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
         }
       });
 
-      if (trigger instanceof HTMLAnchorElement) {
-        trigger.addEventListener('focusin', openDropdown);
-        trigger.addEventListener('focusout', closeDropdown);
+      const navItem = trigger.closest('.nav-item');
+      if (navItem) {
+        navItem.addEventListener('focusin', openDropdown);
+        navItem.addEventListener('focusout', (e) => {
+          if (!navItem.contains(e.relatedTarget)) {
+            closeDropdown();
+          }
+        });
       }
     });
 
@@ -1020,8 +1025,8 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
 
   #apu-nav .nav-link[data-active="true"],
   #apu-nav .nav-trigger[data-active="true"] {
-    /*background: rgb(var(--color-apu-accent) / 0.18);*/
-    /*color: rgb(var(--color-apu-navy));*/
+    background: rgb(var(--color-apu-accent) / 0.18);
+    color: rgb(var(--color-apu-navy));
   }
 
   #apu-nav .nav-chevron {
