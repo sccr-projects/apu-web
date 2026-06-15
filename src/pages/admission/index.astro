@@ -1,0 +1,25 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import NavigationAPU from "../../components/NavigationAPU.astro";
+import Footer from "../../components/Footer.astro";
+import ScholarshipHero from "../../sections/scholarship/ScholarshipHero.astro";
+import ScholarshipAbout from "../../sections/scholarship/ScholarshipAbout.astro";
+import ScholarshipRequirements from "../../sections/scholarship/ScholarshipRequirements.astro";
+import ScholarshipTimeline from "../../sections/scholarship/ScholarshipTimeline.astro";
+import ContactSection from "../../sections/ContactSection.astro";
+---
+
+<MainLayout
+  title="Academic Scholarship | APU"
+  description="Apply for the APU Academic Scholarship 2026/2027. Get up to 50% tuition fee reduction for high-achieving students. Simple requirements, transparent process."
+>
+  <NavigationAPU />
+  <main>
+    <ScholarshipHero />
+    <ScholarshipAbout />
+    <ScholarshipRequirements />
+    <ScholarshipTimeline />
+    <ContactSection />
+  </main>
+  <Footer />
+</MainLayout>

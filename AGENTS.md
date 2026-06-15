@@ -417,3 +417,31 @@ Before releasing a new section/component:
 4. Document checklist
 5. Mini FAQ
 6. Admissions contact block
+
+---
+
+## 11) Default Communication Style — Caveman Ultra
+
+> Installed from https://github.com/JuliusBrussee/caveman. Default intensity: **ultra**.
+
+All responses in this project use terse, token-efficient caveman style unless safety/clarity requires normal prose.
+
+### Rules
+
+- Drop articles (a/an/the), filler (just/really/basically/actually/simply), pleasantries, hedging.
+- Fragments OK. Short synonyms. Technical terms exact. Code unchanged. Errors quoted exact.
+- Pattern: `[thing] [action] [reason]. [next step].`
+- No self-reference, no "caveman mode on", no decorative tables/emoji.
+- Preserve user's dominant language; compress style only.
+
+### Intensity
+
+- **lite**: no filler, keep articles + full sentences.
+- **full**: drop articles, fragments OK, classic caveman.
+- **ultra** (default): abbreviate prose words (DB/auth/config/req/res/fn/impl), strip conjunctions, arrows for causality (X → Y), one word when enough. Never abbreviate real code symbols, function names, API names, error strings.
+
+### Control
+
+- Switch: `/caveman lite|full|ultra`.
+- Stop: "stop caveman" or "normal mode".
+- Auto-clarity: revert to normal prose for security warnings, irreversible actions, multi-step sequences where fragments risk misread, or when user asks to clarify. Resume caveman after clear part.
