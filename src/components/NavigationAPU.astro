@@ -50,7 +50,7 @@ const navSections: NavSection[] = [
     kind: "route",
   },
   {
-    label: "Admissions",
+    label: "Admission",
     href: `${HOME_PATH}admission`,
     kind: "route",
     items: [
@@ -81,6 +81,58 @@ const navSections: NavSection[] = [
     href: `${HOME_PATH}academic`,
     kind: "anchor",
     section: "program",
+    items: [
+      {
+        label: "Study Programs",
+        href: `${HOME_PATH}academic`,
+        description: "Study programs, curriculum, and learning support at APU.",
+        kind: "route",
+        children: [
+          {
+            label: "Biomedical Science",
+            href: `${HOME_PATH}beasiswa-akademik`,
+            description: "Beasiswa berbasis prestasi akademik.",
+            kind: "route",
+          },
+          {
+            label: "Biotechnology",
+            href: `${HOME_PATH}beasiswa-non-akademik`,
+            description: "Beasiswa berbasis prestasi non-akademik.",
+            kind: "route",
+          },
+          {
+            label: "Management",
+            href: `${HOME_PATH}beasiswa-non-akademik`,
+            description: "Beasiswa berbasis prestasi non-akademik.",
+            kind: "route",
+          },
+          {
+            label: "Law",
+            href: `${HOME_PATH}beasiswa-non-akademik`,
+            description: "Beasiswa berbasis prestasi non-akademik.",
+            kind: "route",
+          },
+          {
+            label: "Communication Science",
+            href: `${HOME_PATH}beasiswa-non-akademik`,
+            description: "Beasiswa berbasis prestasi non-akademik.",
+            kind: "route",
+          },
+          {
+            label: "Midwifery (Bachelors / S1)",
+            href: `${HOME_PATH}beasiswa-non-akademik`,
+            description: "Beasiswa berbasis prestasi non-akademik.",
+            kind: "route",
+          },
+          {
+            label: "Midwifery (Associate / D3)",
+            href: `${HOME_PATH}beasiswa-non-akademik`,
+            description: "Beasiswa berbasis prestasi non-akademik.",
+            kind: "route",
+          },
+        ],
+      },
+    ],
   },
   // {
   //   label: "Research",
@@ -129,44 +181,6 @@ const utilityActions: NavItem[] = [
     kind: "route",
     placeholder: true,
     // badge: "Coming Soon",
-  },
-];
-
-const homeAnchors: NavItem[] = [
-  {
-    label: "Home",
-    href: `${HOME_PATH}#beranda-orange-navy`,
-    description: "APU main overview and positioning.",
-    kind: "anchor",
-    section: "beranda-orange-navy",
-  },
-  {
-    label: "Programs",
-    href: `${HOME_PATH}#program`,
-    description: "Overview of all study programs.",
-    kind: "anchor",
-    section: "program",
-  },
-  {
-    label: "Admissions",
-    href: `${HOME_PATH}#jalur-masuk`,
-    description: "Homepage admissions summary.",
-    kind: "anchor",
-    section: "jalur-masuk",
-  },
-  {
-    label: "Requirements",
-    href: `${HOME_PATH}#persyaratan`,
-    description: "Registration documents and requirements.",
-    kind: "anchor",
-    section: "persyaratan",
-  },
-  {
-    label: "Contact",
-    href: `${HOME_PATH}#kontak`,
-    description: "Address, WhatsApp, and visit info.",
-    kind: "anchor",
-    section: "kontak",
   },
 ];
 
@@ -1058,7 +1072,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     top: calc(100% + 0.5rem);
     left: 50%;
     transform: translateX(-50%) translateY(-4px);
-    min-width: 220px;
+    min-width: 300px;
     padding: 0.5rem;
     background: rgb(var(--color-brand-surface) / 0.98);
     border: 1px solid rgb(var(--color-apu-navy) / 0.1);

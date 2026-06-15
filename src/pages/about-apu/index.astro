@@ -1,0 +1,33 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import AboutProfile from "../../sections/about/AboutProfile.astro";
+import AboutHistory from "../../sections/about/AboutHistory.astro";
+import AboutVisionMission from "../../sections/about/AboutVisionMission.astro";
+import AboutOrgStructure from "../../sections/about/AboutOrgStructure.astro";
+import MessageFromLeadership from "../../sections/MessageFromLeadership.astro";
+import AboutValues from "../../sections/about/AboutValues.astro";
+import AboutUnits from "../../sections/about/AboutUnits.astro";
+import AboutFacts from "../../sections/about/AboutFacts.astro";
+import AboutLegal from "../../sections/about/AboutLegal.astro";
+import NavigationAPU from "../../components/NavigationAPU.astro";
+import EcosystemSection from "../../sections/EcosystemSection.astro";
+
+---
+
+<MainLayout
+  title="About APU | Agung Putra University"
+  description="Get to know Agung Putra University (APU): profile, history, vision & mission, institutional values, and legality. A futuristic higher education institution in Semarang."
+>
+    <NavigationAPU />
+
+  <AboutProfile />
+  <AboutHistory />
+  <EcosystemSection />
+  <AboutVisionMission />
+  <AboutOrgStructure />
+  <MessageFromLeadership variant="light"/>
+  <AboutValues />
+  <AboutUnits />
+  <AboutFacts />
+  <AboutLegal />
+</MainLayout>
