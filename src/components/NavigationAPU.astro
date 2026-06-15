@@ -50,12 +50,13 @@ const navSections: NavSection[] = [
     kind: "route",
   },
   {
-    label: "Admissions",
-    // href removed — becomes a pure trigger when items exist
+    label: "Admission",
+    href: `${HOME_PATH}admission`,
+    kind: "route",
     items: [
       {
         label: "Scholarship",
-        href: `${HOME_PATH}beasiswa`,
+        href: `${HOME_PATH}admission`,
         description: "Beasiswa APU — jalur beasiswa akademik dan non-akademik.",
         kind: "route",
         children: [
@@ -77,9 +78,61 @@ const navSections: NavSection[] = [
   },
   {
     label: "Academic",
-    href: `${HOME_PATH}akademik`,
+    href: `${HOME_PATH}academic`,
     kind: "anchor",
     section: "program",
+    items: [
+      {
+        label: "Study Programs",
+        href: `${HOME_PATH}academic`,
+        description: "Study programs, curriculum, and learning support at APU.",
+        kind: "route",
+        children: [
+          {
+            label: "Biomedical Science",
+            href: `${HOME_PATH}beasiswa-akademik`,
+            description: "Beasiswa berbasis prestasi akademik.",
+            kind: "route",
+          },
+          {
+            label: "Biotechnology",
+            href: `${HOME_PATH}beasiswa-non-akademik`,
+            description: "Beasiswa berbasis prestasi non-akademik.",
+            kind: "route",
+          },
+          {
+            label: "Management",
+            href: `${HOME_PATH}beasiswa-non-akademik`,
+            description: "Beasiswa berbasis prestasi non-akademik.",
+            kind: "route",
+          },
+          {
+            label: "Law",
+            href: `${HOME_PATH}beasiswa-non-akademik`,
+            description: "Beasiswa berbasis prestasi non-akademik.",
+            kind: "route",
+          },
+          {
+            label: "Communication Science",
+            href: `${HOME_PATH}beasiswa-non-akademik`,
+            description: "Beasiswa berbasis prestasi non-akademik.",
+            kind: "route",
+          },
+          {
+            label: "Midwifery (Bachelors / S1)",
+            href: `${HOME_PATH}beasiswa-non-akademik`,
+            description: "Beasiswa berbasis prestasi non-akademik.",
+            kind: "route",
+          },
+          {
+            label: "Midwifery (Associate / D3)",
+            href: `${HOME_PATH}beasiswa-non-akademik`,
+            description: "Beasiswa berbasis prestasi non-akademik.",
+            kind: "route",
+          },
+        ],
+      },
+    ],
   },
   // {
   //   label: "Research",
@@ -131,44 +184,6 @@ const utilityActions: NavItem[] = [
   },
 ];
 
-const homeAnchors: NavItem[] = [
-  {
-    label: "Home",
-    href: `${HOME_PATH}#beranda-orange-navy`,
-    description: "APU main overview and positioning.",
-    kind: "anchor",
-    section: "beranda-orange-navy",
-  },
-  {
-    label: "Programs",
-    href: `${HOME_PATH}#program`,
-    description: "Overview of all study programs.",
-    kind: "anchor",
-    section: "program",
-  },
-  {
-    label: "Admissions",
-    href: `${HOME_PATH}#jalur-masuk`,
-    description: "Homepage admissions summary.",
-    kind: "anchor",
-    section: "jalur-masuk",
-  },
-  {
-    label: "Requirements",
-    href: `${HOME_PATH}#persyaratan`,
-    description: "Registration documents and requirements.",
-    kind: "anchor",
-    section: "persyaratan",
-  },
-  {
-    label: "Contact",
-    href: `${HOME_PATH}#kontak`,
-    description: "Address, WhatsApp, and visit info.",
-    kind: "anchor",
-    section: "kontak",
-  },
-];
-
 const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slice(0, 1);
 ---
 
@@ -206,33 +221,64 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
             >
               {section.items ? (
                 <>
-                  <button
-                    type="button"
-                    class="nav-trigger"
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                    data-nav-kind={section.kind}
-                    data-section={section.section}
-                    data-route-path={section.kind === "route" && section.href ? routePathFromHref(section.href) : undefined}
-                  >
-                    <span>{section.label}</span>
-                    <svg
-                      class="nav-chevron"
-                      width="12"
-                      height="12"
-                      viewBox="0 0 12 12"
-                      fill="none"
-                      aria-hidden="true"
+                  {section.href ? (
+                    <a
+                      href={section.href}
+                      class="nav-trigger"
+                      role="menuitem"
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      data-nav-kind={section.kind}
+                      data-section={section.section}
+                      data-route-path={section.kind === "route" && section.href ? routePathFromHref(section.href) : undefined}
                     >
-                      <path
-                        d="M2.5 4.5L6 8L9.5 4.5"
-                        stroke="currentColor"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </button>
+                      <span>{section.label}</span>
+                      <svg
+                        class="nav-chevron"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M2.5 4.5L6 8L9.5 4.5"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      class="nav-trigger"
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      data-nav-kind={section.kind}
+                      data-section={section.section}
+                      data-route-path={section.kind === "route" && section.href ? routePathFromHref(section.href) : undefined}
+                    >
+                      <span>{section.label}</span>
+                      <svg
+                        class="nav-chevron"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M2.5 4.5L6 8L9.5 4.5"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  )}
                   <div class="nav-dropdown" role="menu">
                     <ul class="nav-dropdown-list">
                       {section.items.map((item) => {
@@ -775,6 +821,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
       dropdown.addEventListener('mouseleave', closeDropdown);
 
       trigger.addEventListener('click', (e) => {
+        if (trigger instanceof HTMLAnchorElement) return;
         e.preventDefault();
         const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
         trigger.setAttribute('aria-expanded', String(!isExpanded));
@@ -783,6 +830,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
 
       trigger.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
+          if (trigger instanceof HTMLAnchorElement) return;
           e.preventDefault();
           const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
           trigger.setAttribute('aria-expanded', String(!isExpanded));
@@ -794,6 +842,16 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
           trigger.focus();
         }
       });
+
+      const navItem = trigger.closest('.nav-item');
+      if (navItem) {
+        navItem.addEventListener('focusin', openDropdown);
+        navItem.addEventListener('focusout', (e) => {
+          if (!navItem.contains(e.relatedTarget)) {
+            closeDropdown();
+          }
+        });
+      }
     });
 
     // Mobile accordion
@@ -981,8 +1039,8 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
 
   #apu-nav .nav-link[data-active="true"],
   #apu-nav .nav-trigger[data-active="true"] {
-    /*background: rgb(var(--color-apu-accent) / 0.18);*/
-    /*color: rgb(var(--color-apu-navy));*/
+    background: rgb(var(--color-apu-accent) / 0.18);
+    color: rgb(var(--color-apu-navy));
   }
 
   #apu-nav .nav-chevron {
@@ -1014,7 +1072,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     top: calc(100% + 0.5rem);
     left: 50%;
     transform: translateX(-50%) translateY(-4px);
-    min-width: 220px;
+    min-width: 300px;
     padding: 0.5rem;
     background: rgb(var(--color-brand-surface) / 0.98);
     border: 1px solid rgb(var(--color-apu-navy) / 0.1);
