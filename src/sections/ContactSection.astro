@@ -90,12 +90,12 @@ const socials = [
                 href={item.href}
                 target={item.href.startsWith("http") ? "_blank" : undefined}
                 rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                class="text-body-s text-brand-text group-hover:text-brand-primary-deep transition-colors duration-220"
+                class="text-body-s text-brand-text group-hover:text-brand-primary-deep transition-colors duration-220 break-words"
               >
                 {item.value}
               </a>
             ) : (
-              <p class="text-body-s text-brand-text">{item.value}</p>
+              <p class="text-body-s text-brand-text break-words">{item.value}</p>
             )}
           </div>
         ))
