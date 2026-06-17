@@ -28,6 +28,7 @@ const getFinalTransform = () => {
   class={`scroll-reveal opacity-0 ${className}`}
   style={`transform: ${getInitialTransform()}; transition-delay: ${delay}ms;`}
   data-scroll-reveal-final={getFinalTransform()}
+  data-scroll-reveal-direction={direction}
 >
   <slot />
 </div>
@@ -35,6 +36,7 @@ const getFinalTransform = () => {
 <script>
   (function() {
     const reveals = document.querySelectorAll('.scroll-reveal:not([data-scroll-reveal-bound])');
+    const isNarrow = window.matchMedia('(max-width: 640px)').matches;
     
     const observer = new IntersectionObserver(
       (entries) => {
@@ -53,6 +55,11 @@ const getFinalTransform = () => {
     
     reveals.forEach((el) => {
       el.setAttribute('data-scroll-reveal-bound', 'true');
+      if (isNarrow) {
+        const dir = (el as HTMLElement).dataset.scrollRevealDirection;
+        if (dir === 'left') el.style.transform = 'translateX(-16px)';
+        if (dir === 'right') el.style.transform = 'translateX(16px)';
+      }
       observer.observe(el);
     });
   })();
