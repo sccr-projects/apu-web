@@ -63,7 +63,7 @@ const navSections: NavSection[] = [
         children: [
           {
             label: "Academic",
-            href: `${HOME_PATH}beasiswa-akademik`,
+            href: `${HOME_PATH}admission/academic-scholarship`,
             description: "Beasiswa berbasis prestasi akademik.",
             kind: "route",
           },
@@ -198,7 +198,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
 >
 
   <div class="nav-bar">
-    <div class="nav-bar-inner">
+    <div class="nav-bar-inner content-max mx-auto">
       <a href={HOME_PATH} class="nav-brand">
         <img
           src={assetUrl('/images/apu.webp')}
@@ -621,6 +621,8 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     let isOpen = false;
     let bodyOverflow = "";
     let bodyPaddingRight = "";
+    let bodyTouchAction = "";
+    let htmlTouchAction = "";
     let closeTimer = 0;
     let hoverTimer = 0;
     /** @type {IntersectionObserver | null} */
@@ -638,8 +640,12 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     function lockBodyScroll() {
       bodyOverflow = document.body.style.overflow;
       bodyPaddingRight = document.body.style.paddingRight;
+      bodyTouchAction = document.body.style.touchAction;
+      htmlTouchAction = document.documentElement.style.touchAction;
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+      document.documentElement.style.touchAction = "none";
       if (scrollbarWidth > 0) {
         document.body.style.paddingRight = `${scrollbarWidth}px`;
       }
@@ -648,6 +654,8 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     function unlockBodyScroll() {
       document.body.style.overflow = bodyOverflow;
       document.body.style.paddingRight = bodyPaddingRight;
+      document.body.style.touchAction = bodyTouchAction;
+      document.documentElement.style.touchAction = htmlTouchAction;
     }
 
     function setTrackedActiveState(link, isActive) {
@@ -756,6 +764,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
         mobileMenuEl.hidden = false;
         mobileMenuEl.setAttribute("aria-hidden", "false");
         lockBodyScroll();
+        document.addEventListener("keydown", handleMobileKeydown);
 
         if (placeholderStatus instanceof HTMLElement) {
           placeholderStatus.hidden = true;
@@ -773,6 +782,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
       mobileMenuEl.setAttribute("data-state", "closed");
       mobileMenuEl.setAttribute("aria-hidden", "true");
       unlockBodyScroll();
+      document.removeEventListener("keydown", handleMobileKeydown);
 
       closeTimer = window.setTimeout(() => {
         if (!isOpen) {
@@ -865,6 +875,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
         const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
         trigger.setAttribute('aria-expanded', String(!isExpanded));
         submenu.setAttribute('data-open', String(!isExpanded));
+        submenu.style.maxHeight = isExpanded ? '0px' : `${submenu.scrollHeight}px`;
       });
     });
 
@@ -882,12 +893,40 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
       }
     });
 
-    document.addEventListener("keydown", (event) => {
+    function handleMobileKeydown(event) {
       if (event.key === "Escape" && isOpen) {
         event.preventDefault();
         setMenuOpen(false, { returnFocus: true });
+        return;
       }
-    });
+
+      if (event.key !== "Tab" || !isOpen) return;
+
+      const panel = mobileMenuEl.querySelector('.mobile-menu-panel');
+      if (!panel) return;
+
+      const focusable = Array.from(
+        panel.querySelectorAll('a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])')
+      ).filter((el) => !el.hasAttribute('disabled') && el.offsetParent !== null);
+
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+
+      if (event.shiftKey) {
+        if (active === first) {
+          event.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (active === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    }
 
     menuLinks.forEach((link) => {
       link.addEventListener("click", () => {
@@ -937,11 +976,10 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
 
   /* ===== NAV BAR ===== */
   #apu-nav .nav-bar {
-      padding-left: 5rem;
-      padding-right: 5rem;
-
     position: relative;
     z-index: 2;
+    padding-left: 1rem;
+    padding-right: 1rem;
     border-bottom: 1px solid rgb(var(--color-apu-navy) / 0.1);
     background:
       linear-gradient(180deg, rgb(var(--color-brand-surface) / 0.98), rgb(var(--color-brand-surface) / 0.94)),
@@ -949,6 +987,27 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     transition: box-shadow 260ms ease;
+  }
+
+  @media (min-width: 640px) {
+    #apu-nav .nav-bar {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    #apu-nav .nav-bar {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    #apu-nav .nav-bar {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
   }
 
   #apu-nav[data-scrolled="true"] .nav-bar,
@@ -1199,6 +1258,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     display: none;
     align-items: center;
     justify-content: center;
+    min-height: 44px;
     padding: 0.6rem 1.2rem;
     font-size: 0.8rem;
     font-weight: 700;
@@ -1227,7 +1287,10 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
   #apu-nav .menu-toggle {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.6rem;
+    min-width: 44px;
+    min-height: 44px;
     padding: 0.6rem 0.85rem;
     font-size: 0.8rem;
     font-weight: 700;
@@ -1334,8 +1397,8 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     font-size: 1.5rem;
     font-weight: 300;
     color: rgb(var(--color-apu-navy));
@@ -1385,6 +1448,11 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     background: rgb(var(--color-apu-accent) / 0.06);
   }
 
+  #apu-nav .mobile-nav-link[data-active="true"] {
+    background: rgb(var(--color-apu-accent) / 0.12);
+    color: rgb(var(--color-apu-navy));
+  }
+
   #apu-nav .mobile-nav-trigger[aria-expanded="true"] {
     background: rgb(var(--color-apu-accent) / 0.08);
   }
@@ -1408,16 +1476,13 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     background: rgb(var(--color-brand-surface-alt) / 0.5);
   }
 
-  #apu-nav .mobile-nav-submenu[data-open="true"] {
-    max-height: 300px;
-  }
-
   #apu-nav .mobile-nav-submenu-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 0.85rem 1.5rem 0.85rem 2.5rem;
+    min-height: 44px;
+    padding: 1rem 1.5rem 1rem 2.5rem;
     font-size: 0.9rem;
     font-weight: 500;
     color: rgb(var(--color-apu-navy));
@@ -1431,6 +1496,11 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
 
   #apu-nav .mobile-nav-submenu-item:hover {
     background: rgb(var(--color-apu-accent) / 0.06);
+  }
+
+  #apu-nav .mobile-nav-submenu-item[data-active="true"] {
+    background: rgb(var(--color-apu-accent) / 0.12);
+    color: rgb(var(--color-apu-navy));
   }
 
   #apu-nav .mobile-nav-submenu-item--placeholder {
