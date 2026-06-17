@@ -610,7 +610,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     const mobileMenuEl = /** @type {HTMLDivElement} */ (mobileMenu);
     const menuCloseEl = /** @type {HTMLButtonElement} */ (menuClose);
 
-    const homePath = normalizePath(navEl.getAttribute("data-home-path") || "/apu");
+    const homePath = normalizePath(navEl.getAttribute("data-home-path") || HOME_PATH);
     const menuLinks = mobileMenuEl.querySelectorAll("a[data-menu-link]");
     const placeholderItems = mobileMenuEl.querySelectorAll("[data-placeholder-item]");
     const routeLinks = navEl.querySelectorAll('[data-nav-kind="route"]');
@@ -621,6 +621,9 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     let isOpen = false;
     let bodyOverflow = "";
     let bodyPaddingRight = "";
+    let bodyPosition = "";
+    let bodyWidth = "";
+    let bodyTop = "";
     let closeTimer = 0;
     let hoverTimer = 0;
     /** @type {IntersectionObserver | null} */
@@ -638,16 +641,29 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     function lockBodyScroll() {
       bodyOverflow = document.body.style.overflow;
       bodyPaddingRight = document.body.style.paddingRight;
+      bodyPosition = document.body.style.position;
+      bodyWidth = document.body.style.width;
+      bodyTop = document.body.style.top;
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.top = `-${window.scrollY}px`;
       if (scrollbarWidth > 0) {
         document.body.style.paddingRight = `${scrollbarWidth}px`;
       }
     }
 
     function unlockBodyScroll() {
+      const scrollY = Math.abs(parseInt(document.body.style.top || "0", 10));
       document.body.style.overflow = bodyOverflow;
       document.body.style.paddingRight = bodyPaddingRight;
+      document.body.style.position = bodyPosition;
+      document.body.style.width = bodyWidth;
+      document.body.style.top = bodyTop;
+      if (scrollY) {
+        window.scrollTo(0, scrollY);
+      }
     }
 
     function setTrackedActiveState(link, isActive) {
@@ -1369,7 +1385,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-height: 85vh;
+    max-height: 85dvh;
     margin-top: auto;
     background: rgb(var(--color-brand-surface) / 0.98);
     border-radius: 24px 24px 0 0;
