@@ -83,9 +83,9 @@ const timelineSteps: TimelineStep[] = [
                 <!-- Content Card -->
                 <div class={`flex-1 ml-20 md:ml-0 ${isLeft ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'}`}>
                   <div class="apu-glass-card apu-interactive-card p-6 group">
-                    <div class={`flex items-center gap-3 mb-3 ${isLeft ? 'flex-row-reverse' : 'md:justify-start'}`}>
+                    <div class={`flex items-center gap-3 mb-3 min-w-0 ${isLeft ? 'md:flex-row-reverse' : ''}`}>
                       <span class="text-mono text-lg border rounded-full border-apu-navy p-2 text-[rgb(var(--color-apu-navy))]">{step.number}</span>
-                      <h3 class="text-h3 text-[rgb(var(--color-apu-navy))]">{step.title}</h3>
+                      <h3 class="text-h3 text-[rgb(var(--color-apu-navy))] break-words min-w-0">{step.title}</h3>
                     </div>
                     <p class="text-body-s text-brand-text-muted leading-relaxed">{step.description}</p>
                   </div>
