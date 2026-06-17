@@ -73,6 +73,14 @@
     --color-apu-navy: 19 40 66;
     --color-apu-accent: 252 188 85;
 
+    /* Study program colors (placeholders — replace with final brand colors) */
+    --color-program-biomedical-science: 11 75 140;
+    --color-program-biotechnology: 150 150 150;
+    --color-program-law: 150 150 150;
+    --color-program-management: 150 150 150;
+    --color-program-communication: 150 150 150;
+    --color-program-midwifery-s1: 150 150 150;
+
     --animate-bounce-slow: bounceSlow 1.5s ease-in-out infinite;
     --animate-shimmer: shimmer 0.8s ease-in-out forwards;
 }
@@ -131,6 +139,14 @@
     /* APU palette */
     --color-apu-navy: 19 40 66;
     --color-apu-accent: 252 188 85;
+
+    /* Study program colors (placeholders — replace with final brand colors) */
+    --color-program-biomedical-science: 11 75 140;
+    --color-program-biotechnology: 150 150 150;
+    --color-program-law: 150 150 150;
+    --color-program-management: 150 150 150;
+    --color-program-communication: 150 150 150;
+    --color-program-midwifery-s1: 150 150 150;
 
     --color-slate-50: var(--color-brand-surface);
     --color-slate-100: var(--color-brand-surface-alt);

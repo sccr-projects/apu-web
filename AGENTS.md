@@ -30,6 +30,21 @@ Use these semantic aliases (already defined in `:root`):
 - `--apu-border`
 - `--apu-glow`
 
+### Study Program Colors
+
+Use `--color-program-{slug}` for program-specific accents. Defined in `src/styles/global.css` (`:root` and `@theme`) so they work as both CSS custom properties and Tailwind utilities.
+
+Current slugs (placeholders except biomedical):
+
+- `--color-program-biomedical-science`: `11 75 140`
+- `--color-program-biotechnology`: `67 182 141`
+- `--color-program-law`: `156 22 49`
+- `--color-program-management`: `155 140 49`
+- `--color-program-communication`: `156 83 48`
+- `--color-program-midwifery-s1`: `108 53 170`
+
+**Rule:** Update the RGB triple in both `:root` and `@theme` blocks to keep Tailwind utilities (`bg-program-*`, `text-program-*`, etc.) and `rgb(var(--color-program-*))` in custom CSS in sync.
+
 ### Elevation + Shape
 
 - `--apu-shadow-card`

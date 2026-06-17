@@ -20,8 +20,7 @@ import CtaButton from "@components/CtaButton.astro";
         />
 
         <div class="absolute inset-0 hero-on-overlay-main"></div>
-        <div class="absolute inset-0 hero-on-overlay-side"></div>
-        <div class="absolute inset-0 hero-on-overlay-soft"></div>
+
     </div>
 
     <div
@@ -31,7 +30,7 @@ import CtaButton from "@components/CtaButton.astro";
     </div>
     <p
         id="hero-on-subtitle"
-        class="text-body text-4xl w-1/2 mb-10 opacity-0 translate-y-2 hero-on-subtitle absolute top-20 left-12 z-3"
+        class="text-body text-4xl w-1/2 mb-10 opacity-0 translate-y-2  absolute top-20 left-12 z-3 text-[rgb(var(--color-program-biomedical-science))] backdrop-blur-sm rounded-4xl"
     >
         A bright, future-ready university ecosystem connecting
         strong academics, applied research, and real industry
@@ -46,23 +45,6 @@ import CtaButton from "@components/CtaButton.astro";
             >
                 BIOMEDICAL SCIENCE
             </h1>
-            <div
-                id="hero-on-cta"
-                class="flex flex-wrap gap-4 opacity-0 mt-8 "
-            >
-                <CtaButton
-                    href={contact.pmbLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variant="primary"
-                    withArrow={true}
-                >
-                    <span>Apply Now</span>
-                </CtaButton>
-                <CtaButton href="#program" variant="secondary">
-                    <span>Explore Programs</span>
-                </CtaButton>
-            </div>
         </div>
     </div>
 </section>
@@ -102,22 +84,10 @@ import CtaButton from "@components/CtaButton.astro";
 
     .hero-on-overlay-main {
         background: linear-gradient(
-            to top,
-            rgb(244 191 97 / 0.58),
-            rgb(21 48 87 / 0.42),
-            transparent
+          to bottom,
+          transparent,
+          rgb(var(--color-program-biomedical-science))
         );
-    }
-    .hero-on-overlay-side {
-        background: linear-gradient(
-            to right,
-            rgb(15 39 71 / 0.36),
-            transparent,
-            rgb(15 39 71 / 0.36)
-        );
-    }
-    .hero-on-overlay-soft {
-        background: rgb(250 246 238 / 0.18);
     }
 
     .hero-on-tagline-text,
