@@ -72,7 +72,7 @@ const timelineSteps: TimelineStep[] = [
     <!-- Timeline -->
     <div class="relative">
       <!-- Central Line -->
-      <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[rgb(var(--color-apu-navy))] via-[rgb(var(--color-apu-accent))] to-[rgb(var(--color-apu-navy))] md:-translate-x-px"></div>
+      <div class="absolute left-10 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[rgb(var(--color-apu-navy))] via-[rgb(var(--color-apu-accent))] to-[rgb(var(--color-apu-navy))] md:-translate-x-px"></div>
 
       <div class="space-y-12">
         {timelineSteps.map((step, index) => {
@@ -81,7 +81,7 @@ const timelineSteps: TimelineStep[] = [
             <ScrollReveal delay={index * 120}>
               <div class={`relative flex items-start gap-8 ${isLeft ? 'md:flex-row apu-corner-accent--tl-4' : 'md:flex-row-reverse apu-corner-accent--tr-4'}`}>
                 <!-- Content Card -->
-                <div class={`flex-1 ml-16 md:ml-0 ${isLeft ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'}`}>
+                <div class={`flex-1 ml-20 md:ml-0 ${isLeft ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'}`}>
                   <div class="apu-glass-card apu-interactive-card p-6 group">
                     <div class={`flex items-center gap-3 mb-3 ${isLeft ? 'flex-row-reverse' : 'md:justify-start'}`}>
                       <span class="text-mono text-lg border rounded-full border-apu-navy p-2 text-[rgb(var(--color-apu-navy))]">{step.number}</span>
@@ -92,9 +92,9 @@ const timelineSteps: TimelineStep[] = [
                 </div>
 
                 <!-- Timeline Node -->
-                <div class="absolute left-8 md:left-1/2 -translate-x-1/2 flex items-center justify-center">
+                <div class="absolute left-10 md:left-1/2 -translate-x-1/2 flex items-center justify-center">
                   <div class="relative">
-                    <div class="w-22 h-22 rounded-full object-cover bg-apu-navy flex items-center justify-center text-[rgb(var(--color-apu-accent))] shadow-[0_0_0_4px_rgb(var(--color-apu-accent)_/_0.15),0_14px_28px_rgb(var(--color-apu-navy)_/_0.18)] z-10 transition-all duration-300 group-hover:scale-110 group-hover:border-[rgb(var(--color-apu-accent))]">
+                    <div class="w-16 h-16 md:w-20 md:h-20 lg:w-22 lg:h-22 rounded-full object-cover bg-apu-navy flex items-center justify-center text-[rgb(var(--color-apu-accent))] shadow-[0_0_0_4px_rgb(var(--color-apu-accent)_/_0.15),0_14px_28px_rgb(var(--color-apu-navy)_/_0.18)] z-10 transition-all duration-300 group-hover:scale-110 group-hover:border-[rgb(var(--color-apu-accent))]">
                         <Fragment set:html={step.icon} />
                     </div>
                     <!-- Pulse ring -->
