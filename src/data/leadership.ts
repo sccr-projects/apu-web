@@ -20,7 +20,7 @@ export const leadershipMessage: LeadershipMessage = {
     "APU is more than a campus. It is a futuristic learning ecosystem where every student is empowered to discover their best potential, supported by an innovative curriculum and an inspiring environment.",
     "Join us, and together let us realize a great dream for a better Indonesia."
   ],
-  leaderName: "Prof. Dr. Agung Putra, M.Si.",
+  leaderName: "Prof. Dr. dr. Agung Putra, M.Si.Med..",
   leaderTitle: "Founder and Commissioner PT. SCCR",
   leaderImage: assetUrl('/images/leadership-portrait.webp'),
   cta: {
