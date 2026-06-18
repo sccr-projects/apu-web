@@ -27,9 +27,9 @@ export const leadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh"
   ],
-  leaderName: "Nadya Audina Nurkhafiya S., S.Si.,M.Biomed",
+  leaderName: "Naufal Sebastian Anggoro, S.Si., M.Si",
   leaderTitle: "Head of Biomedical Science Study Program",
-  leaderImage: assetUrl('/images/leadership-portrait.webp'),
+  leaderImage: assetUrl('/images/academic/biomedical-kaprodi.webp'),
   cta: {
     href: "/about-apu",
     label: "Discover the Campus Vision",

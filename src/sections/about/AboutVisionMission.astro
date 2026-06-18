@@ -8,7 +8,7 @@ import SectionHeader from "@components/SectionHeader.astro";
   id="visi-misi"
   class="apu-section-shell relative overflow-hidden bg-brand-surface-alt"
 >
-  <div id="vm-logo-3d-wrapper" class="absolute right-40 inset-y-0 z-0 flex items-center justify-center pointer-events-none" style="perspective: 500px;">
+  <div id="vm-logo-3d-wrapper" class="absolute right-20 inset-y-0 z-0 flex items-center justify-center pointer-events-none" style="perspective: 500px;">
     <div id="vm-logo-3d" class="vm-logo-3d-inner pointer-events-auto">
       <img src={assetUrl('/images/apu-4k.webp')} alt="APU Logo" class="w-full h-full object-contain" loading="lazy" decoding="async" />
     </div>
@@ -25,19 +25,15 @@ import SectionHeader from "@components/SectionHeader.astro";
       />
     </ScrollReveal>
 
-    <ScrollReveal class="mb-16 md:mb-20">
+    <ScrollReveal class="mb-8 md:mb-16">
       <div class="">
         <p class="text-mono text-brand-text-muted mb-4">VISION 2043</p>
         <blockquote
           class="text-h2 md:text-h1 text-brand-primary-deep font-normal leading-tight mb-4"
         >
           "To become an excellent, innovative, character-driven, and globally
-          competitive institution by 2043"
+          competitive institution by <span class="font-bold">2043</span>"
         </blockquote>
-        <p class="text-body-s text-brand-text-muted italic">
-          "To become an excellent, innovative, character-driven, and globally
-          competitive institution by 2043"
-        </p>
       </div>
     </ScrollReveal>
 

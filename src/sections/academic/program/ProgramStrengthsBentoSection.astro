@@ -132,6 +132,41 @@ const featured = [
   </div>
 </section>
 
+<style>
+
+.bento-clone h3,
+.bento-clone .apu-icon-chip,
+.bento-clone .apu-icon-chip svg,
+.bento-clone [class*="text-mono"] {
+  transition: font-size 500ms linear,
+              width 500ms linear,
+              height 500ms linear;
+}
+
+.bento-clone {
+    transition: 1000ms ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.bento-clone h3 {
+    font-size: 3.5rem !important;
+    line-height: 1.2;
+}
+.bento-clone .apu-icon-chip {
+  width: 8rem;
+  height: 8rem;
+}
+.bento-clone .apu-icon-chip svg {
+  width: 80%;
+  height: 80%;
+}
+.bento-clone [class*="text-mono"] {
+  font-size: 1rem;
+}
+
+</style>
+
 <script is:inline>
   (function () {
     const section = document.querySelector('[data-bento-section]');
@@ -230,7 +265,8 @@ const featured = [
       const stageRect = stage.getBoundingClientRect();
 
       if (clone) {
-        clone.style.transition = 'top 400ms cubic-bezier(0.16, 1, 0.3, 1), left 400ms cubic-bezier(0.16, 1, 0.3, 1), width 400ms cubic-bezier(0.16, 1, 0.3, 1), height 400ms cubic-bezier(0.16, 1, 0.3, 1)';
+        clone.classList.remove('is-expanded');
+        clone.style.transition = 'top 400ms linear, left 400ms linear, width 400ms linear, height 400ms linear';
         clone.style.top = sourceRect.top - stageRect.top + 'px';
         clone.style.left = sourceRect.left - stageRect.left + 'px';
         clone.style.width = sourceRect.width + 'px';
@@ -276,7 +312,8 @@ const featured = [
         const stageRect = stage.getBoundingClientRect();
 
         requestAnimationFrame(function () {
-          clone.style.transition = 'top 500ms cubic-bezier(0.16, 1, 0.3, 1), left 500ms cubic-bezier(0.16, 1, 0.3, 1), width 500ms cubic-bezier(0.16, 1, 0.3, 1), height 500ms cubic-bezier(0.16, 1, 0.3, 1)';
+          clone.classList.add('is-expanded');
+          clone.style.transition = 'top 500ms linear, left 500ms linear, width 500ms linear, height 500ms linear';
           clone.style.top = targetRect.top - stageRect.top + 'px';
           clone.style.left = targetRect.left - stageRect.left + 'px';
           clone.style.width = targetRect.width + 'px';
@@ -330,3 +367,29 @@ const featured = [
     });
   })();
 </script>
+
+<style>
+  .bento-clone h3,
+  .bento-clone .apu-icon-chip,
+  .bento-clone .apu-icon-chip svg,
+  .bento-clone [class*="text-mono"] {
+    transition: font-size 500ms linear,
+                width 500ms linear,
+                height 500ms linear;
+  }
+
+  .bento-clone.is-expanded h3 {
+    font-size: 3rem !important;
+  }
+  .bento-clone.is-expanded .apu-icon-chip {
+    width: 3.5rem !important;
+    height: 3.5rem !important;
+  }
+  .bento-clone.is-expanded .apu-icon-chip svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  .bento-clone.is-expanded [class*="text-mono"] {
+    font-size: 1rem !important;
+  }
+</style>
