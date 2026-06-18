@@ -90,12 +90,12 @@ const socials = [
                 href={item.href}
                 target={item.href.startsWith("http") ? "_blank" : undefined}
                 rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                class="text-body-s text-brand-text group-hover:text-brand-primary-deep transition-colors duration-220"
+                class="text-body-s text-brand-text group-hover:text-brand-primary-deep transition-colors duration-220 break-words"
               >
                 {item.value}
               </a>
             ) : (
-              <p class="text-body-s text-brand-text">{item.value}</p>
+              <p class="text-body-s text-brand-text break-words">{item.value}</p>
             )}
           </div>
         ))
@@ -105,8 +105,8 @@ const socials = [
     {/* Bottom Bar: Social + CTA */}
     <div class="apu-glass-card p-5 flex flex-col sm:flex-row items-center justify-center gap-8">
       {/* Social Icons */}
-      <div class="flex items-center gap-8">
-        <span class="text-caption text-brand-text-muted text-2xl mr-2">Follow Us:</span>
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8">
+        <span class="text-caption text-brand-text-muted text-xl sm:text-2xl mr-2">Follow Us:</span>
         {
           socials.map((social) => (
             <a
@@ -114,7 +114,7 @@ const socials = [
               target="_blank"
               rel="noopener noreferrer"
               aria-label={social.label}
-              class="w-20 h-20 rounded-full bg-brand-surface-alt/60 border border-brand-border/20 text-brand-text-muted hover:text-brand-primary-deep hover:border-brand-primary/30 hover:bg-brand-primary/8 flex items-center justify-center transition-all duration-220"
+              class="w-12 h-12 sm:w-14 md:w-16 lg:w-20 rounded-full bg-brand-surface-alt/60 border border-brand-border/20 text-brand-text-muted hover:text-brand-primary-deep hover:border-brand-primary/30 hover:bg-brand-primary/8 flex items-center justify-center transition-all duration-220"
             >
                 <Fragment class="w-24 h-24" set:html={social.icon} />
             </a>
@@ -127,7 +127,7 @@ const socials = [
         href={contact.whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
-        class="w-20 h-20 rounded-full bg-brand-surface-alt/60 border border-brand-border/20 text-brand-text-muted hover:text-brand-primary-deep hover:border-brand-primary/30 hover:bg-brand-primary/8 flex items-center justify-center transition-all duration-220"
+        class="w-12 h-12 sm:w-14 md:w-16 lg:w-20 rounded-full bg-brand-surface-alt/60 border border-brand-border/20 text-brand-text-muted hover:text-brand-primary-deep hover:border-brand-primary/30 hover:bg-brand-primary/8 flex items-center justify-center transition-all duration-220"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

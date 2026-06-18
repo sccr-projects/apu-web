@@ -1,4 +1,4 @@
-import { createDirectus, rest, readItems, readItem } from '@directus/sdk';
+import { createDirectus, rest, readItems } from '@directus/sdk';
 
 const envUrl = import.meta.env.DIRECTUS_URL as string | undefined;
 const directusUrl = (envUrl && envUrl.length > 0
@@ -21,5 +21,5 @@ interface Schema {
 
 const client = createDirectus<Schema>(directusUrl).with(rest());
 
-export { client, readItems, readItem };
+export { client, readItems };
 export type { Post };

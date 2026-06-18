@@ -72,10 +72,10 @@ const iconSvgs: Record<string, string> = {
     </ScrollReveal>
 
     <!-- Three Pillars Grid -->
-    <div class="flex flex-col md:flex-row gap-6 px-20 ">
+    <div class="flex flex-col md:flex-row gap-6 px-4 sm:px-6 lg:px-8">
       {pillars.map((pillar, index) => (
         <ScrollReveal delay={index * 150}>
-          <div class="group apu-corner-accent--tr-4 relative h-full apu-glass-card apu-interactive-card p-8 hover:border-[rgb(var(--color-apu-accent)_/_0.65)] hover:shadow-[0_28px_70px_rgb(var(--color-apu-navy)_/_0.14)]">
+          <div class="group apu-corner-accent--tr-4 relative h-full apu-glass-card apu-interactive-card p-6 sm:p-8 hover:border-[rgb(var(--color-apu-accent)_/_0.65)] hover:shadow-[0_28px_70px_rgb(var(--color-apu-navy)_/_0.14)]">
             {/* Accent glow orb on hover */}
             <div class="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[rgb(var(--color-apu-accent)_/_0.12)] blur-2xl transition-opacity duration-300 opacity-0 group-hover:opacity-100"></div>
 
@@ -83,11 +83,11 @@ const iconSvgs: Record<string, string> = {
             <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[rgb(var(--color-apu-accent)_/_0.65)] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-t-[var(--apu-radius-card)]"></div>
 
             {/* Icon + Title */}
-            <div class="mb-6 flex flex-row gap-4 items-center align-center">
+            <div class="mb-6 flex flex-row gap-4 items-center">
               <div class="apu-icon-chip flex h-20 w-20 rounded-2xl ring-4 ring-[rgb(var(--color-apu-accent)_/_0.08)]" set:html={iconSvgs[pillar.icon]} />
               <div class="flex flex-col">
                 <p class="text-caption text-brand-text-muted uppercase tracking-wider font-medium mb-2">{pillar.subtitle}</p>
-                <h3 class="text-3xl font-medium text-[rgb(var(--color-apu-navy))] leading-tight">{pillar.title}</h3>
+                <h3 class="text-xl sm:text-2xl lg:text-3xl font-medium text-[rgb(var(--color-apu-navy))] leading-tight">{pillar.title}</h3>
               </div>
             </div>
 
@@ -114,7 +114,7 @@ const iconSvgs: Record<string, string> = {
     <ScrollReveal delay={500} class="text-center mt-14 md:mt-18">
         <a
         href="/pendaftaran"
-        class="apu-btn apu-btn--primary inline-flex items-center gap-3 px-8 py-4 text-body-s font-medium"
+        class="apu-btn apu-btn--primary inline-flex items-center gap-3 px-6 py-3.5 sm:px-8 sm:py-4 text-body-s font-medium"
       >
         <span>See Complete Study Programs</span>
         <svg

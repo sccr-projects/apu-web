@@ -4,10 +4,11 @@ import { contact } from "@data/contact";
 ---
 
 <footer class="border-t border-brand-border/40 bg-white text-brand-text">
-    <div class="py-18 lg:py-20 px-32">
-        <!-- Row 1: 4-column grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-            <!-- Brand -->
+    <div class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+        <div class="content-max mx-auto">
+            <!-- Row 1: 4-column grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Brand -->
             <div class="space-y-4">
                 <img
                     src={assetUrl('/images/apu.webp')}
@@ -146,22 +147,20 @@ import { contact } from "@data/contact";
                     </li>
 
                     <li>
-                        <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary"
+                        <span
+                            class="text-body-s text-brand-text-muted transition-colors duration-300 hover:text-brand-primary block py-1"
                         >
                             {contact.address}
-                        </a>
+                        </span>
                     </li>
                 </ul>
-                <div class="pt-2 flex items-center gap-4">
+                <div class="pt-2 flex items-center gap-2">
                     <a
                         href={contact.social.instagramLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Instagram"
-                        class="text-brand-primary transition-colors duration-300 hover:text-brand-accent"
+                        class="inline-flex items-center justify-center w-11 h-11 rounded-full text-brand-primary transition-colors duration-300 hover:text-brand-accent hover:bg-brand-primary/10"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -190,7 +189,7 @@ import { contact } from "@data/contact";
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="TikTok"
-                        class="text-brand-primary transition-colors duration-300 hover:text-brand-accent"
+                        class="inline-flex items-center justify-center w-11 h-11 rounded-full text-brand-primary transition-colors duration-300 hover:text-brand-accent hover:bg-brand-primary/10"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -211,7 +210,7 @@ import { contact } from "@data/contact";
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="X"
-                        class="text-brand-primary transition-colors duration-300 hover:text-brand-accent"
+                        class="inline-flex items-center justify-center w-11 h-11 rounded-full text-brand-primary transition-colors duration-300 hover:text-brand-accent hover:bg-brand-primary/10"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -229,7 +228,7 @@ import { contact } from "@data/contact";
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="YouTube"
-                        class="text-brand-primary transition-colors duration-300 hover:text-brand-accent"
+                        class="inline-flex items-center justify-center w-11 h-11 rounded-full text-brand-primary transition-colors duration-300 hover:text-brand-accent hover:bg-brand-primary/10"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -255,11 +254,12 @@ import { contact } from "@data/contact";
         <!-- Divider -->
         <div class="border-t border-brand-border/35 my-10"></div>
 
-        <!-- Copyright -->
-        <div class="text-center">
-            <p class="text-caption text-brand-text-muted">
-                &copy; 2026 Agung Putra University. All rights reserved.
-            </p>
+            <!-- Copyright -->
+            <div class="text-center">
+                <p class="text-caption text-brand-text-muted">
+                    &copy; 2026 Agung Putra University. All rights reserved.
+                </p>
+            </div>
         </div>
     </div>
 </footer>

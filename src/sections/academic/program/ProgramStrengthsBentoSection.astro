@@ -311,6 +311,16 @@ const featured = [
       });
     });
 
+    document.addEventListener('click', function (e) {
+      if (activeIndex === null || isAnimating) return;
+      const target = e.target;
+      const isTrigger = target.closest('[data-bento-trigger]');
+      const isClone = target.closest('.bento-clone');
+      if (!isTrigger && !isClone) {
+        closeExpanded();
+      }
+    });
+
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && activeIndex !== null && !isAnimating) {
         closeExpanded();

@@ -17,14 +17,14 @@ const APU_CENTER: [number, number] = [-7.071300, 110.362306];
 >
   <div class="w-full relative z-[1]">
     <ScrollReveal>
-      <div class="apu-anchor-campus__frame relative isolate aspect-video w-full overflow-hidden bg-white shadow-[0_30px_72px_rgb(var(--color-brand-primary-deeper)/0.16)]">
-        <section class="apu-anchor-campus__map-zone absolute inset-0 overflow-hidden" aria-label="APU campus visual map">
-          <div class="apu-anchor-campus__map-stage absolute left-1/2 top-1/2 aspect-square w-[150%] translate-x-[-61%] translate-y-[-46%]">
+      <div class="apu-anchor-campus__frame relative isolate w-full overflow-hidden bg-white shadow-[0_30px_72px_rgb(var(--color-brand-primary-deeper)/0.16)] lg:aspect-video">
+        <section class="apu-anchor-campus__map-zone relative h-[260px] overflow-hidden sm:h-full lg:absolute lg:inset-0" aria-label="APU campus visual map">
+          <div class="apu-anchor-campus__map-stage absolute left-1/2 top-1/2 aspect-square w-[150%] translate-x-[-61%] translate-y-[-46%] lg:w-[150%]">
             <LeafletMap
               center={APU_CENTER}
-              zoomStart={10}
+              zoomStart={11}
               zoomEnd={17}
-              zoomDuration={25000}
+              zoomDuration={20000}
               class="apu-anchor-campus__map-plate"
             />
           </div>
@@ -32,7 +32,7 @@ const APU_CENTER: [number, number] = [-7.071300, 110.362306];
           <div class="apu-anchor-campus__map-vignette pointer-events-none absolute inset-0 z-[2]"></div>
 
           <div
-            class="apu-anchor-campus__pin-wrap absolute left-[33.4%] top-[50%] z-[4] grid aspect-square w-44 -translate-x-1/2 -translate-y-1/2 place-items-center md:w-80 max-[980px]:left-[50%] max-[980px]:top-[50%]"
+            class="apu-anchor-campus__pin-wrap absolute left-1/2 top-1/2 z-[4] grid aspect-square w-28 -translate-x-1/2 -translate-y-1/2 place-items-center sm:w-36 md:w-44 lg:left-[33.4%] lg:top-[50%] lg:w-80 lg:-translate-x-1/2 lg:-translate-y-1/2"
             aria-label="APU campus location pin"
           >
             <img
@@ -42,13 +42,13 @@ const APU_CENTER: [number, number] = [-7.071300, 110.362306];
               loading="lazy"
               decoding="async"
             />
-            <p class="text-3xl absolute left-1/2 top-[calc(80%+14px)] m-0 -translate-x-1/2 whitespace-nowrap rounded-full border border-apu-navy/24 bg-brand-surface/86 px-3 py-1.5 font-semibold text-apu-navy">
+            <p class="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl absolute left-1/2 top-[calc(80%+14px)] m-0 -translate-x-1/2 whitespace-nowrap rounded-full border border-apu-navy/24 bg-brand-surface/86 px-3 py-1.5 font-semibold text-apu-navy">
                 APU Campus
             </p>
           </div>
         </section>
 
-        <section class="apu-anchor-campus__text-zone absolute inset-x-0 bottom-0 z-[5] grid content-end gap-5 bg-gradient-to-t from-brand-surface/92 via-brand-surface/70 to-transparent px-[clamp(1.4rem,4vw,3rem)] py-[clamp(1.8rem,4vw,3.6rem)] lg:inset-y-0 lg:left-auto lg:w-[min(42%,620px)] lg:content-center lg:bg-gradient-to-l lg:from-brand-surface/94 lg:via-brand-surface/76 lg:to-transparent lg:px-[clamp(2rem,4.2vw,4rem)]">
+        <section class="apu-anchor-campus__text-zone relative z-[5] grid content-end gap-4 bg-brand-surface px-[clamp(1.4rem,4vw,3rem)] py-[clamp(1.4rem,4vw,2.4rem)] lg:absolute lg:inset-y-0 lg:left-auto lg:right-0 lg:w-[min(42%,620px)] lg:content-center lg:bg-gradient-to-l lg:from-brand-surface/94 lg:via-brand-surface/76 lg:to-transparent lg:px-[clamp(2rem,4.2vw,4rem)]">
           <span class="apu-section-kicker mb-1 w-fit">Ecosystem</span>
           <h2 class="text-h2 m-0 max-w-[18ch] text-apu-navy">
             Agung Putra University is the center of the SCCR ecosystem
@@ -176,20 +176,28 @@ const APU_CENTER: [number, number] = [-7.071300, 110.362306];
     animation-delay: 1.4s;
   }
 
-  @media (max-width: 980px) {
+  @media (max-width: 1023px) {
     .apu-anchor-campus__map-vignette {
       background:
         linear-gradient(
           180deg,
-          rgb(var(--color-brand-surface) / 0.04) 0 52%,
-          rgb(var(--color-brand-surface) / 0.5) 76%,
+          rgb(var(--color-brand-surface) / 0.02) 0 55%,
+          rgb(var(--color-brand-surface) / 0.45) 85%,
           rgb(var(--color-brand-surface) / 0.92) 100%
         ),
         radial-gradient(
-          circle at 24% 22%,
-          rgb(var(--color-apu-accent) / 0.2),
-          transparent 42%
+          circle at 50% 30%,
+          rgb(var(--color-apu-accent) / 0.18),
+          transparent 45%
         );
+    }
+    .apu-anchor-campus__map-stage {
+      width: 130%;
+      transform: translate(-50%, -50%);
+      animation: none;
+    }
+    .apu-anchor-campus__map-plate {
+      transform: scale(1.02);
     }
   }
 

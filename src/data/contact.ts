@@ -4,7 +4,7 @@ export const contact = {
   address: 'APU Admissions Building, Nongkosawit Street, Gunungpati, Semarang',
   website: 'apu.ac.id',
   websiteLink: 'https://apu.ac.id',
-  scholarshipLink: 'apu.ac.id/admission/',
+  scholarshipLink: 'http://49.50.9.214:8060/index.php/pendaftaran_pmb',
   email: 'info@apu.ac.id',
   social: {
     instagram: '@apu.semarang',
