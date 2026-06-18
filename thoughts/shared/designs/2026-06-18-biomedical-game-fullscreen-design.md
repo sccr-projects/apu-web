@@ -11,58 +11,65 @@ The biomedical game is embedded in `/academic/biomedical` via an iframe that alr
 ## Constraints
 
 - Game source lives in a separate repo (`biomedical-science-game`) and is copied into `public/game/`.
-- Avoid editing generated files under `public/game/` if possible.
-- The iframe is same-origin (`/game/index.html`), so the parent page can access its DOM.
+- Avoid editing generated files under `public/game/`; rebuild the game from source.
+- The iframe is same-origin (`/game/index.html`), so `postMessage` works without cross-origin friction.
 - Existing navbar behavior must remain intact for every other page.
 - Degrade gracefully if the Fullscreen API is unavailable or denied.
 
 ## Approach
 
-**Chosen approach: parent-side controller in the section component.**
+**Chosen approach: request fullscreen from inside the iframe and notify the parent with `postMessage`.**
 
-- Wait for the iframe to finish loading.
-- Attach a delegated click listener to the iframe document that detects the **Start** button (`#start-game-btn`).
-- On Start click: add a `game-fullscreen` state class to `<body>`, hide the navbar, and request fullscreen on the iframe.
-- Listen for `fullscreenchange`; when the user exits fullscreen, restore the navbar.
+The first implementation tried to call `iframe.requestFullscreen()` from the parent page after detecting a click inside the iframe. That fails because browsers require the user gesture and the `requestFullscreen()` call to be in the same browsing context; a click inside a child iframe does not grant activation to the parent.
 
-**Alternative considered: `postMessage` bridge.** This is more robust for cross-origin iframes, but it requires modifying the external game source and rebuilding. Because the current deployment is same-origin and the user wants the change scoped to the section, the direct listener keeps the work inside `apu-web`.
+The fix:
+
+- In the game source (`biomedical-science-game`), when the **Start** button is clicked, call `document.documentElement.requestFullscreen()` from within the iframe.
+- At the same time, post `biomedical-game-started` to `window.parent`.
+- In `BiomedicalGamePreviewSection.astro`, listen for the message, add a `game-fullscreen` body class, and hide the navbar.
+- Listen for `biomedical-game-exited-fullscreen` from the iframe (or the parent's own `fullscreenchange` if the parent element were fullscreened) so the navbar is restored when the user exits.
+
+**Why not parent-side direct DOM access?** The parent can read the iframe DOM because it is same-origin, but it cannot request fullscreen using a gesture from the child. `postMessage` keeps the two contexts loosely coupled and is the standard pattern for iframe-to-parent coordination.
 
 ## Architecture
 
-- `BiomedicalGamePreviewSection.astro` hosts the iframe and a small client controller script.
-- `NavigationAPU.astro` requires no changes; it is hidden via a global state class.
-- A global CSS rule hides `#apu-nav` while `body.game-fullscreen` is active.
+- `biomedical-science-game` source — emits `postMessage` events and manages its own fullscreen entry/exit.
+- `public/game/index.html` — rebuilt artifact with the new fullscreen/postMessage logic.
+- `BiomedicalGamePreviewSection.astro` — hosts the iframe and a lightweight `postMessage` listener.
+- `global.css` — hides `#apu-nav` while `body.game-fullscreen` is active.
 
 ## Components
 
-- **Section markup**: keeps the existing iframe with `allow="fullscreen"` and wraps it in a minimal container.
-- **Client controller script**: runs after the iframe loads, queries `#apu-nav` and the iframe element, and manages the fullscreen state.
-- **Global CSS rule**: `.game-fullscreen #apu-nav { display: none; }` (or equivalent). The rule lives in `global.css` or an `is:global` style block in the section.
+- **Game start handler** (`GameCanvas.astro` / game engine): on `#start-game-btn` click, request fullscreen on the iframe document and post `{ type: 'biomedical-game-started' }` to parent.
+- **Game fullscreen-change handler** (`GameCanvas.astro` / game engine): on `fullscreenchange`, if no longer fullscreen, post `{ type: 'biomedical-game-exited-fullscreen' }` to parent.
+- **Parent controller script** (`BiomedicalGamePreviewSection.astro`): listens for `message` events from the game origin; toggles `game-fullscreen` body class and `aria-hidden` on `#apu-nav`.
+- **Global CSS rule** (in `global.css` or `is:global`): `.game-fullscreen #apu-nav { display: none; }`.
 
 ## Data Flow
 
 1. Page loads; iframe lazily loads `/game/index.html`.
-2. Controller waits for the iframe `load` event.
-3. Controller attaches a click listener to `iframe.contentDocument`.
-4. User clicks the **Start** button.
-5. Controller adds `game-fullscreen` to `<body>`.
-6. Controller hides the navbar (`aria-hidden="true"`) and calls `iframe.requestFullscreen()`.
-7. If fullscreen is denied or unsupported, the navbar still stays hidden so the game remains full-viewport.
-8. On `fullscreenchange` exit, the controller removes the body class and restores the navbar.
+2. User clicks **Start** inside the tutorial overlay.
+3. Game calls `document.documentElement.requestFullscreen()` from inside the iframe (uses the iframe's own user activation).
+4. Game posts `{ type: 'biomedical-game-started' }` to `window.parent`.
+5. Parent receives the message, adds `game-fullscreen` to `<body>`, and sets `aria-hidden="true"` on `#apu-nav`.
+6. User exits fullscreen (`Esc`, browser UI, etc.).
+7. Game listens to its own `fullscreenchange` event and posts `{ type: 'biomedical-game-exited-fullscreen' }`.
+8. Parent removes `game-fullscreen` and restores `aria-hidden="false"`.
 
 ## Error Handling
 
-- If the iframe DOM is unreachable, the controller fails silently without throwing.
-- If `requestFullscreen` is unsupported, fallback to viewport-fill only.
-- If the user denies fullscreen permission, keep the navbar hidden.
-- Restore navbar on page unload or navigation if it was hidden.
+- If the game cannot enter fullscreen (API unsupported or denied), it still posts `biomedical-game-started`; the parent hides the navbar so the game remains full-viewport.
+- If `postMessage` fails or the parent listener is missing, the game still works normally.
+- Parent ignores messages from origins other than the game's origin (`window.origin` check).
+- Parent resets the navbar on `beforeunload` if the fullscreen class is still active.
 
 ## Testing Strategy
 
-- Click **Start** on `/academic/biomedical`: navbar disappears and fullscreen engages.
-- Press **Esc** or exit fullscreen: navbar reappears.
-- Test on mobile Safari, which lacks Fullscreen API support: at minimum the navbar should hide.
-- Verify other pages are not affected by the global CSS rule.
+- Rebuild the game and copy it to `public/game/`.
+- On `/academic/biomedical`, click **Click Me**, then **Start**: navbar disappears and fullscreen engages.
+- Press **Esc**: fullscreen exits and navbar reappears.
+- Test in mobile Safari (no Fullscreen API): at minimum the navbar should hide.
+- Verify other pages are not affected.
 
 ## Open Questions
 
