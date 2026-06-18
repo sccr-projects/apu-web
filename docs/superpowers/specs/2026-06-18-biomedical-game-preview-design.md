@@ -14,7 +14,7 @@ Create a narrative entry point on the Biomedical Science program page. Visitors 
 
 ## 2. Placement
 
-Insert the new section on `src/pages/academic/biomedical.astro` **after** `ProgramStrengthsSection` and before the closing page sections.
+Insert the new section on `src/pages/academic/biomedical.astro` **after** `ProgramStrengthsSection` and before `ProgramStrengthsBentoSection`.
 
 ```astro
 <!-- current flow -->
@@ -22,6 +22,7 @@ Insert the new section on `src/pages/academic/biomedical.astro` **after** `Progr
 <ProgramMsgFromHead variant="light" />
 <ProgramStrengthsSection />
 <BiomedicalGamePreviewSection />   <!-- new -->
+<ProgramStrengthsBentoSection />
 <!-- remaining sections -->
 ```
 
