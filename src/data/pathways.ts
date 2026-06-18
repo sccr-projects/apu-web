@@ -60,22 +60,22 @@ export const pathways: Pathway[] = [
     scholarships: [
       {
         name: "Academic Scholarship",
-        link: "https://scholarship.kmb.ac.id/academic-scholarship/",
+        link: "https://apu.ac.id/admission/academic-scholarship",
       },
       {
         name: "Non-Academic Scholarship",
-        link: "https://scholarship.kmb.ac.id/non-academic-achievement-scholarship/",
+        link: "#",
       },
       {
         name: "Content Creator Scholarship",
-        link: "https://scholarship.kmb.ac.id/content-creator-scholarship/",
+        link: "#",
       },
       {
         name: "Partnership Scholarship",
-        link: "https://scholarship.kmb.ac.id/partnership-scholarship/",
+        link: "#",
       },
     ],
     ctaText: "Apply for Scholarship",
-    ctaLink: "https://scholarship.kmb.ac.id",
+    ctaLink: "https://apu.ac.id/admission/academic-scholarship",
   },
 ];

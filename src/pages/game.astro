@@ -1,4 +1,15 @@
 ---
-export const prerender = false;
-return Astro.redirect('/game/index.html');
 ---
+
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content="0;url=/game/index.html" />
+    <title>Redirecting...</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href="/game/index.html">game</a>...</p>
+  </body>
+</html>

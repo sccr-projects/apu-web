@@ -18,13 +18,13 @@ const APU_CENTER: [number, number] = [-7.071300, 110.362306];
   <div class="w-full relative z-[1]">
     <ScrollReveal>
       <div class="apu-anchor-campus__frame relative isolate w-full overflow-hidden bg-white shadow-[0_30px_72px_rgb(var(--color-brand-primary-deeper)/0.16)] lg:aspect-video">
-        <section class="apu-anchor-campus__map-zone relative h-[260px] overflow-hidden sm:h-[320px] lg:absolute lg:inset-0" aria-label="APU campus visual map">
+        <section class="apu-anchor-campus__map-zone relative h-[260px] overflow-hidden sm:h-full lg:absolute lg:inset-0" aria-label="APU campus visual map">
           <div class="apu-anchor-campus__map-stage absolute left-1/2 top-1/2 aspect-square w-[150%] translate-x-[-61%] translate-y-[-46%] lg:w-[150%]">
             <LeafletMap
               center={APU_CENTER}
-              zoomStart={10}
+              zoomStart={11}
               zoomEnd={17}
-              zoomDuration={25000}
+              zoomDuration={20000}
               class="apu-anchor-campus__map-plate"
             />
           </div>
