@@ -1384,3 +1384,8 @@
         transition: none;
     }
 }*/
+
+/* Biomedical game fullscreen state */
+body.game-fullscreen #apu-nav {
+  display: none;
+}

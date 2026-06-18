@@ -12,6 +12,7 @@ import BackgroundBlobs from "@components/BackgroundBlobs.astro";
   <div class=" z-10">
     <ScrollReveal>
         <iframe
+          id="biomedical-game-iframe"
           src="/game/index.html"
           title="Biomedical Science Interactive Game"
           class="apu-game-iframe block w-screen h-screen border-0"
@@ -48,3 +49,56 @@ import BackgroundBlobs from "@components/BackgroundBlobs.astro";
     75% { transform: translate(8px, 6px); }
   }
 </style>
+
+<script is:inline>
+  (function () {
+    const iframe = document.getElementById('biomedical-game-iframe');
+    const nav = document.getElementById('apu-nav');
+    if (!iframe) return;
+
+    function resetNav() {
+      if (nav) nav.setAttribute('aria-hidden', 'false');
+      document.body.classList.remove('game-fullscreen');
+    }
+
+    iframe.addEventListener('load', function () {
+      let doc = null;
+      try {
+        doc = iframe.contentDocument;
+      } catch (e) {
+        return;
+      }
+      if (!doc) return;
+
+      doc.addEventListener('click', function (event) {
+        const startBtn = event.target.closest('#start-game-btn');
+        if (!startBtn) return;
+
+        document.body.classList.add('game-fullscreen');
+        if (nav) nav.setAttribute('aria-hidden', 'true');
+
+        try {
+          if (typeof iframe.requestFullscreen === 'function') {
+            iframe.requestFullscreen().catch(function () {
+              // Graceful fallback: viewport-fill mode keeps body class active.
+            });
+          }
+        } catch (e) {
+          // Fails silently if Fullscreen API is unavailable.
+        }
+      });
+    });
+
+    document.addEventListener('fullscreenchange', function () {
+      if (document.fullscreenElement === null) {
+        resetNav();
+      }
+    });
+
+    window.addEventListener('beforeunload', function () {
+      if (document.body.classList.contains('game-fullscreen')) {
+        resetNav();
+      }
+    });
+  })();
+</script>
