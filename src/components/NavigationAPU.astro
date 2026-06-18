@@ -211,7 +211,7 @@ const navSections: NavSection[] = [
 const utilityActions: NavItem[] = [
   {
     label: "Apply Now",
-    href: admissionsWhatsApp,
+    href: `http://49.50.9.214:8060/index.php/pendaftaran_pmb`,
     description: "Direct admissions consultation with the admissions team.",
     kind: "external",
     target: "_blank",
@@ -253,12 +253,11 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
         <img
           src={assetUrl('/images/apu.webp')}
           alt="Agung Putra University"
-          class="h-12 w-auto shrink-0"
+          class="h-18 w-auto shrink-0"
           loading="eager"
         />
         <span class="nav-brand-copy hidden sm:flex">
-          <span class="nav-brand-title">Agung Putra University</span>
-          <span class="nav-brand-meta">Future-Ready University · Semarang</span>
+          <span class="font-semibold text-xl">Agung Putra University</span>
         </span>
       </a>
 
@@ -266,7 +265,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
         {
           navSections.map((section) => (
             <li
-              class="nav-item"
+              class="nav-item "
               role="none"
               data-has-dropdown={section.items ? "true" : "false"}
             >

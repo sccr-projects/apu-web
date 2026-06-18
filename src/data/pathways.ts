@@ -48,7 +48,7 @@ export const pathways: Pathway[] = [
         badgeType: "normal",
       },
     ],
-    ctaText: "Apply — Regular",
+    ctaText: "Apply Regular",
     ctaLink: "http://49.50.9.214:8060/index.php/pendaftaran_pmb",
   },
   {

@@ -20,7 +20,7 @@ export const programs: Program[] = [
       'Biomedical AI',
     ],
     image: assetUrl('/images/programs/biomedical.jpg'),
-    link: 'https://biomedical.kmb.ac.id/',
+    link: '/academic/biomedical',
     desc: 'Our biomedical program trains you to engineer life-saving medical technology. You will bridge the gap between complex human biology and mechanical design, building exact solutions like prosthetics, artificial organs, and diagnostic systems. This is a rigorous, high-stakes track designed for students who want their technical engineering skills to directly impact human survival and physical capability.',
   },
   {
@@ -33,7 +33,7 @@ export const programs: Program[] = [
       'Biotechnology Industry',
     ],
     image: assetUrl('/images/programs/biotech.jpg'),
-    link: '/bioteknologi',
+    link: '/',
     desc:'Biotechnology is the frontline of global survival and medical advancement. You will learn to manipulate cellular and molecular processes to engineer breakthrough therapeutics, sustainable agriculture, and advanced biomaterials. This program demands intense laboratory discipline, equipping you with the exact technical expertise required to drive commercial innovation and solve biological crises.'
   },
   {
@@ -42,7 +42,7 @@ export const programs: Program[] = [
     degree: 'Bachelor',
     subPrograms: ['Law & Litigation', 'Medical Law'],
     image: assetUrl('/images/programs/law.jpg'),
-    link: 'https://law.kmb.ac.id/',
+    link: '/',
     desc:'Law is the operating system of society. This program strips away the abstract to teach you the exact mechanics of contracts, jurisprudence, and governance. You will learn to deconstruct complex regulatory frameworks, build ironclad arguments, and wield the legal system to enforce structure, defend rights, and drive corporate or societal accountability.'
   },
   {
@@ -55,7 +55,7 @@ export const programs: Program[] = [
       'Entrepreneur Business Management',
     ],
     image: assetUrl('/images/programs/management.jpg'),
-    link: 'https://management.kmb.ac.id/',
+    link: '/',
     desc:'Businesses fail without structural discipline and precise resource allocation. Our management program delivers the exact operational frameworks required to scale organizations, optimize supply chains, and direct personnel. You will bypass corporate guesswork and learn the hard metrics of financial strategy, risk mitigation, and enterprise leadership required to drive market success.'
   },
   {
@@ -67,7 +67,7 @@ export const programs: Program[] = [
       'Strategic Business Communication Science',
     ],
     image: assetUrl('/images/programs/communication.jpg'),
-    link: 'https://communication.kmb.ac.id/',
+    link: '/',
     desc: 'Information controls markets, politics, and culture. This program teaches the precise architecture of how messages are constructed, distributed, and absorbed across global networks. You will master data-driven strategies and behavioral psychology to shape public perception, manage corporate crises, and command audience action in a highly saturated digital economy.'
   },
   {
@@ -79,7 +79,7 @@ export const programs: Program[] = [
       'Entrepreneur in Midwifery Business',
     ],
     image: assetUrl('/images/programs/midwiferys1.jpg'),
-    link: 'https://bachelor-midwifery.kmb.ac.id/',
+    link: '/',
     desc:'Midwifery is specialized, frontline maternal healthcare. You will master the strict clinical protocols required to manage pregnancy, execute safe deliveries, and prevent maternal and infant mortality. This program demands absolute precision, rapid decision-making, and profound resilience, preparing you to act as the primary medical authority in the delivery room.'
   },
 

@@ -31,7 +31,7 @@ export const leadershipMessage: LeadershipMessage = {
   leaderTitle: "Head of Biomedical Science Study Program",
   leaderImage: assetUrl('/images/academic/biomedical-kaprodi.webp'),
   cta: {
-    href: "/about-apu",
+    href: "/academic",
     label: "Discover the Campus Vision",
   },
 };

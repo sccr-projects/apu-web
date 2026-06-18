@@ -16,6 +16,6 @@ export const contact = {
     youtube: 'Agung Putra University',
     youtubeLink: 'https://youtube.com/@agungputrauniversity?si=_mGkKDNYmk24Yeqv',
   },
-  pmbLink: 'apu.ac.id/admission/',
-  gelombangLink: 'apu.ac.id/admission/',
+  pmbLink: 'http://49.50.9.214:8060/index.php/pendaftaran_pmb',
+  gelombangLink: 'http://49.50.9.214:8060/index.php/pendaftaran_pmb',
 };

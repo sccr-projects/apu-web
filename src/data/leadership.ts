@@ -24,7 +24,7 @@ export const leadershipMessage: LeadershipMessage = {
   leaderTitle: "Founder and Commissioner PT. SCCR",
 leaderImage: assetUrl('/images/leadership-portrait.webp'),
   cta: {
-    href: "/about-apu",
+    href: "/academic",
     label: "Discover the Campus Vision",
   },
 };
