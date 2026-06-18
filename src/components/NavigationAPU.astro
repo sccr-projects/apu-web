@@ -94,6 +94,14 @@ const navSections: NavSection[] = [
             href: `${HOME_PATH}academic/biomedical`,
             description: "Beasiswa berbasis prestasi akademik.",
             kind: "route",
+            children: [
+              {
+                label: "Interactive Game",
+                href: `${HOME_PATH}academic/biomedical/game`,
+                description: "Jelajahi dunia mikroskopis secara interaktif.",
+                kind: "route",
+              },
+            ],
           },
           // {
           //   label: "Biotechnology",

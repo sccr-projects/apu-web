@@ -1,0 +1,64 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import NavigationAPU from "@components/NavigationAPU.astro";
+import Footer from "@components/Footer.astro";
+---
+
+<MainLayout
+  title="Biomedical Science Interactive Game | Agung Putra University"
+  description="Jelajahi dunia mikroskopis biomedical science melalui pengalaman interaktif yang edukatif."
+>
+  <NavigationAPU />
+
+  <main class="apu-section-shell motion-aurora-shell motion-aurora-shell--game min-h-[calc(100vh-80px)]">
+    <div class="content-max relative z-10 py-16 md:py-24">
+      <header class="mb-8 md:mb-12">
+        <span class="apu-section-kicker mb-5 inline-flex">Interactive Learning</span>
+        <h1 class="text-h2 text-[rgb(var(--apu-text))] mb-4">
+          Biomedical Science Game
+          <span class="apu-gradient-line mt-4 block w-48"></span>
+        </h1>
+        <p class="text-body text-[rgb(var(--apu-text-muted))] max-w-2xl leading-relaxed">
+          Masuk ke dunia mikroskopis. Kendalikan sel, serap nutrisi, hindari predator,
+          dan pelajari dasar-dasar biomedical science secara interaktif.
+        </p>
+      </header>
+
+      <div class="apu-game-frame-wrapper relative w-full overflow-hidden rounded-[1.5rem] border border-[rgb(var(--apu-border))] bg-[rgb(var(--apu-surface-alt))] shadow-[var(--apu-shadow-card)]">
+        <iframe
+          src="/game/index.html"
+          title="Biomedical Science Interactive Game"
+          class="apu-game-iframe block w-full h-[70vh] min-h-[480px] md:min-h-[600px]"
+          allow="fullscreen"
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="/academic/biomedical" class="apu-btn apu-btn--secondary">
+          Kembali ke Program
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</MainLayout>
+
+<style>
+  .motion-aurora-shell--game {
+    --motion-aurora-opacity: 0.7;
+    --motion-aurora-speed: 36s;
+    --motion-grid-opacity: 0.25;
+    --motion-grid-speed: 48s;
+  }
+
+  .apu-game-frame-wrapper {
+    /* ensure iframe sits cleanly inside rounded container */
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+  }
+
+  .apu-game-iframe {
+    border: 0;
+  }
+</style>
