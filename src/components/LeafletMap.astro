@@ -118,6 +118,12 @@ const {
     });
   }
 
+  function invalidateMapSize(map: L.Map) {
+    requestAnimationFrame(() => map.invalidateSize());
+    setTimeout(() => map.invalidateSize(), 0);
+    setTimeout(() => map.invalidateSize(), 300);
+  }
+
   function initSingleMarkerMap(container: HTMLElement, data: MapData) {
     const map = L.map(container, {
       center: data.center,
@@ -139,11 +145,16 @@ const {
     const icon = data.animated ? createPulseIcon() : createStaticIcon();
     L.marker(data.center, { icon }).addTo(map);
 
+    invalidateMapSize(map);
+
     if (data.animated) {
       setTimeout(() => {
         map.flyTo(data.center, data.zoomEnd, {
           duration: data.zoomDuration / 1000,
           easeLinearity: 0.25,
+        });
+        map.once("moveend zoomend", () => {
+          invalidateMapSize(map);
         });
       }, 800);
     }
@@ -248,6 +259,9 @@ const {
     map.fitBounds(bounds, { paddingTopLeft: [paddingX, paddingY], paddingBottomRight: [paddingX, paddingY] });
     map.setZoom(Math.min(map.getZoom(), 17.8));
 
+    invalidateMapSize(map);
+    map.once("moveend", () => invalidateMapSize(map));
+
     return map;
   }
 
@@ -263,7 +277,30 @@ const {
       }
 
       if (map) {
+        let resizeTimer: number;
+        const handleResize = () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = window.setTimeout(() => {
+            invalidateMapSize(map);
+          }, 150);
+        };
+        window.addEventListener("resize", handleResize);
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                invalidateMapSize(map);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        observer.observe(container);
+
         document.addEventListener("astro:before-swap", () => {
+          window.removeEventListener("resize", handleResize);
+          observer.disconnect();
           map?.remove();
         });
       }

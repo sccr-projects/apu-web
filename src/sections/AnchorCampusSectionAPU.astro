@@ -194,9 +194,15 @@ const APU_CENTER: [number, number] = [-7.071300, 110.362306];
         );
     }
     .apu-anchor-campus__map-stage {
-      width: 130%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 150%;
+      height: 150%;
       transform: translate(-50%, -50%);
+      translate: none;
       animation: none;
+      aspect-ratio: auto;
     }
     .apu-anchor-campus__map-plate {
       transform: scale(1.02);
