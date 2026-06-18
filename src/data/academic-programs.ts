@@ -1,4 +1,4 @@
-import { assetUrl } from '@lib/assets';
+import { assetUrl } from "@lib/assets";
 export interface LeadershipMessage {
   kicker: string;
   title: string;
@@ -25,11 +25,11 @@ export const leadershipMessage: LeadershipMessage = {
     "",
     "We believe that being a biomedical scientist is a noble role in building knowledge, driving innovation, and contributing to human health. Therefore, we invite the younger generation who possess high curiosity and an innovative spirit to join us and become a vital part of the advancement of Indonesia's biomedical field.",
     "",
-    "Wassalamualaikum warahmatullahi wabarakatuh"
+    "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
   leaderName: "Naufal Sebastian Anggoro, S.Si., M.Si",
   leaderTitle: "Head of Biomedical Science Study Program",
-  leaderImage: assetUrl('/images/academic/biomedical-kaprodi.webp'),
+  leaderImage: assetUrl("/images/academic/biomedical-kaprodi.webp"),
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",

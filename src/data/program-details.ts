@@ -97,12 +97,12 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
     },
   ],
   vision:
-    'Menjadi program studi bioteknologi unggul bertaraf internasional, melalui inovasi green technology dan pengembangan rekayasa sel.',
+    'To become an internationally recognized biotechnology study program through green technology innovation and cell engineering development.',
   mission: [
-    'Menyelenggarakan pendidikan bioteknologi berkualitas dunia yang berbasis riset dan teknologi terkini.',
-    'Mengembangkan penelitian inovatif di bidang medical biotechnology, bioinformatics, dan industrial biotechnology.',
-    'Membangun kerja sama strategis dengan industri dan institusi akademik dalam dan luar negeri.',
-    'Menghasilkan lulusan yang adaptif, kreatif, dan bertanggung jawab sosial.'
+    'To deliver world-class biotechnology education based on research and the latest technologies.',
+    'To develop innovative research in medical biotechnology, bioinformatics, and industrial biotechnology.',
+    'To build strategic partnerships with industry and academic institutions at home and abroad.',
+    'To produce graduates who are adaptable, creative, and socially responsible.'
   ],
   graduateAttributes: [
     {
@@ -157,53 +157,53 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
   careerPaths: [
     {
       title: 'Research Scientist',
-      description: 'Riset dan pengembangan di laboratorium bioteknologi farmasi, pangan, dan kesehatan.',
+      description: 'Research and development in pharmaceutical, food, and health biotechnology laboratories.',
     },
     {
       title: 'Clinical Regulator',
-      description: 'Regulasi dan pengawasan produk biomedis untuk memastikan keamanan dan kualitas.',
+      description: 'Regulation and oversight of biomedical products to ensure safety and quality.',
     },
     {
       title: 'Bioinformatics Expert',
-      description: 'Analisis data biologis, pemodelan komputasional, dan pengembangan algoritma genomik.',
+      description: 'Biological data analysis, computational modeling, and genomic algorithm development.',
     },
     {
       title: 'Data Security Specialist',
-      description: 'Keamanan data riset dan informasi kesehatan dalam ekosistem digital bioteknologi.',
+      description: 'Research data and health information security within the digital biotechnology ecosystem.',
     },
     {
       title: 'Quality Assurance Professional',
-      description: 'Jaminan mutu produk bioteknologi sesuai standar GLP, GMP, dan internasional.',
+      description: 'Quality assurance for biotechnology products according to GLP, GMP, and international standards.',
     },
     {
       title: 'Industrial Biotech Developer',
-      description: 'Pengembangan produk dan proses di industri bioteknologi hijau dan berkelanjutan.',
+      description: 'Product and process development in green and sustainable biotechnology industries.',
     },
   ],
   facultyMembers: [
     {
       name: 'Fauziah Novita Putri Rifai, S.Si, M.Biotech',
-      title: 'Kepala Program Studi',
+      title: 'Head of Study Program',
       nidn: '-',
     },
     {
       name: 'Iffan Alif, M.Biotech',
-      title: 'Dosen',
+      title: 'Lecturer',
       nidn: '-',
     },
     {
       name: 'Nurul Hidayah, S.Si, M.Biotech',
-      title: 'Dosen',
+      title: 'Lecturer',
       nidn: '-',
     },
     {
       name: 'Salindri Prawitasari, S.Si, M.Si',
-      title: 'Dosen',
+      title: 'Lecturer',
       nidn: '-',
     },
     {
       name: 'Dini Cahyani, S.Si, M.Biotech',
-      title: 'Dosen',
+      title: 'Lecturer',
       nidn: '-',
     },
   ],

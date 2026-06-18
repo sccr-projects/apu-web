@@ -10,7 +10,7 @@ interface Props {
 
 const { variant = "dark" } = Astro.props;
 
-const { kicker, title, quote, leaderName, leaderTitle, leaderImage, cta } =
+const { kicker, title, quote, leaderName, leaderTitle,leaderTitle2, leaderImage, cta } =
   leadershipMessage;
 ---
 
@@ -102,6 +102,9 @@ const { kicker, title, quote, leaderName, leaderTitle, leaderImage, cta } =
             </p>
             <p class="text-caption text-[rgb(var(--leadership-text-muted))] mt-1 tracking-wider">
               {leaderTitle}
+            </p>
+            <p class="text-caption text-[rgb(var(--leadership-text-muted))] mt-1 tracking-wider">
+              {leaderTitle2}
             </p>
             <div
               class="mt-3 h-0.5 w-24 rounded-full bg-gradient-to-r from-[rgb(var(--color-apu-accent))] to-transparent"
