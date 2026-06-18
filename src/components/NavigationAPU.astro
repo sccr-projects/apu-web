@@ -139,73 +139,45 @@ const navSections: NavSection[] = [
             badge: "Coming Soon!",
           },
           {
-            label: "Midwifery",
+            label: "Midwifery Bachelors",
             href: `#`,
             description: "Beasiswa berbasis prestasi akademik.",
             kind: "anchor",
             badge: "Coming Soon!",
           },
-          // {
-          //   label: "Biotechnology",
-          //   href: `${HOME_PATH}beasiswa-non-akademik`,
-          //   description: "Beasiswa berbasis prestasi non-akademik.",
-          //   kind: "route",
-          // },
-          // {
-          //   label: "Management",
-          //   href: `${HOME_PATH}beasiswa-non-akademik`,
-          //   description: "Beasiswa berbasis prestasi non-akademik.",
-          //   kind: "route",
-          // },
-          // {
-          //   label: "Law",
-          //   href: `${HOME_PATH}beasiswa-non-akademik`,
-          //   description: "Beasiswa berbasis prestasi non-akademik.",
-          //   kind: "route",
-          // },
-          // {
-          //   label: "Communication Science",
-          //   href: `${HOME_PATH}beasiswa-non-akademik`,
-          //   description: "Beasiswa berbasis prestasi non-akademik.",
-          //   kind: "route",
-          // },
-          // {
-          //   label: "Midwifery (Bachelors / S1)",
-          //   href: `${HOME_PATH}beasiswa-non-akademik`,
-          //   description: "Beasiswa berbasis prestasi non-akademik.",
-          //   kind: "route",
-          // },
-          // {
-          //   label: "Midwifery (Associate / D3)",
-          //   href: `${HOME_PATH}beasiswa-non-akademik`,
-          //   description: "Beasiswa berbasis prestasi non-akademik.",
-          //   kind: "route",
-          // },
+          {
+            label: "Midwifery Associate",
+            href: `#`,
+            description: "Beasiswa berbasis prestasi akademik.",
+            kind: "anchor",
+            badge: "Coming Soon!",
+          },
+
         ],
       },
     ],
   },
-  // {
-  //   label: "Research",
-  //   href: `${HOME_PATH}riset`,
-  //   kind: "route",
-  //   placeholder: true,
-  //   badge: "Coming Soon",
-  // },
-  // {
-  //   label: "News",
-  //   href: `${HOME_PATH}berita`,
-  //   kind: "route",
-  //   placeholder: true,
-  //   badge: "Coming Soon",
-  // },
-  // {
-  //   label: "About APU",
-  //   href: `${HOME_PATH}about-apu`,
-  //   kind: "route",
-  //   placeholder: true,
-  //   // badge: "Coming Soon",
-  // },
+  {
+    label: "Research",
+    href: `#`,
+    kind: "anchor",
+    placeholder: true,
+    badge: "Coming Soon",
+  },
+  {
+    label: "News",
+    href: `#`,
+    kind: "anchor",
+    placeholder: true,
+    badge: "Coming Soon",
+  },
+  {
+    label: "About APU",
+    href: `#`,
+    kind: "anchor",
+    placeholder: true,
+    badge: "Coming Soon",
+  },
 ];
 
 const utilityActions: NavItem[] = [
@@ -248,7 +220,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
 >
 
   <div class="nav-bar">
-    <div class="nav-bar-inner content-max mx-auto">
+    <div class="nav-bar-inner md:px-20">
       <a href={HOME_PATH} class="nav-brand">
         <img
           src={assetUrl('/images/apu.webp')}
@@ -1176,10 +1148,12 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
   }
 
   #apu-nav .nav-link-badge {
-    display: inline-flex;
+    text-wrap: wrap;
+    text-align: center;
+    width: 3rem;
     align-items: center;
-    padding: 0.15rem 0.45rem;
-    font-size: 0.6rem;
+    padding: 0.15rem 0.3rem;
+    font-size: 0.4rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -1270,7 +1244,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
   #apu-nav .nav-dropdown-badge {
     display: inline-flex;
     align-items: center;
-    padding: 0.15rem 0.5rem;
+    padding: 0.15rem 0.2rem;
     font-size: 0.6rem;
     font-weight: 700;
     letter-spacing: 0.06em;
