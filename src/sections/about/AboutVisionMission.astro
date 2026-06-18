@@ -8,13 +8,13 @@ import SectionHeader from "@components/SectionHeader.astro";
   id="visi-misi"
   class="apu-section-shell relative overflow-hidden bg-brand-surface-alt"
 >
-  <div id="vm-logo-3d-wrapper" class="translate-scale-0.9 absolute right-5 inset-y-0 z-0 flex items-center justify-center pointer-events-none" style="perspective: 500px;">
-    <div id="vm-logo-3d" class="pointer-events-none vm-logo-3d-inner">
+  <div id="vm-logo-3d-wrapper" class="translate-scale-0.9 absolute inset-y-0 z-0 flex items-center justify-center pointer-events-none left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-5" style="perspective: 500px;">
+    <div id="vm-logo-3d" class="pointer-events-none vm-logo-3d-inner w-[90vw] md:w-[50vw]">
       <img src={assetUrl('/images/apu-4k.webp')} alt="APU Logo" class="w-full h-full object-contain" loading="lazy" decoding="async" />
     </div>
   </div>
 
-  <div class="max-w-5xl pl-40 relative z-10 py-[var(--apu-section-spacing-y)]">
+  <div class="max-w-5xl pl-4 md:pl-40 relative z-10 py-[var(--apu-section-spacing-y)]">
     <ScrollReveal>
       <SectionHeader
         kicker="VISION & MISSION"
@@ -160,7 +160,6 @@ import SectionHeader from "@components/SectionHeader.astro";
 
   <style>
     .vm-logo-3d-inner {
-      width: 50vw;
       aspect-ratio: 1;
       transition: transform 0.1s ease-out;
       transform-style: preserve-3d;
