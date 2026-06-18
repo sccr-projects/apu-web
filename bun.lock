@@ -7,7 +7,9 @@
       "dependencies": {
         "@astrojs/node": "^10.1.1",
         "@directus/sdk": "^21.3.0",
+        "@fontsource/epilogue": "^5.2.8",
         "@fontsource/instrument-serif": "^5.2.8",
+        "@fontsource/lora": "^5.2.8",
         "@fontsource/space-grotesk": "^5.2.10",
         "@fontsource/space-mono": "^5.2.9",
         "@tailwindcss/vite": "^4.3.0",
@@ -353,7 +355,11 @@
 
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.25.12", "", { "os": "win32", "cpu": "x64" }, "sha512-alJC0uCZpTFrSL0CCDjcgleBXPnCrEAhTBILpeAp7M/OFgoqtAetfBzX0xM00MUsVVPpVjlPuMbREqnZCXaTnA=="],
 
+    "@fontsource/epilogue": ["@fontsource/epilogue@5.2.8", "", {}, "sha512-+V1T+G9RXtLiImA1khsXG6jd5Io/UMJ6LJgYyAYShU9nzZJtI3G/4Hof9Zi6KUMmmH+oTxVN0rXdZc6AOK8Sqg=="],
+
     "@fontsource/instrument-serif": ["@fontsource/instrument-serif@5.2.8", "", {}, "sha512-s+bkz+syj2rO00Rmq9g0P+PwuLig33DR1xDR8pTWmovH1pUjwnncrFk++q9mmOex8fUQ7oW80gPpPDaw7V1MMw=="],
+
+    "@fontsource/lora": ["@fontsource/lora@5.2.8", "", {}, "sha512-AQlfsHw4TP1x/eb2IZ6VjQ70ctKa39m9JN9A4zlvDOeKYLrCs+GaYIEQ86Y6YfSPGHn01bErXkRcyktOW0LOPQ=="],
 
     "@fontsource/space-grotesk": ["@fontsource/space-grotesk@5.2.10", "", {}, "sha512-XNXEbT74OIITPqw2H6HXwPDp85fy43uxfBwFR5PU+9sLnjuLj12KlhVM9nZVN6q6dlKjkuN8JisW/OBxwxgUew=="],
 

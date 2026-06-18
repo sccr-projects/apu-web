@@ -7,12 +7,29 @@
 @import "@fontsource/space-grotesk/500.css";
 @import "@fontsource/space-mono/400.css";
 
+@import "@fontsource/epilogue/300.css";
+@import "@fontsource/epilogue/400.css";
+@import "@fontsource/epilogue/500.css";
+@import "@fontsource/epilogue/600.css";
+@import "@fontsource/epilogue/700.css";
+
+@import "@fontsource/lora/400.css";
+@import "@fontsource/lora/500.css";
+@import "@fontsource/lora/600.css";
+@import "@fontsource/lora/700.css";
+@import "@fontsource/lora/400-italic.css";
+@import "@fontsource/lora/500-italic.css";
+@import "@fontsource/lora/600-italic.css";
+@import "@fontsource/lora/700-italic.css";
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --font-display: "Instrument Serif", Georgia, serif;
+    --font-display: "Epilogue", Georgia, serif;
     --font-sans: "Space Grotesk", system-ui, sans-serif;
     --font-mono: "Space Mono", monospace;
+    --font-epilogue: "Epilogue", "Space Grotesk", system-ui, sans-serif;
+    --font-lora: "Lora", Georgia, serif;
 
     --color-semantic-surface: 247 250 243;
     --color-semantic-surface-alt: 236 243 227;
@@ -196,8 +213,8 @@
     }
 
     body {
-        font-family: "Space Grotesk", system-ui, sans-serif;
-        font-weight: 300;
+        font-family: var(--font-lora);
+        font-weight: 400;
         color: rgb(var(--color-brand-text));
         background-color: rgb(var(--color-brand-surface));
         -webkit-font-smoothing: antialiased;
@@ -813,7 +830,7 @@
     }
 
     .text-h1 {
-        font-family: "Instrument Serif", Georgia, serif;
+        font-family: var(--font-display);
         font-weight: 500;
         font-size: clamp(2.5rem, 6vw, 6.5rem);
         line-height: 1.05;
@@ -821,7 +838,7 @@
     }
 
     .text-h2 {
-        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-family: var(--font-display);
         font-weight: 500;
         font-size: clamp(1.5rem, 3vw, 3.5rem);
         line-height: 1.15;
@@ -829,21 +846,21 @@
     }
 
     .text-h3 {
-        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-family: var(--font-display);
         font-weight: 500;
         font-size: clamp(1.125rem, 2vw, 2.5rem);
         line-height: 1.25;
     }
 
     .text-body {
-        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-family: var(--font-lora);
         font-weight: 500;
         font-size: 1.2rem;
         line-height: 1.6;
     }
 
     .text-body-s {
-        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-family: var(--font-lora);
         font-weight: 400;
         font-size: 1rem;
         line-height: 1.5;
