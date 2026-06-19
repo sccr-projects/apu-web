@@ -3,11 +3,13 @@ import { defineConfig } from "astro/config";
 import node from "@astrojs/node";
 import path from "node:path";
 
+import alpine from "@astrojs/alpinejs";
 import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   adapter: node({ mode: "standalone" }),
+  integrations: [alpine({ entrypoint: "/src/alpine-entry.ts" })],
   vite: {
     plugins: [tailwindcss()],
     resolve: {
