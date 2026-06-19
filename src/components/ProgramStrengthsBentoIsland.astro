@@ -93,3 +93,64 @@ const itemsJson = JSON.stringify(items).replace(/"/g, '&quot;');
     }
   </div>
 </div>
+
+<style>
+  .bento-clone {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: none;
+  }
+  .bento-close-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: rgb(var(--color-apu-navy));
+    color: rgb(var(--color-apu-accent));
+    font-size: 1.125rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .bento-clone h3,
+  .bento-clone .title,
+  .bento-clone .text-h3 {
+    font-size: 1.5rem !important;
+    line-height: 1.2;
+  }
+  .bento-clone .apu-icon-chip {
+    width: 3rem;
+    height: 3rem;
+  }
+  .bento-clone .apu-icon-chip svg {
+    width: 20px;
+    height: 20px;
+  }
+  .bento-clone [class*="text-mono"] {
+    font-size: 0.875rem;
+  }
+
+  @media (min-width: 768px) {
+    .bento-clone h3,
+    .bento-clone .title,
+    .bento-clone .text-h3 {
+      font-size: 3rem !important;
+    }
+    .bento-clone .apu-icon-chip {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+    .bento-clone .apu-icon-chip svg {
+      width: 28px;
+      height: 28px;
+    }
+    .bento-clone [class*="text-mono"] {
+      font-size: 1rem;
+    }
+  }
+</style>
