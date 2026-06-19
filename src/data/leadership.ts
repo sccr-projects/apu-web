@@ -22,7 +22,7 @@ export const leadershipMessage: LeadershipMessage = {
     "Join us, and together let us realize a great dream for a better Indonesia.",
   ],
   leaderName: "Prof. Dr. dr. Agung Putra, M.Si.Med.",
-  leaderTitle: "Founder and Commissioner PT. SCCR",
+  leaderTitle: "Founder and Commissioner SCCR Indonesia",
   leaderTitle2: "President and Founder of Agung Putra University",
 
   leaderImage: assetUrl("/images/leadership-portrait.webp"),

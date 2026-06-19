@@ -52,46 +52,29 @@ import BackgroundBlobs from "@components/BackgroundBlobs.astro";
 
 <script is:inline>
   (function () {
-    const iframe = document.getElementById('biomedical-game-iframe');
     const nav = document.getElementById('apu-nav');
-    if (!iframe) return;
 
     function resetNav() {
       if (nav) nav.setAttribute('aria-hidden', 'false');
       document.body.classList.remove('game-fullscreen');
     }
 
-    iframe.addEventListener('load', function () {
-      let doc = null;
-      try {
-        doc = iframe.contentDocument;
-      } catch (e) {
-        return;
-      }
-      if (!doc) return;
+    function hideNav() {
+      document.body.classList.add('game-fullscreen');
+      if (nav) nav.setAttribute('aria-hidden', 'true');
+    }
 
-      doc.addEventListener('click', function (event) {
-        const startBtn = event.target.closest('#start-game-btn');
-        if (!startBtn) return;
+    window.addEventListener('message', function (event) {
+      if (event.origin !== window.location.origin) return;
+      if (!event.data || typeof event.data !== 'object') return;
 
-        document.body.classList.add('game-fullscreen');
-        if (nav) nav.setAttribute('aria-hidden', 'true');
-
-        try {
-          if (typeof iframe.requestFullscreen === 'function') {
-            iframe.requestFullscreen().catch(function () {
-              // Graceful fallback: viewport-fill mode keeps body class active.
-            });
-          }
-        } catch (e) {
-          // Fails silently if Fullscreen API is unavailable.
-        }
-      });
-    });
-
-    document.addEventListener('fullscreenchange', function () {
-      if (document.fullscreenElement === null) {
-        resetNav();
+      switch (event.data.type) {
+        case 'biomedical-game-started':
+          hideNav();
+          break;
+        case 'biomedical-game-exited-fullscreen':
+          resetNav();
+          break;
       }
     });
 
