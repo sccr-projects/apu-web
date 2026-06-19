@@ -1,6 +1,7 @@
 .local-contexts/
 /foto-apu
 .slim/deepwork/
+.worktrees/
 
 # Python
 __pycache__/
