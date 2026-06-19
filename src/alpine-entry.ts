@@ -34,27 +34,30 @@ export default (Alpine: Alpine) => {
       } catch {
         this.items = [];
       }
-      // Start at null so the first trigger is visible for the hydration expand.
-      this.activeIndex = null;
 
       this.resizeObserver = new ResizeObserver(() => {
         if (this.activeIndex !== null && !this.isAnimating) {
-          this.collapse().then(() => {
-            this.activeIndex = null;
-          });
+          this.collapse();
         }
       });
       this.resizeObserver.observe(this.$el);
 
-      if (this.items.length > 0) {
-        await this.$nextTick();
-        this.expand(0);
+      this.activeIndex = this.items.length > 0 ? 0 : null;
+      await this.$nextTick();
+
+      if (this.activeIndex !== null) {
+        this.renderExpandedState();
       }
     },
 
     destroy() {
       if (this.resizeObserver) {
         this.resizeObserver.disconnect();
+      }
+      if (this.clone) {
+        gsap.killTweensOf(this.clone);
+        this.clone.remove();
+        this.clone = null;
       }
     },
 
@@ -90,6 +93,8 @@ export default (Alpine: Alpine) => {
         ease: 'power2.out',
         onComplete: () => {
           this.isAnimating = false;
+          const panel = this.getPanel(this.activePanel === 'left' ? 'left' : 'right');
+          panel?.focus({ preventScroll: true });
         },
       });
     },
@@ -99,7 +104,6 @@ export default (Alpine: Alpine) => {
       this.isAnimating = true;
       const closedIndex = this.activeIndex;
       await this.collapse();
-      this.activeIndex = null;
       this.isAnimating = false;
 
       const trigger = this.$el.querySelector(`[data-index="${closedIndex}"][data-trigger]`) as HTMLElement | null;
@@ -109,6 +113,8 @@ export default (Alpine: Alpine) => {
     collapse() {
       return new Promise<void>((resolve) => {
         if (!this.clone || this.activeIndex === null) {
+          this.activeIndex = null;
+          this.clone = null;
           resolve();
           return;
         }
@@ -116,21 +122,25 @@ export default (Alpine: Alpine) => {
         const trigger = this.$el.querySelector(`[data-index="${this.activeIndex}"][data-trigger]`) as HTMLElement | null;
         if (!trigger) {
           this.clone.remove();
+          this.activeIndex = null;
           this.clone = null;
           resolve();
           return;
         }
 
-        const state = Flip.getState(this.clone);
-        this.positionCloneOverTrigger(this.clone, trigger);
+        this.activeIndex = null;
+        const cloneEl = this.clone;
+
+        const state = Flip.getState(cloneEl);
+        this.positionCloneOverTrigger(cloneEl, trigger);
 
         Flip.from(state, {
-          targets: this.clone,
+          targets: cloneEl,
           duration: 0.4,
           ease: 'power2.inOut',
           onComplete: () => {
-            if (this.clone) {
-              this.clone.remove();
+            cloneEl.remove();
+            if (this.clone === cloneEl) {
               this.clone = null;
             }
             resolve();
@@ -139,8 +149,46 @@ export default (Alpine: Alpine) => {
       });
     },
 
+    renderExpandedState() {
+      if (this.activeIndex === null) {
+        this.isAnimating = false;
+        return;
+      }
+      const index = this.activeIndex;
+      const trigger = this.$el.querySelector(`[data-index="${index}"][data-trigger]`) as HTMLElement | null;
+      if (!trigger) {
+        this.isAnimating = false;
+        return;
+      }
+
+      this.isAnimating = true;
+      this.clone = this.createClone(trigger);
+      this.positionCloneOverPanel(this.clone);
+      this.$refs.cloneLayer.appendChild(this.clone);
+      this.isAnimating = false;
+    },
+
+    getStage() {
+      const stage = this.$refs.bentoStage as HTMLElement | undefined;
+      if (!stage && import.meta.env.DEV) {
+        console.error('bento: missing x-ref="bentoStage"');
+      }
+      return stage ?? null;
+    },
+
+    getPanel(side: 'left' | 'right') {
+      const ref = side === 'left' ? this.$refs.panelLeft : this.$refs.panelRight;
+      const panel = ref as HTMLElement | undefined;
+      if (!panel && import.meta.env.DEV) {
+        console.error(`bento: missing x-ref="panel${side === 'left' ? 'Left' : 'Right'}"`);
+      }
+      return panel ?? null;
+    },
+
     createClone(trigger: HTMLElement) {
-      const stage = this.$el.querySelector('.bento-stage') as HTMLElement;
+      const stage = this.getStage();
+      if (!stage) return document.createElement('div');
+
       const stageRect = stage.getBoundingClientRect();
       const triggerRect = trigger.getBoundingClientRect();
 
@@ -155,13 +203,29 @@ export default (Alpine: Alpine) => {
       el.style.margin = '0';
       el.style.zIndex = '20';
       el.style.pointerEvents = 'auto';
+      el.style.opacity = '1';
       el.setAttribute('aria-expanded', 'true');
 
       const closeBtn = document.createElement('button');
       closeBtn.type = 'button';
-      closeBtn.className = 'bento-close-btn';
       closeBtn.setAttribute('aria-label', 'Close detail');
       closeBtn.innerHTML = '&times;';
+      closeBtn.style.position = 'absolute';
+      closeBtn.style.top = '0.75rem';
+      closeBtn.style.right = '0.75rem';
+      closeBtn.style.width = '2rem';
+      closeBtn.style.height = '2rem';
+      closeBtn.style.display = 'flex';
+      closeBtn.style.alignItems = 'center';
+      closeBtn.style.justifyContent = 'center';
+      closeBtn.style.borderRadius = '9999px';
+      closeBtn.style.background = 'rgb(var(--color-apu-navy))';
+      closeBtn.style.color = 'rgb(var(--color-apu-accent))';
+      closeBtn.style.fontSize = '1.125rem';
+      closeBtn.style.lineHeight = '1';
+      closeBtn.style.cursor = 'pointer';
+      closeBtn.style.padding = '0';
+      closeBtn.style.border = 'none';
       closeBtn.addEventListener('click', (e: Event) => {
         e.stopPropagation();
         this.close();
@@ -172,10 +236,11 @@ export default (Alpine: Alpine) => {
     },
 
     positionCloneOverPanel(clone: HTMLElement) {
-      const stage = this.$el.querySelector('.bento-stage') as HTMLElement;
+      const stage = this.getStage();
+      const panel = this.getPanel(this.activePanel === 'left' ? 'left' : 'right');
+      if (!stage || !panel) return;
+
       const stageRect = stage.getBoundingClientRect();
-      const panelClass = this.activePanel === 'left' ? '.bento-panel-left' : '.bento-panel-right';
-      const panel = this.$el.querySelector(panelClass) as HTMLElement;
       const panelRect = panel.getBoundingClientRect();
 
       clone.style.top = `${panelRect.top - stageRect.top}px`;
@@ -185,7 +250,9 @@ export default (Alpine: Alpine) => {
     },
 
     positionCloneOverTrigger(clone: HTMLElement, trigger: HTMLElement) {
-      const stage = this.$el.querySelector('.bento-stage') as HTMLElement;
+      const stage = this.getStage();
+      if (!stage) return;
+
       const stageRect = stage.getBoundingClientRect();
       const triggerRect = trigger.getBoundingClientRect();
 

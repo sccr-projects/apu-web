@@ -12,7 +12,7 @@ interface Props {
 }
 
 const { items } = Astro.props;
-const itemsJson = JSON.stringify(items).replace(/"/g, '&quot;');
+const itemsJson = JSON.stringify(items);
 ---
 
 <div
@@ -23,10 +23,12 @@ const itemsJson = JSON.stringify(items).replace(/"/g, '&quot;');
   @click.outside="close()"
 >
   <!-- Stage -->
-  <div class="bento-stage apu-glass-card relative mb-8 flex flex-col min-h-[320px] md:min-h-[520px] p-4 md:p-6">
+  <div x-ref="bentoStage" class="bento-stage apu-glass-card relative mb-8 flex flex-col min-h-[320px] md:min-h-[520px] p-4 md:p-6">
     <!-- Panels -->
     <div class="bento-panels grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 flex-1">
       <div
+        x-ref="panelLeft"
+        tabindex="-1"
         class="bento-panel-left apu-glass-card p-6 md:p-8 flex flex-col justify-center transition-opacity duration-300"
         :class="activePanel === 'left' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'"
       >
@@ -34,6 +36,8 @@ const itemsJson = JSON.stringify(items).replace(/"/g, '&quot;');
         <p class="text-body-s text-brand-text-muted leading-relaxed" x-text="activeItem?.description ?? ''"></p>
       </div>
       <div
+        x-ref="panelRight"
+        tabindex="-1"
         class="bento-panel-right apu-glass-card p-6 md:p-8 flex flex-col justify-center transition-opacity duration-300"
         :class="activePanel === 'right' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'"
       >
@@ -100,22 +104,6 @@ const itemsJson = JSON.stringify(items).replace(/"/g, '&quot;');
     flex-direction: column;
     justify-content: center;
     transition: none;
-  }
-  .bento-close-btn {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    width: 2rem;
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 9999px;
-    background: rgb(var(--color-apu-navy));
-    color: rgb(var(--color-apu-accent));
-    font-size: 1.125rem;
-    line-height: 1;
-    cursor: pointer;
   }
   .bento-clone h3,
   .bento-clone .title,
