@@ -66,11 +66,13 @@ const itemsJson = JSON.stringify(items).replace(/"/g, '&quot;');
           :class={`activeIndex === ${index} ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'`}
           @click={`expand(${index})`}
           :aria-expanded={`activeIndex === ${index}`}
+          :tabindex={`activeIndex === ${index} ? '-1' : '0'`}
+          :aria-hidden={`activeIndex === ${index} ? 'true' : 'false'`}
           data-index={index}
           data-trigger
         >
           <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-3">{item.number}</span>
-          <div class="apu-icon-chip h-10 w-10 rounded-lg flex-shrink-0 mb-3">
+          <span class="apu-icon-chip h-10 w-10 rounded-lg flex-shrink-0 mb-3 inline-flex">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -84,8 +86,8 @@ const itemsJson = JSON.stringify(items).replace(/"/g, '&quot;');
               aria-hidden="true"
               set:html={item.icon}
             />
-          </div>
-          <h3 class="text-h3 text-brand-primary-deep text-base md:text-lg">{item.title}</h3>
+          </span>
+          <span class="text-h3 text-brand-primary-deep text-base md:text-lg">{item.title}</span>
         </button>
       ))
     }
