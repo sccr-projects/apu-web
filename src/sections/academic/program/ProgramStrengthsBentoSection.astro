@@ -35,7 +35,7 @@ const featured = [
 ].map((item, index) => ({
   ...item,
   number: (index + 1).toString().padStart(2, "0"),
-  expandTo: index >= 2 ? ('left' as const) : ('right' as const),
+  expandTo: index >= 2 ? ('right' as const) : ('left' as const),
 }));
 ---
 
@@ -55,6 +55,6 @@ const featured = [
       />
     </ScrollReveal>
 
-    <ProgramStrengthsBentoIsland items={featured} client:visible />
+    <ProgramStrengthsBentoIsland items={featured} />
   </div>
 </section>

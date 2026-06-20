@@ -30,7 +30,7 @@ const itemsJson = JSON.stringify(items);
         x-ref="panelLeft"
         tabindex="-1"
         class="bento-panel-left apu-glass-card p-6 md:p-8 flex flex-col justify-center transition-opacity duration-300"
-        :class="activePanel === 'left' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'"
+        :class="activePanel === 'right' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'"
       >
         <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-3" x-text="activeItem?.number ?? ''"></span>
         <p class="text-body-s text-brand-text-muted leading-relaxed" x-text="activeItem?.description ?? ''"></p>
@@ -39,7 +39,7 @@ const itemsJson = JSON.stringify(items);
         x-ref="panelRight"
         tabindex="-1"
         class="bento-panel-right apu-glass-card p-6 md:p-8 flex flex-col justify-center transition-opacity duration-300"
-        :class="activePanel === 'right' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'"
+        :class="activePanel === 'left' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'"
       >
         <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-3" x-text="activeItem?.number ?? ''"></span>
         <p class="text-body-s text-brand-text-muted leading-relaxed" x-text="activeItem?.description ?? ''"></p>

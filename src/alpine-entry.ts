@@ -17,6 +17,7 @@ export default (Alpine: Alpine) => {
     isAnimating: false,
     clone: null as HTMLElement | null,
     resizeObserver: null as ResizeObserver | null,
+    resizeHandler: null as (() => void) | null,
 
     get activeItem() {
       if (this.activeIndex === null) return null;
@@ -29,28 +30,28 @@ export default (Alpine: Alpine) => {
 
     async init() {
       try {
-        const raw = JSON.parse(this.$el.dataset.items || '[]');
+        const raw = JSON.parse(this.$root.dataset.items || '[]');
         this.items = Array.isArray(raw) ? raw : [];
       } catch {
         this.items = [];
       }
 
-      this.resizeObserver = new ResizeObserver(() => {
+      if (this.items.length > 0) {
+        await this.expand(0);
+      }
+
+      this.resizeHandler = () => {
         if (this.activeIndex !== null && !this.isAnimating) {
           this.collapse();
         }
-      });
-      this.resizeObserver.observe(this.$el);
-
-      this.activeIndex = this.items.length > 0 ? 0 : null;
-      await this.$nextTick();
-
-      if (this.activeIndex !== null) {
-        this.renderExpandedState();
-      }
+      };
+      window.addEventListener('resize', this.resizeHandler);
     },
 
     destroy() {
+      if (this.resizeHandler) {
+        window.removeEventListener('resize', this.resizeHandler);
+      }
       if (this.resizeObserver) {
         this.resizeObserver.disconnect();
       }
@@ -66,7 +67,7 @@ export default (Alpine: Alpine) => {
       if (index < 0 || index >= this.items.length) return;
       this.isAnimating = true;
 
-      const trigger = this.$el.querySelector(`[data-index="${index}"][data-trigger]`) as HTMLElement | null;
+      const trigger = this.$root.querySelector(`[data-index="${index}"][data-trigger]`) as HTMLElement | null;
       if (!trigger) {
         this.isAnimating = false;
         return;
@@ -106,7 +107,7 @@ export default (Alpine: Alpine) => {
       await this.collapse();
       this.isAnimating = false;
 
-      const trigger = this.$el.querySelector(`[data-index="${closedIndex}"][data-trigger]`) as HTMLElement | null;
+      const trigger = this.$root.querySelector(`[data-index="${closedIndex}"][data-trigger]`) as HTMLElement | null;
       if (trigger) trigger.focus();
     },
 
@@ -119,7 +120,7 @@ export default (Alpine: Alpine) => {
           return;
         }
 
-        const trigger = this.$el.querySelector(`[data-index="${this.activeIndex}"][data-trigger]`) as HTMLElement | null;
+        const trigger = this.$root.querySelector(`[data-index="${this.activeIndex}"][data-trigger]`) as HTMLElement | null;
         if (!trigger) {
           this.clone.remove();
           this.activeIndex = null;
@@ -147,25 +148,6 @@ export default (Alpine: Alpine) => {
           },
         });
       });
-    },
-
-    renderExpandedState() {
-      if (this.activeIndex === null) {
-        this.isAnimating = false;
-        return;
-      }
-      const index = this.activeIndex;
-      const trigger = this.$el.querySelector(`[data-index="${index}"][data-trigger]`) as HTMLElement | null;
-      if (!trigger) {
-        this.isAnimating = false;
-        return;
-      }
-
-      this.isAnimating = true;
-      this.clone = this.createClone(trigger);
-      this.positionCloneOverPanel(this.clone);
-      this.$refs.cloneLayer.appendChild(this.clone);
-      this.isAnimating = false;
     },
 
     getStage() {
