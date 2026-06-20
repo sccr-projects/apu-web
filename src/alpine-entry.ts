@@ -67,36 +67,65 @@ export default (Alpine: Alpine) => {
       if (index < 0 || index >= this.items.length) return;
       this.isAnimating = true;
 
-      const trigger = this.$root.querySelector(`[data-index="${index}"][data-trigger]`) as HTMLElement | null;
-      if (!trigger) {
+      const newTrigger = this.$root.querySelector(`[data-index="${index}"][data-trigger]`) as HTMLElement | null;
+      if (!newTrigger) {
         this.isAnimating = false;
         return;
       }
 
-      if (this.activeIndex !== null) {
-        await this.collapse();
-      }
+      const oldActiveIndex = this.activeIndex;
+      const oldClone = this.clone;
+      const oldCloneState = oldClone ? Flip.getState(oldClone) : null;
+      const newTriggerState = Flip.getState(newTrigger);
 
-      // Capture trigger state BEFORE Alpine hides it.
-      const state = Flip.getState(trigger);
-
-      this.clone = this.createClone(trigger);
-      this.$refs.cloneLayer.appendChild(this.clone);
+      const newClone = this.createClone(newTrigger);
+      this.$refs.cloneLayer.appendChild(newClone);
+      this.clone = newClone;
 
       this.activeIndex = index;
       await this.$nextTick();
 
-      this.positionCloneOverPanel(this.clone);
+      this.positionCloneOverPanel(newClone);
 
-      Flip.from(state, {
-        targets: this.clone,
-        duration: 0.5,
-        ease: 'power2.out',
-        onComplete: () => {
+      if (oldClone && oldCloneState && oldActiveIndex !== null) {
+        const oldTrigger = this.$root.querySelector(`[data-index="${oldActiveIndex}"][data-trigger]`) as HTMLElement | null;
+        if (oldTrigger) {
+          this.positionCloneOverTrigger(oldClone, oldTrigger);
+          const oldClose = oldClone.querySelector('button[aria-label="Close detail"]') as HTMLElement | null;
+          if (oldClose) oldClose.style.display = 'none';
+          oldClone.style.pointerEvents = 'none';
+        } else {
+          oldClone.remove();
+        }
+      }
+
+      let completed = 0;
+      const total = (oldCloneState ? 1 : 0) + 1;
+      const onDone = () => {
+        completed += 1;
+        if (completed >= total) {
+          if (oldClone) oldClone.remove();
           this.isAnimating = false;
           const panel = this.getPanel(this.activePanel === 'left' ? 'left' : 'right');
           panel?.focus({ preventScroll: true });
-        },
+        }
+      };
+
+      if (oldClone && oldCloneState) {
+        Flip.from(oldCloneState, {
+          targets: oldClone,
+          duration: 1.0,
+          ease: 'power2.inOut',
+          scale: false,
+          onComplete: onDone,
+        });
+      }
+
+      Flip.from(newTriggerState, {
+        targets: newClone,
+        duration: 1.0,
+        ease: 'power2.out',
+        onComplete: onDone,
       });
     },
 
