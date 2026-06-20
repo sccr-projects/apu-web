@@ -1,0 +1,110 @@
+---
+import profAgung from "../assets/images/academic/diaspora/prof-agung.webp";
+import mrFaris from "../assets/images/academic/diaspora/mr-faris.webp";
+import msAdzani from "../assets/images/academic/diaspora/ms-adzani.webp";
+import mrJutadi from "../assets/images/academic/diaspora/mr-jutadi.webp";
+import msDina from "../assets/images/academic/diaspora/ms-dina.webp";
+import mrFaheem from "../assets/images/academic/diaspora/mr-faheem.webp";
+
+import msWaheni from "../assets/images/academic/diaspora/ms-waheni.webp";
+import profYayuk from "../assets/images/academic/diaspora/prof-yayuk.webp";
+import mrDendi from "../assets/images/academic/diaspora/mr-dendi.webp";
+import mrAgus from "../assets/images/academic/diaspora/mr-agus.webp";
+import msEndah from "../assets/images/academic/diaspora/ms-endah.webp";
+
+type Person = {
+  name: string;
+  desc: string;
+  href: string;
+  image: { src: string };
+  position: number;
+};
+
+const people: Person[] = [
+  { name: "Muhammad Faris, M.T.M.", desc: "Kirklareli University, Türkiye", href: "#", image: mrFaris, position: 4 },
+  { name: "Adzani Gaisani Arda, BSc,MSc.", desc: "University of Debrecen, Hungary", href: "#", image: msAdzani, position: 12 },
+  { name: "dr. Jutadi, MBBS", desc: "Changsha Medical University, China", href: "#", image: mrJutadi, position: 20 },
+  { name: "Nur Dina A.M.Sc., (Ph.D. cand)", desc: "NAIST Japan", href: "#", image: msDina, position: 28 },
+  { name: "Dr. Faheem Ahmed Khan, B.Sc, M.S, Ph.D", desc: "M.I.T. USA", href: "#", image: mrFaheem, position: 37 },
+  { name: "Prof. Dr. dr. Agung Putra, M.Si. Med.", desc: "Founder & Commissioner SCCR Indonesia", href: "#", image: profAgung, position: 50 },
+  { name: "Waheni Rizki Aprilia, S.Si., Ph.D.", desc: "Suranaree University of Technology, Thailand", href: "#", image: msWaheni, position: 62 },
+  { name: "Prof. Yayuk Astuti, S.Si, Ph.D", desc: "Newcastle University, UK", href: "#", image: profYayuk, position: 71 },
+  { name: "Dendi Krisna Nugraha, M.Sc., Ph.D.", desc: "RIMD, Osaka Japan", href: "#", image: mrDendi, position: 79 },
+  { name: "Dr. Ir. Agus F. Abdillah, MBA", desc: "University of Birmingham, UK", href: "#", image: mrAgus, position: 87 },
+  { name: "Endah Agustina Lestari BSc,MSc.", desc: "University of Queensland, Australia", href: "#", image: msEndah, position: 96 },
+];
+---
+
+<section class="py-8" aria-label="Diaspora">
+  <div class="flex justify-center px-4">
+    <div class="diaspora-track flex gap-0 overflow-x-auto pb-4">
+      {
+        people.map((person, index) => {
+          const isCenter = index === 5;
+          return (
+            <article
+              class:list={[
+                "relative flex-shrink-0",
+                isCenter
+                  ? "z-10 w-32 sm:w-40 md:w-48 lg:w-56"
+                  : "w-24 sm:w-28 md:w-36 lg:w-44",
+                index !== 0 && "-ml-3 sm:-ml-4 md:-ml-6 lg:-ml-8",
+              ]}
+              data-diaspora-center={isCenter ? "" : undefined}
+            >
+              <div class="overflow-hidden rounded-lg">
+                <img
+                  src={person.image.src}
+                  alt={`Portrait of ${person.name}`}
+                  class="h-36 w-full object-contain object-top sm:h-44 md:h-56 lg:h-64"
+                  style={`object-position: ${person.position}% center;`}
+                  loading="lazy"
+                />
+              </div>
+              <a
+                href={person.href}
+                class="mt-2 px-6 text-center block text-sm font-semibold leading-tight hover:underline sm:text-base"
+              >
+                {person.name}
+              </a>
+              <p class="text-xs text-center px-6 text-gray-600 sm:text-sm">{person.desc}</p>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const track = document.querySelector(".diaspora-track");
+    const center = document.querySelector("[data-diaspora-center]");
+    if (!track || !center) return;
+
+    const centerIt = () => {
+      const target =
+        (center as HTMLElement).offsetLeft -
+        track.clientWidth / 2 +
+        (center as HTMLElement).offsetWidth / 2;
+      track.scrollTo({ left: target });
+    };
+
+    centerIt();
+    window.addEventListener("resize", centerIt, { passive: true });
+  })();
+</script>
+
+<style>
+  .diaspora-track {
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .diaspora-track::-webkit-scrollbar {
+    display: none;
+  }
+  [data-diaspora-center] {
+    scroll-snap-align: center;
+  }
+</style>

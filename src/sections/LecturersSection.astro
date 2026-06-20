@@ -12,10 +12,10 @@ const { featured, directory } = sectionCopy;
   class="apu-section-shell relative overflow-hidden bg-brand-surface py-24 md:py-32"
   aria-label={directory.title}
 >
-  <div class="content-max">
+  <div>
     {/* Featured researcher */}
     <ScrollReveal>
-      <div class="apu-glass-card lecturers-featured-card mb-20 overflow-hidden">
+      <div class="apu-glass-card rounded-none lecturers-featured-card mb-10 overflow-hidden">
         <div class="grid gap-8 p-8 md:grid-cols-2 md:gap-10 md:p-12">
           <div class="order-2 flex flex-col justify-center md:order-1">
             <span class="apu-pill-badge mb-6 self-start">{featured.kicker}</span>
@@ -84,18 +84,9 @@ const { featured, directory } = sectionCopy;
     </ScrollReveal>
 
     {/* Faculty directory */}
-    <div class="mb-10 flex items-end justify-between gap-6">
+    <div class="mb-6 flex items-end justify-between gap-6 px-10">
       <ScrollReveal class="flex-1">
           <h2 class="font-epilogue font-semibold text-4xl text-apu-navy">Lecturers List:</h2>
-        <!-- <SectionHeader
-          kicker={directory.kicker}
-          title={directory.title}
-          description={directory.description}
-          class="mb-0 text-left"
-          titleClass="text-h2 text-brand-primary-deep mb-4"
-          descriptionClass="text-body text-brand-text-muted max-w-xl leading-relaxed"
-          dividerClass="apu-gradient-line mt-4 w-16 sm:w-24 md:w-32 lg:w-48"
-        /> -->
       </ScrollReveal>
 
       <div
@@ -148,7 +139,7 @@ const { featured, directory } = sectionCopy;
     </div>
 
     <ScrollReveal delay={150}>
-      <div data-lecturers-carousel>
+      <div data-lecturers-carousel class="px-10">
         <div
           data-lecturers-track
           class="lecturers-track flex snap-x snap-mandatory gap-4 overflow-x-auto pb-6"
@@ -165,18 +156,12 @@ const { featured, directory } = sectionCopy;
                   loading="lazy"
                 />
               </div>
-              <h3 class="text-h3 text-brand-text mb-1">
+              <h3 class="text-2xl font-semibold text-brand-text mb-1">
                 {lecturer.name}
               </h3>
               <p class="text-caption text-brand-text-muted mb-4">
                 {lecturer.role}
               </p>
-              <a
-                href="#"
-                class="text-caption font-medium text-brand-primary-deep transition-colors hover:text-apu-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--color-apu-accent))] rounded"
-              >
-                {directory.viewProfileLabel} →
-              </a>
             </article>
           ))}
         </div>
