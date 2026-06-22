@@ -29,7 +29,7 @@ export const leadershipMessage: LeadershipMessage = {
   ],
   leaderName: "Muhamad Agung Setiawan, S.sos., M.Sos",
   leaderTitle: "Head of Communication Study Program",
-  leaderImage: assetUrl("/images/academic/Communication-kaprodi.webp"),
+  leaderImage: assetUrl("/images/academic/communication-kaprodi.webp"),
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
