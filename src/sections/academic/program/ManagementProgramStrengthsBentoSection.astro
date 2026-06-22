@@ -1,0 +1,450 @@
+---
+import ScrollReveal from "@components/ScrollReveal.astro";
+import SectionHeader from "@components/SectionHeader.astro";
+import BackgroundBlobs from "@components/BackgroundBlobs.astro";
+
+const iconMap: Record<string, string> = {
+  // Excellent Graduates / achievement
+  award:
+    '<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>',
+
+  // Industry-based curriculum / briefcase
+  briefcase:
+    '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M2 13h20"/>',
+
+  // Global digital business / globe + network
+  globeNetwork:
+    '<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><circle cx="17" cy="7" r="1.5"/><circle cx="7" cy="17" r="1.5"/><path d="M15.8 8.2 8.2 15.8"/>',
+
+  // Field experience / map
+  map:
+    '<path d="M9 18 3 21V6l6-3 6 3 6-3v15l-6 3-6-3Z"/><path d="M9 3v15"/><path d="M15 6v15"/>',
+
+  // Enrichment / internship / people connection
+  users:
+    '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+};
+
+const featured = [
+  {
+    title: "Developing Excellent Graduates",
+    description:
+      "The Management Study Program is designed to develop competent, adaptive, and globally competitive graduates through two main focuses: International Business Management and Digital Business Management. These areas complement each other in preparing students to manage cross-border business and utilize digital technology for the future of business.",
+    icon: "award",
+  },
+  {
+    title: "Industry-Based Curriculum",
+    description:
+      "A curriculum aligned with industry needs, focusing on the use of digital technology in business management and strategic decision-making.",
+    icon: "briefcase",
+  },
+  {
+    title: "Global Business Digitalization",
+    description:
+      "Integrates global business digitalization into the learning process, preparing students to contribute to economic growth through technology-driven business development.",
+    icon: "globeNetwork",
+  },
+  {
+    title: "Field-Based Learning",
+    description:
+      "Encourages students to actively engage in business projects, field activities, and cross-border research experiences.",
+    icon: "map",
+  },
+  {
+    title: "Enrichment Program",
+    description:
+      "The Enrichment Program connects students with the professional world through internship opportunities and real industry exposure.",
+    icon: "users",
+  },
+];
+---
+
+<section
+  id="keunggulan-bento"
+  class="apu-section-shell py-24 md:py-32 bg-gradient-to-b from-brand-surface via-brand-surface-alt to-brand-surface-soft"
+  data-bento-section
+>
+  <BackgroundBlobs seed="ProgramStrengthsBentoSection" />
+  <div class="content-max relative z-10">
+    <ScrollReveal>
+      <SectionHeader
+        kicker="WHY US"
+        title="Why Study Management at APU?"
+        description="A future-focused curriculum that builds leadership, entrepreneurship, strategic thinking, and digital business skills to prepare students for the modern business world."
+        class="text-center mb-12"
+        titleClass="text-h2 text-[rgb(var(--color-apu-navy))] mb-4"
+      />
+    </ScrollReveal>
+
+    <!-- Stage -->
+    <div
+      class="bento-stage apu-glass-card relative mb-8 flex flex-col min-h-[420px] sm:min-h-[460px] md:min-h-[520px] p-4 md:p-6"
+      data-bento-stage
+    >
+      <!-- Panels -->
+      <div class="bento-panels grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 flex-1 min-h-0">
+        <div
+          class="bento-panel-left apu-glass-card opacity-0 pointer-events-none transition-opacity duration-500 p-5 md:p-8 flex flex-col justify-center overflow-y-auto"
+          data-panel="left"
+        >
+          <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-2 md:mb-3" data-desc-number></span>
+          <p class="text-body-s text-brand-text-muted leading-relaxed" data-desc-text></p>
+        </div>
+        <div
+          class="bento-panel-right apu-glass-card opacity-0 pointer-events-none transition-opacity duration-500 p-5 md:p-8 flex flex-col justify-center overflow-y-auto"
+          data-panel="right"
+        >
+          <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-2 md:mb-3" data-desc-number></span>
+          <p class="text-body-s text-brand-text-muted leading-relaxed" data-desc-text></p>
+        </div>
+      </div>
+
+      <!-- Empty-state hint -->
+      <div
+        class="bento-hint absolute inset-0 flex items-center justify-center text-center p-6 transition-opacity duration-300"
+        data-bento-hint
+      >
+        <p class="text-body-s text-brand-text-muted">
+          Select a strength below to explore what makes Management at APU stand out.
+        </p>
+      </div>
+
+      <!-- Moving clone container -->
+      <div class="bento-clone-layer absolute inset-0 pointer-events-none" data-clone-layer></div>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6" data-bento-row>
+      {
+        featured.map((item, index) => {
+          const number = (index + 1).toString().padStart(2, "0");
+          const isRightHalf = index >= 2;
+          return (
+            <button
+              type="button"
+              class="bento-trigger apu-glass-card apu-interactive-card text-left p-5 md:p-6 min-h-[140px] md:min-h-[160px] flex flex-col"
+              data-bento-trigger
+              data-index={index}
+              data-title={item.title}
+              data-description={item.description}
+              data-icon={item.icon}
+              data-number={number}
+              data-expand-to={isRightHalf ? "left" : "right"}
+              aria-expanded="false"
+            >
+              <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-3">{number}</span>
+              <div class="apu-icon-chip h-10 w-10 rounded-lg flex-shrink-0 mb-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  set:html={iconMap[item.icon] || iconMap['dna']}
+                />
+              </div>
+              <h3 class="text-h3 text-brand-primary-deep text-base md:text-lg">{item.title}</h3>
+            </button>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+.bento-clone h3,
+.bento-clone .apu-icon-chip,
+.bento-clone .apu-icon-chip svg,
+.bento-clone [class*="text-mono"] {
+  transition: font-size 500ms cubic-bezier(0.4, 0, 0.2, 1),
+  width 500ms cubic-bezier(0.4, 0, 0.2, 1),
+  height 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bento-clone {
+    transition: 500ms ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bento-clone h3 {
+    font-size: 1.5rem ;
+}
+
+.bento-clone.is-expanded h3 {
+  font-size: 3rem ;
+}
+
+.bento-clone .apu-icon-chip {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.bento-clone.is-expanded .apu-icon-chip {
+  width: 8rem ;
+  height: 8rem ;
+}
+
+.bento-clone .apu-icon-chip svg {
+  width: 80%;
+  height: 80%;
+}
+
+.bento-clone.is-expanded .apu-icon-chip svg {
+  width: 80% ;
+  height: 80% ;
+}
+
+.bento-clone [class*="text-mono"] {
+  font-size: 1rem;
+}
+.bento-clone.is-expanded [class*="text-mono"] {
+  font-size: 2rem ;
+}
+
+@media (max-width: 767px) {
+  .bento-clone h3 {
+    font-size: 1.125rem;
+  }
+
+  .bento-clone.is-expanded h3 {
+    font-size: 1.375rem;
+  }
+
+  .bento-clone .apu-icon-chip {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .bento-clone.is-expanded .apu-icon-chip {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  .bento-clone.is-expanded [class*="text-mono"] {
+    font-size: 1.125rem;
+  }
+}
+
+</style>
+
+<script is:inline>
+  (function () {
+    const section = document.querySelector('[data-bento-section]');
+    if (!section) return;
+
+    const stage = section.querySelector('[data-bento-stage]');
+    const cloneLayer = section.querySelector('[data-clone-layer]');
+    const hint = section.querySelector('[data-bento-hint]');
+    const leftPanel = section.querySelector('[data-panel="left"]');
+    const rightPanel = section.querySelector('[data-panel="right"]');
+    const triggers = Array.from(section.querySelectorAll('[data-bento-trigger]'));
+
+    if (!stage || !cloneLayer || !hint || !leftPanel || !rightPanel || triggers.length === 0) return;
+
+    let activeIndex = null;
+    let clone = null;
+    let isAnimating = false;
+    const MD_BREAKPOINT = 768;
+
+    function isMobile() {
+      return window.innerWidth < MD_BREAKPOINT;
+    }
+
+    function getTargetSide(trigger) {
+      return isMobile() ? 'left' : trigger.dataset.expandTo;
+    }
+
+    function hideHint() {
+      hint.style.opacity = '0';
+      hint.style.pointerEvents = 'none';
+    }
+
+    function showHint() {
+      hint.style.opacity = '1';
+      hint.style.pointerEvents = 'auto';
+    }
+
+    function hidePanels() {
+      leftPanel.classList.add('opacity-0', 'pointer-events-none');
+      rightPanel.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function showPanel(side, number, description) {
+      const panel = side === 'left' ? leftPanel : rightPanel;
+      const other = side === 'left' ? rightPanel : leftPanel;
+      const numberEl = panel.querySelector('[data-desc-number]');
+      const textEl = panel.querySelector('[data-desc-text]');
+      if (numberEl) numberEl.textContent = number;
+      if (textEl) textEl.textContent = description;
+      other.classList.add('opacity-0', 'pointer-events-none');
+      panel.classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function createClone(trigger) {
+      const rect = trigger.getBoundingClientRect();
+      const stageRect = stage.getBoundingClientRect();
+      const el = trigger.cloneNode(true);
+      el.classList.add('bento-clone');
+      el.classList.remove('apu-interactive-card');
+      el.style.position = 'absolute';
+      el.style.top = rect.top - stageRect.top + 'px';
+      el.style.left = rect.left - stageRect.left + 'px';
+      el.style.width = rect.width + 'px';
+      el.style.height = rect.height + 'px';
+      el.style.margin = '0';
+      el.style.transition = 'none';
+      el.style.zIndex = '20';
+      el.style.pointerEvents = 'auto';
+      el.setAttribute('aria-expanded', 'true');
+
+      const close = document.createElement('button');
+      close.type = 'button';
+      close.className = 'absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-[rgb(var(--color-apu-navy))] text-[rgb(var(--color-apu-accent))] text-lg leading-none';
+      close.setAttribute('aria-label', 'Close detail');
+      close.innerHTML = '&times;';
+      close.addEventListener('click', function (e) {
+        e.stopPropagation();
+        closeExpanded();
+      });
+      el.appendChild(close);
+
+      return el;
+    }
+
+    function removeClone() {
+      if (clone) {
+        clone.remove();
+        clone = null;
+      }
+    }
+
+    function collapseActive(onDone) {
+      if (activeIndex === null) {
+        if (onDone) onDone();
+        return;
+      }
+      const trigger = triggers[activeIndex];
+      if (!trigger) {
+        removeClone();
+        activeIndex = null;
+        if (onDone) onDone();
+        return;
+      }
+      const sourceRect = trigger.getBoundingClientRect();
+      const stageRect = stage.getBoundingClientRect();
+
+      if (clone) {
+        clone.classList.remove('is-expanded');
+        clone.style.transition = 'top 400ms linear, left 400ms linear, width 400ms linear, height 400ms linear';
+        clone.style.top = sourceRect.top - stageRect.top + 'px';
+        clone.style.left = sourceRect.left - stageRect.left + 'px';
+        clone.style.width = sourceRect.width + 'px';
+        clone.style.height = sourceRect.height + 'px';
+      }
+
+      hidePanels();
+
+      setTimeout(function () {
+        removeClone();
+        trigger.classList.remove('opacity-0', 'pointer-events-none');
+        trigger.setAttribute('aria-expanded', 'false');
+        activeIndex = null;
+        if (onDone) onDone();
+      }, 400);
+    }
+
+    function expand(trigger) {
+      if (isAnimating) return;
+      const index = Number(trigger.dataset.index);
+      if (activeIndex === index) return;
+
+      isAnimating = true;
+
+      function doExpand() {
+        activeIndex = index;
+        triggers.forEach(function (t) {
+          t.setAttribute('aria-expanded', 'false');
+          t.classList.remove('opacity-0', 'pointer-events-none');
+        });
+
+        hideHint();
+        clone = createClone(trigger);
+        cloneLayer.appendChild(clone);
+        void clone.offsetWidth;
+
+        trigger.setAttribute('aria-expanded', 'true');
+        trigger.classList.add('opacity-0', 'pointer-events-none');
+
+        const targetSide = getTargetSide(trigger);
+        const targetPanel = targetSide === 'left' ? leftPanel : rightPanel;
+        const targetRect = targetPanel.getBoundingClientRect();
+        const stageRect = stage.getBoundingClientRect();
+
+        requestAnimationFrame(function () {
+          clone.classList.add('is-expanded');
+          clone.style.transition = 'top 500ms linear, left 500ms linear, width 500ms linear, height 500ms linear';
+          clone.style.top = targetRect.top - stageRect.top + 'px';
+          clone.style.left = targetRect.left - stageRect.left + 'px';
+          clone.style.width = targetRect.width + 'px';
+          clone.style.height = targetRect.height + 'px';
+        });
+
+        setTimeout(function () {
+          showPanel(targetSide === 'left' ? 'right' : 'left', trigger.dataset.number || '', trigger.dataset.description || '');
+          isAnimating = false;
+        }, 150);
+      }
+
+      if (activeIndex !== null) {
+        collapseActive(doExpand);
+      } else {
+        doExpand();
+      }
+    }
+
+    function closeExpanded() {
+      if (isAnimating || activeIndex === null) return;
+      const trigger = triggers[activeIndex];
+      isAnimating = true;
+      collapseActive(function () {
+        showHint();
+        if (trigger) trigger.focus();
+        isAnimating = false;
+      });
+    }
+
+    triggers.forEach(function (trigger) {
+      trigger.addEventListener('click', function () {
+        expand(trigger);
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (activeIndex === null || isAnimating) return;
+      const target = e.target;
+      const isTrigger = target.closest('[data-bento-trigger]');
+      const isClone = target.closest('.bento-clone');
+      if (!isTrigger && !isClone) {
+        closeExpanded();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && activeIndex !== null && !isAnimating) {
+        closeExpanded();
+      }
+    });
+
+    if (triggers.length > 0) {
+      expand(triggers[0]);
+    }
+  })();
+</script>
