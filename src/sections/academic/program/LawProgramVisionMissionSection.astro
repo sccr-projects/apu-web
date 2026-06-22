@@ -1,0 +1,44 @@
+---
+import ScrollReveal from "@components/ScrollReveal.astro";
+import SectionHeader from "@components/SectionHeader.astro";
+import { biotechnologyProgram as program } from "@data/communication-program-details";
+---
+
+<section id="visi-misi" class="apu-section-shell bg-brand-surface-alt">
+  <div class="content-max py-24 md:py-32">
+    <ScrollReveal>
+      <SectionHeader
+        kicker="VISION & MISSION"
+        title="Vision and Mission"
+        class="text-center mb-16"
+        titleClass="text-h2 text-brand-primary-deep mb-4"
+      />
+    </ScrollReveal>
+
+    <!-- Vision Block -->
+    <ScrollReveal class="mb-16 md:mb-20">
+      <div class="apu-glass-card border-l-4 border-[rgb(var(--color-apu-accent))] bg-gradient-to-r from-[rgb(var(--color-apu-navy)_/_0.06)] to-white/60 p-8 md:p-12 max-w-5xl mx-auto">
+        <p class="text-mono text-brand-text-muted mb-4">VISION 2043</p>
+        <blockquote class="text-h3 md:text-h2 text-brand-primary-deep font-normal leading-tight">
+          "{program.vision}"
+        </blockquote>
+      </div>
+    </ScrollReveal>
+
+    <!-- Mission List -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+      {program.mission.map((item, index) => (
+        <ScrollReveal class="h-full" delay={index * 100} direction={index % 2 === 0 ? 'left' : 'right'}>
+          <div class="apu-glass-card apu-interactive-card p-6 md:p-8 flex gap-5 items-start h-full">
+            <span class="text-mono text-2xl text-[rgb(var(--color-apu-accent))] font-bold flex-shrink-0 mt-0.5">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <p class="text-body-s md:text-body text-brand-text leading-relaxed">
+              {item}
+            </p>
+          </div>
+        </ScrollReveal>
+      ))}
+    </div>
+  </div>
+</section>
