@@ -1,7 +1,7 @@
 ---
 import ScrollReveal from "@components/ScrollReveal.astro";
 import SectionHeader from "@components/SectionHeader.astro";
-import { biotechnologyProgram as program } from "@data/program-details";
+import { biotechnologyProgram as program } from "@data/communication-program-details";
 
 function getInitials(name: string): string {
   return name
@@ -21,13 +21,13 @@ const avatarGradients = [
 ];
 ---
 
-<section id="dosen" class="apu-section-shell relative overflow-hidden bg-brand-surface-alt py-24 md:py-32">
+<section id="dosen" class="apu-section-shell bg-brand-surface-alt py-24 md:py-32">
   <div class="content-max">
     <ScrollReveal>
       <SectionHeader
         kicker="FACULTY"
         title="Our Faculty"
-        description="Internationally qualified faculty guiding students in research and innovation"
+        description="Internationally qualified faculty guiding students in communication science"
         class="text-center mb-16"
         titleClass="text-h2 text-brand-primary-deep mb-4"
       />
@@ -39,7 +39,7 @@ const avatarGradients = [
         const initials = getInitials(member.name);
         return (
           <ScrollReveal delay={index * 100}>
-            <div class="apu-glass-card p-5 md:p-6 text-center h-full flex flex-col items-center transition-transform duration-300 hover:scale-[1.03]">
+            <div class="apu-glass-card apu-interactive-card p-5 md:p-6 text-center h-full flex flex-col items-center">
               <!-- Avatar: photo or gradient fallback -->
               <div class={`w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br ${avatarGradients[index % avatarGradients.length]} flex items-center justify-center mb-4 flex-shrink-0`}>
                 {member.photo ? (
@@ -54,24 +54,26 @@ const avatarGradients = [
                 )}
               </div>
 
-              <h3 class="text-body font-semibold text-brand-text leading-snug mb-1">
-                {member.name}
-              </h3>
-              <p class="text-caption text-brand-text-muted mb-2">
-                {member.title}
-              </p>
-              {member.nidn && member.nidn !== '-' && (
-                <p class="text-mono text-[10px] text-brand-text-muted/70">
-                  NIDN {member.nidn}
+              <div class="flex-1 w-full">
+                <h3 class="text-body-s md:text-body font-semibold text-brand-text leading-snug mb-1 break-words">
+                  {member.name}
+                </h3>
+                <p class="text-caption text-brand-text-muted mb-2">
+                  {member.title}
                 </p>
-              )}
+                {member.nidn && member.nidn !== '-' && (
+                  <p class="text-mono text-[10px] text-brand-text-muted/70 break-all">
+                    NIDN {member.nidn}
+                  </p>
+                )}
+              </div>
 
               {member.link && (
                 <a
                   href={member.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="mt-3 text-caption text-brand-primary-deep hover:text-[rgb(var(--color-apu-accent))] transition-colors duration-220"
+                  class="mt-auto pt-3 text-caption text-brand-primary-deep hover:text-[rgb(var(--color-apu-accent))] transition-colors duration-220"
                 >
                   View Profile →
                 </a>
