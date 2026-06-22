@@ -2,11 +2,10 @@
 import CtaButton from "@components/CtaButton.astro";
 import ScrollReveal from "@components/ScrollReveal.astro";
 import { people } from "@data/diaspora";
-import canadaFlag from "@/assets/images/academic/diaspora/canada-flag.svg";
 const featuredLecturer = people.find((p) => p.id === "prof-agung") ?? people[0];
 import canada from "@/assets/images/academic/canada-bg.jpg";
 
-const primaryCta = { label: "View Full Portfolio", href: "#" };
+const primaryCta = { label: "View Researcher Profile", href: "#" };
 const secondaryCta = { label: "Contact Office", href: "#" };
 const directoryTitle = "Faculty Directory";
 const sectionTitle = "Lecturers List:";
@@ -17,12 +16,26 @@ const sectionTitle = "Lecturers List:";
   class="apu-section-shell relative overflow-hidden bg-brand-surface py-24 md:py-32"
   aria-label={directoryTitle}
   data-people={JSON.stringify(people)}
+  data-default-bg={canada.src}
 >
   <div>
     {/* Featured researcher */}
     <ScrollReveal>
       <div class="apu-glass-card rounded-none lecturers-featured-card mb-10 overflow-hidden flex justify-center py-10 relative">
-          <img src={canada.src} alt={featuredLecturer.name} class="pointer-events-none absolute top-0 left-0 w-full h-full object-cover opacity-10" aria-hidden="true" />
+          <img
+            src={featuredLecturer.background_image?.src ?? canada.src}
+            alt={featuredLecturer.name}
+            class="pointer-events-none absolute top-0 left-0 w-full h-full object-cover opacity-30"
+            aria-hidden="true"
+            data-featured-background
+          />
+          <img
+            src={featuredLecturer.flag}
+            alt={`Flag of ${featuredLecturer.country}`}
+            class="absolute right-4 top-4 h-20 opacity-75 w-auto rounded-sm shadow-lg"
+            loading="eager"
+            data-featured-flag
+          />
         <div class="relative z-10 flex flex-row justify-center">
           <div class="order-2 w-1/2 flex flex-col justify-center md:order-1">
             <h2 class="text-h2 mb-3 text-white" data-featured-name>
@@ -68,18 +81,19 @@ const sectionTitle = "Lecturers List:";
               <CtaButton
                 href={primaryCta.href}
                 variant="primary"
-                withArrow
               >
                 {primaryCta.label}
               </CtaButton>
-              <CtaButton
+              <!-- <CtaButton
                 href={secondaryCta.href}
                 variant="secondary"
               >
                 {secondaryCta.label}
-              </CtaButton>
+              </CtaButton> -->
             </div>
           </div>
+
+
 
           <div class="relative order-1 md:order-2 w-96">
             <div class="relative aspect-[4/5] overflow-hidden rounded-2xl md:aspect-auto md:h-full">
@@ -91,12 +105,7 @@ const sectionTitle = "Lecturers List:";
                 loading="eager"
                 data-featured-image
               />
-              <img
-                src={canadaFlag.src}
-                alt="Canada flag"
-                class="absolute right-4 top-4 h-8 w-auto rounded-sm shadow-lg"
-                loading="eager"
-              />
+
             </div>
           </div>
         </div>
@@ -208,6 +217,9 @@ const sectionTitle = "Lecturers List:";
     const featuredPast = section?.querySelector("[data-featured-past-experience]");
     const featuredResearch = section?.querySelector("[data-featured-notable-research]");
     const featuredImage = section?.querySelector("[data-featured-image]") as HTMLImageElement | null;
+    const featuredFlag = section?.querySelector("[data-featured-flag]") as HTMLImageElement | null;
+    const featuredBackground = section?.querySelector("[data-featured-background]") as HTMLImageElement | null;
+    const defaultBg = section?.getAttribute("data-default-bg") || "";
 
     const updateFeatured = (id: string) => {
       const person = peopleData.find((p: any) => p.id === id);
@@ -231,6 +243,16 @@ const sectionTitle = "Lecturers List:";
         featuredImage.src = person.image.src;
         featuredImage.alt = `Portrait of ${person.name}`;
         featuredImage.style.objectPosition = `${person.position}% center`;
+      }
+
+      if (featuredFlag) {
+        featuredFlag.src = person.flag;
+        featuredFlag.alt = `Flag of ${person.country}`;
+      }
+
+      if (featuredBackground) {
+        featuredBackground.src = person.background_image?.src || defaultBg;
+        featuredBackground.alt = person.name;
       }
     };
 
