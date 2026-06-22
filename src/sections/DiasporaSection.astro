@@ -19,17 +19,17 @@ import { people } from "@data/diaspora";
     ></div>
   </div>
 
-  <div class="relative z-10 flex flex-col items-center justify-center px-4 py-20 text-center md:py-28">
-    <h1 class="text-h1 text-apu-navy">
+  <div class="relative z-10 flex flex-col items-center justify-center py-20 text-center md:py-28">
+    <h1 class="text-h1 text-apu-navy px-4">
       Agung Putra University Diaspora Lecturers
     </h1>
     <span class="apu-gradient-line mx-auto mt-6 w-40"></span>
-    <p class="text-body mt-6 max-w-2xl text-apu-navy/70">
+    <p class="text-body mt-6 max-w-2xl text-apu-navy/70 px-4">
       A global network of educators bringing international experience to APU classrooms.
     </p>
     <section id="diaspora-carousel" class="py-8 w-full" aria-label="Diaspora lecturers">
-      <div class="flex justify-center px-4 w-full">
-        <div class="diaspora-track w-full justify-center flex gap-0 overflow-x-auto py-6">
+      <div class="flex w-full">
+        <div class="diaspora-track w-full flex gap-2 overflow-x-auto py-6 md:gap-0 md:justify-center md:px-0">
           {
             people.map((person, index) => {
               const isCenter = person.id === "prof-agung";
@@ -37,8 +37,8 @@ import { people } from "@data/diaspora";
                 <article
                   class:list={[
                     "relative flex-shrink-0 diaspora-card rounded-lg",
-                    isCenter ? "z-10 w-32 md:w-56" : "w-24 md:w-36",
-                    index !== 0 && "-ml-3 s md:-ml-6 ",
+                    isCenter ? "z-10 w-36 md:w-56" : "w-28 md:w-36",
+                    index !== 0 && "-ml-0 md:-ml-6",
                   ]}
                   data-diaspora-center={isCenter ? "" : undefined}
                   data-person-id={person.id}
@@ -122,12 +122,24 @@ import { people } from "@data/diaspora";
 
 <style>
   .diaspora-track {
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
+    scroll-padding: 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
   .diaspora-track::-webkit-scrollbar {
     display: none;
+  }
+  .diaspora-card {
+    scroll-snap-align: start;
+  }
+  @media (min-width: 768px) {
+    .diaspora-track {
+      scroll-padding: 0;
+    }
+    [data-diaspora-center] {
+      scroll-snap-align: center;
+    }
   }
   .diaspora-hero {
     --apu-btn-primary-bg: rgb(var(--apu-accent));
@@ -139,9 +151,6 @@ import { people } from "@data/diaspora";
       rgb(var(--apu-navy) / 0.18),
       transparent 60%
     );
-  }
-  [data-diaspora-center] {
-    scroll-snap-align: center;
   }
   .diaspora-card {
     transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1),
