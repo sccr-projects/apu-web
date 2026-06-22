@@ -17,6 +17,8 @@ import japanBg from "@/assets/images/academic/diaspora/countries-bg/japan.jpg";
 import thaiBg from "@/assets/images/academic/diaspora/countries-bg/thai.jpg";
 import ukBg from "@/assets/images/academic/diaspora/countries-bg/uk.jpg";
 import aussieBg from "@/assets/images/academic/diaspora/countries-bg/aussie.jpg";
+import usBg from "@/assets/images/academic/diaspora/countries-bg/usa.jpg";
+
 
 export interface DiasporaPerson {
   id: string;
@@ -133,6 +135,7 @@ export const people: DiasporaPerson[] = [
     href: "#",
     google_scholar: "https://scholar.google.com/citations?user=tt8x-8IAAAAJ&hl=en",
     image: mrFaheem,
+    background_image: usBg,
     position: 37,
     pastExperience: {
       items: [
