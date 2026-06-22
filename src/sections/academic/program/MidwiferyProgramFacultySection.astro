@@ -1,7 +1,7 @@
 ---
 import ScrollReveal from "@components/ScrollReveal.astro";
 import SectionHeader from "@components/SectionHeader.astro";
-import { biotechnologyProgram as program } from "@data/law-program-details";
+import { biotechnologyProgram as program } from "@data/midwifery-program-details";
 
 function getInitials(name: string): string {
   return name
@@ -27,14 +27,14 @@ const avatarGradients = [
       <SectionHeader
         kicker="FACULTY"
         title="Our Faculty"
-        description="Internationally qualified faculty guiding students in law"
+        description="Internationally qualified faculty guiding students in midwifery"
         class="text-center mb-16"
         titleClass="text-h2 text-brand-primary-deep mb-4"
       />
     </ScrollReveal>
 
     <!-- Desktop: horizontal row / Mobile: 2-col grid -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 md:gap-6">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-6">
       {program.facultyMembers.map((member, index) => {
         const initials = getInitials(member.name);
         return (
