@@ -60,15 +60,15 @@ export const pathways: Pathway[] = [
     scholarships: [
       {
         name: "Academic Scholarship",
-        link: "https://apu.ac.id/admission/academic-scholarship",
+        link: "https://scholarship.apu.ac.id/academic-scholarship/",
       },
       {
         name: "Non-Academic Scholarship",
-        link: "#",
+        link: "https://scholarship.apu.ac.id/non-academic-achievement-scholarship/",
       },
       {
         name: "Content Creator Scholarship",
-        link: "#",
+        link: "https://scholarship.apu.ac.id/content-creator-scholarship/",
       },
       {
         name: "Partnership Scholarship",
@@ -76,6 +76,6 @@ export const pathways: Pathway[] = [
       },
     ],
     ctaText: "Apply for Scholarship",
-    ctaLink: "https://apu.ac.id/admission/academic-scholarship",
+    ctaLink: "https://scholarship.apu.ac.id",
   },
 ];
