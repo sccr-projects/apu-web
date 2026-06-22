@@ -153,8 +153,21 @@ const featured = [
     font-size: 1.5rem ;
 }
 
+.bento-clone.is-expanded {
+    @media screen and (max-width: 768px) {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem
+    }
+
+}
+
 .bento-clone.is-expanded h3 {
   font-size: 3rem ;
+  @media screen and (max-width: 768px) {
+      font-size: 1.2rem ;
+  }
 }
 
 .bento-clone .apu-icon-chip {
@@ -165,16 +178,25 @@ const featured = [
 .bento-clone.is-expanded .apu-icon-chip {
   width: 8rem ;
   height: 8rem ;
+  @media screen and (max-width: 768px) {
+      width: 3rem;
+      height: 3rem;
+  }
 }
 
 .bento-clone .apu-icon-chip svg {
   width: 80%;
   height: 80%;
+
 }
 
 .bento-clone.is-expanded .apu-icon-chip svg {
   width: 80% ;
   height: 80% ;
+  @media screen and (max-width: 768px) {
+    width: 50%;
+    height: 50%;
+  }
 }
 
 .bento-clone [class*="text-mono"] {
@@ -182,6 +204,9 @@ const featured = [
 }
 .bento-clone.is-expanded [class*="text-mono"] {
   font-size: 2rem ;
+  @media screen and (max-width: 768px) {
+      font-size: 1rem ;
+  }
 }
 
 </style>
