@@ -97,13 +97,12 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
     },
   ],
   vision:
-    'To become an internationally recognized Communication Science study program that excels in innovation in communication science and technology to support a futuristic global civilization.',
+    'Producing superior, innovative, character-based law graduates who transform Pancasila values ​​into globally competitive legal science by 2043.',
   mission: [
-    'Developing internationally standardized Communication Studies education that integrates science and communication technology.',
-    'Conducting research in the field of communications to support technological advancement, strengthen national competitiveness, and produce communications works that help solve various social, cultural, and technological problems in the global community.',
-    'Implementing community service programs that utilize communication skills to empower communities, improve communication literacy, and create a positive impact on welfare and civilization.',
-    'Building international networks to encourage collaboration in the development of science and technology, communications, and innovation that contribute to global civilization.',
-    'Cultivating critical, analytical, and independent thinking skills, as well as fostering a lifelong learning attitude and the application of innovative, ethical, and sustainable communication skills.'
+    'Character-Based Education: Providing superior and excellent education to produce law graduates who have Pancasila character, are able to innovate, and are globally competitive.',
+    'Research & Publication: Conducting professional research and scientific publications with a Pancasila character regarding the latest legal developments and issues.',
+    'Community Service and Science and Technology: Carrying out quality community service, in line with developments in science and technology, and with a Pancasila character.',
+    'Institutional Cooperation: Establishing institutional partnerships that are oriented towards developing knowledge in the legal field.' 
   ],
   graduateAttributes: [
     {
@@ -176,24 +175,24 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
   ],
   facultyMembers: [
     {
-       name: 'Lakna Tulas\'un, S.Sos., M.I.Kom.',
+       name: 'Zain Arfin Utama S.H.,M.H.',
       title: 'lecturer',
-      nidn: '0626099702',
+      nidn: '0615119301',
     },
     {
-      name: 'Sutinnarto,S.I.Kom.,M.I.Kom',
+      name: 'Muhamad Chabib F.S.HI.,M.H.',
       title: 'Lecturer',
-      nidn: '0614028102',
+      nidn: '0613059402',
     },
     {
-      name: 'Najmi Rizki Khairani, S.Sos., M.I.Kom',
+      name: 'Pandam Bayu Seto Aji, M.H.',
       title: 'Lecturer',
-      nidn: '0610048605',
+      nidn: '2734775676130202',
     },
     {
-      name: 'Rif\'atul Himmah, S.Sos., M.I.Kom',
+      name: 'Eko Setiyo Ary Wibowo S.H.I, M.H.',
       title: 'Lecturer',
-      nidn: '2461772673230292',
+      nidn: '0608119001',
     },
   ],
   focusAreas: [

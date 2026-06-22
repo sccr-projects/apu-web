@@ -16,7 +16,7 @@ export const leadershipMessage: LeadershipMessage = {
   kicker: "A MESSAGE",
   title: "A Message from Head of Communication Science Study Program",
   quote: [
-    "Assalamualaikum warahmatullahi wabarakatuhahhaha",
+    "Assalamualaikum warahmatullahi wabarakatuh",
     "Welcome to the official website of the Communications Department.",
     "",
     "The world of communications is evolving rapidly. Digital technology, creative content, and the dynamics of the media industry have formed a highly connected and ever-changing communications ecosystem. Today's communication is not only about how people interact, but also about how the media industry evolves, how journalism adapts, how communication business strategies are designed, and how technology shapes people's information consumption patterns. In this current of transformation, higher education is required to continuously adapt to prepare graduates who are not only technically competent but also competitive and resilient in the face of constant change.",
