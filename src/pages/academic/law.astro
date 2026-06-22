@@ -1,0 +1,35 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import NavigationAPU from "@components/NavigationAPU.astro";
+import LawProgramHeroSection from "@sections/academic/program/LawProgramHeroSection.astro";
+import ProgramStrengthsSection from "@sections/academic/program/ProgramStrengthsSection.astro";
+import LawProgramVisionMissionSection from "@sections/academic/program/LawProgramVisionMissionSection.astro";
+import ProgramValuesSection from "@sections/academic/program/ProgramValuesSection.astro";
+import LawProgramCareersSection from "@sections/academic/program/LawProgramCareersSection.astro";
+import LawProgramFacultySection from "@sections/academic/program/LawProgramFacultySection.astro";
+import ContactSection from "@sections/ContactSection.astro";
+import Footer from "@components/Footer.astro";
+import LawProgramMsgFromHead from "@sections/academic/program/LawProgramMsgFromHead.astro";
+import LawProgramStrengthsBentoSection from "@sections/academic/program/LawProgramStrengthsBentoSection.astro";
+import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
+
+---
+
+<MainLayout
+  title="Program Studi Biomedical Science | Agung Putra University"
+  description="Program Studi Biomedical Science S1 APU — jelajahi dunia mikroskopis biomedical science dengan fasilitas laboratorium modern dan dosen berkualifikasi internasional."
+>
+  <NavigationAPU />
+
+  <LawProgramHeroSection />
+  <LawProgramMsgFromHead variant="light" />
+  <!-- <BiomedicalGamePreviewSection /> -->
+  <!-- <ProgramStrengthsSection /> -->
+  <LawProgramStrengthsBentoSection />
+  <LawProgramVisionMissionSection />
+  <!-- <ProgramValuesSection /> -->
+  <!-- <LawProgramCareersSection /> -->
+  <LawProgramFacultySection />
+  <ContactSection />
+  <Footer />
+</MainLayout>
