@@ -17,7 +17,6 @@ import japanBg from "@/assets/images/academic/diaspora/countries-bg/japan.jpg";
 import thaiBg from "@/assets/images/academic/diaspora/countries-bg/thai.jpg";
 import ukBg from "@/assets/images/academic/diaspora/countries-bg/uk.jpg";
 import aussieBg from "@/assets/images/academic/diaspora/countries-bg/aussie.jpg";
-import usaBg from "@/assets/images/academic/diaspora/countries-bg/usa.jpg";
 
 export interface DiasporaPerson {
   id: string;
@@ -27,6 +26,7 @@ export interface DiasporaPerson {
   country: string;
   flag: string;
   href: string;
+  google_scholar: string;
   image: { src: string };
   background_image?: { src: string };
   position: number;
@@ -47,6 +47,7 @@ export const people: DiasporaPerson[] = [
     country: "Turkey",
     flag: "https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg",
     href: "#",
+    google_scholar: "",
     image: mrFaris,
     background_image: turkeyBg,
     position: 4,
@@ -65,6 +66,7 @@ export const people: DiasporaPerson[] = [
     country: "Hungary",
     flag: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Flag_of_Hungary.svg",
     href: "#",
+    google_scholar: "",
     image: msAdzani,
     background_image: hungaryBg,
     position: 12,
@@ -83,6 +85,7 @@ export const people: DiasporaPerson[] = [
     country: "China",
     flag: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg",
     href: "#",
+    google_scholar: "https://scholar.google.com/citations?hl=en&user=Yif5VZQAAAAJ",
     image: mrJutadi,
     background_image: chinaBg,
     position: 20,
@@ -101,6 +104,7 @@ export const people: DiasporaPerson[] = [
     country: "Japan",
     flag: "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
     href: "#",
+    google_scholar: "https://scholar.google.com/citations?user=vUj63aUAAAAJ",
     image: msDina,
     background_image: japanBg,
     position: 28,
@@ -119,8 +123,8 @@ export const people: DiasporaPerson[] = [
     country: "United States",
     flag: "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
     href: "#",
+    google_scholar: "https://scholar.google.com/citations?user=tt8x-8IAAAAJ&hl=en",
     image: mrFaheem,
-    background_image: usaBg,
     position: 37,
     pastExperience: {
       items: ["TBD"],
@@ -134,9 +138,10 @@ export const people: DiasporaPerson[] = [
     name: "Prof. Dr. dr. Agung Putra, M.Si. Med.",
     role: "Founder & Commissioner SCCR Indonesia",
     univ: "",
-    country: "Canada",
-    flag: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg",
+    country: "Indonesia",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg",
     href: "#",
+    google_scholar: "https://scholar.google.com/citations?user=wy-Vlt0AAAAJ",
     image: profAgung,
     position: 50,
     pastExperience: {
@@ -158,6 +163,7 @@ export const people: DiasporaPerson[] = [
     country: "Thailand",
     flag: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_Thailand.svg",
     href: "#",
+    google_scholar: "https://scholar.google.com/citations?user=K6XkHHgAAAAJ&hl=en",
     image: msWaheni,
     background_image: thaiBg,
     position: 62,
@@ -176,6 +182,7 @@ export const people: DiasporaPerson[] = [
     country: "United Kingdom",
     flag: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
     href: "#",
+    google_scholar: "https://scholar.google.com/citations?user=3AVmz6gAAAAJ",
     image: profYayuk,
     background_image: ukBg,
     position: 71,
@@ -194,6 +201,7 @@ export const people: DiasporaPerson[] = [
     country: "Japan",
     flag: "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
     href: "#",
+    google_scholar: "https://scholar.google.com/citations?user=1uphszUAAAAJ",
     image: mrDendi,
     background_image: japanBg,
     position: 79,
@@ -212,6 +220,7 @@ export const people: DiasporaPerson[] = [
     country: "United Kingdom",
     flag: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
     href: "#",
+    google_scholar: "https://scholar.google.com/citations?hl=en&user=e_Xv4EwAAAAJ",
     image: mrAgus,
     background_image: ukBg,
     position: 87,
@@ -230,6 +239,7 @@ export const people: DiasporaPerson[] = [
     country: "Australia",
     flag: "https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg",
     href: "#",
+    google_scholar: "https://scholar.google.com/citations?user=8nkEolEAAAAJ",
     image: msEndah,
     background_image: aussieBg,
     position: 96,

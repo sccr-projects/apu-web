@@ -1,12 +1,9 @@
 ---
-import CtaButton from "@components/CtaButton.astro";
 import ScrollReveal from "@components/ScrollReveal.astro";
 import { people } from "@data/diaspora";
 const featuredLecturer = people.find((p) => p.id === "prof-agung") ?? people[0];
 import canada from "@/assets/images/academic/canada-bg.jpg";
 
-const primaryCta = { label: "View Researcher Profile", href: "#" };
-const secondaryCta = { label: "Contact Office", href: "#" };
 const directoryTitle = "Faculty Directory";
 const sectionTitle = "Lecturers List:";
 ---
@@ -78,18 +75,29 @@ const sectionTitle = "Lecturers List:";
             </div>
 
             <div class="flex flex-wrap items-center gap-4">
-              <CtaButton
-                href={primaryCta.href}
-                variant="primary"
+              <a
+                href={featuredLecturer.google_scholar}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="apu-btn apu-btn--primary inline-flex items-center gap-2"
+                data-featured-profile
               >
-                {primaryCta.label}
-              </CtaButton>
-              <!-- <CtaButton
-                href={secondaryCta.href}
-                variant="secondary"
-              >
-                {secondaryCta.label}
-              </CtaButton> -->
+                View Researcher Profile
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </a>
             </div>
           </div>
 
@@ -220,6 +228,7 @@ const sectionTitle = "Lecturers List:";
     const featuredFlag = section?.querySelector("[data-featured-flag]") as HTMLImageElement | null;
     const featuredBackground = section?.querySelector("[data-featured-background]") as HTMLImageElement | null;
     const defaultBg = section?.getAttribute("data-default-bg") || "";
+    const featuredProfile = section?.querySelector("[data-featured-profile]") as HTMLAnchorElement | null;
 
     const updateFeatured = (id: string) => {
       const person = peopleData.find((p: any) => p.id === id);
@@ -253,6 +262,10 @@ const sectionTitle = "Lecturers List:";
       if (featuredBackground) {
         featuredBackground.src = person.background_image?.src || defaultBg;
         featuredBackground.alt = person.name;
+      }
+
+      if (featuredProfile) {
+        featuredProfile.href = person.google_scholar || "#";
       }
     };
 
