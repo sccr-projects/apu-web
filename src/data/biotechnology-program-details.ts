@@ -97,12 +97,13 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
     },
   ],
   vision:
-    'To become an internationally recognized biotechnology study program through green technology innovation and cell engineering development.',
+    'To become an internationally recognized leading Biotechnology Study Program through innovation in green technology and the development of cell engineering.',
   mission: [
-    'To deliver world-class biotechnology education based on research and the latest technologies.',
-    'To develop innovative research in medical biotechnology, bioinformatics, and industrial biotechnology.',
-    'To build strategic partnerships with industry and academic institutions at home and abroad.',
-    'To produce graduates who are adaptable, creative, and socially responsible.'
+    'Organizing international-standard biotechnology education that develops competent graduates with the spirit of a scientist, entrepreneur, and leader.',
+    'Conducting innovative and solution-oriented research that supports national and international competitiveness, while advancing downstream development in cell engineering for industrial growth.',
+    'Serving the community through the application of biotechnology to improve quality of life and contribute to the advancement of civilization.',
+    'Building national and international collaboration networks focused on the development of biotechnology science.',
+    'Fostering critical, analytical, and independent thinking skills, while shaping lifelong learners who apply biotechnology in an innovative, ethical, and sustainable manner.'
   ],
   graduateAttributes: [
     {
@@ -156,68 +157,68 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
   ],
   careerPaths: [
     {
-      title: 'Research Scientist',
-      description: 'Research and development in pharmaceutical, food, and health biotechnology laboratories.',
+      title: 'Biotechnology Research Scientist',
+      description: 'Conduct research in molecular biology, cell technology, genetics, microbiology, and applied biotechnology laboratories.',
     },
     {
-      title: 'Clinical Regulator',
-      description: 'Regulation and oversight of biomedical products to ensure safety and quality.',
+      title: 'Regulatory Affairs Specialist',
+      description: 'Ensure biotechnology, biomedical, and laboratory-based products comply with safety, quality, and regulatory standards.',
     },
     {
-      title: 'Bioinformatics Expert',
-      description: 'Biological data analysis, computational modeling, and genomic algorithm development.',
+      title: 'Bioinformatics Analyst',
+      description: 'Analyze genomic, molecular, and biological data using computational tools and biotechnology informatics approaches.',
     },
     {
-      title: 'Data Security Specialist',
-      description: 'Research data and health information security within the digital biotechnology ecosystem.',
+      title: 'Biotech Data Specialist',
+      description: 'Manage, protect, and interpret research data within digital biotechnology, laboratory, and healthcare ecosystems.',
     },
     {
-      title: 'Quality Assurance Professional',
-      description: 'Quality assurance for biotechnology products according to GLP, GMP, and international standards.',
+      title: 'Quality Assurance & Quality Control Specialist',
+      description: 'Maintain biotechnology product quality through GLP, GMP, validation, documentation, and international laboratory standards.',
     },
     {
-      title: 'Industrial Biotech Developer',
-      description: 'Product and process development in green and sustainable biotechnology industries.',
+      title: 'Industrial Bioprocess Developer',
+      description: 'Develop sustainable biotechnology products and processes for health, food, agriculture, environment, and bioindustry sectors.',
     },
   ],
   facultyMembers: [
     {
-      name: 'Nadya Audina NS. S.Si., M.Biomed',
+      name: 'Fauziah Novita Putri Rifai, S.Si, M.Biotech',
       title: 'Head of Study Program',
       nidn: '-',
     },
     {
-      name: 'Mohammad Ariq Nazar, S.Si, M.Biomed',
+      name: 'Nurul Hidayah S.Si, M.Biotech',
       title: 'Lecturer',
       nidn: '-',
     },
     {
-      name: 'Dian Respati Ayu, S.Si., M.Biomed',
+      name: 'Salindri Prawitasari, S.Si, M.Si.',
       title: 'Lecturer',
       nidn: '-',
     },
     {
-      name: 'Risky Chandra Satria Irawan S.Si, M.Biomed',
+      name: 'Dini Cahyani, S.Si, M.Biotech',
       title: 'Lecturer',
       nidn: '-',
     },
     {
-      name: 'Dendi Krisna Nugraha, M.Sc., Ph.D.',
+      name: 'Iffan Alif, S.Si, M.Biotech',
       title: 'Lecturer',
       nidn: '-',
     },
     {
-      name: 'Faheem Ahmed Khan, BSc, MS, PhD',
+      name: 'Waheni Rizki Aprilia, S.Si., Ph.D.',
       title: 'Lecturer',
       nidn: '-',
     },
     {
-      name: 'Naufal Sebastian Anggoro, S.Si., M.Si',
+      name: 'Adzani Gaisani Arda M.Sc',
       title: 'Lecturer',
       nidn: '-',
     },
     {
-      name: 'Endah Agustina Lestari, S.Si, M.Mol.Biol.',
+      name: 'Fikriya Novita Sari, S.Si., M.Si',
       title: 'Lecturer',
       nidn: '-',
     },

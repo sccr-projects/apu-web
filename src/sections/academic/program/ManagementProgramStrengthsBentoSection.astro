@@ -4,28 +4,58 @@ import SectionHeader from "@components/SectionHeader.astro";
 import BackgroundBlobs from "@components/BackgroundBlobs.astro";
 
 const iconMap: Record<string, string> = {
-  newspaper: '<path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/>',
-  monitor: '<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
-  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
-  handshake: '<path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.25-3.25a1 1 0 0 0-1.3-.17l-1.1.73a1 1 0 0 1-1.3 0l-1.1-.73a1 1 0 0 0-1.3.17L7.5 16.5a1 1 0 1 0 3 3l2.5-2.5Z"/><path d="m18.5 19.5 1-1a1 1 0 0 0 0-1.4l-2.5-2.5a1 1 0 0 0-1.4 0l-1 1"/><path d="m5.5 19.5-1-1a1 1 0 0 1 0-1.4l2.5-2.5a1 1 0 0 1 1.4 0l1 1"/><path d="M12 12v.01"/>',
+  // Excellent Graduates / achievement
+  award:
+    '<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>',
+
+  // Industry-based curriculum / briefcase
+  briefcase:
+    '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M2 13h20"/>',
+
+  // Global digital business / globe + network
+  globeNetwork:
+    '<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><circle cx="17" cy="7" r="1.5"/><circle cx="7" cy="17" r="1.5"/><path d="M15.8 8.2 8.2 15.8"/>',
+
+  // Field experience / map
+  map:
+    '<path d="M9 18 3 21V6l6-3 6 3 6-3v15l-6 3-6-3Z"/><path d="M9 3v15"/><path d="M15 6v15"/>',
+
+  // Enrichment / internship / people connection
+  users:
+    '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
 };
 
 const featured = [
   {
-    title: "Innovative Learning",
-    description: "Our education implements research- and practice-based learning, as well as intensive collaboration with leading institutions. This equips students with sharp and accurate legal analysis that aligns with the latest regulations, ensuring a solid understanding of the law from the outset.",
-    icon: "newspaper",
+    title: "Developing Excellent Graduates",
+    description:
+      "The Management Study Program is designed to develop competent, adaptive, and globally competitive graduates through two main focuses: International Business Management and Digital Business Management. These areas complement each other in preparing students to manage cross-border business and utilize digital technology for the future of business.",
+    icon: "award",
   },
   {
-    title: "Character Building",
-    description: "All academic activities are directed towards strengthening students' legal character. We implement orderly good governance, uphold integrity and accountability, and promote an honest academic culture.",
-    icon: "monitor",
+    title: "Industry-Based Curriculum",
+    description:
+      "A curriculum aligned with industry needs, focusing on the use of digital technology in business management and strategic decision-making.",
+    icon: "briefcase",
   },
   {
-    title: "Real Contribution",
-    description: "Our institutional responsibility is realized through our drive to produce accurate and relevant legal research outputs. This contribution provides significant added value to national legal development, in line with our research focus on the Pancasila-based philosophy.",
+    title: "Global Business Digitalization",
+    description:
+      "Integrates global business digitalization into the learning process, preparing students to contribute to economic growth through technology-driven business development.",
+    icon: "globeNetwork",
+  },
+  {
+    title: "Field-Based Learning",
+    description:
+      "Encourages students to actively engage in business projects, field activities, and cross-border research experiences.",
+    icon: "map",
+  },
+  {
+    title: "Enrichment Program",
+    description:
+      "The Enrichment Program connects students with the professional world through internship opportunities and real industry exposure.",
     icon: "users",
-  }
+  },
 ];
 ---
 
@@ -39,13 +69,8 @@ const featured = [
     <ScrollReveal>
       <SectionHeader
         kicker="WHY US"
-<<<<<<< HEAD
-        title="Why Study Communication Science at APU?"
-        description="A future-oriented curriculum that combines communication theory, digital media practice, public relations, journalism, branding, and creative content development to prepare students for today’s dynamic communication industry."
-=======
-        title="Why Study Law at APU?"
-        description="A future-ready curriculum that combines legal knowledge, critical thinking, advocacy, ethics, and practical law experience to prepare students for professional careers in justice, governance, business, and society."
->>>>>>> origin/feat/law
+        title="Why Study Management at APU?"
+        description="A future-focused curriculum that builds leadership, entrepreneurship, strategic thinking, and digital business skills to prepare students for the modern business world."
         class="text-center mb-12"
         titleClass="text-h2 text-[rgb(var(--color-apu-navy))] mb-4"
       />
@@ -53,23 +78,23 @@ const featured = [
 
     <!-- Stage -->
     <div
-      class="bento-stage apu-glass-card relative mb-8 flex flex-col min-h-[320px] md:min-h-[520px] p-4 md:p-6"
+      class="bento-stage apu-glass-card relative mb-8 flex flex-col min-h-[420px] sm:min-h-[460px] md:min-h-[520px] p-4 md:p-6"
       data-bento-stage
     >
       <!-- Panels -->
-      <div class="bento-panels grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 flex-1">
+      <div class="bento-panels grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 flex-1 min-h-0">
         <div
-          class="bento-panel-left apu-glass-card opacity-0 pointer-events-none transition-opacity duration-500 p-6 md:p-8 flex flex-col justify-center"
+          class="bento-panel-left apu-glass-card opacity-0 pointer-events-none transition-opacity duration-500 p-5 md:p-8 flex flex-col justify-center overflow-y-auto"
           data-panel="left"
         >
-          <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-3" data-desc-number></span>
+          <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-2 md:mb-3" data-desc-number></span>
           <p class="text-body-s text-brand-text-muted leading-relaxed" data-desc-text></p>
         </div>
         <div
-          class="bento-panel-right apu-glass-card opacity-0 pointer-events-none transition-opacity duration-500 p-6 md:p-8 flex flex-col justify-center"
+          class="bento-panel-right apu-glass-card opacity-0 pointer-events-none transition-opacity duration-500 p-5 md:p-8 flex flex-col justify-center overflow-y-auto"
           data-panel="right"
         >
-          <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-3" data-desc-number></span>
+          <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-2 md:mb-3" data-desc-number></span>
           <p class="text-body-s text-brand-text-muted leading-relaxed" data-desc-text></p>
         </div>
       </div>
@@ -80,7 +105,7 @@ const featured = [
         data-bento-hint
       >
         <p class="text-body-s text-brand-text-muted">
-          Select a strength below to explore what makes Biomedical Science at APU stand out.
+          Select a strength below to explore what makes Management at APU stand out.
         </p>
       </div>
 
@@ -184,6 +209,30 @@ const featured = [
   font-size: 2rem ;
 }
 
+@media (max-width: 767px) {
+  .bento-clone h3 {
+    font-size: 1.125rem;
+  }
+
+  .bento-clone.is-expanded h3 {
+    font-size: 1.375rem;
+  }
+
+  .bento-clone .apu-icon-chip {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .bento-clone.is-expanded .apu-icon-chip {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  .bento-clone.is-expanded [class*="text-mono"] {
+    font-size: 1.125rem;
+  }
+}
+
 </style>
 
 <script is:inline>
@@ -203,6 +252,15 @@ const featured = [
     let activeIndex = null;
     let clone = null;
     let isAnimating = false;
+    const MD_BREAKPOINT = 768;
+
+    function isMobile() {
+      return window.innerWidth < MD_BREAKPOINT;
+    }
+
+    function getTargetSide(trigger) {
+      return isMobile() ? 'left' : trigger.dataset.expandTo;
+    }
 
     function hideHint() {
       hint.style.opacity = '0';
@@ -325,7 +383,7 @@ const featured = [
         trigger.setAttribute('aria-expanded', 'true');
         trigger.classList.add('opacity-0', 'pointer-events-none');
 
-        const targetSide = trigger.dataset.expandTo;
+        const targetSide = getTargetSide(trigger);
         const targetPanel = targetSide === 'left' ? leftPanel : rightPanel;
         const targetRect = targetPanel.getBoundingClientRect();
         const stageRect = stage.getBoundingClientRect();

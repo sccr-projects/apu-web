@@ -1,0 +1,35 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import NavigationAPU from "@components/NavigationAPU.astro";
+import ProgramStrengthsSection from "@sections/academic/program/ProgramStrengthsSection.astro";
+import BiotechnologyProgramVisionMissionSection from "@sections/academic/program/BiotechnologyProgramVisionMissionSection.astro";
+import ProgramValuesSection from "@sections/academic/program/ProgramValuesSection.astro";
+import BiotechnologyProgramCareersSection from "@sections/academic/program/BiotechnologyProgramCareersSection.astro";
+import BiotechnologyProgramFacultySection from "@sections/academic/program/BiotechnologyProgramFacultySection.astro";
+import ContactSection from "@sections/ContactSection.astro";
+import Footer from "@components/Footer.astro";
+import BiotechnologyProgramMsgFromHead from "@sections/academic/program/BiotechnologyProgramMsgFromHead.astro";
+import BiotechnologyProgramStrengthsBentoSection from "@sections/academic/program/BiotechnologyProgramStrengthsBentoSection.astro";
+import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
+import BiotechnologyProgramHeroSection from "@/sections/academic/program/BiotechnologyProgramHeroSection.astro";
+
+---
+
+<MainLayout
+  title="Program Studi Biotechnology | Agung Putra University"
+  description="Program Studi Biotechnology S1 APU — membekali mahasiswa dengan ilmu bioteknologi modern, keterampilan laboratorium, dan pemahaman riset untuk bidang kesehatan, pangan, dan lingkungan juga dosen yang berkualifikasi internasional."
+>
+  <NavigationAPU />
+
+  <BiotechnologyProgramHeroSection />
+  <BiotechnologyProgramMsgFromHead variant="light" />
+  <!-- <BiomedicalGamePreviewSection /> -->
+  <!-- <ProgramStrengthsSection /> -->
+  <BiotechnologyProgramStrengthsBentoSection />
+  <BiotechnologyProgramVisionMissionSection />
+  <!-- <ProgramValuesSection /> -->
+  <!-- <BiotechnologyProgramCareersSection /> -->
+  <BiotechnologyProgramFacultySection />
+  <ContactSection />
+  <Footer />
+</MainLayout>
