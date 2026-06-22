@@ -57,14 +57,22 @@ const featured = [
           class="bento-panel-left apu-glass-card opacity-0 pointer-events-none transition-opacity duration-500 p-6 md:p-8 flex flex-col justify-center"
           data-panel="left"
         >
-          <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-3" data-desc-number></span>
+          <div class="bento-panel-icon apu-icon-chip h-10 w-10 rounded-lg flex-shrink-0 mb-3" data-desc-icon-wrap>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-desc-icon></svg>
+          </div>
+          <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-1" data-desc-number></span>
+          <h4 class="text-h3 text-brand-primary-deep text-base mb-2" data-desc-title></h4>
           <p class="text-body-s text-brand-text-muted leading-relaxed" data-desc-text></p>
         </div>
         <div
           class="bento-panel-right apu-glass-card opacity-0 pointer-events-none transition-opacity duration-500 p-6 md:p-8 flex flex-col justify-center"
           data-panel="right"
         >
-          <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-3" data-desc-number></span>
+          <div class="bento-panel-icon apu-icon-chip h-10 w-10 rounded-lg flex-shrink-0 mb-3" data-desc-icon-wrap>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-desc-icon></svg>
+          </div>
+          <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-1" data-desc-number></span>
+          <h4 class="text-h3 text-brand-primary-deep text-base mb-2" data-desc-title></h4>
           <p class="text-body-s text-brand-text-muted leading-relaxed" data-desc-text></p>
         </div>
       </div>
@@ -128,11 +136,6 @@ const featured = [
 </section>
 
 <style>
-@media (max-width: 1023px) {
-  section#keunggulan-bento {
-    display: none;
-  }
-}
 .bento-clone h3,
 .bento-clone .apu-icon-chip,
 .bento-clone .apu-icon-chip svg,
@@ -153,8 +156,21 @@ const featured = [
     font-size: 1.5rem ;
 }
 
+.bento-clone.is-expanded {
+    @media screen and (max-width: 768px) {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem
+    }
+
+}
+
 .bento-clone.is-expanded h3 {
   font-size: 3rem ;
+  @media screen and (max-width: 768px) {
+      font-size: 1.2rem ;
+  }
 }
 
 .bento-clone .apu-icon-chip {
@@ -165,16 +181,25 @@ const featured = [
 .bento-clone.is-expanded .apu-icon-chip {
   width: 8rem ;
   height: 8rem ;
+  @media screen and (max-width: 768px) {
+      width: 3rem;
+      height: 3rem;
+  }
 }
 
 .bento-clone .apu-icon-chip svg {
   width: 80%;
   height: 80%;
+
 }
 
 .bento-clone.is-expanded .apu-icon-chip svg {
   width: 80% ;
   height: 80% ;
+  @media screen and (max-width: 768px) {
+    width: 50%;
+    height: 50%;
+  }
 }
 
 .bento-clone [class*="text-mono"] {
@@ -182,6 +207,43 @@ const featured = [
 }
 .bento-clone.is-expanded [class*="text-mono"] {
   font-size: 2rem ;
+  @media screen and (max-width: 768px) {
+      font-size: 1rem ;
+  }
+}
+
+/* ── Mobile responsive sizing ── */
+@media (max-width: 1023px) {
+  .bento-stage {
+    min-height: 200px;
+  }
+  .bento-panels {
+    flex: none;
+    display: block;
+  }
+  .bento-panels > .opacity-0 {
+    display: none;
+  }
+  .bento-panel-left:not(.opacity-0),
+  .bento-panel-right:not(.opacity-0) {
+    display: flex;
+    animation: bentoFadeIn 300ms ease-out;
+  }
+  .bento-panel-left,
+  .bento-panel-right {
+    padding: 1rem;
+  }
+}
+
+@keyframes bentoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 </style>
@@ -203,6 +265,14 @@ const featured = [
     let activeIndex = null;
     let clone = null;
     let isAnimating = false;
+    const isMobile = window.innerWidth < 1024;
+
+    var iconPaths = {
+      newspaper: '<path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/>',
+      monitor: '<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
+      users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+      handshake: '<path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.25-3.25a1 1 0 0 0-1.3-.17l-1.1.73a1 1 0 0 1-1.3 0l-1.1-.73a1 1 0 0 0-1.3.17L7.5 16.5a1 1 0 1 0 3 3l2.5-2.5Z"/><path d="m18.5 19.5 1-1a1 1 0 0 0 0-1.4l-2.5-2.5a1 1 0 0 0-1.4 0l-1 1"/><path d="m5.5 19.5-1-1a1 1 0 0 1 0-1.4l2.5-2.5a1 1 0 0 1 1.4 0l1 1"/><path d="M12 12v.01"/>',
+    };
 
     function hideHint() {
       hint.style.opacity = '0';
@@ -219,13 +289,17 @@ const featured = [
       rightPanel.classList.add('opacity-0', 'pointer-events-none');
     }
 
-    function showPanel(side, number, description) {
+    function showPanel(side, number, description, icon, title) {
       const panel = side === 'left' ? leftPanel : rightPanel;
       const other = side === 'left' ? rightPanel : leftPanel;
-      const numberEl = panel.querySelector('[data-desc-number]');
-      const textEl = panel.querySelector('[data-desc-text]');
+      var numberEl = panel.querySelector('[data-desc-number]');
+      var textEl = panel.querySelector('[data-desc-text]');
+      var iconEl = panel.querySelector('[data-desc-icon]');
+      var titleEl = panel.querySelector('[data-desc-title]');
       if (numberEl) numberEl.textContent = number;
       if (textEl) textEl.textContent = description;
+      if (iconEl && icon) iconEl.innerHTML = iconPaths[icon] || '';
+      if (titleEl) titleEl.textContent = title || '';
       other.classList.add('opacity-0', 'pointer-events-none');
       panel.classList.remove('opacity-0', 'pointer-events-none');
     }
@@ -283,6 +357,16 @@ const featured = [
       const sourceRect = trigger.getBoundingClientRect();
       const stageRect = stage.getBoundingClientRect();
 
+      if (isMobile) {
+        removeClone();
+        trigger.classList.remove('opacity-0', 'pointer-events-none');
+        trigger.setAttribute('aria-expanded', 'false');
+        hidePanels();
+        activeIndex = null;
+        if (onDone) onDone();
+        return;
+      }
+
       if (clone) {
         clone.classList.remove('is-expanded');
         clone.style.transition = 'top 400ms linear, left 400ms linear, width 400ms linear, height 400ms linear';
@@ -307,6 +391,20 @@ const featured = [
       if (isAnimating) return;
       const index = Number(trigger.dataset.index);
       if (activeIndex === index) return;
+
+      if (isMobile) {
+        activeIndex = index;
+        triggers.forEach(function (t) {
+          t.setAttribute('aria-expanded', 'false');
+          t.classList.remove('opacity-0', 'pointer-events-none');
+        });
+        hideHint();
+        trigger.setAttribute('aria-expanded', 'true');
+        trigger.classList.add('opacity-0', 'pointer-events-none');
+        var targetSide = trigger.dataset.expandTo;
+        showPanel(targetSide === 'left' ? 'right' : 'left', trigger.dataset.number || '', trigger.dataset.description || '', trigger.dataset.icon, trigger.dataset.title);
+        return;
+      }
 
       isAnimating = true;
 
@@ -340,7 +438,7 @@ const featured = [
         });
 
         setTimeout(function () {
-          showPanel(targetSide === 'left' ? 'right' : 'left', trigger.dataset.number || '', trigger.dataset.description || '');
+          showPanel(targetSide === 'left' ? 'right' : 'left', trigger.dataset.number || '', trigger.dataset.description || '', trigger.dataset.icon, trigger.dataset.title);
           isAnimating = false;
         }, 150);
       }
@@ -385,7 +483,7 @@ const featured = [
       }
     });
 
-    if (triggers.length > 0) {
+    if (!isMobile && triggers.length > 0) {
       expand(triggers[0]);
     }
   })();
