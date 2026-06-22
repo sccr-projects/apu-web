@@ -97,12 +97,13 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
     },
   ],
   vision:
-    'Producing superior, innovative, character-based law graduates who transform Pancasila values ​​into globally competitive legal science by 2043.',
+        'To become a World Class Diploma III Midwifery Study Program to develop science and technology that produces skilled midwife graduates with character and entrepreneurial spirit.',
   mission: [
-    'Character-Based Education: Providing superior and excellent education to produce law graduates who have Pancasila character, are able to innovate, and are globally competitive.',
-    'Research & Publication: Conducting professional research and scientific publications with a Pancasila character regarding the latest legal developments and issues.',
-    'Community Service and Science and Technology: Carrying out quality community service, in line with developments in science and technology, and with a Pancasila character.',
-    'Institutional Cooperation: Establishing institutional partnerships that are oriented towards developing knowledge in the legal field.' 
+    'Organizing vocational midwifery education that produces superior graduates based on science and technology that meets global standards.',
+    'Developing applied research in the field of midwifery that is oriented towards science and technology that is relevant to the needs of society and global developments.',
+    'Organizing community service based on empirical and appropriate technology to improve the health of mothers and children in the life cycle.',
+    'Building national and international networks to support the achievement of global competitiveness of study programs.' ,
+    'Cultivating critical, analytical and independent thinking skills, as well as shaping the attitude of lifelong learners in the application of innovative, ethical and sustainable midwifery.'
   ],
   graduateAttributes: [
     {
@@ -156,48 +157,43 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
   ],
   careerPaths: [
     {
-      title: 'Multimedia Specialist (Journalist and Editor)',
-      description: 'Designs, produces, and manages multimedia content (audio, audiovisual, and written) for cross-platform mass communication. They play a key role in production and editing, such as journalists, writers, videographers, or editors.',
+      title: 'Care Provider',
+      description: 'Able to provide comprehensive, high-quality midwifery care, focusing on integrated health services across the woman\'s life cycle.',
     },
     {
-      title: 'Media and Content Innovator',
-      description: 'Content innovators design creative concepts and manage the entire media production cycle, from pre-production to multi-platform distribution. They develop new ideas, develop communication strategies, and integrate various forms of content to enhance the value and appeal of media.',
+      title: 'Care Provider for International Customer',
+      description: 'Ability to work in internationally recognized healthcare settings, both domestically and internationally. Strengthen international standards and respect cultural diversity and global healthcare systems.',
     },
     {
-      title: 'Digital Communication Entrepreneur',
-      description: 'Building and developing businesses based on digital media and communication technology, such as startups, digital agencies, and professional personal brands.',
-    },
-
-    {
-      title: 'Public Relations Specialist/Agency',
-      description: 'Designs, implements, and evaluates communication strategies to build reputation and positive public relations.',
+      title: 'Educator',
+      description: 'Actively participate in efforts to improve maternal and child health through health promotion, public education, and global insight-based advocacy. Continue studies in midwifery to advance scientific knowledge.',
     },
   ],
   facultyMembers: [
-
     {
-       name: 'dr. Erwin, S.H., M.H',
+       name: 'Bdn, Titik Kurniawati, S.SiT., M.Kes., M.Keb',
       title: 'lecturer',
-      nidn: '6965892',
-    },    {
-       name: 'Zain Arfin Utama S.H.,M.H.',
+      nidn: '0622058101',
+    },
+    {
+       name: 'Dewi Elliana, SKM., S.Tr.Keb., M.Kes',
       title: 'lecturer',
-      nidn: '0615119301',
+      nidn: '0611027703',
     },
     {
-      name: 'Muhamad Chabib F.S.HI.,M.H.',
+      name: 'dr. Rita Agustina, M.Biomed',
       title: 'Lecturer',
-      nidn: '0613059402',
+      nidn: 'NUPK 4133752653230133',
     },
     {
-      name: 'Pandam Bayu Seto Aji, M.H.',
+      name: 'Diah Widiyatun, S.ST., M.Tr.Keb',
       title: 'Lecturer',
-      nidn: '2734775676130202',
+      nidn: '0617069002',
     },
     {
-      name: 'Eko Setiyo Ary Wibowo S.H.I, M.H.',
+      name: 'Erna Setyaningsih, SST., M.Tr.Keb',
       title: 'Lecturer',
-      nidn: '0608119001',
+      nidn: '-',
     },
   ],
   focusAreas: [

@@ -176,6 +176,11 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
   ],
   facultyMembers: [
     {
+       name: 'Muhamad Agung Setiawan, S.Sos., M.Sos',
+      title: 'lecturer',
+      nidn: '0610089602',
+    },
+     {
        name: 'Lakna Tulas\'un, S.Sos., M.I.Kom.',
       title: 'lecturer',
       nidn: '0626099702',

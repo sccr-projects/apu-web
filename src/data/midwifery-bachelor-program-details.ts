@@ -175,6 +175,10 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
   ],
   facultyMembers: [
     {
+       name: 'Bd. Rizqitha, S.Tr.Keb., M.Tr.Keb',
+      title: 'lecturer',
+      nidn: '0608049401',
+    },    {
        name: 'Rizki Muji Lestari, S.SiT., M.Kes',
       title: 'lecturer',
       nidn: '1124088901',
