@@ -3,6 +3,7 @@ import ScrollReveal from "@components/ScrollReveal.astro";
 import { people } from "@data/diaspora";
 const featuredLecturer = people.find((p) => p.id === "prof-agung") ?? people[0];
 import canada from "@/assets/images/academic/canada-bg.jpg";
+import BackgroundBlobs from "@/components/BackgroundBlobs.astro";
 
 const directoryTitle = "Faculty Directory";
 const sectionTitle = "Lecturers List:";
@@ -10,11 +11,12 @@ const sectionTitle = "Lecturers List:";
 
 <section
   id="lecturers"
-  class="apu-section-shell relative overflow-hidden bg-brand-surface py-24 md:py-32"
+  class="apu-section-shell relative overflow-hidden bg-brand-surface"
   aria-label={directoryTitle}
   data-people={JSON.stringify(people)}
   data-default-bg={canada.src}
 >
+    <BackgroundBlobs seed="DiasporaDetailsSection" />
   <div>
     {/* Featured researcher */}
     <ScrollReveal>
@@ -185,26 +187,27 @@ const sectionTitle = "Lecturers List:";
         >
           {people.map((person) => (
             <article
-              class="group apu-glass-card apu-interactive-card w-[82%] flex-shrink-0 snap-start cursor-pointer p-5 sm:w-[47%] lg:w-[calc(15%-0.75rem)]"
+              class="group apu-corner-accent--tr apu-glass-card apu-interactive-card w-[82%] flex-shrink-0 snap-start cursor-pointer p-5 sm:w-[47%] lg:w-[calc(15%-0.75rem)]"
               data-person-id={person.id}
               tabindex="0"
               role="button"
             >
               <div class="mb-5 aspect-[3/4] overflow-hidden rounded-xl">
                 <img
+                draggable="false"
                   src={person.image.src}
                   alt={`Portrait of ${person.name}`}
                   class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
               </div>
-              <h3 class="text-2xl font-semibold text-brand-text mb-1">
-                <a href={person.href} class="hover:underline">
+              <h3 draggable="false" class="text-2xl font-semibold text-brand-text mb-1">
+                <a draggable="false" href={person.href} class="hover:underline">
                   {person.name}
                 </a>
               </h3>
               <p class="text-caption text-brand-text-muted mb-4">
-                {person.role}
+                {person.univ}
               </p>
             </article>
           ))}
@@ -271,6 +274,8 @@ const sectionTitle = "Lecturers List:";
 
     section?.querySelectorAll("[data-person-id]").forEach((card) => {
       card.addEventListener("click", (event) => {
+        const trackEl = section?.querySelector("[data-lecturers-track]") as HTMLElement | null;
+        if (trackEl?.dataset.wasDragged === "true") return;
         event.preventDefault();
         const id = card.getAttribute("data-person-id");
         if (id) updateFeatured(id);
@@ -344,6 +349,51 @@ const sectionTitle = "Lecturers List:";
       track.addEventListener("scroll", updateButtons, { passive: true });
       window.addEventListener("resize", updateButtons, { passive: true });
       updateButtons();
+
+      // Drag-to-scroll for mobile / touch
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragScrollStart = 0;
+      let dragMoved = false;
+      const dragThreshold = 5;
+
+      track.addEventListener("pointerdown", (event: PointerEvent) => {
+        if (event.pointerType === "mouse" && event.button !== 0) return;
+        isDragging = true;
+        dragMoved = false;
+        track.classList.add("is-dragging");
+        track.setPointerCapture(event.pointerId);
+        dragStartX = event.pageX - track.offsetLeft;
+        dragScrollStart = track.scrollLeft;
+      });
+
+      track.addEventListener("pointermove", (event: PointerEvent) => {
+        if (!isDragging) return;
+        event.preventDefault();
+        const x = event.pageX - track.offsetLeft;
+        const walk = (x - dragStartX) * 1.2;
+        if (Math.abs(walk) > dragThreshold) dragMoved = true;
+        track.scrollLeft = dragScrollStart - walk;
+      });
+
+      const endDrag = (event?: PointerEvent) => {
+        if (!isDragging) return;
+        isDragging = false;
+        track.classList.remove("is-dragging");
+        if (event?.pointerId) {
+          try {
+            track.releasePointerCapture(event.pointerId);
+          } catch {}
+        }
+        if (dragMoved) {
+          track.dataset.wasDragged = "true";
+          setTimeout(() => delete track.dataset.wasDragged, 0);
+        }
+      };
+
+      track.addEventListener("pointerup", (event: PointerEvent) => endDrag(event));
+      track.addEventListener("pointercancel", (event: PointerEvent) => endDrag(event));
+      track.addEventListener("pointerleave", () => endDrag());
     });
   })();
 </script>
@@ -362,6 +412,14 @@ const sectionTitle = "Lecturers List:";
   .lecturers-track {
     scrollbar-width: none;
     -ms-overflow-style: none;
+    cursor: grab;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .lecturers-track.is-dragging {
+    cursor: grabbing;
   }
 
   .lecturers-track::-webkit-scrollbar {

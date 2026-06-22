@@ -3,33 +3,33 @@ import worldMap from "@/assets/images/academic/diaspora/world-map.svg";
 import { people } from "@data/diaspora";
 ---
 
-<section class="diaspora-hero relative overflow-hidden bg-apu-navy" aria-label="Diaspora hero">
+<section class="diaspora-hero relative overflow-hidden bg-apu-surface" aria-label="Diaspora hero">
   <div class="pointer-events-none absolute inset-0">
     <img
       src={worldMap.src}
       alt=""
-      class="h-full w-full object-cover invert opacity-10"
+      class="h-full w-full object-cover opacity-10 mix-blend-multiply"
       aria-hidden="true"
       loading="eager"
     />
-    <div class="absolute inset-0 bg-apu-navy/85"></div>
+    <div class="absolute inset-0 bg-apu-surface/80"></div>
     <div class="absolute inset-0 diaspora-hero-glow"></div>
     <div
-      class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:48px_48px]"
+      class="absolute inset-0 bg-[linear-gradient(rgba(19,40,66,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(19,40,66,0.04)_1px,transparent_1px)] bg-[size:48px_48px]"
     ></div>
   </div>
 
   <div class="relative z-10 flex flex-col items-center justify-center px-4 py-20 text-center md:py-28">
-    <h1 class="text-h1  text-white">
+    <h1 class="text-h1 text-apu-navy">
       Agung Putra University Diaspora Lecturers
     </h1>
     <span class="apu-gradient-line mx-auto mt-6 w-40"></span>
-    <p class="text-body mt-6 max-w-2xl text-white/80">
+    <p class="text-body mt-6 max-w-2xl text-apu-navy/70">
       A global network of educators bringing international experience to APU classrooms.
     </p>
-    <section id="diaspora-carousel" class="py-8 backdrop-blur-md" aria-label="Diaspora lecturers">
-      <div class="flex justify-center px-4">
-        <div class="diaspora-track flex gap-0 overflow-x-auto py-6">
+    <section id="diaspora-carousel" class="py-8 w-full" aria-label="Diaspora lecturers">
+      <div class="flex justify-center px-4 w-full">
+        <div class="diaspora-track w-full justify-center flex gap-0 overflow-x-auto py-6">
           {
             people.map((person, index) => {
               const isCenter = person.id === "prof-agung";
@@ -58,14 +58,15 @@ import { people } from "@data/diaspora";
                   >
                     {person.name}
                   </a>
+
+                  <p class="text-xs text-center px-4 text-gray-600 sm:text-sm">{person.univ}</p>
                   <img
                     src={person.flag}
                     alt={`Flag of ${person.country}`}
-                    class="mx-auto mt-1 block h-5 w-auto rounded-sm object-contain shadow-sm"
+                    class="mx-auto mt-2 block h-5 w-auto rounded-sm object-contain shadow-sm"
                     loading="lazy"
                     decoding="async"
                   />
-                  <p class="text-xs text-center px-4 text-gray-600 sm:text-sm">{person.univ}</p>
                 </article>
               );
             })
@@ -135,7 +136,7 @@ import { people } from "@data/diaspora";
   .diaspora-hero-glow {
     background: radial-gradient(
       circle at center,
-      rgb(var(--apu-accent) / 0.18),
+      rgb(var(--apu-navy) / 0.18),
       transparent 60%
     );
   }
