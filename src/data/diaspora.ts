@@ -90,10 +90,14 @@ export const people: DiasporaPerson[] = [
     background_image: chinaBg,
     position: 20,
     pastExperience: {
-      items: ["TBD"],
+      items: [
+        "Medical doctor (MBBS) graduated from Changsha Medical University, Hunan, China",
+        "Marketing & Partnership Manager at Stem Cell and Cancer Research (SCCR) Indonesia",
+        "Doping Control Officer and Blood Control Officer for the Indonesia Anti-Doping Organization; previously served on the FIFA U-17 World Cup medical team",
+      ],
     },
     notableResearch: {
-      text: "TBD",
+      text: "Regenerative medicine using human umbilical cord-derived mesenchymal stem cells (hUC-MSCs) combined with extracellular vesicle booster therapy for metabolic and degenerative conditions.",
     },
   },
   {
@@ -109,10 +113,14 @@ export const people: DiasporaPerson[] = [
     background_image: japanBg,
     position: 28,
     pastExperience: {
-      items: ["TBD"],
+      items: [
+        "Researcher at Nara Institute of Science and Technology (NAIST), Japan",
+        "Pharmacy Study Program, Chemistry Department, Universitas Negeri Semarang",
+        "Cancer Chemoprevention Research Center, Faculty of Pharmacy, Universitas Gadjah Mada",
+      ],
     },
     notableResearch: {
-      text: "TBD",
+      text: "Mesenchymal stem cell secretome and natural-product-based cancer therapeutics, focusing on oxidative stress, apoptosis, and metastasis signaling in breast cancer.",
     },
   },
   {
@@ -127,32 +135,35 @@ export const people: DiasporaPerson[] = [
     image: mrFaheem,
     position: 37,
     pastExperience: {
-      items: ["TBD"],
+      items: [
+        "MS and PhD in genetics/breeding and animal reproduction at Huazhong Agricultural University, China",
+        "Postdoctoral fellowships at Tongji Hospital, China and BRIN, Indonesia",
+        "Senior Researcher at Stem Cell and Cancer Research Indonesia, Semarang",
+      ],
     },
     notableResearch: {
-      text: "TBD",
+      text: "Reproductive genetics, stem cell and cancer biology, CRISPR/Cas9 genome editing, and microbiome engineering across plant and animal systems.",
     },
   },
   {
     id: "prof-agung",
     name: "Prof. Dr. dr. Agung Putra, M.Si. Med.",
     role: "Founder & Commissioner SCCR Indonesia",
-    univ: "",
-    country: "Indonesia",
-    flag: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg",
+    univ: "University of Calgary, Canada",
+    country: "Canada",
+    flag: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg",
     href: "#",
     google_scholar: "https://scholar.google.com/citations?user=wy-Vlt0AAAAJ",
     image: profAgung,
     position: 50,
     pastExperience: {
       items: [
-        "Ph.D. in Constitutional Law, University of Melbourne",
-        "Visiting Scholar, Max Planck Institute",
-        "Senior Legal Advisor, ASEAN Secretariat",
+        "Faculty of Medicine / Postgraduate Biomedical Science, Universitas Islam Sultan Agung (UNISSULA), Semarang",
+        "Founded Stem Cell and Cancer Research (SCCR) Indonesia, an independent stem-cell research and pharmaceutical institution, in June 2013",
       ],
     },
     notableResearch: {
-      text: "Leading comparative research on constitutional reform and human-rights frameworks in Southeast Asia, with published work on judicial independence and democratic transitions.",
+      text: "Mesenchymal stem cells, particularly their immunomodulatory, anti-inflammatory, and regenerative mechanisms in wound healing, organ failure, autoimmune disease, COVID-19, and cancer.",
     },
   },
   {
@@ -168,10 +179,13 @@ export const people: DiasporaPerson[] = [
     background_image: thaiBg,
     position: 62,
     pastExperience: {
-      items: ["TBD"],
+      items: [
+        "Post Graduate Researcher at Molecular Biotechnology Lab, Suranaree University of Technology (SUT), Thailand",
+        "Biotechnology Doctoral at Suranaree University of Technology",
+      ],
     },
     notableResearch: {
-      text: "TBD",
+      text: "Enzyme biotechnology and bioconversion of chitosan into anti-inflammatory chitosan-oligosaccharides (CHOS).",
     },
   },
   {
@@ -187,10 +201,14 @@ export const people: DiasporaPerson[] = [
     background_image: ukBg,
     position: 71,
     pastExperience: {
-      items: ["TBD"],
+      items: [
+        "Professor of Chemistry at Diponegoro University (Kimia UNDIP)",
+        "PhD from Newcastle University (2009–2014) on nano- and micro-sized diamond powder treatments",
+        "B.S. in Chemistry from Universitas Diponegoro (2001–2005)",
+      ],
     },
     notableResearch: {
-      text: "TBD",
+      text: "Synthesis, characterization, and application of photocatalysts, hydrophobic silica films, carbon quantum dots, and nanomaterials for environmental remediation, energy, and surface modification.",
     },
   },
   {
@@ -206,10 +224,14 @@ export const people: DiasporaPerson[] = [
     background_image: japanBg,
     position: 79,
     pastExperience: {
-      items: ["TBD"],
+      items: [
+        "Bachelor's in Microbiology at SITH, Institut Teknologi Bandung (ITB)",
+        "Master's and PhD in Molecular Bacteriology at RIMD, The University of Osaka",
+        "Postdoctoral researcher in the Department of Molecular Bacteriology (Horiguchi Lab), RIMD, The University of Osaka",
+      ],
     },
     notableResearch: {
-      text: "TBD",
+      text: "Molecular bacteriology and genetic engineering, with key work on Bordetella bronchiseptica survival and pathogenesis, antibody specificity and infection-enhancing antibodies, and mesenchymal stem cell therapeutic applications.",
     },
   },
   {
@@ -225,10 +247,13 @@ export const people: DiasporaPerson[] = [
     background_image: ukBg,
     position: 87,
     pastExperience: {
-      items: ["TBD"],
+      items: [
+        "S1 Engineering Physics – Institut Teknologi Bandung (1990); MBA – University of Birmingham (1998); S3 Social Sciences/Business Administration – Universitas Diponegoro (2025)",
+        "30+ years in ICT/fintech/digital transformation leadership",
+      ],
     },
     notableResearch: {
-      text: "TBD",
+      text: "Enterprise risk management, sustainability, digital platform ecosystems, and CSR/ESG accountability in business and society.",
     },
   },
   {
@@ -244,10 +269,14 @@ export const people: DiasporaPerson[] = [
     background_image: aussieBg,
     position: 96,
     pastExperience: {
-      items: ["TBD"],
+      items: [
+        "Researcher in metabolic engineering and bioelectrochemical systems using Pseudomonas putida",
+        "Co-author on publications with a University of Queensland-linked research group",
+        "Recent work on cancer immunotherapy at International Journal of Cell and Biomedical Science",
+      ],
     },
     notableResearch: {
-      text: "TBD",
+      text: "Metabolic engineering of Pseudomonas putida for biochemical production and advancing NK-cell immunotherapy through CAR engineering and metabolic reprogramming.",
     },
   },
 ];

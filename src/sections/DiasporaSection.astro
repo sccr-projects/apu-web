@@ -28,11 +28,20 @@ import { people } from "@data/diaspora";
               </div>
               <a
                 href={person.href}
-                class="mt-2 px-6 text-center block text-sm font-semibold leading-tight hover:underline sm:text-base"
+                class="mt-2 px-4 text-center block text-sm font-semibold leading-tight hover:underline sm:text-base"
               >
                 {person.name}
               </a>
-              <p class="text-xs text-center px-6 text-gray-600 sm:text-sm">{person.univ}</p>
+
+              <p class="text-xs text-center px-4 text-gray-600 sm:text-sm">{person.univ}</p>
+
+              <img
+                src={person.flag}
+                alt={`Flag of ${person.country}`}
+                class="mx-auto mt-3 block h-5 w-auto rounded-sm object-contain shadow-sm"
+                loading="lazy"
+                decoding="async"
+              />
             </article>
           );
         })
