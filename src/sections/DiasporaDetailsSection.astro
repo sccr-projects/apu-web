@@ -16,6 +16,7 @@ const sectionTitle = "Lecturers List:";
   id="lecturers"
   class="apu-section-shell relative overflow-hidden bg-brand-surface py-24 md:py-32"
   aria-label={directoryTitle}
+  data-people={JSON.stringify(people)}
 >
   <div>
     {/* Featured researcher */}
@@ -24,10 +25,10 @@ const sectionTitle = "Lecturers List:";
           <img src={canada.src} alt={featuredLecturer.name} class="pointer-events-none absolute top-0 left-0 w-full h-full object-cover opacity-10" aria-hidden="true" />
         <div class="relative z-10 flex flex-row justify-center">
           <div class="order-2 w-1/2 flex flex-col justify-center md:order-1">
-            <h2 class="text-h2 mb-3 text-white">
+            <h2 class="text-h2 mb-3 text-white" data-featured-name>
               {featuredLecturer.name}
             </h2>
-            <p class="text-body mb-6 text-apu-accent">
+            <p class="text-body mb-3 text-apu-accent" data-featured-role>
               {featuredLecturer.role}
             </p>
             <!-- <p class="text-body mb-6 text-apu-accent text-sm">
@@ -35,13 +36,13 @@ const sectionTitle = "Lecturers List:";
             </p> -->
 
             <div class="mb-6">
-                <h3 class="text-caption mb-3 uppercase tracking-widest text-white/70">
-                    {featuredLecturer.univ ?? `Alumni of` + featuredLecturer.univ}
+                <h3 class="text-body mb-6 text-apu-accent">
+                   <p data-featured-univ>{featuredLecturer.univ}</p>
                 </h3>
               <h3 class="text-caption mb-3 uppercase tracking-widest text-white/70">
                 Past Experience
               </h3>
-              <ul class="space-y-2">
+              <ul class="space-y-2" data-featured-past-experience>
                 {featuredLecturer.pastExperience.items.map((item) => (
                   <li class="text-body-s flex items-start gap-3 text-white/90">
                     <span
@@ -58,7 +59,7 @@ const sectionTitle = "Lecturers List:";
               <h3 class="text-caption mb-3 uppercase tracking-widest text-white/70">
                 Notable Research
               </h3>
-              <p class="text-body-s leading-relaxed text-white/90">
+              <p class="text-body-s leading-relaxed text-white/90" data-featured-notable-research>
                 {featuredLecturer.notableResearch.text}
               </p>
             </div>
@@ -88,6 +89,7 @@ const sectionTitle = "Lecturers List:";
                 class="h-full w-full object-cover border-0"
                 style={`object-position: ${featuredLecturer.position}% center;`}
                 loading="eager"
+                data-featured-image
               />
               <img
                 src={canadaFlag.src}
@@ -165,7 +167,12 @@ const sectionTitle = "Lecturers List:";
           aria-label="Faculty directory carousel"
         >
           {people.map((person) => (
-            <article class="group apu-glass-card apu-interactive-card w-[82%] flex-shrink-0 snap-start p-5 sm:w-[47%] lg:w-[calc(15%-0.75rem)]">
+            <article
+              class="group apu-glass-card apu-interactive-card w-[82%] flex-shrink-0 snap-start cursor-pointer p-5 sm:w-[47%] lg:w-[calc(15%-0.75rem)]"
+              data-person-id={person.id}
+              tabindex="0"
+              role="button"
+            >
               <div class="mb-5 aspect-[3/4] overflow-hidden rounded-xl">
                 <img
                   src={person.image.src}
@@ -192,6 +199,57 @@ const sectionTitle = "Lecturers List:";
 
 <script>
   (function () {
+    const section = document.querySelector("#lecturers");
+    const peopleData = JSON.parse(section?.getAttribute("data-people") || "[]");
+
+    const featuredName = section?.querySelector("[data-featured-name]");
+    const featuredRole = section?.querySelector("[data-featured-role]");
+    const featuredUniv = section?.querySelector("[data-featured-univ]");
+    const featuredPast = section?.querySelector("[data-featured-past-experience]");
+    const featuredResearch = section?.querySelector("[data-featured-notable-research]");
+    const featuredImage = section?.querySelector("[data-featured-image]") as HTMLImageElement | null;
+
+    const updateFeatured = (id: string) => {
+      const person = peopleData.find((p: any) => p.id === id);
+      if (!person || !section) return;
+
+      if (featuredName) featuredName.textContent = person.name;
+      if (featuredRole) featuredRole.textContent = person.role;
+      if (featuredUniv) featuredUniv.textContent = person.univ;
+      if (featuredResearch) featuredResearch.textContent = person.notableResearch.text;
+
+      if (featuredPast) {
+        featuredPast.innerHTML = person.pastExperience.items
+          .map(
+            (item: string) =>
+              `<li class="text-body-s flex items-start gap-3 text-white/90"><span class="mt-2 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-apu-accent" aria-hidden="true"></span>${item}</li>`
+          )
+          .join("");
+      }
+
+      if (featuredImage) {
+        featuredImage.src = person.image.src;
+        featuredImage.alt = `Portrait of ${person.name}`;
+        featuredImage.style.objectPosition = `${person.position}% center`;
+      }
+    };
+
+    section?.querySelectorAll("[data-person-id]").forEach((card) => {
+      card.addEventListener("click", (event) => {
+        event.preventDefault();
+        const id = card.getAttribute("data-person-id");
+        if (id) updateFeatured(id);
+      });
+      card.addEventListener("keydown", (event) => {
+        const keyboardEvent = event as KeyboardEvent;
+        if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") {
+          keyboardEvent.preventDefault();
+          const id = card.getAttribute("data-person-id");
+          if (id) updateFeatured(id);
+        }
+      });
+    });
+
     const carousels = document.querySelectorAll("[data-lecturers-carousel]");
 
     carousels.forEach((root) => {
