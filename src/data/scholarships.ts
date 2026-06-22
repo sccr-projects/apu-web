@@ -51,6 +51,20 @@ export const scholarships: Scholarship[] = [
     ],
   },
   {
+    id: 'partnership',
+    name: 'Partnership Scholarship',
+    description:
+      'Collaborative scholarship with partner institutions—corporates, local governments, and public health organizations—to expand access to higher education and develop competitive human resources.',
+    benefit: '100% UKT + SPI coverage up to 4 years',
+    requirements: [
+      'Graduated from senior high school/vocational school/equivalent or currently in 12th grade.',
+      'Minimum average score of 85 in selected major subjects (e.g. Mathematics, Biology, Sociology depending on study program)',
+      'Overall report card average of 80',
+      'Submit academic transcripts/report cards and the online registration form',
+      'Complete and upload the official assessment form provided',
+    ],
+  },
+  {
     id: 'pre-university',
     name: 'Pre-University Scholarship',
     description: 'University preparation program with early academic support',

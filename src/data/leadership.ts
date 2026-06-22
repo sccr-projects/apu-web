@@ -25,7 +25,7 @@ export const leadershipMessage: LeadershipMessage = {
   leaderTitle: "Founder and Commissioner SCCR Indonesia",
   leaderTitle2: "President and Founder of Agung Putra University",
 
-  leaderImage: assetUrl("/images/leadership-portrait.webp"),
+  leaderImage: assetUrl("/images/academic/diaspora/prof-agung.webp"),
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",

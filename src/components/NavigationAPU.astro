@@ -63,27 +63,32 @@ const navSections: NavSection[] = [
         children: [
           {
             label: "Academic",
-            href: `${HOME_PATH}admission/academic-scholarship`,
+            // href: `${HOME_PATH}admission/academic-scholarship`,
+            href: `https://scholarship.apu.ac.id/academic-scholarship/`,
             description: "Beasiswa berbasis prestasi akademik.",
             kind: "route",
+            target: "_blank",
           },
           {
             label: "Non-Academic",
             href: `https://scholarship.apu.ac.id/non-academic-achievement-scholarship/`,
             description: "Beasiswa berbasis prestasi non-akademik.",
             kind: "anchor",
+            target: "_blank",
           },
           {
             label: "Partnership",
             href: `https://scholarship.apu.ac.id/partnership-scholarship/`,
             description: "Beasiswa berbasis prestasi non-akademik.",
             kind: "anchor",
+            target: "_blank",
           },
           {
             label: "Content Creator",
             href: `https://scholarship.apu.ac.id/content-creator-scholarship/`,
             description: "Beasiswa berbasis prestasi non-akademik.",
             kind: "anchor",
+            target: "_blank",
           },
         ],
       },
@@ -219,7 +224,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
           loading="eager"
         />
         <span class="nav-brand-copy hidden sm:flex">
-          <span class="font-semibold text-xl">Agung Putra University</span>
+            <span class="font-semibold font-epilogue text-xl">Agung Putra<br>University</span>
         </span>
       </a>
 
