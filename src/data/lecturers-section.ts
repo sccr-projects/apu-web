@@ -1,6 +1,6 @@
 import { lecturers, type Lecturer } from './lecturers';
 
-export const featuredLecturerId = "marcus-chen";
+export const featuredLecturerId = "prof-agung";
 
 export const featuredLecturer: Lecturer = (() => {
   const found = lecturers.find((l) => l.id === featuredLecturerId);
