@@ -72,7 +72,7 @@ export const pathways: Pathway[] = [
       },
       {
         name: "Partnership Scholarship",
-        link: "#",
+        link: "https://scholarship.apu.ac.id/partnership-scholarship/",
       },
     ],
     ctaText: "Apply for Scholarship",
