@@ -179,6 +179,9 @@ const APU_CENTER: [number, number] = [-7.071300, 110.362306];
   }
 
   @media (max-width: 1023px) {
+    .apu-anchor-campus__map-zone {
+      height: 320px;
+    }
     .apu-anchor-campus__map-vignette {
       background:
         linear-gradient(
@@ -207,8 +210,8 @@ const APU_CENTER: [number, number] = [-7.071300, 110.362306];
     .apu-anchor-campus__map-plate {
       transform: scale(1.02);
     }
-    :global(.ecosystem-trigger) {
-      display: none !important;
+    .apu-anchor-campus__text-zone .text-h2 {
+      font-size: clamp(1.35rem, 5vw, 1.75rem);
     }
   }
 
