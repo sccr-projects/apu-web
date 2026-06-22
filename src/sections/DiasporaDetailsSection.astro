@@ -285,6 +285,14 @@ const sectionTitle = "Lecturers List:";
       });
     });
 
+    document.addEventListener("diaspora:select", (event) => {
+      const id = (event as CustomEvent).detail?.id;
+      if (id) updateFeatured(id);
+    });
+
+    const hashMatch = location.hash.match(/^#lecturers-(.+)/);
+    if (hashMatch) updateFeatured(hashMatch[1]);
+
     const carousels = document.querySelectorAll("[data-lecturers-carousel]");
 
     carousels.forEach((root) => {

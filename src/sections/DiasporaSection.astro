@@ -1,8 +1,39 @@
 ---
+import worldMap from "@/assets/images/academic/diaspora/world-map.svg";
 import { people } from "@data/diaspora";
 ---
 
-<section class="py-8" aria-label="Diaspora">
+<section class="diaspora-hero relative overflow-hidden bg-apu-navy" aria-label="Diaspora hero">
+  <div class="pointer-events-none absolute inset-0">
+    <img
+      src={worldMap.src}
+      alt=""
+      class="h-full w-full object-cover invert opacity-10"
+      aria-hidden="true"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-apu-navy/85"></div>
+    <div class="absolute inset-0 diaspora-hero-glow"></div>
+    <div
+      class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:48px_48px]"
+    ></div>
+  </div>
+
+  <div class="relative z-10 flex flex-col items-center justify-center px-4 py-20 text-center md:py-28">
+    <h1 class="text-h1 max-w-4xl text-white">
+      Agung Putra University Diaspora Lecturers
+    </h1>
+    <span class="apu-gradient-line mx-auto mt-6 w-40"></span>
+    <p class="text-body mt-6 max-w-2xl text-white/80">
+      A global network of educators bringing international experience to APU classrooms.
+    </p>
+    <a href="#diaspora-carousel" class="apu-btn apu-btn--primary mt-8">
+      Explore Lecturers
+    </a>
+  </div>
+</section>
+
+<section id="diaspora-carousel" class="py-8" aria-label="Diaspora lecturers">
   <div class="flex justify-center px-4">
     <div class="diaspora-track flex gap-0 overflow-x-auto py-6">
       {
@@ -16,6 +47,7 @@ import { people } from "@data/diaspora";
                 index !== 0 && "-ml-3 s md:-ml-6 ",
               ]}
               data-diaspora-center={isCenter ? "" : undefined}
+              data-person-id={person.id}
             >
               <div class="overflow-hidden rounded-lg">
                 <img
@@ -27,21 +59,19 @@ import { people } from "@data/diaspora";
                 />
               </div>
               <a
-                href={person.href}
+                href="#lecturers"
                 class="mt-2 px-4 text-center block text-sm font-semibold leading-tight hover:underline sm:text-base"
               >
                 {person.name}
               </a>
-
-              <p class="text-xs text-center px-4 text-gray-600 sm:text-sm">{person.univ}</p>
-
               <img
                 src={person.flag}
                 alt={`Flag of ${person.country}`}
-                class="mx-auto mt-3 block h-5 w-auto rounded-sm object-contain shadow-sm"
+                class="mx-auto mt-1 block h-5 w-auto rounded-sm object-contain shadow-sm"
                 loading="lazy"
                 decoding="async"
               />
+              <p class="text-xs text-center px-4 text-gray-600 sm:text-sm">{person.univ}</p>
             </article>
           );
         })
@@ -67,6 +97,28 @@ import { people } from "@data/diaspora";
     centerIt();
     window.addEventListener("resize", centerIt, { passive: true });
   })();
+
+  (function () {
+    const section = document.querySelector("#diaspora-carousel");
+    const articles = section?.querySelectorAll("[data-person-id]") || [];
+    const target = document.querySelector("#lecturers");
+
+    articles.forEach((article) => {
+      article.addEventListener("click", (event) => {
+        const targetEl = event.target as HTMLElement;
+        if (targetEl.closest("a")) event.preventDefault();
+
+        const id = article.getAttribute("data-person-id");
+        if (!id) return;
+
+        document.dispatchEvent(
+          new CustomEvent("diaspora:select", { detail: { id } })
+        );
+        target?.scrollIntoView({ behavior: "smooth" });
+        history.replaceState(null, "", `#lecturers-${id}`);
+      });
+    });
+  })();
 </script>
 
 <style>
@@ -77,6 +129,17 @@ import { people } from "@data/diaspora";
   }
   .diaspora-track::-webkit-scrollbar {
     display: none;
+  }
+  .diaspora-hero {
+    --apu-btn-primary-bg: rgb(var(--apu-accent));
+    --apu-btn-primary-color: rgb(var(--apu-navy));
+  }
+  .diaspora-hero-glow {
+    background: radial-gradient(
+      circle at center,
+      rgb(var(--apu-accent) / 0.18),
+      transparent 60%
+    );
   }
   [data-diaspora-center] {
     scroll-snap-align: center;

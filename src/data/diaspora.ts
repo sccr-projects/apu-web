@@ -215,7 +215,7 @@ export const people: DiasporaPerson[] = [
     id: "dendi",
     name: "Dendi Krisna Nugraha, M.Sc., Ph.D.",
     role: "TBD",
-    univ: "RIMD, Osaka Japan",
+    univ: "Research Institute of Microbial Diseases, Osaka Japan",
     country: "Japan",
     flag: "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
     href: "#",
