@@ -1,5 +1,5 @@
 ---
-import { people, diasporaLecturer } from "@data/diaspora";
+import { people } from "@data/diaspora";
 ---
 
 <section class="py-8" aria-label="Diaspora">
@@ -7,7 +7,7 @@ import { people, diasporaLecturer } from "@data/diaspora";
     <div class="diaspora-track flex gap-0 overflow-x-auto pb-4">
       {
         people.map((person, index) => {
-          const isCenter = person.name === diasporaLecturer.name;
+          const isCenter = person.id === "prof-agung";
           return (
             <article
               class:list={[
@@ -34,7 +34,7 @@ import { people, diasporaLecturer } from "@data/diaspora";
               >
                 {person.name}
               </a>
-              <p class="text-xs text-center px-6 text-gray-600 sm:text-sm">{person.desc}</p>
+              <p class="text-xs text-center px-6 text-gray-600 sm:text-sm">{person.univ}</p>
             </article>
           );
         })

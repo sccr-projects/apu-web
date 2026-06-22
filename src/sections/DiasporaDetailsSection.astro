@@ -2,10 +2,9 @@
 import SectionHeader from "@components/SectionHeader.astro";
 import CtaButton from "@components/CtaButton.astro";
 import ScrollReveal from "@components/ScrollReveal.astro";
-import { lecturers, sectionCopy } from "@data/lecturers";
-import { diasporaLecturer } from "@data/diaspora";
+import { people } from "@data/diaspora";
 import canadaFlag from "@/assets/images/academic/diaspora/canada-flag.svg";
-const { featured, directory } = sectionCopy;
+const featuredPerson = people.find((p) => p.id === "prof-agung") ?? people[0];
 import canada from "@/assets/images/academic/canada-bg.jpg";
 
 ---
@@ -19,23 +18,29 @@ import canada from "@/assets/images/academic/canada-bg.jpg";
     {/* Featured researcher */}
     <ScrollReveal>
       <div class="apu-glass-card rounded-none lecturers-featured-card mb-10 overflow-hidden flex justify-center py-10 relative">
-          <img src={canada.src} alt={diasporaLecturer.name} class="pointer-events-none absolute top-0 left-0 w-full h-full object-cover opacity-10" aria-hidden="true" />
+          <img src={canada.src} alt={featuredPerson.name} class="pointer-events-none absolute top-0 left-0 w-full h-full object-cover opacity-10" aria-hidden="true" />
         <div class="relative z-10 flex flex-row justify-center">
           <div class="order-2 w-1/2 flex flex-col justify-center md:order-1">
             <span class="apu-pill-badge mb-6 self-start">{featured.kicker}</span>
             <h2 class="text-h2 mb-3 text-white">
-              {diasporaLecturer.name}
+              {featuredPerson.name}
             </h2>
             <p class="text-body mb-6 text-apu-accent">
-              {diasporaLecturer.role} — {featured.department}
+              {featuredPerson.role}
+            </p>
+            <p class="text-body mb-6 text-apu-accent text-sm">
+              {featured.department}
             </p>
 
             <div class="mb-6">
+                <h3 class="text-caption mb-3 uppercase tracking-widest text-white/70">
+                    Alumni of {featured.univ}
+                </h3>
               <h3 class="text-caption mb-3 uppercase tracking-widest text-white/70">
-                {featured.pastExperience.label}
+                Past Experience
               </h3>
               <ul class="space-y-2">
-                {featured.pastExperience.items.map((item) => (
+                {featuredPerson.pastExperience.items.map((item) => (
                   <li class="text-body-s flex items-start gap-3 text-white/90">
                     <span
                       class="mt-2 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-apu-accent"
@@ -49,10 +54,10 @@ import canada from "@/assets/images/academic/canada-bg.jpg";
 
             <div class="mb-8">
               <h3 class="text-caption mb-3 uppercase tracking-widest text-white/70">
-                {featured.notableResearch.label}
+                Notable Research
               </h3>
               <p class="text-body-s leading-relaxed text-white/90">
-                {featured.notableResearch.text}
+                {featuredPerson.notableResearch.text}
               </p>
             </div>
 
@@ -76,8 +81,8 @@ import canada from "@/assets/images/academic/canada-bg.jpg";
           <div class="relative order-1 md:order-2 w-96">
             <div class="relative aspect-[4/5] overflow-hidden rounded-2xl md:aspect-auto md:h-full">
               <img
-                src={diasporaLecturer.image.src}
-                alt={`Portrait of ${diasporaLecturer.name}`}
+                src={featuredPerson.image.src}
+                alt={`Portrait of ${featuredPerson.name}`}
                 class="h-full w-full object-cover border-0"
                 loading="eager"
               />
@@ -156,21 +161,21 @@ import canada from "@/assets/images/academic/canada-bg.jpg";
           tabindex="0"
           aria-label="Faculty directory carousel"
         >
-          {lecturers.map((lecturer) => (
+          {people.map((person) => (
             <article class="group apu-glass-card apu-interactive-card w-[82%] flex-shrink-0 snap-start p-5 sm:w-[47%] lg:w-[calc(15%-0.75rem)]">
               <div class="mb-5 aspect-[3/4] overflow-hidden rounded-xl">
                 <img
-                  src={lecturer.image}
-                  alt={`Portrait of ${lecturer.name}`}
+                  src={person.image.src}
+                  alt={`Portrait of ${person.name}`}
                   class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
               </div>
               <h3 class="text-2xl font-semibold text-brand-text mb-1">
-                {lecturer.name}
+                {person.name}
               </h3>
               <p class="text-caption text-brand-text-muted mb-4">
-                {lecturer.role}
+                {person.role}
               </p>
             </article>
           ))}
@@ -181,12 +186,8 @@ import canada from "@/assets/images/academic/canada-bg.jpg";
 </section>
 
 <script>
-import { diasporaLecturer } from "@/data/diaspora";
-
   (function () {
     const carousels = document.querySelectorAll("[data-lecturers-carousel]");
-
-    console.log(diasporaLecturer)
 
     carousels.forEach((root) => {
       const track = root.querySelector("[data-lecturers-track]") as HTMLElement | null;
