@@ -180,16 +180,16 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
       title: 'lecturer',
       nidn: '0626099702',
     },
-    {
-      name: 'Sutinnarto,S.I.Kom.,M.I.Kom',
-      title: 'Lecturer',
-      nidn: '0614028102',
-    },
-    {
-      name: 'Najmi Rizki Khairani, S.Sos., M.I.Kom',
-      title: 'Lecturer',
-      nidn: '0610048605',
-    },
+    // {
+    //   name: 'Sutinnarto,S.I.Kom.,M.I.Kom',
+    //   title: 'Lecturer',
+    //   nidn: '0614028102',
+    // },
+    // {
+    //   name: 'Najmi Rizki Khairani, S.Sos., M.I.Kom',
+    //   title: 'Lecturer',
+    //   nidn: '0610048605',
+    // },
     {
       name: 'Rif\'atul Himmah, S.Sos., M.I.Kom',
       title: 'Lecturer',
