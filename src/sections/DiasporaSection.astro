@@ -1,47 +1,83 @@
 ---
+import worldMap from "@/assets/images/academic/diaspora/world-map.svg";
 import { people } from "@data/diaspora";
 ---
 
-<section class="py-8" aria-label="Diaspora">
-  <div class="flex justify-center px-4">
-    <div class="diaspora-track flex gap-0 overflow-x-auto pb-4">
-      {
-        people.map((person, index) => {
-          const isCenter = person.id === "prof-agung";
-          return (
-            <article
-              class:list={[
-                "relative flex-shrink-0",
-                isCenter
-                  ? "z-10 w-32 md:w-56 "
-                  : "w-24 md:w-36 ",
-                index !== 0 && "-ml-3 s md:-ml-6 ",
-              ]}
-              data-diaspora-center={isCenter ? "" : undefined}
-            >
-              <div class="overflow-hidden rounded-lg">
-                <img
-                  src={person.image.src}
-                  alt={`Portrait of ${person.name}`}
-                  class="h-36 w-full object-contain object-top md:h-56 "
-                  style={`object-position: ${person.position}% center;`}
-                  loading="lazy"
-                />
-              </div>
-              <a
-                href={person.href}
-                class="mt-2 px-6 text-center block text-sm font-semibold leading-tight hover:underline sm:text-base"
-              >
-                {person.name}
-              </a>
-              <p class="text-xs text-center px-6 text-gray-600 sm:text-sm">{person.univ}</p>
-            </article>
-          );
-        })
-      }
-    </div>
+<section class="diaspora-hero relative overflow-hidden bg-apu-surface" aria-label="Diaspora hero">
+  <div class="pointer-events-none absolute inset-0">
+    <img
+      src={worldMap.src}
+      alt=""
+      class="h-full w-full object-cover opacity-10 mix-blend-multiply"
+      aria-hidden="true"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-apu-surface/80"></div>
+    <div class="absolute inset-0 diaspora-hero-glow"></div>
+    <div
+      class="absolute inset-0 bg-[linear-gradient(rgba(19,40,66,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(19,40,66,0.04)_1px,transparent_1px)] bg-[size:48px_48px]"
+    ></div>
+  </div>
+
+  <div class="relative z-10 flex flex-col items-center justify-center px-4 py-20 text-center md:py-28">
+    <h1 class="text-h1 text-apu-navy">
+      Agung Putra University Diaspora Lecturers
+    </h1>
+    <span class="apu-gradient-line mx-auto mt-6 w-40"></span>
+    <p class="text-body mt-6 max-w-2xl text-apu-navy/70">
+      A global network of educators bringing international experience to APU classrooms.
+    </p>
+    <section id="diaspora-carousel" class="py-8 w-full" aria-label="Diaspora lecturers">
+      <div class="flex justify-center px-4 w-full">
+        <div class="diaspora-track w-full justify-center flex gap-0 overflow-x-auto py-6">
+          {
+            people.map((person, index) => {
+              const isCenter = person.id === "prof-agung";
+              return (
+                <article
+                  class:list={[
+                    "relative flex-shrink-0 diaspora-card rounded-lg",
+                    isCenter ? "z-10 w-32 md:w-56" : "w-24 md:w-36",
+                    index !== 0 && "-ml-3 s md:-ml-6 ",
+                  ]}
+                  data-diaspora-center={isCenter ? "" : undefined}
+                  data-person-id={person.id}
+                >
+                  <div class="overflow-hidden rounded-lg">
+                    <img
+                      src={person.image.src}
+                      alt={`Portrait of ${person.name}`}
+                      class="h-36 w-full object-contain object-top md:h-56 "
+                      style={`object-position: ${person.position}% center;`}
+                      loading="lazy"
+                    />
+                  </div>
+                  <a
+                    href="#lecturers"
+                    class="mt-2 px-4 text-center block text-sm font-semibold leading-tight hover:underline sm:text-base"
+                  >
+                    {person.name}
+                  </a>
+
+                  <p class="text-xs text-center px-4 text-gray-600 sm:text-sm">{person.univ}</p>
+                  <img
+                    src={person.flag}
+                    alt={`Flag of ${person.country}`}
+                    class="mx-auto mt-2 block h-5 w-auto rounded-sm object-contain shadow-sm"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </article>
+              );
+            })
+          }
+        </div>
+      </div>
+    </section>
   </div>
 </section>
+
+
 
 <script>
   (function () {
@@ -60,6 +96,28 @@ import { people } from "@data/diaspora";
     centerIt();
     window.addEventListener("resize", centerIt, { passive: true });
   })();
+
+  (function () {
+    const section = document.querySelector("#diaspora-carousel");
+    const articles = section?.querySelectorAll("[data-person-id]") || [];
+    const target = document.querySelector("#lecturers");
+
+    articles.forEach((article) => {
+      article.addEventListener("click", (event) => {
+        const targetEl = event.target as HTMLElement;
+        if (targetEl.closest("a")) event.preventDefault();
+
+        const id = article.getAttribute("data-person-id");
+        if (!id) return;
+
+        document.dispatchEvent(
+          new CustomEvent("diaspora:select", { detail: { id } })
+        );
+        target?.scrollIntoView({ behavior: "smooth" });
+        history.replaceState(null, "", `#lecturers-${id}`);
+      });
+    });
+  })();
 </script>
 
 <style>
@@ -71,7 +129,28 @@ import { people } from "@data/diaspora";
   .diaspora-track::-webkit-scrollbar {
     display: none;
   }
+  .diaspora-hero {
+    --apu-btn-primary-bg: rgb(var(--apu-accent));
+    --apu-btn-primary-color: rgb(var(--apu-navy));
+  }
+  .diaspora-hero-glow {
+    background: radial-gradient(
+      circle at center,
+      rgb(var(--apu-navy) / 0.18),
+      transparent 60%
+    );
+  }
   [data-diaspora-center] {
     scroll-snap-align: center;
+  }
+  .diaspora-card {
+    transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+  .diaspora-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 24px 6px rgb(var(--apu-accent) / 0.7);
+    z-index: 20;
   }
 </style>
