@@ -4,32 +4,32 @@ import SectionHeader from "@components/SectionHeader.astro";
 import BackgroundBlobs from "@components/BackgroundBlobs.astro";
 
 const iconMap: Record<string, string> = {
-  dna: '<path d="M2 15c6.667-6 13.333 0 20-6"/><path d="M9 22c1.5-2.5 3.5-2.5 5 0"/><path d="M15 2c-1.5 2.5-3.5 2.5-5 0"/><path d="M22 9c-6.667 6-13.333 0-20 6"/>',
-  flask: '<path d="M10 2v7.31"/><path d="M14 2v7.31"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/>',
-  globe: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
-  factory: '<path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/>',
+  newspaper: '<path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/>',
+  monitor: '<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
+  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  handshake: '<path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.25-3.25a1 1 0 0 0-1.3-.17l-1.1.73a1 1 0 0 1-1.3 0l-1.1-.73a1 1 0 0 0-1.3.17L7.5 16.5a1 1 0 1 0 3 3l2.5-2.5Z"/><path d="m18.5 19.5 1-1a1 1 0 0 0 0-1.4l-2.5-2.5a1 1 0 0 0-1.4 0l-1 1"/><path d="m5.5 19.5-1-1a1 1 0 0 1 0-1.4l2.5-2.5a1 1 0 0 1 1.4 0l1 1"/><path d="M12 12v.01"/>',
 };
 
 const featured = [
   {
-    title: "Interdisciplinary",
-    description: "biology + informatics + green technology.",
-    icon: "dna",
+    title: "Programs According to Student Potential",
+    description: "Students can choose the program that best aligns with their interests, talents, and career aspirations. Two programs are available: the Digital and New Media Communication program, which emphasizes creativity in designing, producing, and managing digital content for cross-platform mass communication needs. The Strategic Business Communication program integrates communication strategies with principles for building and growing businesses while strengthening brands and fostering public trust in the products and services they produce.",
+    icon: "newspaper",
   },
   {
-    title: "Modern Facilities",
-    description: "GLP/GMP-standard (SCCR) laboratory with complete and cutting-edge equipment.",
-    icon: "flask",
+    title: "Industry-Relevant Curriculum",
+    description: "The curriculum is designed to align with current industry needs. In the Digital and New Media Communication program, courses such as Digital Filmmaking, Digital Broadcast Journalism, and Media in the Making: Podcasting provide students with opportunities to learn directly from professional practitioners. Meanwhile, in the Strategic Business Communication program, courses such as Event Management in Business Communication, Brand Storytelling and Narrative, and Brand Management train students in business events, persuasive brand narratives, and managing compelling brands that integrate identity, audience, and industry trends.",
+    icon: "monitor",
   },
   {
-    title: "International Educators",
-    description: "Globally qualified lecturers active in research and publication.",
-    icon: "globe",
+    title: "Innovative Learning System",
+    description: "The learning system is structured, integrating academic foundations with practical experiences that support student competency development. In semesters 1 through 5, students undergo intensive on-campus lectures. In semesters 6 and 7, students enter an enrichment program. This program includes student exchanges and internships in the industrial sector.",
+    icon: "users",
   },
   {
-    title: "Industry Orientation",
-    description: "Internships, applied projects, and collaboration with biomedical science or industrial partners.",
-    icon: "factory",
+    title: "Collaborative Partners Support the Learning Process",
+    description: "Collaborations with media organizations, agencies, and companies make learning more relevant and aligned with the needs of the workplace. Through these partnerships, students can learn directly in the field through internships, guest lectures, research, and other practical activities.",
+    icon: "handshake",
   },
 ];
 ---
@@ -44,8 +44,8 @@ const featured = [
     <ScrollReveal>
       <SectionHeader
         kicker="WHY US"
-        title="Why Study Biomedical Science at APU?"
-        description="A curriculum combining molecular biology, information technology, and sustainable industrial engineering to tackle global challenges."
+        title="Why Study Communication Science at APU?"
+        description="A future-oriented curriculum that combines communication theory, digital media practice, public relations, journalism, branding, and creative content development to prepare students for today’s dynamic communication industry."
         class="text-center mb-12"
         titleClass="text-h2 text-[rgb(var(--color-apu-navy))] mb-4"
       />
@@ -138,7 +138,6 @@ const featured = [
     display: none;
   }
 }
-
 .bento-clone h3,
 .bento-clone .apu-icon-chip,
 .bento-clone .apu-icon-chip svg,
@@ -159,21 +158,8 @@ const featured = [
     font-size: 1.5rem ;
 }
 
-.bento-clone.is-expanded {
-    @media screen and (max-width: 768px) {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.5rem
-    }
-
-}
-
 .bento-clone.is-expanded h3 {
   font-size: 3rem ;
-  @media screen and (max-width: 768px) {
-      font-size: 1.2rem ;
-  }
 }
 
 .bento-clone .apu-icon-chip {
@@ -184,25 +170,16 @@ const featured = [
 .bento-clone.is-expanded .apu-icon-chip {
   width: 8rem ;
   height: 8rem ;
-  @media screen and (max-width: 768px) {
-      width: 3rem;
-      height: 3rem;
-  }
 }
 
 .bento-clone .apu-icon-chip svg {
   width: 80%;
   height: 80%;
-
 }
 
 .bento-clone.is-expanded .apu-icon-chip svg {
   width: 80% ;
   height: 80% ;
-  @media screen and (max-width: 768px) {
-    width: 50%;
-    height: 50%;
-  }
 }
 
 .bento-clone [class*="text-mono"] {
@@ -210,9 +187,6 @@ const featured = [
 }
 .bento-clone.is-expanded [class*="text-mono"] {
   font-size: 2rem ;
-  @media screen and (max-width: 768px) {
-      font-size: 1rem ;
-  }
 }
 
 </style>

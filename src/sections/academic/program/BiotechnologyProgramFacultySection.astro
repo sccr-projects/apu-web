@@ -1,7 +1,7 @@
 ---
 import ScrollReveal from "@components/ScrollReveal.astro";
 import SectionHeader from "@components/SectionHeader.astro";
-import { biotechnologyProgram as program } from "@data/program-details";
+import { biotechnologyProgram as program } from "@data/biotechnology-program-details";
 
 function getInitials(name: string): string {
   return name
@@ -34,7 +34,7 @@ const avatarGradients = [
     </ScrollReveal>
 
     <!-- Desktop: horizontal row / Mobile: 2-col grid -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
+    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
       {program.facultyMembers.map((member, index) => {
         const initials = getInitials(member.name);
         return (

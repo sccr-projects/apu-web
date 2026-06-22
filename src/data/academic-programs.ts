@@ -27,7 +27,7 @@ export const leadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
-  leaderName: "Naufal Sebastian Anggoro, S.Si., M.Si",
+  leaderName: "Nadya Audina NS. S.Si., M.Biomed",
   leaderTitle: "Head of Biomedical Science Study Program",
   leaderImage: assetUrl("/images/academic/biomedical-kaprodi.webp"),
   cta: {

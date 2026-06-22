@@ -4,32 +4,57 @@ import SectionHeader from "@components/SectionHeader.astro";
 import BackgroundBlobs from "@components/BackgroundBlobs.astro";
 
 const iconMap: Record<string, string> = {
-  dna: '<path d="M2 15c6.667-6 13.333 0 20-6"/><path d="M9 22c1.5-2.5 3.5-2.5 5 0"/><path d="M15 2c-1.5 2.5-3.5 2.5-5 0"/><path d="M22 9c-6.667 6-13.333 0-20 6"/>',
-  flask: '<path d="M10 2v7.31"/><path d="M14 2v7.31"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/>',
-  globe: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
-  factory: '<path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/>',
+  // Excellent Graduates / achievement
+  award:
+    '<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>',
+
+  // Industry-based curriculum / briefcase
+  briefcase:
+    '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M2 13h20"/>',
+
+  // Global digital business / globe + network
+  globeNetwork:
+    '<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><circle cx="17" cy="7" r="1.5"/><circle cx="7" cy="17" r="1.5"/><path d="M15.8 8.2 8.2 15.8"/>',
+
+  // Field experience / map
+  map:
+    '<path d="M9 18 3 21V6l6-3 6 3 6-3v15l-6 3-6-3Z"/><path d="M9 3v15"/><path d="M15 6v15"/>',
+
+  // Enrichment / internship / people connection
+  users:
+    '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
 };
 
 const featured = [
   {
-    title: "Interdisciplinary",
-    description: "biology + informatics + green technology.",
-    icon: "dna",
+    title: "Developing Excellent Graduates",
+    description:
+      "The Management Study Program is designed to develop competent, adaptive, and globally competitive graduates through two main focuses: International Business Management and Digital Business Management. These areas complement each other in preparing students to manage cross-border business and utilize digital technology for the future of business.",
+    icon: "award",
   },
   {
-    title: "Modern Facilities",
-    description: "GLP/GMP-standard (SCCR) laboratory with complete and cutting-edge equipment.",
-    icon: "flask",
+    title: "Industry-Based Curriculum",
+    description:
+      "A curriculum aligned with industry needs, focusing on the use of digital technology in business management and strategic decision-making.",
+    icon: "briefcase",
   },
   {
-    title: "International Educators",
-    description: "Globally qualified lecturers active in research and publication.",
-    icon: "globe",
+    title: "Global Business Digitalization",
+    description:
+      "Integrates global business digitalization into the learning process, preparing students to contribute to economic growth through technology-driven business development.",
+    icon: "globeNetwork",
   },
   {
-    title: "Industry Orientation",
-    description: "Internships, applied projects, and collaboration with biomedical science or industrial partners.",
-    icon: "factory",
+    title: "Field-Based Learning",
+    description:
+      "Encourages students to actively engage in business projects, field activities, and cross-border research experiences.",
+    icon: "map",
+  },
+  {
+    title: "Enrichment Program",
+    description:
+      "The Enrichment Program connects students with the professional world through internship opportunities and real industry exposure.",
+    icon: "users",
   },
 ];
 ---
@@ -44,8 +69,8 @@ const featured = [
     <ScrollReveal>
       <SectionHeader
         kicker="WHY US"
-        title="Why Study Biomedical Science at APU?"
-        description="A curriculum combining molecular biology, information technology, and sustainable industrial engineering to tackle global challenges."
+        title="Why Study Management at APU?"
+        description="A future-focused curriculum that builds leadership, entrepreneurship, strategic thinking, and digital business skills to prepare students for the modern business world."
         class="text-center mb-12"
         titleClass="text-h2 text-[rgb(var(--color-apu-navy))] mb-4"
       />
@@ -53,23 +78,23 @@ const featured = [
 
     <!-- Stage -->
     <div
-      class="bento-stage apu-glass-card relative mb-8 flex flex-col min-h-[320px] md:min-h-[520px] p-4 md:p-6"
+      class="bento-stage apu-glass-card relative mb-8 flex flex-col min-h-[420px] sm:min-h-[460px] md:min-h-[520px] p-4 md:p-6"
       data-bento-stage
     >
       <!-- Panels -->
-      <div class="bento-panels grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 flex-1">
+      <div class="bento-panels grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 flex-1 min-h-0">
         <div
-          class="bento-panel-left apu-glass-card opacity-0 pointer-events-none transition-opacity duration-500 p-6 md:p-8 flex flex-col justify-center"
+          class="bento-panel-left apu-glass-card opacity-0 pointer-events-none transition-opacity duration-500 p-5 md:p-8 flex flex-col justify-center overflow-y-auto"
           data-panel="left"
         >
-          <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-3" data-desc-number></span>
+          <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-2 md:mb-3" data-desc-number></span>
           <p class="text-body-s text-brand-text-muted leading-relaxed" data-desc-text></p>
         </div>
         <div
-          class="bento-panel-right apu-glass-card opacity-0 pointer-events-none transition-opacity duration-500 p-6 md:p-8 flex flex-col justify-center"
+          class="bento-panel-right apu-glass-card opacity-0 pointer-events-none transition-opacity duration-500 p-5 md:p-8 flex flex-col justify-center overflow-y-auto"
           data-panel="right"
         >
-          <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-3" data-desc-number></span>
+          <span class="text-mono text-[rgb(var(--color-apu-navy))] mb-2 md:mb-3" data-desc-number></span>
           <p class="text-body-s text-brand-text-muted leading-relaxed" data-desc-text></p>
         </div>
       </div>
@@ -80,7 +105,7 @@ const featured = [
         data-bento-hint
       >
         <p class="text-body-s text-brand-text-muted">
-          Select a strength below to explore what makes Biomedical Science at APU stand out.
+          Select a strength below to explore what makes Management at APU stand out.
         </p>
       </div>
 
@@ -138,7 +163,6 @@ const featured = [
     display: none;
   }
 }
-
 .bento-clone h3,
 .bento-clone .apu-icon-chip,
 .bento-clone .apu-icon-chip svg,
@@ -159,21 +183,8 @@ const featured = [
     font-size: 1.5rem ;
 }
 
-.bento-clone.is-expanded {
-    @media screen and (max-width: 768px) {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.5rem
-    }
-
-}
-
 .bento-clone.is-expanded h3 {
   font-size: 3rem ;
-  @media screen and (max-width: 768px) {
-      font-size: 1.2rem ;
-  }
 }
 
 .bento-clone .apu-icon-chip {
@@ -184,25 +195,16 @@ const featured = [
 .bento-clone.is-expanded .apu-icon-chip {
   width: 8rem ;
   height: 8rem ;
-  @media screen and (max-width: 768px) {
-      width: 3rem;
-      height: 3rem;
-  }
 }
 
 .bento-clone .apu-icon-chip svg {
   width: 80%;
   height: 80%;
-
 }
 
 .bento-clone.is-expanded .apu-icon-chip svg {
   width: 80% ;
   height: 80% ;
-  @media screen and (max-width: 768px) {
-    width: 50%;
-    height: 50%;
-  }
 }
 
 .bento-clone [class*="text-mono"] {
@@ -210,8 +212,29 @@ const featured = [
 }
 .bento-clone.is-expanded [class*="text-mono"] {
   font-size: 2rem ;
-  @media screen and (max-width: 768px) {
-      font-size: 1rem ;
+}
+
+@media (max-width: 767px) {
+  .bento-clone h3 {
+    font-size: 1.125rem;
+  }
+
+  .bento-clone.is-expanded h3 {
+    font-size: 1.375rem;
+  }
+
+  .bento-clone .apu-icon-chip {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .bento-clone.is-expanded .apu-icon-chip {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  .bento-clone.is-expanded [class*="text-mono"] {
+    font-size: 1.125rem;
   }
 }
 
@@ -234,6 +257,15 @@ const featured = [
     let activeIndex = null;
     let clone = null;
     let isAnimating = false;
+    const MD_BREAKPOINT = 768;
+
+    function isMobile() {
+      return window.innerWidth < MD_BREAKPOINT;
+    }
+
+    function getTargetSide(trigger) {
+      return isMobile() ? 'left' : trigger.dataset.expandTo;
+    }
 
     function hideHint() {
       hint.style.opacity = '0';
@@ -356,7 +388,7 @@ const featured = [
         trigger.setAttribute('aria-expanded', 'true');
         trigger.classList.add('opacity-0', 'pointer-events-none');
 
-        const targetSide = trigger.dataset.expandTo;
+        const targetSide = getTargetSide(trigger);
         const targetPanel = targetSide === 'left' ? leftPanel : rightPanel;
         const targetRect = targetPanel.getBoundingClientRect();
         const stageRect = stage.getBoundingClientRect();

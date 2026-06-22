@@ -97,12 +97,13 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
     },
   ],
   vision:
-    'To become an internationally recognized biotechnology study program through green technology innovation and cell engineering development.',
+        'To become a World Class Diploma III Midwifery Study Program to develop science and technology that produces skilled midwife graduates with character and entrepreneurial spirit.',
   mission: [
-    'To deliver world-class biotechnology education based on research and the latest technologies.',
-    'To develop innovative research in medical biotechnology, bioinformatics, and industrial biotechnology.',
-    'To build strategic partnerships with industry and academic institutions at home and abroad.',
-    'To produce graduates who are adaptable, creative, and socially responsible.'
+    'Organizing vocational midwifery education that produces superior graduates based on science and technology that meets global standards.',
+    'Developing applied research in the field of midwifery that is oriented towards science and technology that is relevant to the needs of society and global developments.',
+    'Organizing community service based on empirical and appropriate technology to improve the health of mothers and children in the life cycle.',
+    'Building national and international networks to support the achievement of global competitiveness of study programs.' ,
+    'Cultivating critical, analytical and independent thinking skills, as well as shaping the attitude of lifelong learners in the application of innovative, ethical and sustainable midwifery.'
   ],
   graduateAttributes: [
     {
@@ -156,68 +157,41 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
   ],
   careerPaths: [
     {
-      title: 'Research Scientist',
-      description: 'Research and development in pharmaceutical, food, and health biotechnology laboratories.',
+      title: 'Care Provider',
+      description: 'Able to provide comprehensive, high-quality midwifery care, focusing on integrated health services across the woman\'s life cycle.',
     },
     {
-      title: 'Clinical Regulator',
-      description: 'Regulation and oversight of biomedical products to ensure safety and quality.',
+      title: 'Care Provider for International Customer',
+      description: 'Ability to work in internationally recognized healthcare settings, both domestically and internationally. Strengthen international standards and respect cultural diversity and global healthcare systems.',
     },
     {
-      title: 'Bioinformatics Expert',
-      description: 'Biological data analysis, computational modeling, and genomic algorithm development.',
-    },
-    {
-      title: 'Data Security Specialist',
-      description: 'Research data and health information security within the digital biotechnology ecosystem.',
-    },
-    {
-      title: 'Quality Assurance Professional',
-      description: 'Quality assurance for biotechnology products according to GLP, GMP, and international standards.',
-    },
-    {
-      title: 'Industrial Biotech Developer',
-      description: 'Product and process development in green and sustainable biotechnology industries.',
+      title: 'Educator',
+      description: 'Actively participate in efforts to improve maternal and child health through health promotion, public education, and global insight-based advocacy. Continue studies in midwifery to advance scientific knowledge.',
     },
   ],
   facultyMembers: [
     {
-      name: 'Nadya Audina NS. S.Si., M.Biomed',
-      title: 'Head of Study Program',
-      nidn: '-',
+       name: 'Bdn, Titik Kurniawati, S.SiT., M.Kes., M.Keb',
+      title: 'lecturer',
+      nidn: '0622058101',
     },
     {
-      name: 'Mohammad Ariq Nazar, S.Si, M.Biomed',
+       name: 'Dewi Elliana, SKM., S.Tr.Keb., M.Kes',
+      title: 'lecturer',
+      nidn: '0611027703',
+    },
+    {
+      name: 'dr. Rita Agustina, M.Biomed',
       title: 'Lecturer',
-      nidn: '-',
+      nidn: 'NUPK 4133752653230133',
     },
     {
-      name: 'Dian Respati Ayu, S.Si., M.Biomed',
+      name: 'Diah Widiyatun, S.ST., M.Tr.Keb',
       title: 'Lecturer',
-      nidn: '-',
+      nidn: '0617069002',
     },
     {
-      name: 'Risky Chandra Satria Irawan S.Si, M.Biomed',
-      title: 'Lecturer',
-      nidn: '-',
-    },
-    {
-      name: 'Dendi Krisna Nugraha, M.Sc., Ph.D.',
-      title: 'Lecturer',
-      nidn: '-',
-    },
-    {
-      name: 'Faheem Ahmed Khan, BSc, MS, PhD',
-      title: 'Lecturer',
-      nidn: '-',
-    },
-    {
-      name: 'Naufal Sebastian Anggoro, S.Si., M.Si',
-      title: 'Lecturer',
-      nidn: '-',
-    },
-    {
-      name: 'Endah Agustina Lestari, S.Si, M.Mol.Biol.',
+      name: 'Erna Setyaningsih, SST., M.Tr.Keb',
       title: 'Lecturer',
       nidn: '-',
     },

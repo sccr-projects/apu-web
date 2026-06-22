@@ -1,0 +1,35 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import NavigationAPU from "@components/NavigationAPU.astro";
+import MidwiferyAssociateProgramHeroSection from "@sections/academic/program/MidwiferyAssociateProgramHeroSection.astro";
+import ProgramStrengthsSection from "@sections/academic/program/ProgramStrengthsSection.astro";
+import MidwiferyAssociateProgramVisionMissionSection from "@sections/academic/program/MidwiferyAssociateProgramVisionMissionSection.astro";
+import ProgramValuesSection from "@sections/academic/program/ProgramValuesSection.astro";
+import MidwiferyAssociateProgramCareersSection from "@sections/academic/program/MidwiferyAssociateProgramCareersSection.astro";
+import MidwiferyAssociateProgramFacultySection from "@sections/academic/program/MidwiferyAssociateProgramFacultySection.astro";
+import ContactSection from "@sections/ContactSection.astro";
+import Footer from "@components/Footer.astro";
+import MidwiferyAssociateProgramMsgFromHead from "@sections/academic/program/MidwiferyAssociateProgramMsgFromHead.astro";
+import MidwiferyAssociateProgramStrengthsBentoSection from "@sections/academic/program/MidwiferyAssociateProgramStrengthsBentoSection.astro";
+import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
+
+---
+
+<MainLayout
+  title="Program Studi Keperawatan | Agung Putra University"
+  description="Program Studi Keperawatan S1 APU — membekali mahasiswa dengan kompetensi kebidanan, kesehatan ibu dan anak, persalinan, perawatan bayi baru lahir, praktik klinis, dan pelayanan kesehatan masyarakat."
+>
+  <NavigationAPU />
+
+  <MidwiferyAssociateProgramHeroSection />
+  <MidwiferyAssociateProgramMsgFromHead variant="light" />
+  <!-- <BiomedicalGamePreviewSection /> -->
+  <!-- <ProgramStrengthsSection /> -->
+  <MidwiferyAssociateProgramStrengthsBentoSection />
+  <MidwiferyAssociateProgramVisionMissionSection />
+  <!-- <ProgramValuesSection /> -->
+  <MidwiferyAssociateProgramCareersSection />
+  <MidwiferyAssociateProgramFacultySection />
+  <ContactSection />
+  <Footer />
+</MainLayout>

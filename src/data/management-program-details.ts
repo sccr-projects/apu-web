@@ -97,12 +97,13 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
     },
   ],
   vision:
-    'To become an internationally recognized biotechnology study program through green technology innovation and cell engineering development.',
+    'To become a world-class Management Study Program in the development of digital-based and global management knowledge, grounded in the values of entrepreneurship and leadership. To become a Management Study Program that produces excellent, innovative, and character-driven graduates with a digital-based entrepreneurial mindset and global competitiveness.',
   mission: [
-    'To deliver world-class biotechnology education based on research and the latest technologies.',
-    'To develop innovative research in medical biotechnology, bioinformatics, and industrial biotechnology.',
-    'To build strategic partnerships with industry and academic institutions at home and abroad.',
-    'To produce graduates who are adaptable, creative, and socially responsible.'
+    'To provide international-standard management education focused on digital business enablers and international business management in order to produce graduates with strong entrepreneurial and leadership qualities.',
+    'To conduct innovative and applied research in digital transformation, entrepreneurship, and global strategy that strengthens national competitiveness and supports the advancement of management science and technology.',
+    'To carry out community service through the application of digital business innovation that empowers business actors and improves community welfare.',
+    'To build international networks and collaborations with industry, educational institutions, and global communities to expand the program’s contribution in digital business, entrepreneurship, and international management.',
+    'To foster critical, analytical, and independent thinking skills, while shaping lifelong learners who apply management knowledge in an innovative, ethical, and sustainable manner.'
   ],
   graduateAttributes: [
     {
@@ -182,42 +183,47 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
   ],
   facultyMembers: [
     {
-      name: 'Nadya Audina NS. S.Si., M.Biomed',
+      name: 'Reni Nur Arifah, S.E., M.M.',
       title: 'Head of Study Program',
       nidn: '-',
     },
     {
-      name: 'Mohammad Ariq Nazar, S.Si, M.Biomed',
+      name: 'Yetty Yuliany K, S.E., M.M',
       title: 'Lecturer',
       nidn: '-',
     },
     {
-      name: 'Dian Respati Ayu, S.Si., M.Biomed',
+      name: 'Putri Aryo Jelang Fitri Khothimah, S.E., M.M.',
       title: 'Lecturer',
       nidn: '-',
     },
     {
-      name: 'Risky Chandra Satria Irawan S.Si, M.Biomed',
+      name: 'Randika Shafly Fawwaz, S.M., M.M',
       title: 'Lecturer',
       nidn: '-',
     },
     {
-      name: 'Dendi Krisna Nugraha, M.Sc., Ph.D.',
+      name: 'Anindya Putri Utami, S.M., M.M.',
       title: 'Lecturer',
       nidn: '-',
     },
     {
-      name: 'Faheem Ahmed Khan, BSc, MS, PhD',
+      name: 'Eva Fachria, S.E., M.S.M',
       title: 'Lecturer',
       nidn: '-',
     },
     {
-      name: 'Naufal Sebastian Anggoro, S.Si., M.Si',
+      name: 'Dr. Ir. Agus F. Abdillah, MBA, ERMAP',
       title: 'Lecturer',
       nidn: '-',
     },
     {
-      name: 'Endah Agustina Lestari, S.Si, M.Mol.Biol.',
+      name: 'dr. Suharto Abdul Majid, M.M',
+      title: 'Lecturer',
+      nidn: '-',
+    },
+    {
+      name: 'Dr. Mohammad Annas, S. Tr.Par, M.M.',
       title: 'Lecturer',
       nidn: '-',
     },

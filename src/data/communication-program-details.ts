@@ -97,12 +97,13 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
     },
   ],
   vision:
-    'To become an internationally recognized biotechnology study program through green technology innovation and cell engineering development.',
+    'To become an internationally recognized Communication Science study program that excels in innovation in communication science and technology to support a futuristic global civilization.',
   mission: [
-    'To deliver world-class biotechnology education based on research and the latest technologies.',
-    'To develop innovative research in medical biotechnology, bioinformatics, and industrial biotechnology.',
-    'To build strategic partnerships with industry and academic institutions at home and abroad.',
-    'To produce graduates who are adaptable, creative, and socially responsible.'
+    'Developing internationally standardized Communication Studies education that integrates science and communication technology.',
+    'Conducting research in the field of communications to support technological advancement, strengthen national competitiveness, and produce communications works that help solve various social, cultural, and technological problems in the global community.',
+    'Implementing community service programs that utilize communication skills to empower communities, improve communication literacy, and create a positive impact on welfare and civilization.',
+    'Building international networks to encourage collaboration in the development of science and technology, communications, and innovation that contribute to global civilization.',
+    'Cultivating critical, analytical, and independent thinking skills, as well as fostering a lifelong learning attitude and the application of innovative, ethical, and sustainable communication skills.'
   ],
   graduateAttributes: [
     {
@@ -156,70 +157,48 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
   ],
   careerPaths: [
     {
-      title: 'Research Scientist',
-      description: 'Research and development in pharmaceutical, food, and health biotechnology laboratories.',
+      title: 'Multimedia Specialist (Journalist and Editor)',
+      description: 'Designs, produces, and manages multimedia content (audio, audiovisual, and written) for cross-platform mass communication. They play a key role in production and editing, such as journalists, writers, videographers, or editors.',
     },
     {
-      title: 'Clinical Regulator',
-      description: 'Regulation and oversight of biomedical products to ensure safety and quality.',
+      title: 'Media and Content Innovator',
+      description: 'Content innovators design creative concepts and manage the entire media production cycle, from pre-production to multi-platform distribution. They develop new ideas, develop communication strategies, and integrate various forms of content to enhance the value and appeal of media.',
     },
     {
-      title: 'Bioinformatics Expert',
-      description: 'Biological data analysis, computational modeling, and genomic algorithm development.',
+      title: 'Digital Communication Entrepreneur',
+      description: 'Building and developing businesses based on digital media and communication technology, such as startups, digital agencies, and professional personal brands.',
     },
+
     {
-      title: 'Data Security Specialist',
-      description: 'Research data and health information security within the digital biotechnology ecosystem.',
-    },
-    {
-      title: 'Quality Assurance Professional',
-      description: 'Quality assurance for biotechnology products according to GLP, GMP, and international standards.',
-    },
-    {
-      title: 'Industrial Biotech Developer',
-      description: 'Product and process development in green and sustainable biotechnology industries.',
+      title: 'Public Relations Specialist/Agency',
+      description: 'Designs, implements, and evaluates communication strategies to build reputation and positive public relations.',
     },
   ],
   facultyMembers: [
     {
-      name: 'Nadya Audina NS. S.Si., M.Biomed',
-      title: 'Head of Study Program',
-      nidn: '-',
+       name: 'Muhamad Agung Setiawan, S.Sos., M.Sos',
+      title: 'lecturer',
+      nidn: '0610089602',
+    },
+     {
+       name: 'Lakna Tulas\'un, S.Sos., M.I.Kom.',
+      title: 'lecturer',
+      nidn: '0626099702',
     },
     {
-      name: 'Mohammad Ariq Nazar, S.Si, M.Biomed',
+      name: 'Sutinnarto,S.I.Kom.,M.I.Kom',
       title: 'Lecturer',
-      nidn: '-',
+      nidn: '0614028102',
     },
     {
-      name: 'Dian Respati Ayu, S.Si., M.Biomed',
+      name: 'Najmi Rizki Khairani, S.Sos., M.I.Kom',
       title: 'Lecturer',
-      nidn: '-',
+      nidn: '0610048605',
     },
     {
-      name: 'Risky Chandra Satria Irawan S.Si, M.Biomed',
+      name: 'Rif\'atul Himmah, S.Sos., M.I.Kom',
       title: 'Lecturer',
-      nidn: '-',
-    },
-    {
-      name: 'Dendi Krisna Nugraha, M.Sc., Ph.D.',
-      title: 'Lecturer',
-      nidn: '-',
-    },
-    {
-      name: 'Faheem Ahmed Khan, BSc, MS, PhD',
-      title: 'Lecturer',
-      nidn: '-',
-    },
-    {
-      name: 'Naufal Sebastian Anggoro, S.Si., M.Si',
-      title: 'Lecturer',
-      nidn: '-',
-    },
-    {
-      name: 'Endah Agustina Lestari, S.Si, M.Mol.Biol.',
-      title: 'Lecturer',
-      nidn: '-',
+      nidn: '2461772673230292',
     },
   ],
   focusAreas: [

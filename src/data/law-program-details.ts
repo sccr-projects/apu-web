@@ -97,12 +97,12 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
     },
   ],
   vision:
-    'To become an internationally recognized biotechnology study program through green technology innovation and cell engineering development.',
+    'Producing superior, innovative, character-based law graduates who transform Pancasila values ​​into globally competitive legal science by 2043.',
   mission: [
-    'To deliver world-class biotechnology education based on research and the latest technologies.',
-    'To develop innovative research in medical biotechnology, bioinformatics, and industrial biotechnology.',
-    'To build strategic partnerships with industry and academic institutions at home and abroad.',
-    'To produce graduates who are adaptable, creative, and socially responsible.'
+    'Character-Based Education: Providing superior and excellent education to produce law graduates who have Pancasila character, are able to innovate, and are globally competitive.',
+    'Research & Publication: Conducting professional research and scientific publications with a Pancasila character regarding the latest legal developments and issues.',
+    'Community Service and Science and Technology: Carrying out quality community service, in line with developments in science and technology, and with a Pancasila character.',
+    'Institutional Cooperation: Establishing institutional partnerships that are oriented towards developing knowledge in the legal field.' 
   ],
   graduateAttributes: [
     {
@@ -156,70 +156,48 @@ Lulusan Biotechnology APU siap menghadapi tantangan global di bidang medis, digi
   ],
   careerPaths: [
     {
-      title: 'Research Scientist',
-      description: 'Research and development in pharmaceutical, food, and health biotechnology laboratories.',
+      title: 'Multimedia Specialist (Journalist and Editor)',
+      description: 'Designs, produces, and manages multimedia content (audio, audiovisual, and written) for cross-platform mass communication. They play a key role in production and editing, such as journalists, writers, videographers, or editors.',
     },
     {
-      title: 'Clinical Regulator',
-      description: 'Regulation and oversight of biomedical products to ensure safety and quality.',
+      title: 'Media and Content Innovator',
+      description: 'Content innovators design creative concepts and manage the entire media production cycle, from pre-production to multi-platform distribution. They develop new ideas, develop communication strategies, and integrate various forms of content to enhance the value and appeal of media.',
     },
     {
-      title: 'Bioinformatics Expert',
-      description: 'Biological data analysis, computational modeling, and genomic algorithm development.',
+      title: 'Digital Communication Entrepreneur',
+      description: 'Building and developing businesses based on digital media and communication technology, such as startups, digital agencies, and professional personal brands.',
     },
+
     {
-      title: 'Data Security Specialist',
-      description: 'Research data and health information security within the digital biotechnology ecosystem.',
-    },
-    {
-      title: 'Quality Assurance Professional',
-      description: 'Quality assurance for biotechnology products according to GLP, GMP, and international standards.',
-    },
-    {
-      title: 'Industrial Biotech Developer',
-      description: 'Product and process development in green and sustainable biotechnology industries.',
+      title: 'Public Relations Specialist/Agency',
+      description: 'Designs, implements, and evaluates communication strategies to build reputation and positive public relations.',
     },
   ],
   facultyMembers: [
+
     {
-      name: 'Nadya Audina NS. S.Si., M.Biomed',
-      title: 'Head of Study Program',
-      nidn: '-',
+       name: 'dr. Erwin, S.H., M.H',
+      title: 'lecturer',
+      nidn: '6965892',
+    },    {
+       name: 'Zain Arfin Utama S.H.,M.H.',
+      title: 'lecturer',
+      nidn: '0615119301',
     },
     {
-      name: 'Mohammad Ariq Nazar, S.Si, M.Biomed',
+      name: 'Muhamad Chabib F.S.HI.,M.H.',
       title: 'Lecturer',
-      nidn: '-',
+      nidn: '0613059402',
     },
     {
-      name: 'Dian Respati Ayu, S.Si., M.Biomed',
+      name: 'Pandam Bayu Seto Aji, M.H.',
       title: 'Lecturer',
-      nidn: '-',
+      nidn: '2734775676130202',
     },
     {
-      name: 'Risky Chandra Satria Irawan S.Si, M.Biomed',
+      name: 'Eko Setiyo Ary Wibowo S.H.I, M.H.',
       title: 'Lecturer',
-      nidn: '-',
-    },
-    {
-      name: 'Dendi Krisna Nugraha, M.Sc., Ph.D.',
-      title: 'Lecturer',
-      nidn: '-',
-    },
-    {
-      name: 'Faheem Ahmed Khan, BSc, MS, PhD',
-      title: 'Lecturer',
-      nidn: '-',
-    },
-    {
-      name: 'Naufal Sebastian Anggoro, S.Si., M.Si',
-      title: 'Lecturer',
-      nidn: '-',
-    },
-    {
-      name: 'Endah Agustina Lestari, S.Si, M.Mol.Biol.',
-      title: 'Lecturer',
-      nidn: '-',
+      nidn: '0608119001',
     },
   ],
   focusAreas: [
