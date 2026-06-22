@@ -62,9 +62,9 @@ const APU_CENTER: [number, number] = [-7.071300, 110.362306];
             <CtaButton href={admissionsWhatsApp} target="_blank" rel="noopener noreferrer" withArrow>
               Apply Now
             </CtaButton>
-            <!-- <CtaButton href="#jalur-masuk" variant="tertiary" class="ecosystem-trigger">
+            <CtaButton href="#jalur-masuk" variant="tertiary" class="ecosystem-trigger">
                 View SCCR Ecosystem
-            </CtaButton> -->
+            </CtaButton>
           </div>
         </section>
       </div>
@@ -206,6 +206,9 @@ const APU_CENTER: [number, number] = [-7.071300, 110.362306];
     }
     .apu-anchor-campus__map-plate {
       transform: scale(1.02);
+    }
+    :global(.ecosystem-trigger) {
+      display: none !important;
     }
   }
 
