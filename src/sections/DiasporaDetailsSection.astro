@@ -1,46 +1,48 @@
 ---
-import SectionHeader from "@components/SectionHeader.astro";
 import CtaButton from "@components/CtaButton.astro";
 import ScrollReveal from "@components/ScrollReveal.astro";
 import { people } from "@data/diaspora";
 import canadaFlag from "@/assets/images/academic/diaspora/canada-flag.svg";
-const featuredPerson = people.find((p) => p.id === "prof-agung") ?? people[0];
+const featuredLecturer = people.find((p) => p.id === "prof-agung") ?? people[0];
 import canada from "@/assets/images/academic/canada-bg.jpg";
 
+const primaryCta = { label: "View Full Portfolio", href: "#" };
+const secondaryCta = { label: "Contact Office", href: "#" };
+const directoryTitle = "Faculty Directory";
+const sectionTitle = "Lecturers List:";
 ---
 
 <section
   id="lecturers"
   class="apu-section-shell relative overflow-hidden bg-brand-surface py-24 md:py-32"
-  aria-label={directory.title}
+  aria-label={directoryTitle}
 >
   <div>
     {/* Featured researcher */}
     <ScrollReveal>
       <div class="apu-glass-card rounded-none lecturers-featured-card mb-10 overflow-hidden flex justify-center py-10 relative">
-          <img src={canada.src} alt={featuredPerson.name} class="pointer-events-none absolute top-0 left-0 w-full h-full object-cover opacity-10" aria-hidden="true" />
+          <img src={canada.src} alt={featuredLecturer.name} class="pointer-events-none absolute top-0 left-0 w-full h-full object-cover opacity-10" aria-hidden="true" />
         <div class="relative z-10 flex flex-row justify-center">
           <div class="order-2 w-1/2 flex flex-col justify-center md:order-1">
-            <span class="apu-pill-badge mb-6 self-start">{featured.kicker}</span>
             <h2 class="text-h2 mb-3 text-white">
-              {featuredPerson.name}
+              {featuredLecturer.name}
             </h2>
             <p class="text-body mb-6 text-apu-accent">
-              {featuredPerson.role}
+              {featuredLecturer.role}
             </p>
-            <p class="text-body mb-6 text-apu-accent text-sm">
-              {featured.department}
-            </p>
+            <!-- <p class="text-body mb-6 text-apu-accent text-sm">
+              {department}
+            </p> -->
 
             <div class="mb-6">
                 <h3 class="text-caption mb-3 uppercase tracking-widest text-white/70">
-                    Alumni of {featured.univ}
+                    {featuredLecturer.univ ?? `Alumni of` + featuredLecturer.univ}
                 </h3>
               <h3 class="text-caption mb-3 uppercase tracking-widest text-white/70">
                 Past Experience
               </h3>
               <ul class="space-y-2">
-                {featuredPerson.pastExperience.items.map((item) => (
+                {featuredLecturer.pastExperience.items.map((item) => (
                   <li class="text-body-s flex items-start gap-3 text-white/90">
                     <span
                       class="mt-2 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-apu-accent"
@@ -57,23 +59,23 @@ import canada from "@/assets/images/academic/canada-bg.jpg";
                 Notable Research
               </h3>
               <p class="text-body-s leading-relaxed text-white/90">
-                {featuredPerson.notableResearch.text}
+                {featuredLecturer.notableResearch.text}
               </p>
             </div>
 
             <div class="flex flex-wrap items-center gap-4">
               <CtaButton
-                href={featured.ctas.primary.href}
+                href={primaryCta.href}
                 variant="primary"
                 withArrow
               >
-                {featured.ctas.primary.label}
+                {primaryCta.label}
               </CtaButton>
               <CtaButton
-                href={featured.ctas.secondary.href}
+                href={secondaryCta.href}
                 variant="secondary"
               >
-                {featured.ctas.secondary.label}
+                {secondaryCta.label}
               </CtaButton>
             </div>
           </div>
@@ -81,9 +83,10 @@ import canada from "@/assets/images/academic/canada-bg.jpg";
           <div class="relative order-1 md:order-2 w-96">
             <div class="relative aspect-[4/5] overflow-hidden rounded-2xl md:aspect-auto md:h-full">
               <img
-                src={featuredPerson.image.src}
-                alt={`Portrait of ${featuredPerson.name}`}
+                src={featuredLecturer.image.src}
+                alt={`Portrait of ${featuredLecturer.name}`}
                 class="h-full w-full object-cover border-0"
+                style={`object-position: ${featuredLecturer.position}% center;`}
                 loading="eager"
               />
               <img
@@ -101,7 +104,7 @@ import canada from "@/assets/images/academic/canada-bg.jpg";
     {/* Faculty directory */}
     <div class="mb-6 flex items-end justify-between gap-6 px-10">
       <ScrollReveal class="flex-1">
-          <h2 class="font-epilogue font-semibold text-4xl text-apu-navy">Lecturers List:</h2>
+          <h2 class="font-epilogue font-semibold text-4xl text-apu-navy">{sectionTitle}</h2>
       </ScrollReveal>
 
       <div
@@ -172,7 +175,9 @@ import canada from "@/assets/images/academic/canada-bg.jpg";
                 />
               </div>
               <h3 class="text-2xl font-semibold text-brand-text mb-1">
-                {person.name}
+                <a href={person.href} class="hover:underline">
+                  {person.name}
+                </a>
               </h3>
               <p class="text-caption text-brand-text-muted mb-4">
                 {person.role}
