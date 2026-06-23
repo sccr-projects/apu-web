@@ -17,6 +17,7 @@ import { communicationLeadershipMessage as leadershipMessage } from "@data/acade
 import { communicationHero } from "@data/program-heroes";
 import { communicationCareers } from "@data/program-careers";
 import { communicationFaculty } from "@data/program-faculty";
+import { communicationValues } from "@data/program-values";
 import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
 
 ---
@@ -33,7 +34,7 @@ import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalG
   <!-- <ProgramStrengthsSection /> -->
   <ProgramStrengthsBentoSection data={communicationStrengthsBento} />
   <ProgramVisionMissionSection data={communicationProgram} variant="communication" />
-  <!-- <ProgramValuesSection /> -->
+  <!-- <ProgramValuesSection data={communicationValues} /> -->
   <ProgramCareersSection data={communicationCareers} />
   <ProgramFacultySection data={communicationFaculty} />
   <ContactSection />

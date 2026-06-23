@@ -2,7 +2,13 @@
 import ScrollReveal from "@components/ScrollReveal.astro";
 import SectionHeader from "@components/SectionHeader.astro";
 import BackgroundBlobs from "@components/BackgroundBlobs.astro";
-import { biotechnologyProgram as program } from "@data/program-details";
+import type { ProgramValuesData } from "@data/program-values";
+
+interface Props {
+  data: ProgramValuesData;
+}
+
+const { data } = Astro.props;
 
 const gradientClasses = [
   'from-[rgb(var(--color-apu-accent))] to-[rgb(var(--color-apu-navy))]',
@@ -24,9 +30,9 @@ const gradientClasses = [
   <div class="content-max relative z-10">
     <ScrollReveal>
       <SectionHeader
-        kicker="GRADUATE ATTRIBUTES"
-        title="Nilai-Nilai Lulusan"
-        description="APUSSCR — Kualitas yang dibentuk di setiap mahasiswa Biotechnology APU"
+        kicker={data.kicker}
+        title={data.title}
+        description={data.description}
         class="text-center mb-16"
         titleClass="text-h2 text-[rgb(var(--color-apu-navy))] mb-4"
       />
@@ -34,7 +40,7 @@ const gradientClasses = [
 
     <!-- Desktop: 7 cards row / Mobile: 2-col grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 md:gap-5">
-      {program.graduateAttributes.map((attr, index) => (
+      {data.graduateAttributes.map((attr, index) => (
         <ScrollReveal delay={index * 80}>
           <div class="apu-glass-card apu-interactive-card p-5 md:p-6 text-center h-full flex flex-col items-center">
             <div class={`w-14 h-14 rounded-2xl bg-gradient-to-br ${gradientClasses[index % gradientClasses.length]} flex items-center justify-center mb-4 shadow-lg`}>

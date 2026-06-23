@@ -17,6 +17,7 @@ import { biotechnologyLeadershipMessage as leadershipMessage } from "@data/acade
 import { biotechnologyHero } from "@data/program-heroes";
 import { biotechnologyCareers } from "@data/program-careers";
 import { biotechnologyFaculty } from "@data/program-faculty";
+import { biotechnologyValues } from "@data/program-values";
 import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
 
 ---
@@ -33,7 +34,7 @@ import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalG
   <!-- <ProgramStrengthsSection /> -->
   <ProgramStrengthsBentoSection data={biotechnologyStrengthsBento} />
   <ProgramVisionMissionSection data={biotechnologyProgram} variant="biotechnology" />
-  <!-- <ProgramValuesSection /> -->
+  <!-- <ProgramValuesSection data={biotechnologyValues} /> -->
   <!-- <ProgramCareersSection data={biotechnologyCareers} /> -->
   <ProgramFacultySection data={biotechnologyFaculty} />
   <ContactSection />

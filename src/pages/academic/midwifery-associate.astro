@@ -17,6 +17,7 @@ import { midwiferyAssociateLeadershipMessage as leadershipMessage } from "@data/
 import { midwiferyAssociateHero } from "@data/program-heroes";
 import { midwiferyAssociateCareers } from "@data/program-careers";
 import { midwiferyAssociateFaculty } from "@data/program-faculty";
+import { midwiferyAssociateValues } from "@data/program-values";
 import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
 
 ---
@@ -33,7 +34,7 @@ import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalG
   <!-- <ProgramStrengthsSection /> -->
   <ProgramStrengthsBentoSection data={midwiferyAssociateStrengthsBento} />
   <ProgramVisionMissionSection data={midwiferyAssociateProgram} />
-  <!-- <ProgramValuesSection /> -->
+  <!-- <ProgramValuesSection data={midwiferyAssociateValues} /> -->
   <ProgramCareersSection data={midwiferyAssociateCareers} />
   <ProgramFacultySection data={midwiferyAssociateFaculty} />
   <ContactSection />
