@@ -1,12 +1,39 @@
 ---
 import { assetUrl } from '@lib/assets';
-import type { ProgramHeroData } from '@data/program-heroes';
+import type { ProgramHeroData, ProgramHeroSlug } from '@data/program-heroes';
 
 export interface Props {
   data: ProgramHeroData;
 }
 
 const { data } = Astro.props;
+
+const headlineClasses: Record<ProgramHeroSlug, string> = {
+  "biomedical-science":
+    "text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl",
+  biotechnology: "text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-8xl",
+  communication: "text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl",
+  law: "text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl",
+  management:
+    "text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl",
+  "midwifery-associate":
+    "text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl",
+  "midwifery-bachelor":
+    "text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl",
+};
+
+const overlayEndColors: Record<ProgramHeroSlug, string> = {
+  "biomedical-science": "rgb(var(--color-program-biomedical-science))",
+  biotechnology: "rgb(var(--color-program-biomedical-science))",
+  communication: "#9c6940",
+  law: "#9d2946",
+  management: "rgb(var(--color-program-management))",
+  "midwifery-associate": "#6d48bf",
+  "midwifery-bachelor": "#6d48bf",
+};
+
+const headlineClass = headlineClasses[data.program];
+const overlayEnd = overlayEndColors[data.program];
 ---
 
 <section
@@ -27,7 +54,7 @@ const { data } = Astro.props;
 
         <div
             class="absolute inset-0 hero-on-overlay-main"
-            style={`--hero-overlay-end: ${data.overlayEnd}`}
+            style={`--hero-overlay-end: ${overlayEnd}`}
         >
         </div>
 
@@ -49,7 +76,7 @@ const { data } = Astro.props;
 
             <h1
                 id="hero-on-headline"
-                class={`tracking-wide opacity-0 text-white hero-on-headline break-words min-w-0 ${data.headlineClass}`}
+                class={`tracking-wide opacity-0 text-white hero-on-headline break-words min-w-0 ${headlineClass}`}
             >
                 {data.headline}
             </h1>
