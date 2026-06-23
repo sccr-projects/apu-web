@@ -29,6 +29,7 @@ export interface DiasporaPerson {
   flag: string;
   href: string;
   google_scholar: string;
+  h_index?: number;
   image: { src: string };
   background_image?: { src: string };
   position: number;
@@ -111,6 +112,7 @@ export const people: DiasporaPerson[] = [
     flag: "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
     href: "#",
     google_scholar: "https://scholar.google.com/citations?user=vUj63aUAAAAJ",
+    h_index: 17,
     image: msDina,
     background_image: japanBg,
     position: 28,
