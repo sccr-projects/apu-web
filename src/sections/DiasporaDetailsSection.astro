@@ -47,7 +47,7 @@ const sectionTitle = "Lecturers List:";
               {department}
             </p> -->
 
-            <div class="mb-6">
+            <div class="mb-6 backdrop-blur-md">
                 <h3 class="text-body mb-6 text-apu-accent">
                    <p data-featured-univ>{featuredLecturer.univ}</p>
                 </h3>
@@ -67,7 +67,7 @@ const sectionTitle = "Lecturers List:";
               </ul>
             </div>
 
-            <div class="mb-8">
+            <div class="mb-8 backdrop-blur-md">
               <h3 class="text-caption mb-3 uppercase tracking-widest text-white/70">
                 Notable Research
               </h3>
@@ -192,7 +192,7 @@ const sectionTitle = "Lecturers List:";
               tabindex="0"
               role="button"
             >
-              <div class="mb-5 aspect-[3/4] overflow-hidden rounded-xl">
+              <div class="mb-5 aspect-[3/4] overflow-hidden rounded-xl ">
                 <img
                 draggable="false"
                   src={person.image.src}
@@ -217,7 +217,7 @@ const sectionTitle = "Lecturers List:";
   </div>
 </section>
 
-<script>
+<script is:inline>
   (function () {
     const section = document.querySelector("#lecturers");
     const peopleData = JSON.parse(section?.getAttribute("data-people") || "[]");
@@ -227,14 +227,14 @@ const sectionTitle = "Lecturers List:";
     const featuredUniv = section?.querySelector("[data-featured-univ]");
     const featuredPast = section?.querySelector("[data-featured-past-experience]");
     const featuredResearch = section?.querySelector("[data-featured-notable-research]");
-    const featuredImage = section?.querySelector("[data-featured-image]") as HTMLImageElement | null;
-    const featuredFlag = section?.querySelector("[data-featured-flag]") as HTMLImageElement | null;
-    const featuredBackground = section?.querySelector("[data-featured-background]") as HTMLImageElement | null;
+    const featuredImage = section?.querySelector("[data-featured-image]");
+    const featuredFlag = section?.querySelector("[data-featured-flag]");
+    const featuredBackground = section?.querySelector("[data-featured-background]");
     const defaultBg = section?.getAttribute("data-default-bg") || "";
-    const featuredProfile = section?.querySelector("[data-featured-profile]") as HTMLAnchorElement | null;
+    const featuredProfile = section?.querySelector("[data-featured-profile]");
 
-    const updateFeatured = (id: string) => {
-      const person = peopleData.find((p: any) => p.id === id);
+    const updateFeatured = (id) => {
+      const person = peopleData.find((p) => p.id === id);
       if (!person || !section) return;
 
       if (featuredName) featuredName.textContent = person.name;
@@ -245,7 +245,7 @@ const sectionTitle = "Lecturers List:";
       if (featuredPast) {
         featuredPast.innerHTML = person.pastExperience.items
           .map(
-            (item: string) =>
+            (item) =>
               `<li class="text-body-s flex items-start gap-3 text-white/90"><span class="mt-2 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-apu-accent" aria-hidden="true"></span>${item}</li>`
           )
           .join("");
@@ -274,24 +274,27 @@ const sectionTitle = "Lecturers List:";
 
     section?.querySelectorAll("[data-person-id]").forEach((card) => {
       card.addEventListener("click", (event) => {
-        const trackEl = section?.querySelector("[data-lecturers-track]") as HTMLElement | null;
-        if (trackEl?.dataset.wasDragged === "true") return;
         event.preventDefault();
         const id = card.getAttribute("data-person-id");
-        if (id) updateFeatured(id);
+        if (id) {
+          updateFeatured(id);
+          history.replaceState(null, "", `#lecturers-${id}`);
+        }
       });
       card.addEventListener("keydown", (event) => {
-        const keyboardEvent = event as KeyboardEvent;
-        if (keyboardEvent.key === "Enter" || keyboardEvent.key === " ") {
-          keyboardEvent.preventDefault();
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
           const id = card.getAttribute("data-person-id");
-          if (id) updateFeatured(id);
+          if (id) {
+            updateFeatured(id);
+            history.replaceState(null, "", `#lecturers-${id}`);
+          }
         }
       });
     });
 
     document.addEventListener("diaspora:select", (event) => {
-      const id = (event as CustomEvent).detail?.id;
+      const id = event.detail?.id;
       if (id) updateFeatured(id);
     });
 
@@ -301,10 +304,10 @@ const sectionTitle = "Lecturers List:";
     const carousels = document.querySelectorAll("[data-lecturers-carousel]");
 
     carousels.forEach((root) => {
-      const track = root.querySelector("[data-lecturers-track]") as HTMLElement | null;
-      const controls = root.closest("section")?.querySelector("[data-lecturers-controls]") as HTMLElement | null | undefined;
-      const prev = controls?.querySelector("[data-lecturers-prev]") as HTMLButtonElement | null;
-      const next = controls?.querySelector("[data-lecturers-next]") as HTMLButtonElement | null;
+      const track = root.querySelector("[data-lecturers-track]");
+      const controls = root.closest("section")?.querySelector("[data-lecturers-controls]");
+      const prev = controls?.querySelector("[data-lecturers-prev]");
+      const next = controls?.querySelector("[data-lecturers-next]");
 
       if (!track) return;
 
@@ -314,7 +317,7 @@ const sectionTitle = "Lecturers List:";
       };
 
       const getCardWidth = () => {
-        const card = track.querySelector(":scope > article") as HTMLElement | null;
+        const card = track.querySelector(":scope > article");
         return card?.offsetWidth || track.clientWidth;
       };
 
@@ -329,14 +332,14 @@ const sectionTitle = "Lecturers List:";
         next.style.opacity = next.disabled ? "0.4" : "";
       };
 
-      const scrollBy = (direction: number) => {
+      const scrollBy = (direction) => {
         track.scrollBy({ left: direction * scrollStep(), behavior: "smooth" });
       };
 
       prev?.addEventListener("click", () => scrollBy(-1));
       next?.addEventListener("click", () => scrollBy(1));
 
-      track.addEventListener("keydown", (event: KeyboardEvent) => {
+      track.addEventListener("keydown", (event) => {
         if (event.key === "ArrowLeft") {
           event.preventDefault();
           scrollBy(-1);
@@ -349,51 +352,6 @@ const sectionTitle = "Lecturers List:";
       track.addEventListener("scroll", updateButtons, { passive: true });
       window.addEventListener("resize", updateButtons, { passive: true });
       updateButtons();
-
-      // Drag-to-scroll for mobile / touch
-      let isDragging = false;
-      let dragStartX = 0;
-      let dragScrollStart = 0;
-      let dragMoved = false;
-      const dragThreshold = 5;
-
-      track.addEventListener("pointerdown", (event: PointerEvent) => {
-        if (event.pointerType === "mouse" && event.button !== 0) return;
-        isDragging = true;
-        dragMoved = false;
-        track.classList.add("is-dragging");
-        track.setPointerCapture(event.pointerId);
-        dragStartX = event.pageX - track.offsetLeft;
-        dragScrollStart = track.scrollLeft;
-      });
-
-      track.addEventListener("pointermove", (event: PointerEvent) => {
-        if (!isDragging) return;
-        event.preventDefault();
-        const x = event.pageX - track.offsetLeft;
-        const walk = (x - dragStartX) * 1.2;
-        if (Math.abs(walk) > dragThreshold) dragMoved = true;
-        track.scrollLeft = dragScrollStart - walk;
-      });
-
-      const endDrag = (event?: PointerEvent) => {
-        if (!isDragging) return;
-        isDragging = false;
-        track.classList.remove("is-dragging");
-        if (event?.pointerId) {
-          try {
-            track.releasePointerCapture(event.pointerId);
-          } catch {}
-        }
-        if (dragMoved) {
-          track.dataset.wasDragged = "true";
-          setTimeout(() => delete track.dataset.wasDragged, 0);
-        }
-      };
-
-      track.addEventListener("pointerup", (event: PointerEvent) => endDrag(event));
-      track.addEventListener("pointercancel", (event: PointerEvent) => endDrag(event));
-      track.addEventListener("pointerleave", () => endDrag());
     });
   })();
 </script>
@@ -427,10 +385,6 @@ const sectionTitle = "Lecturers List:";
     touch-action: pan-x;
     user-select: none;
     -webkit-user-select: none;
-  }
-
-  .lecturers-track.is-dragging {
-    cursor: grabbing;
   }
 
   .lecturers-track::-webkit-scrollbar {
