@@ -22,6 +22,11 @@
 @import "@fontsource/lora/600-italic.css";
 @import "@fontsource/lora/700-italic.css";
 
+/* Native cross-document view transitions where the browser supports them */
+@view-transition {
+  navigation: auto;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {

@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import { assetUrl } from '@lib/assets';
 import "@styles/global.css";
 
@@ -45,7 +46,9 @@ const ogImage = new URL(assetUrl('/images/hero-campus.jpg'), Astro.url).href;
       rel="stylesheet"
     />
 
-    <script is:inline>
+    <ClientRouter />
+
+    <script is:inline data-astro-rerun>
       let themeColorMeta = document.querySelector('meta[name="theme-color"]');
       const rootStyles = getComputedStyle(document.documentElement);
       const themeColor = rootStyles.getPropertyValue('--color-brand-surface').trim();
@@ -63,6 +66,8 @@ const ogImage = new URL(assetUrl('/images/hero-campus.jpg'), Astro.url).href;
 
   </head>
   <body>
-    <slot />
+    <div transition:animate="fade">
+      <slot />
+    </div>
   </body>
 </html>

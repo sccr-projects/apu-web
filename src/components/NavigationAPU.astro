@@ -212,6 +212,7 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
   data-scrolled="false"
   class="fixed inset-x-0 top-0 z-50"
   aria-label="Main APU navigation"
+  transition:persist
 >
 
   <div class="nav-bar">
@@ -984,6 +985,12 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
     setScrolledState();
     updateRouteActiveState();
     setupSectionObserver();
+
+    document.addEventListener("astro:page-load", () => {
+      setMenuOpen(false, { returnFocus: false });
+      updateRouteActiveState();
+      setupSectionObserver();
+    });
   })();
 </script>
 

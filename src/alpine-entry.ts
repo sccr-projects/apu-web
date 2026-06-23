@@ -5,6 +5,12 @@ import { Flip } from 'gsap/Flip';
 gsap.registerPlugin(Flip);
 
 export default (Alpine: Alpine) => {
+  document.addEventListener('astro:page-load', () => {
+    if (typeof (Alpine as unknown as { initTree?: (root: HTMLElement) => void }).initTree === 'function') {
+      (Alpine as unknown as { initTree: (root: HTMLElement) => void }).initTree(document.body);
+    }
+  });
+
   Alpine.data('bento', () => ({
     items: [] as Array<{
       title: string;
