@@ -1,7 +1,13 @@
 ---
 import ScrollReveal from "@components/ScrollReveal.astro";
 import SectionHeader from "@components/SectionHeader.astro";
-import { biotechnologyProgram as program } from "@data/program-details";
+import type { ProgramDetail } from "@data/program-details";
+
+interface Props {
+  data: ProgramDetail;
+}
+
+const { data: program } = Astro.props;
 ---
 
 <section id="visi-misi" class="apu-section-shell relative overflow-hidden bg-brand-surface-alt">
