@@ -1,11 +1,11 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
 import NavigationAPU from "@components/NavigationAPU.astro";
-import ManagementProgramHeroSection from "@sections/academic/program/ManagementProgramHeroSection.astro";
+import ProgramHeroSection from "@sections/academic/program/ProgramHeroSection.astro";
 import ProgramStrengthsSection from "@sections/academic/program/ProgramStrengthsSection.astro";
 import ProgramValuesSection from "@sections/academic/program/ProgramValuesSection.astro";
-import ManagementProgramCareersSection from "@sections/academic/program/ManagementProgramCareersSection.astro";
-import ManagementProgramFacultySection from "@sections/academic/program/ManagementProgramFacultySection.astro";
+import ProgramCareersSection from "@sections/academic/program/ProgramCareersSection.astro";
+import ProgramFacultySection from "@sections/academic/program/ProgramFacultySection.astro";
 import ContactSection from "@sections/ContactSection.astro";
 import Footer from "@components/Footer.astro";
 import ProgramMsgFromHead from "@sections/academic/program/ProgramMsgFromHead.astro";
@@ -14,6 +14,9 @@ import ProgramVisionMissionSection from "@sections/academic/program/ProgramVisio
 import { managementStrengthsBento } from "@data/program-strengths-bento";
 import { managementProgram } from "@data/program-details";
 import { managementLeadershipMessage as leadershipMessage } from "@data/academic-programs";
+import { managementHero } from "@data/program-heroes";
+import { managementCareers } from "@data/program-careers";
+import { managementFaculty } from "@data/program-faculty";
 import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
 
 ---
@@ -24,15 +27,15 @@ import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalG
 >
   <NavigationAPU />
 
-  <ManagementProgramHeroSection />
+  <ProgramHeroSection data={managementHero} />
   <ProgramMsgFromHead variant="light" data={leadershipMessage} />
   <!-- <BiomedicalGamePreviewSection /> -->
   <!-- <ProgramStrengthsSection /> -->
   <ProgramStrengthsBentoSection data={managementStrengthsBento} />
   <ProgramVisionMissionSection data={managementProgram} variant="management" />
   <!-- <ProgramValuesSection /> -->
-  <!-- <ManagementProgramCareersSection /> -->
-  <ManagementProgramFacultySection />
+  <!-- <ProgramCareersSection data={managementCareers} /> -->
+  <ProgramFacultySection data={managementFaculty} />
   <ContactSection />
   <Footer />
 </MainLayout>

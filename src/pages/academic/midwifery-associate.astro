@@ -1,11 +1,11 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
 import NavigationAPU from "@components/NavigationAPU.astro";
-import MidwiferyAssociateProgramHeroSection from "@sections/academic/program/MidwiferyAssociateProgramHeroSection.astro";
+import ProgramHeroSection from "@sections/academic/program/ProgramHeroSection.astro";
 import ProgramStrengthsSection from "@sections/academic/program/ProgramStrengthsSection.astro";
 import ProgramValuesSection from "@sections/academic/program/ProgramValuesSection.astro";
-import MidwiferyAssociateProgramCareersSection from "@sections/academic/program/MidwiferyAssociateProgramCareersSection.astro";
-import MidwiferyAssociateProgramFacultySection from "@sections/academic/program/MidwiferyAssociateProgramFacultySection.astro";
+import ProgramCareersSection from "@sections/academic/program/ProgramCareersSection.astro";
+import ProgramFacultySection from "@sections/academic/program/ProgramFacultySection.astro";
 import ContactSection from "@sections/ContactSection.astro";
 import Footer from "@components/Footer.astro";
 import ProgramMsgFromHead from "@sections/academic/program/ProgramMsgFromHead.astro";
@@ -14,6 +14,9 @@ import ProgramVisionMissionSection from "@sections/academic/program/ProgramVisio
 import { midwiferyAssociateStrengthsBento } from "@data/program-strengths-bento";
 import { midwiferyAssociateProgram } from "@data/program-details";
 import { midwiferyAssociateLeadershipMessage as leadershipMessage } from "@data/academic-programs";
+import { midwiferyAssociateHero } from "@data/program-heroes";
+import { midwiferyAssociateCareers } from "@data/program-careers";
+import { midwiferyAssociateFaculty } from "@data/program-faculty";
 import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
 
 ---
@@ -24,15 +27,15 @@ import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalG
 >
   <NavigationAPU />
 
-  <MidwiferyAssociateProgramHeroSection />
+  <ProgramHeroSection data={midwiferyAssociateHero} />
   <ProgramMsgFromHead variant="light" data={leadershipMessage} />
   <!-- <BiomedicalGamePreviewSection /> -->
   <!-- <ProgramStrengthsSection /> -->
   <ProgramStrengthsBentoSection data={midwiferyAssociateStrengthsBento} />
   <ProgramVisionMissionSection data={midwiferyAssociateProgram} />
   <!-- <ProgramValuesSection /> -->
-  <MidwiferyAssociateProgramCareersSection />
-  <MidwiferyAssociateProgramFacultySection />
+  <ProgramCareersSection data={midwiferyAssociateCareers} />
+  <ProgramFacultySection data={midwiferyAssociateFaculty} />
   <ContactSection />
   <Footer />
 </MainLayout>

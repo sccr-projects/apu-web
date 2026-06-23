@@ -1,11 +1,11 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
 import NavigationAPU from "@components/NavigationAPU.astro";
-import LawProgramHeroSection from "@sections/academic/program/LawProgramHeroSection.astro";
+import ProgramHeroSection from "@sections/academic/program/ProgramHeroSection.astro";
 import ProgramStrengthsSection from "@sections/academic/program/ProgramStrengthsSection.astro";
 import ProgramValuesSection from "@sections/academic/program/ProgramValuesSection.astro";
-import LawProgramCareersSection from "@sections/academic/program/LawProgramCareersSection.astro";
-import LawProgramFacultySection from "@sections/academic/program/LawProgramFacultySection.astro";
+import ProgramCareersSection from "@sections/academic/program/ProgramCareersSection.astro";
+import ProgramFacultySection from "@sections/academic/program/ProgramFacultySection.astro";
 import ContactSection from "@sections/ContactSection.astro";
 import Footer from "@components/Footer.astro";
 import ProgramMsgFromHead from "@sections/academic/program/ProgramMsgFromHead.astro";
@@ -14,6 +14,9 @@ import ProgramVisionMissionSection from "@sections/academic/program/ProgramVisio
 import { lawStrengthsBento } from "@data/program-strengths-bento";
 import { lawProgram } from "@data/program-details";
 import { lawLeadershipMessage as leadershipMessage } from "@data/academic-programs";
+import { lawHero } from "@data/program-heroes";
+import { lawCareers } from "@data/program-careers";
+import { lawFaculty } from "@data/program-faculty";
 import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
 
 ---
@@ -24,15 +27,15 @@ import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalG
 >
   <NavigationAPU />
 
-  <LawProgramHeroSection />
+  <ProgramHeroSection data={lawHero} />
   <ProgramMsgFromHead variant="light" data={leadershipMessage} />
   <!-- <BiomedicalGamePreviewSection /> -->
   <!-- <ProgramStrengthsSection /> -->
   <ProgramStrengthsBentoSection data={lawStrengthsBento} />
   <ProgramVisionMissionSection data={lawProgram} />
   <!-- <ProgramValuesSection /> -->
-  <!-- <LawProgramCareersSection /> -->
-  <LawProgramFacultySection />
+  <!-- <ProgramCareersSection data={lawCareers} /> -->
+  <ProgramFacultySection data={lawFaculty} />
   <ContactSection />
   <Footer />
 </MainLayout>

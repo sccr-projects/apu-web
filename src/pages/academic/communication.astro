@@ -1,11 +1,11 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
 import NavigationAPU from "@components/NavigationAPU.astro";
-import CommunicationProgramHeroSection from "@sections/academic/program/CommunicationProgramHeroSection.astro";
+import ProgramHeroSection from "@sections/academic/program/ProgramHeroSection.astro";
 import ProgramStrengthsSection from "@sections/academic/program/ProgramStrengthsSection.astro";
 import ProgramValuesSection from "@sections/academic/program/ProgramValuesSection.astro";
-import CommunicationProgramCareersSection from "@sections/academic/program/CommunicationProgramCareersSection.astro";
-import CommunicationProgramFacultySection from "@sections/academic/program/CommunicationProgramFacultySection.astro";
+import ProgramCareersSection from "@sections/academic/program/ProgramCareersSection.astro";
+import ProgramFacultySection from "@sections/academic/program/ProgramFacultySection.astro";
 import ContactSection from "@sections/ContactSection.astro";
 import Footer from "@components/Footer.astro";
 import ProgramMsgFromHead from "@sections/academic/program/ProgramMsgFromHead.astro";
@@ -14,6 +14,9 @@ import ProgramVisionMissionSection from "@sections/academic/program/ProgramVisio
 import { communicationStrengthsBento } from "@data/program-strengths-bento";
 import { communicationProgram } from "@data/program-details";
 import { communicationLeadershipMessage as leadershipMessage } from "@data/academic-programs";
+import { communicationHero } from "@data/program-heroes";
+import { communicationCareers } from "@data/program-careers";
+import { communicationFaculty } from "@data/program-faculty";
 import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
 
 ---
@@ -24,15 +27,15 @@ import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalG
 >
   <NavigationAPU />
 
-  <CommunicationProgramHeroSection />
+  <ProgramHeroSection data={communicationHero} />
   <ProgramMsgFromHead variant="light" data={leadershipMessage} />
   <!-- <BiomedicalGamePreviewSection /> -->
   <!-- <ProgramStrengthsSection /> -->
   <ProgramStrengthsBentoSection data={communicationStrengthsBento} />
   <ProgramVisionMissionSection data={communicationProgram} variant="communication" />
   <!-- <ProgramValuesSection /> -->
-  <CommunicationProgramCareersSection />
-  <CommunicationProgramFacultySection />
+  <ProgramCareersSection data={communicationCareers} />
+  <ProgramFacultySection data={communicationFaculty} />
   <ContactSection />
   <Footer />
 </MainLayout>

@@ -14,6 +14,9 @@ import ProgramStrengthsBentoSection from "@sections/academic/program/ProgramStre
 import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
 import { biomedicalStrengthsBento } from "@data/program-strengths-bento";
 import { biomedicalProgram } from "@data/program-details";
+import { biomedicalHero } from "@data/program-heroes";
+import { biomedicalCareers } from "@data/program-careers";
+import { biomedicalFaculty } from "@data/program-faculty";
 
 ---
 
@@ -23,15 +26,15 @@ import { biomedicalProgram } from "@data/program-details";
 >
   <NavigationAPU />
 
-  <ProgramHeroSection />
+  <ProgramHeroSection data={biomedicalHero} />
   <ProgramMsgFromHead variant="light" />
   <BiomedicalGamePreviewSection />
   <!-- <ProgramStrengthsSection /> -->
   <ProgramStrengthsBentoSection data={biomedicalStrengthsBento} />
   <ProgramVisionMissionSection data={biomedicalProgram} />
   <!-- <ProgramValuesSection /> -->
-  <ProgramCareersSection />
-  <ProgramFacultySection />
+  <ProgramCareersSection data={biomedicalCareers} />
+  <ProgramFacultySection data={biomedicalFaculty} />
   <ContactSection />
   <Footer />
 </MainLayout>
