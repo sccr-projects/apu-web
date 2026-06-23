@@ -1,16 +1,5 @@
 import { assetUrl } from "@lib/assets";
-export interface LeadershipMessage {
-  kicker: string;
-  title: string;
-  quote: string[];
-  leaderName: string;
-  leaderTitle: string;
-  leaderImage: string;
-  cta: {
-    href: string;
-    label: string;
-  };
-}
+import type { LeadershipMessage } from "@data/leadership";
 
 export const leadershipMessage: LeadershipMessage = {
   kicker: "A MESSAGE",
