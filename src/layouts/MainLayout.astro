@@ -5,14 +5,51 @@ import "@styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
+  ogDescription?: string;
 }
 
 const {
-  title = "Agung Putra University",
-  description = "Pendaftaran mahasiswa baru Agung Putra University Tahun Ajaran 2026/2027. 7 program studi unggulan, beasiswa prestasi, dan kampus futuristik hijau di Semarang.",
+  title = "Agung Putra University | Futuristic Green Campus di Semarang",
+  description = "Agung Putra University atau APU adalah perguruan tinggi di Gunungpati, Semarang, Jawa Tengah. APU mengembangkan pendidikan tinggi berbasis riset, industri, teknologi, bioteknologi, ilmu biomedis, manajemen, komunikasi, hukum, kebidanan, dan entrepreneurship.",
+  canonical = "https://apu.ac.id/",
+  ogDescription,
 } = Astro.props;
 
+const _ogDescription = ogDescription ?? description;
+
 const ogImage = new URL(assetUrl('/images/hero-campus.jpg'), Astro.url).href;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": ["CollegeOrUniversity", "Organization"],
+  "@id": "https://apu.ac.id/#agung-putra-university",
+  "name": "Agung Putra University",
+  "alternateName": ["APU", "Universitas Agung Putra"],
+  description:
+    "Agung Putra University atau APU adalah perguruan tinggi di Gunungpati, Semarang, Jawa Tengah, dengan positioning Futuristic Green Campus.",
+  url: "https://apu.ac.id/",
+  slogan: "Futuristic Green Campus",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Jl. Nongkosawit Raya, Nongkosawit, Gunungpati",
+    addressLocality: "Semarang",
+    addressRegion: "Jawa Tengah",
+    postalCode: "50224",
+    addressCountry: "ID",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+62-811-3755-552",
+    contactType: "admissions",
+    areaServed: "ID",
+    availableLanguage: ["Indonesian", "English"],
+  },
+  sameAs: [
+    "https://www.linkedin.com/company/agung-putra-university",
+    "https://www.instagram.com/agungputrauniversity",
+  ],
+};
 ---
 
 <!doctype html>
@@ -21,11 +58,14 @@ const ogImage = new URL(assetUrl('/images/hero-campus.jpg'), Astro.url).href;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={_ogDescription} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Agung Putra University" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -60,6 +100,9 @@ const ogImage = new URL(assetUrl('/images/hero-campus.jpg'), Astro.url).href;
         themeColorMeta.setAttribute('content', `rgb(${themeColor})`);
       }
     </script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
   </head>
   <body>
