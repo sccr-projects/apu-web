@@ -1,5 +1,12 @@
 ---
 import { assetUrl } from '@lib/assets';
+import type { ProgramHeroData } from '@data/program-heroes';
+
+export interface Props {
+  data: ProgramHeroData;
+}
+
+const { data } = Astro.props;
 ---
 
 <section
@@ -11,14 +18,18 @@ import { assetUrl } from '@lib/assets';
         class="absolute inset-0 z-[1] will-change-transform opacity-0 scale-[1.04]"
     >
         <img
-            src={assetUrl('/images/academic/biomedical.webp')}
-            alt="Futuristic Campus of Agung Putra University"
+            src={assetUrl(data.image)}
+            alt={data.imageAlt}
             class="w-full h-full object-cover translate-y-20"
             loading="eager"
             id="hero-on-bg-img"
         />
 
-        <div class="absolute inset-0 hero-on-overlay-main"></div>
+        <div
+            class="absolute inset-0 hero-on-overlay-main"
+            style={`--hero-overlay-end: ${data.overlayEnd}`}
+        >
+        </div>
 
     </div>
 
@@ -33,16 +44,14 @@ import { assetUrl } from '@lib/assets';
                 id="hero-on-subtitle"
                 class="text-body-s sm:text-body max-w-2xl mb-6 opacity-0 translate-y-2 hero-on-subtitle"
             >
-                A bright, future-ready university ecosystem connecting
-                strong academics, applied research, and real industry
-                pathways — designed for ambitious learners.
+                {data.subtitle}
             </p>
 
             <h1
                 id="hero-on-headline"
-                class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl tracking-wide opacity-0 text-white hero-on-headline break-words min-w-0"
+                class={`tracking-wide opacity-0 text-white hero-on-headline break-words min-w-0 ${data.headlineClass}`}
             >
-                BIOMEDICAL SCIENCE
+                {data.headline}
             </h1>
         </div>
     </div>
@@ -85,7 +94,7 @@ import { assetUrl } from '@lib/assets';
         background: linear-gradient(
           to bottom,
           transparent,
-          rgb(var(--color-program-biomedical-science))
+          var(--hero-overlay-end)
         );
     }
 
