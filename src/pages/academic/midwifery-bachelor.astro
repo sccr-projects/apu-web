@@ -9,8 +9,9 @@ import ProgramValuesSection from "@sections/academic/program/ProgramValuesSectio
 import MidwiferyBachelorProgramFacultySection from "@sections/academic/program/MidwiferyBachelorProgramFacultySection.astro";
 import ContactSection from "@sections/ContactSection.astro";
 import Footer from "@components/Footer.astro";
-import MidwiferyBachelorProgramMsgFromHead from "@sections/academic/program/MidwiferyBachelorProgramMsgFromHead.astro";
+import ProgramMsgFromHead from "@sections/academic/program/ProgramMsgFromHead.astro";
 import MidwiferyBachelorProgramStrengthsBentoSection from "@sections/academic/program/MidwiferyBachelorProgramStrengthsBentoSection.astro";
+import { leadershipMessage } from "@data/midwifery-bachelor-academic-programs";
 import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
 
 ---
@@ -22,7 +23,7 @@ import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalG
   <NavigationAPU />
 
   <MidwiferyBachelorProgramHeroSection />
-  <MidwiferyBachelorProgramMsgFromHead variant="light" />
+  <ProgramMsgFromHead variant="light" data={leadershipMessage} />
   <!-- <BiomedicalGamePreviewSection /> -->
   <!-- <ProgramStrengthsSection /> -->
   <MidwiferyBachelorProgramStrengthsBentoSection />

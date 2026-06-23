@@ -8,8 +8,9 @@ import BiotechnologyProgramCareersSection from "@sections/academic/program/Biote
 import BiotechnologyProgramFacultySection from "@sections/academic/program/BiotechnologyProgramFacultySection.astro";
 import ContactSection from "@sections/ContactSection.astro";
 import Footer from "@components/Footer.astro";
-import BiotechnologyProgramMsgFromHead from "@sections/academic/program/BiotechnologyProgramMsgFromHead.astro";
+import ProgramMsgFromHead from "@sections/academic/program/ProgramMsgFromHead.astro";
 import BiotechnologyProgramStrengthsBentoSection from "@sections/academic/program/BiotechnologyProgramStrengthsBentoSection.astro";
+import { leadershipMessage } from "@data/biotechnology-academic-programs";
 import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
 import BiotechnologyProgramHeroSection from "@/sections/academic/program/BiotechnologyProgramHeroSection.astro";
 
@@ -22,7 +23,7 @@ import BiotechnologyProgramHeroSection from "@/sections/academic/program/Biotech
   <NavigationAPU />
 
   <BiotechnologyProgramHeroSection />
-  <BiotechnologyProgramMsgFromHead variant="light" />
+  <ProgramMsgFromHead variant="light" data={leadershipMessage} />
   <!-- <BiomedicalGamePreviewSection /> -->
   <!-- <ProgramStrengthsSection /> -->
   <BiotechnologyProgramStrengthsBentoSection />
