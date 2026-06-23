@@ -2,13 +2,21 @@
 import ScrollReveal from "@components/ScrollReveal.astro";
 import SectionHeader from "@components/SectionHeader.astro";
 import type { ProgramFacultyData } from "@data/program-faculty";
-import { facultyAvatarGradients } from "@data/program-faculty";
 
 interface Props {
   data: ProgramFacultyData;
 }
 
 const { data } = Astro.props;
+
+const facultyAvatarGradients = [
+  "from-blue-500 to-indigo-600",
+  "from-emerald-500 to-teal-600",
+  "from-amber-500 to-orange-600",
+  "from-rose-500 to-pink-600",
+  "from-violet-500 to-purple-600",
+  "from-cyan-500 to-blue-600",
+];
 
 function getInitials(name: string): string {
   return name
@@ -20,83 +28,69 @@ function getInitials(name: string): string {
 }
 ---
 
-<section id="dosen" class={data.sectionClass}>
+<section id="dosen" class="apu-section-shell relative overflow-hidden">
   <div class="content-max">
     <ScrollReveal>
       <SectionHeader
-        kicker={data.kicker}
-        title={data.title}
+        kicker="MEET OUR LECTURERS"
+        title="Dosen dan Tenaga Pengajar"
         description={data.description}
         class="text-center mb-16"
         titleClass="text-h2 text-brand-primary-deep mb-4"
       />
     </ScrollReveal>
 
-    <!-- Desktop: horizontal row / Mobile: 2-col grid -->
-    <div class={data.gridClass}>
-      {data.facultyMembers.map((member, index) => {
-        const initials = getInitials(member.name);
-        return (
-          <ScrollReveal delay={index * 100}>
-            <div class={data.cardClass}>
-              <!-- Avatar: photo or gradient fallback -->
-              <div class={`w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br ${facultyAvatarGradients[index % facultyAvatarGradients.length]} flex items-center justify-center mb-4 flex-shrink-0`}>
-                {member.photo ? (
-                  <img
-                    src={member.photo}
-                    alt={member.name}
-                    class="w-full h-full object-cover rounded-2xl"
-                    loading="lazy"
-                  />
-                ) : (
-                  <span class="text-white text-xl md:text-2xl font-bold">{initials}</span>
-                )}
-              </div>
-
-              {data.contentWrapper ? (
-                <div class="flex-1 w-full">
-                  <h3 class={data.nameClass}>
-                    {member.name}
-                  </h3>
-                  <p class="text-caption text-brand-text-muted mb-2">
-                    {member.title}
-                  </p>
-                  {member.nidn && member.nidn !== '-' && (
-                    <p class={data.nidnClass}>
-                      NIDN {member.nidn}
-                    </p>
+    <div
+      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-6"
+    >
+      {
+        data.facultyMembers.map((member, index) => {
+          const initials = getInitials(member.name);
+          return (
+            <ScrollReveal delay={index * 100}>
+              <div class="apu-glass-card apu-interactive-card p-5 md:p-6 flex flex-col items-center text-center h-full break-words">
+                <div
+                  class={`w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br ${facultyAvatarGradients[index % facultyAvatarGradients.length]} flex items-center justify-center mb-4 flex-shrink-0`}
+                >
+                  {member.photo ? (
+                    <img
+                      src={member.photo}
+                      alt={member.name}
+                      class="w-full h-full object-cover rounded-2xl"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <span class="text-white text-xl md:text-2xl font-bold">
+                      {initials}
+                    </span>
                   )}
                 </div>
-              ) : (
-                <>
-                  <h3 class={data.nameClass}>
-                    {member.name}
-                  </h3>
-                  <p class="text-caption text-brand-text-muted mb-2">
-                    {member.title}
-                  </p>
-                  {member.nidn && member.nidn !== '-' && (
-                    <p class={data.nidnClass}>
-                      NIDN {member.nidn}
-                    </p>
-                  )}
-                </>
-              )}
 
-              {member.link && (
-                <a
-                  href={member.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class={data.linkClass}
-                >
-                  View Profile →
-                </a>
-              )}
-            </div>
-          </ScrollReveal>
-        );
-      })}
+                <h3 class="text-h4 text-brand-text mb-1 break-words">{member.name}</h3>
+                <p class="text-caption text-brand-text-muted mb-2">
+                  {member.title}
+                </p>
+                {member.nidn && member.nidn !== "-" && (
+                  <p class="text-caption text-brand-text-muted mb-3 break-words">
+                    NIDN {member.nidn}
+                  </p>
+                )}
+
+                {member.link && (
+                  <a
+                    href={member.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-caption font-medium text-brand-primary hover:text-brand-primary-deep transition-colors mt-auto pt-3"
+                  >
+                    View Profile →
+                  </a>
+                )}
+              </div>
+            </ScrollReveal>
+          );
+        })
+      }
     </div>
 
     <!-- TODO note for photo integration -->

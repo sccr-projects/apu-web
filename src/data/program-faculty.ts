@@ -7,62 +7,13 @@ export interface FacultyMember {
 }
 
 export interface ProgramFacultyData {
-  sectionClass: string;
-  kicker: string;
-  title: string;
   description: string;
-  gridClass: string;
-  cardClass: string;
-  nameClass: string;
-  contentWrapper: boolean;
-  nidnClass: string;
-  linkClass: string;
   facultyMembers: FacultyMember[];
 }
 
-const commonAvatarGradientClasses = [
-  "from-[rgb(var(--color-apu-accent))] to-[rgb(var(--color-apu-navy))]",
-  "from-[rgb(var(--color-brand-primary))] to-[rgb(var(--color-brand-primary-deep))]",
-  "from-[rgb(var(--color-apu-navy))] to-[rgb(var(--color-brand-primary))]",
-  "from-[rgb(var(--color-brand-primary-soft))] to-[rgb(var(--color-apu-accent))]",
-  "from-[rgb(var(--color-apu-accent))] to-[rgb(98_6_112)]",
-];
-
-const baseSectionClass = "apu-section-shell bg-brand-surface-alt py-24 md:py-32";
-const baseKicker = "FACULTY";
-const baseTitle = "Our Faculty";
-
-const simpleCardClass =
-  "apu-glass-card p-5 md:p-6 text-center h-full flex flex-col items-center transition-transform duration-300 hover:scale-[1.03]";
-const interactiveCardClass =
-  "apu-glass-card apu-interactive-card p-5 md:p-6 text-center h-full flex flex-col items-center";
-
-const simpleNameClass =
-  "text-body font-semibold text-brand-text leading-snug mb-1";
-const responsiveNameClass =
-  "text-body-s md:text-body font-semibold text-brand-text leading-snug mb-1 break-words";
-
-const simpleNidnClass = "text-mono text-[10px] text-brand-text-muted/70";
-const responsiveNidnClass =
-  "text-mono text-[10px] text-brand-text-muted/70 break-all";
-
-const simpleLinkClass =
-  "mt-3 text-caption text-brand-primary-deep hover:text-[rgb(var(--color-apu-accent))] transition-colors duration-220";
-const pinnedLinkClass =
-  "mt-auto pt-3 text-caption text-brand-primary-deep hover:text-[rgb(var(--color-apu-accent))] transition-colors duration-220";
-
 export const biomedicalFaculty: ProgramFacultyData = {
-  sectionClass: `${baseSectionClass} relative overflow-hidden`,
-  kicker: baseKicker,
-  title: baseTitle,
   description:
     "Internationally qualified faculty guiding students in research and innovation",
-  gridClass: "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6",
-  cardClass: simpleCardClass,
-  nameClass: simpleNameClass,
-  contentWrapper: false,
-  nidnClass: simpleNidnClass,
-  linkClass: simpleLinkClass,
   facultyMembers: [
     {
       name: "Nadya Audina NS. S.Si., M.Biomed",
@@ -73,17 +24,8 @@ export const biomedicalFaculty: ProgramFacultyData = {
 };
 
 export const biotechnologyFaculty: ProgramFacultyData = {
-  sectionClass: `${baseSectionClass} relative overflow-hidden`,
-  kicker: baseKicker,
-  title: baseTitle,
   description:
     "Internationally qualified faculty guiding students in research and innovation",
-  gridClass: "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6",
-  cardClass: simpleCardClass,
-  nameClass: simpleNameClass,
-  contentWrapper: false,
-  nidnClass: simpleNidnClass,
-  linkClass: simpleLinkClass,
   facultyMembers: [
     {
       name: "Fauziah Novita Putri Rifai, S.Si, M.Biotech",
@@ -129,17 +71,8 @@ export const biotechnologyFaculty: ProgramFacultyData = {
 };
 
 export const communicationFaculty: ProgramFacultyData = {
-  sectionClass: baseSectionClass,
-  kicker: baseKicker,
-  title: baseTitle,
   description:
     "Internationally qualified faculty guiding students in communication science",
-  gridClass: "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 md:gap-6",
-  cardClass: interactiveCardClass,
-  nameClass: responsiveNameClass,
-  contentWrapper: true,
-  nidnClass: responsiveNidnClass,
-  linkClass: pinnedLinkClass,
   facultyMembers: [
     {
       name: "Muhamad Agung Setiawan, S.Sos., M.Sos",
@@ -170,16 +103,7 @@ export const communicationFaculty: ProgramFacultyData = {
 };
 
 export const lawFaculty: ProgramFacultyData = {
-  sectionClass: baseSectionClass,
-  kicker: baseKicker,
-  title: baseTitle,
   description: "Internationally qualified faculty guiding students in law",
-  gridClass: "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 md:gap-6",
-  cardClass: interactiveCardClass,
-  nameClass: responsiveNameClass,
-  contentWrapper: true,
-  nidnClass: responsiveNidnClass,
-  linkClass: pinnedLinkClass,
   facultyMembers: [
     {
       name: "dr. Erwin, S.H., M.H",
@@ -210,17 +134,8 @@ export const lawFaculty: ProgramFacultyData = {
 };
 
 export const managementFaculty: ProgramFacultyData = {
-  sectionClass: `${baseSectionClass} relative overflow-hidden`,
-  kicker: baseKicker,
-  title: baseTitle,
   description:
     "Internationally qualified faculty guiding students in research and innovation",
-  gridClass: "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5 md:gap-6",
-  cardClass: simpleCardClass,
-  nameClass: simpleNameClass,
-  contentWrapper: false,
-  nidnClass: simpleNidnClass,
-  linkClass: simpleLinkClass,
   facultyMembers: [
     {
       name: "Reni Nur Arifah, S.E., M.M.",
@@ -271,17 +186,8 @@ export const managementFaculty: ProgramFacultyData = {
 };
 
 export const midwiferyAssociateFaculty: ProgramFacultyData = {
-  sectionClass: baseSectionClass,
-  kicker: baseKicker,
-  title: baseTitle,
   description:
     "Internationally qualified faculty guiding students in midwifery",
-  gridClass: "grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-6",
-  cardClass: interactiveCardClass,
-  nameClass: responsiveNameClass,
-  contentWrapper: true,
-  nidnClass: responsiveNidnClass,
-  linkClass: pinnedLinkClass,
   facultyMembers: [
     {
       name: "Bdn, Titik Kurniawati, S.SiT., M.Kes., M.Keb",
@@ -312,17 +218,8 @@ export const midwiferyAssociateFaculty: ProgramFacultyData = {
 };
 
 export const midwiferyBachelorFaculty: ProgramFacultyData = {
-  sectionClass: baseSectionClass,
-  kicker: baseKicker,
-  title: baseTitle,
   description:
     "Internationally qualified faculty guiding students in midwifery",
-  gridClass: "grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-6",
-  cardClass: interactiveCardClass,
-  nameClass: responsiveNameClass,
-  contentWrapper: true,
-  nidnClass: responsiveNidnClass,
-  linkClass: pinnedLinkClass,
   facultyMembers: [
     {
       name: "Bd. Rizqitha, S.Tr.Keb., M.Tr.Keb",
@@ -361,5 +258,3 @@ export const midwiferyBachelorFaculty: ProgramFacultyData = {
     },
   ],
 };
-
-export const facultyAvatarGradients = commonAvatarGradientClasses;

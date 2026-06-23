@@ -471,3 +471,24 @@ All responses in this project use terse, token-efficient caveman style unless sa
 - Switch: `/caveman lite|full|ultra`.
 - Stop: "stop caveman" or "normal mode".
 - Auto-clarity: revert to normal prose for security warnings, irreversible actions, multi-step sequences where fragments risk misread, or when user asks to clarify. Resume caveman after clear part.
+
+---
+
+## 12) Section/Data Separation of Concerns
+
+Architecture rule for sections that repeat across pages with different content:
+
+- **One data file per section file.**
+  - Example: `src/sections/academic/program/ProgramFacultySection.astro` is paired with `src/data/program-faculty.ts`.
+- **Data files hold content only.**
+  - Allowed: text, lists, objects, content-specific flags.
+  - Not allowed: CSS classes, Tailwind strings, layout configuration, shared copy constants, or presentation logic.
+- **Section components own presentation.**
+  - Hardcode section kicker, title, markup, styling, and shared constants inside the `.astro` file.
+  - Pull data from props (`data={...}`) and render it.
+- **Pages wire content to sections.**
+  - Each page imports the named data object for that program and passes it to the shared section component.
+- **Avoid leaking layout into data.**
+  - If a section truly needs multiple visual layouts, use a component `variant` prop or split into separate section components rather than embedding CSS classes in the data object.
+
+This keeps data files portable, components reusable, and visual changes localized to the component.
