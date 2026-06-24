@@ -4,6 +4,7 @@ import SectionHeader from "@components/SectionHeader.astro";
 import DiasporaFeaturedCard from "@components/DiasporaFeaturedCard.astro";
 import type { ProgramFacultyData } from "@data/program-faculty";
 import { people as diasporaPeople } from "@data/diaspora";
+import canada from "@/assets/images/academic/canada-bg.jpg";
 
 interface Props {
   data: ProgramFacultyData;
@@ -52,6 +53,7 @@ const featuredVisual = featured?.photo
   aria-label="Faculty spotlight"
   data-members={JSON.stringify(members)}
   data-diaspora-people={JSON.stringify(diasporaPeople)}
+  data-default-bg={canada.src}
 >
   <div class="content-max">
     <ScrollReveal>
@@ -291,6 +293,7 @@ const featuredVisual = featured?.photo
     const members = JSON.parse(section?.getAttribute("data-members") || "[]");
     const diasporaPeople = JSON.parse(section?.getAttribute("data-diaspora-people") || "[]");
     const diasporaById = new Map(diasporaPeople.map((p) => [p.id, p]));
+    const defaultBg = section?.getAttribute("data-default-bg") || "";
 
     const standardFeatured = section?.querySelector("[data-standard-featured]");
     const diasporaFeatured = section?.querySelector("[data-diaspora-featured]");
@@ -386,7 +389,7 @@ const featuredVisual = featured?.photo
       }
 
       if (dBg) {
-        dBg.src = person.background_image?.src || dBg.src;
+        dBg.src = person.background_image?.src || defaultBg;
         dBg.alt = person.name;
       }
 
