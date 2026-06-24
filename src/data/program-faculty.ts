@@ -311,14 +311,17 @@ export const midwiferyAssociateFaculty: ProgramFacultyData = {
     "Internationally qualified faculty guiding students in midwifery",
   facultyMembers: [
     {
-      id: "rizqitha",
-      name: "Rizqitha, S.Tr.Keb., M.Tr.Keb",
-      title: "Head of Bachelor Midwifery Program ",
-      specialization:
-        "Midwifery Care for Infants, Toddlers, and Preschool Children",
-      nidn: "0608049401",
-      link: "https://scholar.google.com/citations?user=dHKOQMYAAAAJ&hl=en&oi=ao",
+      id: "titik-kurniawati",
+      name: "Bdn. Titik Kurniawati, S.SiT, M.Kes, M.Keb",
+      title: "Head of Associate Midwifery Study Program",
+      specialization: "Obstetrics",
+      nidn: "0622058101",
+      photo: assetUrl(
+        "/images/academic/lecturer_images/d3_midwifery/Titik_Kurniawati.webp",
+      ),
+      link: "https://scholar.google.com/citations?hl=id&user=F-nyArIAAAAJ",
     },
+
     {
       id: "diah-widyatun",
       name: "Diah Widyatun, S.S.T., M.Tr.Keb",
@@ -330,15 +333,6 @@ export const midwiferyAssociateFaculty: ProgramFacultyData = {
         "/images/academic/lecturer_images/d3_midwifery/Diah_Widyatun.webp",
       ),
       link: "https://scholar.google.com/citations?user=yb_RfHgAAAAJ&hl=id",
-    },
-
-    {
-      id: "sri-mularsih",
-      name: "Bdn. Sri Mularsih, S.SiT, M.Kes",
-      title: "Lecturer",
-      specialization: "Reproductive Health",
-      nidn: "0618048001",
-      link: "https://scholar.google.com/citations?user=8OnkCmsAAAAJ&hl=id",
     },
     {
       id: "dewi-elliana",
@@ -379,23 +373,38 @@ export const midwiferyBachelorFaculty: ProgramFacultyData = {
     "Internationally qualified faculty guiding students in midwifery",
   facultyMembers: [
     {
+      id: "rizqitha",
+      name: "Rizqitha, S.Tr.Keb., M.Tr.Keb",
+      title: "Head of Bachelor Midwifery Program ",
+      specialization:
+        "Midwifery Care for Infants, Toddlers, and Preschool Children",
+      nidn: "0608049401",
+      link: "https://scholar.google.com/citations?user=dHKOQMYAAAAJ&hl=en&oi=ao",
+      photo: assetUrl(
+        "/images/academic/lecturer_images/bachelor_midwifery/Rizqitha.webp"
+      )
+    },
+    {
       id: "mariza-mustika",
       name: "Bd. Mariza Mustika D, S.Tr.Keb., M.Tr.Keb",
       title: "Lecturer",
       specialization: "Nifas and Breastfeeding Midwifery",
       nidn: "0618039302",
       link: "https://scholar.google.com/citations?user=sMzeApYAAAAJ&hl=id&oi=ao",
+      photo: assetUrl(
+        "/images/academic/lecturer_images/bachelor_midwifery/Mariza_Mustika_Dewi.webp"
+      )
     },
     {
-      id: "titik-kurniawati",
-      name: "Bdn. Titik Kurniawati, S.SiT, M.Kes, M.Keb",
+      id: "sri-mularsih",
+      name: "Bdn. Sri Mularsih, S.SiT, M.Kes",
       title: "Lecturer",
-      specialization: "Obstetrics",
-      nidn: "0622058101",
+      specialization: "Reproductive Health",
+      nidn: "0618048001",
+      link: "https://scholar.google.com/citations?user=8OnkCmsAAAAJ&hl=id",
       photo: assetUrl(
-        "/images/academic/lecturer_images/d3_midwifery/Titik_Kurniawati.webp",
-      ),
-      link: "https://scholar.google.com/citations?hl=id&user=F-nyArIAAAAJ",
+        "/images/academic/lecturer_images/bachelor_midwifery/Sri_Mularsih.webp"
+      )
     },
   ],
 };

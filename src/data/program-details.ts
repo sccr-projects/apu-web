@@ -534,7 +534,7 @@ export const lawProgram: ProgramDetail = {
   degree: "S1",
   faculty: "Fakultas Hukum",
   head: {
-    name: "dr. Erwin, S.H., M.H",
+    name: "Dr. Erwin, S.H., M.H",
     title: "Kepala Program Studi",
     message: `Selamat datang di Program Studi Hukum APU. Program ini mengintegrasikan keunggulan akademik, praktik profesional, inovasi teknologi, dan perspektif global ke dalam kurikulum progresif yang dirancang untuk masa depan.
 
@@ -646,7 +646,7 @@ Kami mengkhususkan diri pada Ilmu Hukum dan Hukum Medis, menggunakan pendekatan 
   ],
   facultyMembers: [
     {
-      name: "dr. Erwin, S.H., M.H",
+      name: "Dr. Erwin, S.H., M.H",
       title: "lecturer",
       nidn: "6965892",
     },

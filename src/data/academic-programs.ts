@@ -89,7 +89,7 @@ export const lawLeadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
-  leaderName: "dr. Erwin, S.H., M.H",
+  leaderName: "Dr. Erwin, S.H., M.H",
   leaderTitle: "Head of Law Study Program",
   leaderImage: assetUrl("/images/academic/law-kaprodi.jpeg"),
   cta: {
