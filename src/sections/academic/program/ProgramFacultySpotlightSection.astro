@@ -361,10 +361,10 @@ const featuredVisual = featured?.photo
       if (dName) dName.textContent = person.name;
       if (dRole) dRole.textContent = person.role;
       if (dUniv) dUniv.textContent = person.univ;
-      if (dResearch) dResearch.textContent = person.notableResearch.text;
+      if (dResearch) dResearch.textContent = person.notableResearch?.text || "";
 
       if (dPast) {
-        dPast.innerHTML = person.pastExperience.items
+        dPast.innerHTML = (person.pastExperience?.items || [])
           .map(
             (item) =>
               `<li class="text-body-s flex items-start gap-3 text-white/90"><span class="mt-2 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-apu-accent" aria-hidden="true"></span>${item}</li>`
@@ -375,7 +375,9 @@ const featuredVisual = featured?.photo
       if (dImage) {
         dImage.src = person.image.src;
         dImage.alt = `Portrait of ${person.name}`;
-        dImage.style.objectPosition = `${person.position}% center`;
+        if (typeof person.position === "number") {
+          dImage.style.objectPosition = `${person.position}% center`;
+        }
       }
 
       if (dFlag) {
