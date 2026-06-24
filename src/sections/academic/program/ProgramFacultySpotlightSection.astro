@@ -289,6 +289,11 @@ const featuredVisual = featured?.photo
 
     const section = document.querySelector("#dosen-spotlight");
     const members = JSON.parse(section?.getAttribute("data-members") || "[]");
+    const diasporaPeople = JSON.parse(section?.getAttribute("data-diaspora-people") || "[]");
+    const diasporaById = new Map(diasporaPeople.map((p) => [p.id, p]));
+
+    const standardFeatured = section?.querySelector("[data-standard-featured]");
+    const diasporaFeatured = section?.querySelector("[data-diaspora-featured]");
 
     const featuredName = section?.querySelector("[data-featured-name]");
     const featuredTitle = section?.querySelector("[data-featured-title]");
@@ -300,7 +305,6 @@ const featuredVisual = featured?.photo
 
     const updateFeatured = (id) => {
       const member = members.find((m) => m.id === id);
-      const index = members.findIndex((m) => m.id === id);
       if (!member || !section) return;
 
       const card = section.querySelector(`[data-member-id="${id}"]`);
@@ -340,8 +344,66 @@ const featuredVisual = featured?.photo
       }
     };
 
+    const updateDiasporaFeatured = (id) => {
+      const person = diasporaById.get(id);
+      if (!person || !diasporaFeatured) return;
+
+      const dName = diasporaFeatured.querySelector("[data-featured-name]");
+      const dRole = diasporaFeatured.querySelector("[data-featured-role]");
+      const dUniv = diasporaFeatured.querySelector("[data-featured-univ]");
+      const dPast = diasporaFeatured.querySelector("[data-featured-past-experience]");
+      const dResearch = diasporaFeatured.querySelector("[data-featured-notable-research]");
+      const dImage = diasporaFeatured.querySelector("[data-featured-image]");
+      const dFlag = diasporaFeatured.querySelector("[data-featured-flag]");
+      const dBg = diasporaFeatured.querySelector("[data-featured-background]");
+      const dProfile = diasporaFeatured.querySelector("[data-featured-profile]");
+
+      if (dName) dName.textContent = person.name;
+      if (dRole) dRole.textContent = person.role;
+      if (dUniv) dUniv.textContent = person.univ;
+      if (dResearch) dResearch.textContent = person.notableResearch.text;
+
+      if (dPast) {
+        dPast.innerHTML = person.pastExperience.items
+          .map(
+            (item) =>
+              `<li class="text-body-s flex items-start gap-3 text-white/90"><span class="mt-2 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-apu-accent" aria-hidden="true"></span>${item}</li>`
+          )
+          .join("");
+      }
+
+      if (dImage) {
+        dImage.src = person.image.src;
+        dImage.alt = `Portrait of ${person.name}`;
+        dImage.style.objectPosition = `${person.position}% center`;
+      }
+
+      if (dFlag) {
+        dFlag.src = person.flag;
+        dFlag.alt = `Flag of ${person.country}`;
+      }
+
+      if (dBg) {
+        dBg.src = person.background_image?.src || dBg.src;
+        dBg.alt = person.name;
+      }
+
+      if (dProfile) {
+        dProfile.href = person.google_scholar || "#";
+      }
+    };
+
+    const showStandard = () => {
+      if (standardFeatured) standardFeatured.classList.remove("hidden");
+      if (diasporaFeatured) diasporaFeatured.classList.add("hidden");
+    };
+
+    const showDiaspora = () => {
+      if (standardFeatured) standardFeatured.classList.add("hidden");
+      if (diasporaFeatured) diasporaFeatured.classList.remove("hidden");
+    };
+
     section?.querySelectorAll("[data-member-id]").forEach((card) => {
-      // Prevent default focus scroll on mouse click while still allowing click/update.
       card.addEventListener("mousedown", (event) => {
         event.preventDefault();
       }, { signal });
@@ -349,20 +411,45 @@ const featuredVisual = featured?.photo
       card.addEventListener("click", (event) => {
         event.preventDefault();
         const id = card.getAttribute("data-member-id");
-        if (id) updateFeatured(id);
+        if (!id) return;
+
+        if (diasporaById.has(id)) {
+          showDiaspora();
+          updateDiasporaFeatured(id);
+        } else {
+          showStandard();
+          updateFeatured(id);
+        }
       }, { signal });
 
       card.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
           const id = card.getAttribute("data-member-id");
-          if (id) updateFeatured(id);
+          if (!id) return;
+
+          if (diasporaById.has(id)) {
+            showDiaspora();
+            updateDiasporaFeatured(id);
+          } else {
+            showStandard();
+            updateFeatured(id);
+          }
         }
       }, { signal });
     });
 
     const hashMatch = location.hash.match(/^#dosen-spotlight-(.+)/);
-    if (hashMatch) updateFeatured(hashMatch[1]);
+    if (hashMatch) {
+      const id = hashMatch[1];
+      if (diasporaById.has(id)) {
+        showDiaspora();
+        updateDiasporaFeatured(id);
+      } else {
+        showStandard();
+        updateFeatured(id);
+      }
+    }
 
     const carousels = document.querySelectorAll("[data-lecturers-carousel]");
     carousels.forEach((root) => {
