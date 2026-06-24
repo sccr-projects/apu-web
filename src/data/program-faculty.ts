@@ -23,6 +23,23 @@ export const biomedicalFaculty: ProgramFacultyData = {
     "Internationally qualified faculty guiding students in research and innovation",
   facultyMembers: [
     {
+      id: "faheem-ahmed-khan",
+      name: "Faheem Ahmed Khan, BSc, MS, PhD",
+      title: "Lecturer",
+      nidn: "-",
+    },
+    {
+      id: "dendi-krisna-nugraha",
+      name: "Dendi Krisna Nugraha, M.Sc., Ph.D.",
+      title: "Lecturer",
+      specialization: "Genetic Engineering",
+      nidn: "8363770671130253",
+      photo: assetUrl(
+        "/images/academic/lecturer_images/biomedic/Dendi_Krisna_Nugraha.webp",
+      ),
+      link: "https://scholar.google.com.my/citations?user=1uphszUAAAAJ",
+    },
+    {
       id: "nadya-audina-ns",
       name: "Nadya Audina NS. S.Si., M.Biomed",
       title: "Head of Biomedical Science Study Program",
@@ -66,23 +83,8 @@ export const biomedicalFaculty: ProgramFacultyData = {
       ),
       link: "https://scholar.google.com.my/citations?user=TAjcHpYAAAAJ&hl=en&oi=ao",
     },
-    {
-      id: "dendi-krisna-nugraha",
-      name: "Dendi Krisna Nugraha, M.Sc., Ph.D.",
-      title: "Lecturer",
-      specialization: "Genetic Engineering",
-      nidn: "8363770671130253",
-      photo: assetUrl(
-        "/images/academic/lecturer_images/biomedic/Dendi_Krisna_Nugraha.webp",
-      ),
-      link: "https://scholar.google.com.my/citations?user=1uphszUAAAAJ",
-    },
-    {
-      id: "faheem-ahmed-khan",
-      name: "Faheem Ahmed Khan, BSc, MS, PhD",
-      title: "Lecturer",
-      nidn: "-",
-    },
+
+
     {
       id: "naufal-sebastian-anggoro",
       name: "Naufal Sebastian Anggoro, S.Si., M.Si",
@@ -103,16 +105,16 @@ export const biotechnologyFaculty: ProgramFacultyData = {
     "Internationally qualified faculty guiding students in research and innovation",
   facultyMembers: [
     {
-      id: "fauziah-novita-putri-rifai",
-      name: "Fauziah Novita Putri Rifai, S.Si, M.Biotech",
-      title: "Head of Biotechnology Study Program",
-      nidn: "5438774675230243",
-    },
-    {
       id: "waheni-rizki-aprilia",
       name: "Waheni Rizki Aprilia, S.Si., Ph.D.",
       title: "Vice Rector II",
       nidn: "8734771672230402",
+    },
+    {
+      id: "fauziah-novita-putri-rifai",
+      name: "Fauziah Novita Putri Rifai, S.Si, M.Biotech",
+      title: "Head of Biotechnology Study Program",
+      nidn: "5438774675230243",
     },
     {
       id: "iffan-alif",

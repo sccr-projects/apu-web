@@ -23,7 +23,7 @@ function normalizeName(name: string): string {
   return name
     .toLowerCase()
     .replace(
-      /\b(dr\.?|prof\.?|bdn?\.?|ir\.?|sh\.?|mh\.?|mkn\.?|skm|s\.tr\.keb\.?|s\.st\.?|s\.sit\.?|s\.si\.?|s\.sos\.?|s\.e\.?|s\.hum\.?|m\.tr\.keb\.?|m\.kes\.?|m\.keb\.?|m\.biomed\.?|m\.biotech\.?|m\.si\.?|m\.mol\.biol\.?|m\.ikom\.?|m\.msm\.?|mba\.?|ermap\.?|amtru\.?|s\.tr\.par\.?|bsc\.?|msc\.?|ph\.?d\.?)\b/g,
+      /\b(dr\.?|prof\.?|bdn?\.?|ir\.?|sh\.?|mh\.?|mkn\.?|skm|mbbs|s\.tr\.keb\.?|s\.st\.?|s\.sit\.?|s\.si\.?|s\.sos\.?|s\.e\.?|s\.hum\.?|s\.h\.?|s\.ikom\.?|s\.kom\.?|m\.tr\.keb\.?|m\.kes\.?|m\.keb\.?|m\.biomed\.?|m\.biotech\.?|m\.si\.?|m\.mol\.biol\.?|m\.ikom\.?|m\.msm\.?|m\.hum\.?|m\.h\.?|m\.m\.?|m\.sos\.?|m\.sc\.?|m\.s\.?|mba\.?|ermap\.?|amtru\.?|s\.tr\.par\.?|bsc\.?|b\.sc\.?|bs\.?|msc\.?|ms\.?|ph\.?d\.?|phd\.?)\b/g,
       " ",
     )
     .replace(/[,\.]/g, " ")
@@ -99,77 +99,102 @@ const rows = parsed.data;
 
 const NAME_INDEX = 2;
 const NIDN_INDEX = 5;
-const INSERT_AT = 6;
 
 const GS_PROFILE_LABEL = "Google Scholar Profile";
 const GS_INDEX_LABEL = "Google Scholar Index";
 const SCOPUS_PROFILE_LABEL = "Scopus Profile";
 const SCOPUS_INDEX_LABEL = "Scopus Index";
 
-function insertColumns(row: string[], values: string[]): string[] {
-  return [
-    ...row.slice(0, INSERT_AT),
-    ...values,
-    ...row.slice(INSERT_AT),
-  ];
+function findOrCreateColumnIndices(row: string[]): {
+  gsProfile: number;
+  gsIndex: number;
+  scopusProfile: number;
+  scopusIndex: number;
+  insert: boolean;
+} {
+  const gsProfile = row.indexOf(GS_PROFILE_LABEL);
+  const gsIndex = row.indexOf(GS_INDEX_LABEL);
+  const scopusProfile = row.indexOf(SCOPUS_PROFILE_LABEL);
+  const scopusIndex = row.indexOf(SCOPUS_INDEX_LABEL);
+  if (
+    gsProfile !== -1 &&
+    gsIndex !== -1 &&
+    scopusProfile !== -1 &&
+    scopusIndex !== -1
+  ) {
+    return { gsProfile, gsIndex, scopusProfile, scopusIndex, insert: false };
+  }
+  return { gsProfile: 6, gsIndex: 7, scopusProfile: 8, scopusIndex: 9, insert: true };
 }
 
 let matchedFaculty = 0;
 let matchedDiaspora = 0;
 
-for (let i = 0; i < rows.length; i++) {
+const headerIndices = findOrCreateColumnIndices(rows[0]);
+
+if (headerIndices.insert) {
+  rows[0] = [
+    ...rows[0].slice(0, headerIndices.gsProfile),
+    GS_PROFILE_LABEL,
+    GS_INDEX_LABEL,
+    SCOPUS_PROFILE_LABEL,
+    SCOPUS_INDEX_LABEL,
+    ...rows[0].slice(headerIndices.gsProfile),
+  ];
+}
+
+for (let i = 1; i < rows.length; i++) {
   const row = rows[i];
   const name = row[NAME_INDEX]?.trim() ?? "";
 
-  if (i === 0) {
-    rows[i] = insertColumns(row, [
-      GS_PROFILE_LABEL,
-      GS_INDEX_LABEL,
-      SCOPUS_PROFILE_LABEL,
-      SCOPUS_INDEX_LABEL,
-    ]);
+  if (headerIndices.insert) {
+    rows[i] = [
+      ...row.slice(0, headerIndices.gsProfile),
+      "",
+      "",
+      "",
+      "",
+      ...row.slice(headerIndices.gsProfile),
+    ];
     continue;
   }
 
-  if (!name) {
-    rows[i] = insertColumns(row, ["", "", "", ""]);
-    continue;
-  }
+  if (!name) continue;
 
   const nidn = row[NIDN_INDEX]?.trim() ?? "";
   const normName = normalizeName(name);
 
-  const gsProfile: string[] = ["", ""];
-  const scopusProfile: string[] = ["", ""];
+  let gsProfile = "";
+  let gsIndex = "";
+  let scopusProfile = "";
+  let scopusIndex = "";
 
   let faculty = facultyByNidn.get(nidn);
   if (!faculty && normName) faculty = facultyByName.get(normName);
 
   if (faculty) {
     matchedFaculty++;
-    if (faculty.link) gsProfile[0] = faculty.link;
+    if (faculty.link) gsProfile = faculty.link;
     if (faculty.scopus_id) {
-      scopusProfile[0] =
+      scopusProfile =
         `https://www.scopus.com/authid/detail.uri?authorId=${faculty.scopus_id}`;
     }
-    if (faculty.scopus_index) scopusProfile[1] = faculty.scopus_index;
+    if (faculty.scopus_index) scopusIndex = faculty.scopus_index;
   }
 
   const diaspora = diasporaByName.get(normName);
   if (diaspora && diaspora.google_scholar) {
     matchedDiaspora++;
-    gsProfile[0] = diaspora.google_scholar;
+    gsProfile = diaspora.google_scholar;
     if (diaspora.h_index !== undefined) {
-      gsProfile[1] = String(diaspora.h_index);
+      gsIndex = String(diaspora.h_index);
     }
   }
 
-  rows[i] = insertColumns(row, [
-    gsProfile[0],
-    gsProfile[1],
-    scopusProfile[0],
-    scopusProfile[1],
-  ]);
+  row[headerIndices.gsProfile] = gsProfile;
+  row[headerIndices.gsIndex] = gsIndex;
+  row[headerIndices.scopusProfile] = scopusProfile;
+  row[headerIndices.scopusIndex] = scopusIndex;
 }
 
 const output = Papa.unparse(rows, {
