@@ -11,15 +11,15 @@ import { academicScholarshipData } from "@data/academic-scholarship";
 ---
 
 <MainLayout
-  title="Academic Scholarship | APU"
-  description="Apply for the APU Academic Scholarship 2026/2027. Get up to 50% tuition fee reduction for high-achieving students. Simple requirements, transparent process."
+  title={academicScholarshipData.meta.title}
+  description={academicScholarshipData.meta.description}
 >
   <NavigationAPU />
   <main>
     <ScholarshipHero data={academicScholarshipData.hero} />
-    <ScholarshipAbout />
-    <ScholarshipRequirements />
-    <ScholarshipTimeline />
+    <ScholarshipAbout data={academicScholarshipData.about} />
+    <ScholarshipRequirements data={academicScholarshipData.requirements} />
+    <ScholarshipTimeline data={academicScholarshipData.timeline} />
     <ContactSection />
   </main>
   <Footer />
