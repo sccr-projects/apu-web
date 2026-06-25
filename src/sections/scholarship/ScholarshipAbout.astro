@@ -28,11 +28,11 @@ const { data } = Astro.props;
   <div class="relative z-10">
     <!-- Heading + subtitle -->
     <ScrollReveal class="flex justify-center">
-      <div class="text-center mb-10 md:mb-2 backdrop-blur-sm w-fit p-6 rounded-xl self-center">
+      <div class="text-center mb-10 md:mb-2 backdrop-blur-sm bg-apu-navy/40 w-fit p-6 rounded-xl self-center">
         <h2 class="text-h2 text-apu-accent mb-4">
           {data.headline}
         </h2>
-        <p class="text-body text-gray-100 max-w-2xl mx-auto text-2xl font-semibold leading-relaxed">
+        <p class="text-body text-white max-w-2xl mx-auto text-2xl font-semibold leading-relaxed">
           {data.description}
         </p>
         {
@@ -41,7 +41,7 @@ const { data } = Astro.props;
               <h3 class="text-body-s font-semibold text-apu-accent mb-2">{data.benefitTitle}</h3>
               <ul class="space-y-1">
                 {data.benefitTiers.map((tier) => (
-                  <li class="text-body-s text-gray-100">{tier}</li>
+                  <li class="text-body-s text-white">{tier}</li>
                 ))}
               </ul>
             </div>
@@ -65,7 +65,7 @@ const { data } = Astro.props;
                 class="w-64 h-auto md:w-[47rem] drop-shadow-lg justify-center relative"
               />
               <div
-                class="pointer-events-none flex flex-col text-center justify-center absolute left-1/2 top-[25%] -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-4xl md:text-9xl font-bold font-sans bg-gradient-to-r from-[rgb(var(--color-apu-accent))] to-[rgb(var(--color-semantic-accent))] backdrop-blur-sm bg-clip-text text-transparent drop-shadow-sm"
+                class="pointer-events-none flex flex-col text-center justify-center absolute left-1/2 top-[25%] -translate-x-1/2 -translate-y-1/2 whitespace-normal text-4xl md:text-9xl font-bold font-sans bg-gradient-to-r from-[rgb(var(--color-apu-accent))] to-[rgb(var(--color-semantic-accent))] backdrop-blur-sm bg-clip-text text-transparent drop-shadow-sm"
               >
                 <p>{data.overlay.title}</p>
                 <p class="text-lg md:text-xl">{data.overlay.subtitle}</p>

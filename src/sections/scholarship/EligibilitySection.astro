@@ -56,7 +56,19 @@ const fallbackIcon = Object.keys(iconMap)[0] ?? "dna";
         >
           <div class="flex items-center gap-3 mb-4">
             <span class="text-mono text-[rgb(var(--color-apu-navy))]" data-desc-number></span>
-            <div class="apu-icon-chip h-10 w-10" data-desc-icon></div>
+            <svg
+              data-desc-icon
+              class="apu-icon-chip h-10 w-10"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></svg>
             <h3 class="text-h3 text-[rgb(var(--color-apu-navy))]" data-desc-title></h3>
           </div>
           <p class="text-body-s text-brand-text-muted leading-relaxed" data-desc-text></p>
@@ -67,7 +79,19 @@ const fallbackIcon = Object.keys(iconMap)[0] ?? "dna";
         >
           <div class="flex items-center gap-3 mb-4">
             <span class="text-mono text-[rgb(var(--color-apu-navy))]" data-desc-number></span>
-            <div class="apu-icon-chip h-10 w-10" data-desc-icon></div>
+            <svg
+              data-desc-icon
+              class="apu-icon-chip h-10 w-10"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></svg>
             <h3 class="text-h3 text-[rgb(var(--color-apu-navy))]" data-desc-title></h3>
           </div>
           <p class="text-body-s text-brand-text-muted leading-relaxed" data-desc-text></p>
@@ -304,9 +328,11 @@ const fallbackIcon = Object.keys(iconMap)[0] ?? "dna";
     function createClone(trigger) {
       const rect = trigger.getBoundingClientRect();
       const stageRect = stage.getBoundingClientRect();
-      const el = trigger.cloneNode(true);
+      const el = document.createElement('div');
+      el.className = trigger.className;
       el.classList.add('bento-clone');
       el.classList.remove('apu-interactive-card');
+      el.innerHTML = trigger.innerHTML;
       el.style.position = 'absolute';
       el.style.top = rect.top - stageRect.top + 'px';
       el.style.left = rect.left - stageRect.left + 'px';
