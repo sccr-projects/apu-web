@@ -1,21 +1,25 @@
 ---
 import { Image } from "astro:assets";
 import ScrollReveal from "@components/ScrollReveal.astro";
-import BackgroundBlobs from "@components/BackgroundBlobs.astro";
-import cap from "@/assets/images/scholarship/cap.webp";
-import podiumstage from "@/assets/images/scholarship/podiumstage.webp";
+import type { ScholarshipPageData } from "@/types/scholarship-page";
+
+interface Props {
+  data: ScholarshipPageData["about"];
+}
+
+const { data } = Astro.props;
 ---
 
 <section
   id="about"
   class="apu-section-shell relative isolate overflow-hidden bg-gradient-to-b from-brand-surface via-[rgb(var(--color-apu-navy)_/_0.03)] to-brand-surface-alt pt-24 md:pt-32 before:content-[''] before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_left,rgb(var(--color-apu-accent)_/_0.14),transparent_34%),radial-gradient(circle_at_bottom_right,rgb(var(--color-apu-navy)_/_0.16),transparent_38%)] after:content-[''] after:pointer-events-none after:absolute after:inset-x-0 after:top-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-[rgb(var(--color-apu-accent)_/_0.65)] after:to-transparent"
 >
-    <Image
-        src={podiumstage}
-        alt="Graduation podium stage"
-        loading="eager"
-        class="absolute object-cover w-full h-full top-0"
-    />
+  <Image
+    src={data.image}
+    alt={data.imageAlt}
+    loading="eager"
+    class="absolute object-cover w-full h-full top-0"
+  />
   <div class="pointer-events-none absolute inset-0 overflow-hidden">
     <div class="absolute -left-24 top-12 h-72 w-72 rounded-full bg-[rgb(var(--color-apu-accent)_/_0.14)] blur-3xl"></div>
     <div class="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-[rgb(var(--color-apu-navy)_/_0.12)] blur-3xl"></div>
@@ -23,64 +27,67 @@ import podiumstage from "@/assets/images/scholarship/podiumstage.webp";
 
   <div class="relative z-10">
     <!-- Heading + subtitle -->
-    <ScrollReveal class="flex justify-center"}>
+    <ScrollReveal class="flex justify-center">
       <div class="text-center mb-10 md:mb-2 backdrop-blur-sm w-fit p-6 rounded-xl self-center">
         <h2 class="text-h2 text-apu-accent mb-4 text-shadow-sm text-shadow-blue-950">
-          We reward academic excellence
+          {data.headline}
         </h2>
         <p class="text-body text-gray-100 text-shadow-blue-950 text-shadow-sm max-w-2xl mx-auto text-2xl font-semibold leading-relaxed">
-          The APU Academic Scholarship is designed to recognize and support high-achieving students who want to continue their studies at a quality university.
+          {data.description}
         </p>
+        {
+          data.benefitTitle && data.benefitTiers && data.benefitTiers.length > 0 && (
+            <div class="mt-6 text-left inline-block">
+              <h3 class="text-body-s font-semibold text-apu-accent mb-2">{data.benefitTitle}</h3>
+              <ul class="space-y-1">
+                {data.benefitTiers.map((tier) => (
+                  <li class="text-body-s text-gray-100 text-shadow-blue-950 text-shadow-sm">{tier}</li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
       </div>
     </ScrollReveal>
 
-    <!-- Cap + podium illustration -->
-    <ScrollReveal delay={150}>
-      <div
-        class="flex flex-col items-center"
-        role="img"
-        aria-label="Academic scholarship podium with a graduation cap on the first place block"
-      >
-        <!-- Graduation cap -->
-        <div class="relative z-10 mb-[-1.25rem] md:mb-[-14rem]">
-          <Image
-            src={cap}
-            alt="Graduation cap"
-            loading="eager"
-            class="w-64 h-auto md:w-[47rem] drop-shadow-lg justify-center relative"
-          />
+    <!-- Optional overlay illustration -->
+    {
+      data.overlay && (
+        <ScrollReveal delay={150}>
           <div
-            class="pointer-events-none flex flex-col text-center justify-center absolute left-1/2 top-[25%] -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-4xl md:text-9xl font-bold font-sans bg-gradient-to-r from-[rgb(var(--color-apu-accent))] to-[rgb(var(--color-semantic-accent))] backdrop-blur-sm bg-clip-text text-transparent drop-shadow-sm"
+            class="flex flex-col items-center"
+            role="img"
+            aria-label={data.imageAlt}
           >
-              <p>50%</p>
-              <p class="text-lg md:text-xl ">Development Fee (SPI)</p>
-          </div>
-        </div>
+            <div class="relative z-10 mb-[-1.25rem] md:mb-[-14rem]">
+              <Image
+                src={data.overlay.image}
+                alt=""
+                loading="eager"
+                class="w-64 h-auto md:w-[47rem] drop-shadow-lg justify-center relative"
+              />
+              <div
+                class="pointer-events-none flex flex-col text-center justify-center absolute left-1/2 top-[25%] -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-4xl md:text-9xl font-bold font-sans bg-gradient-to-r from-[rgb(var(--color-apu-accent))] to-[rgb(var(--color-semantic-accent))] backdrop-blur-sm bg-clip-text text-transparent drop-shadow-sm"
+              >
+                <p>{data.overlay.title}</p>
+                <p class="text-lg md:text-xl">{data.overlay.subtitle}</p>
+              </div>
+            </div>
 
-        <!-- Podium -->
-        <div class="flex w-full items-end">
-          <!-- 2nd -->
-          <div
-            class="flex grow h-20  md:h-48  items-center justify-center border border-[rgb(var(--color-brand-border)_/_0.5)] bg-[rgb(var(--color-brand-surface-soft))] shadow-[0_8px_24px_rgb(var(--color-apu-navy)_/_0.08)]"
-          >
-            <span class="font-display text-2xl md:text-3xl font-semibold text-brand-text-muted">2</span>
+            <div class="flex w-full items-end">
+              <div class="flex grow h-20 md:h-48 items-center justify-center border border-[rgb(var(--color-brand-border)_/_0.5)] bg-[rgb(var(--color-brand-surface-soft))] shadow-[0_8px_24px_rgb(var(--color-apu-navy)_/_0.08)]">
+                <span class="font-display text-2xl md:text-3xl font-semibold text-brand-text-muted">2</span>
+              </div>
+              <div class="flex grow h-32 md:h-80 items-center justify-center border border-[rgb(var(--color-apu-accent)_/_0.8)] bg-[rgb(var(--color-apu-accent))] shadow-[0_12px_32px_rgb(var(--color-apu-navy)_/_0.12)]">
+                <span class="font-display text-4xl md:text-5xl font-semibold text-[rgb(var(--color-apu-navy))]">1</span>
+              </div>
+              <div class="flex grow h-16 md:h-36 items-center justify-center border border-[rgb(var(--color-semantic-accent)_/_0.8)] bg-[rgb(var(--color-semantic-accent))] shadow-[0_8px_24px_rgb(var(--color-apu-navy)_/_0.08)]">
+                <span class="font-display text-2xl md:text-3xl font-semibold text-[rgb(var(--color-apu-navy))]">3</span>
+              </div>
+            </div>
           </div>
-
-          <!-- 1st -->
-          <div
-            class="flex grow h-32 md:h-80  items-center justify-center border border-[rgb(var(--color-apu-accent)_/_0.8)] bg-[rgb(var(--color-apu-accent))] shadow-[0_12px_32px_rgb(var(--color-apu-navy)_/_0.12)]"
-          >
-            <span class="font-display text-4xl md:text-5xl font-semibold text-[rgb(var(--color-apu-navy))]">1</span>
-          </div>
-
-          <!-- 3rd -->
-          <div
-            class="flex grow h-16 md:h-36 items-center justify-center border border-[rgb(var(--color-semantic-accent)_/_0.8)] bg-[rgb(var(--color-semantic-accent))] shadow-[0_8px_24px_rgb(var(--color-apu-navy)_/_0.08)]"
-          >
-            <span class="font-display text-2xl md:text-3xl font-semibold text-[rgb(var(--color-apu-navy))]">3</span>
-          </div>
-        </div>
-      </div>
-    </ScrollReveal>
+        </ScrollReveal>
+      )
+    }
   </div>
 </section>
