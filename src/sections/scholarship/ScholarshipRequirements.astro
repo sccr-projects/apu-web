@@ -4,40 +4,13 @@ import SectionHeader from "@components/SectionHeader.astro";
 import CtaButton from "@components/CtaButton.astro";
 import BackgroundBlobs from "@components/BackgroundBlobs.astro";
 import { contact } from "@data/contact";
+import type { ScholarshipPageData } from "@/types/scholarship-page";
 
-interface Requirement {
-  number: string;
-  title: string;
-  description: string;
-  icon: string;
+interface Props {
+  data: ScholarshipPageData["requirements"];
 }
 
-const requirements: Requirement[] = [
-  {
-    number: "01",
-    title: "SMA/SMK/Equivalent Graduate",
-    description: "Graduate of SMA/SMK/equivalent or currently in Grade 12 in the current academic year.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.24 3 5 3s5-1.34 5-3v-5"/></svg>`,
-  },
-  {
-    number: "02",
-    title: "Minimum Report Card Average of 80",
-    description: "Have a minimum report card average of 80 in the most recent or previous semester.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
-  },
-  {
-    number: "03",
-    title: "Report Card/Transcript Copy",
-    description: "Attach a copy of your report card or transcript that has been legalized as academic proof.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
-  },
-  {
-    number: "04",
-    title: "Online Registration Form",
-    description: "Fill out the online registration form through the APU scholarship portal with complete and valid data.",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>`,
-  },
-];
+const { data } = Astro.props;
 ---
 
 <section
@@ -51,44 +24,35 @@ const requirements: Requirement[] = [
   </div>
 
   <div class="content-max">
-    <!-- Section Header -->
     <ScrollReveal>
       <SectionHeader
-        kicker="REQUIREMENTS"
-        title="Scholarship Eligibility Requirements"
-        description="Make sure you meet the following requirements before applying for the APU Academic Scholarship."
+        kicker={data.kicker}
+        title={data.title}
+        description={data.description}
         class="text-center mb-16"
         titleClass="text-h2 text-[rgb(var(--color-apu-navy))] mb-4"
       />
     </ScrollReveal>
 
-    <!-- Requirements Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16">
-      {requirements.map((req, index) => (
+      {data.items.map((req, index) => (
         <ScrollReveal delay={index * 120} direction="left">
-          <div class="group relative h-full overflow-hidden rounded-tl-xl rounded-bl-xl rounded-br-xl apu-corner-accent--tr-6  bg-white/82 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[rgb(var(--color-apu-accent)_/_0.5)] hover:shadow-[0_24px_54px_rgb(var(--color-apu-navy)_/_0.12)]">
+          <div class="group relative h-full overflow-hidden rounded-tl-xl rounded-bl-xl rounded-br-xl apu-corner-accent--tr-6 bg-white/82 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[rgb(var(--color-apu-accent)_/_0.5)] hover:shadow-[0_24px_54px_rgb(var(--color-apu-navy)_/_0.12)]">
             <div class="pointer-events-none absolute inset-x-0 top-0 h-1 bg-apu-navy"></div>
             <div class="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[rgb(var(--color-apu-accent)_/_0.12)] blur-2xl transition-opacity duration-300 group-hover:opacity-80"></div>
 
-            <!-- Icon -->
             <div class="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-3xl border border-[rgb(var(--color-apu-accent)_/_0.3)] bg-gradient-to-br from-[rgb(var(--color-apu-navy))] to-[rgb(var(--color-apu-navy)_/_0.86)] text-[rgb(var(--color-apu-accent))] shadow-[0_14px_26px_rgb(var(--color-apu-navy)_/_0.18)] ring-4 ring-[rgb(var(--color-apu-accent)_/_0.08)]">
               <Fragment set:html={req.icon} />
             </div>
 
-            <!-- Number -->
             <span class="text-mono text-[rgb(var(--color-apu-navy))] block mb-2">{req.number}</span>
-
-            <!-- Title -->
             <h4 class="text-body-s font-medium text-[rgb(var(--color-apu-navy))] mb-2 leading-snug">{req.title}</h4>
-
-            <!-- Description -->
             <p class="text-caption text-brand-text-muted leading-relaxed">{req.description}</p>
           </div>
         </ScrollReveal>
       ))}
     </div>
 
-    <!-- Bottom CTA -->
     <ScrollReveal class="text-center">
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <CtaButton
