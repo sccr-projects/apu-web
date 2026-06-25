@@ -1,5 +1,6 @@
 ---
-import { assetUrl } from '@lib/assets';
+import { Image } from "astro:assets";
+import deanPortrait from "@/assets/images/dean-portrait.webp";
 import ScrollReveal from "@components/ScrollReveal.astro";
 import BackgroundBlobs from "@components/BackgroundBlobs.astro";
 import { lecturers } from "@data/lecturers";
@@ -13,7 +14,7 @@ const welcomeBody = [
 ];
 const leaderName = "Prof. Dr. Eleanor Tan, S.H., M.Hum.";
 const leaderTitle = "Dekan Fakultas Hukum";
-const leaderImage = assetUrl('/images/dean-portrait.webp');
+const leaderImage = deanPortrait;
 
 const galleryTitle = "Dosen \u003cem\u003eTerbaik\u003c/em\u003e Kami";
 const galleryKicker = "KENALI TIM PENGAJAR";
@@ -119,11 +120,13 @@ const galleryKicker = "KENALI TIM PENGAJAR";
           <div class="lecturer-card flex-shrink-0 group cursor-pointer">
             <div class="lecturer-image relative w-[220px] h-[280px] md:w-[260px] md:h-[320px] rounded-[var(--apu-radius-card)] overflow-hidden shadow-[var(--apu-shadow-card)] transition-all duration-[400ms] ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:shadow-[var(--apu-shadow-card-hover)]"
             >
-              <img
+              <Image
                 src={lecturer.image}
                 alt={`Foto ${lecturer.name}`}
                 class="w-full h-full object-cover grayscale-[20%] contrast-105 transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:grayscale-0 group-hover:scale-105"
                 loading="lazy"
+                width={260}
+                height={320}
               />
               <div class="absolute inset-0 bg-gradient-to-t from-[rgb(var(--color-brand-primary-deeper)_/_0.35)] via-transparent to-transparent opacity-60 transition-opacity duration-400 group-hover:opacity-30"
               ></div>

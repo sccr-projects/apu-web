@@ -1,21 +1,22 @@
 ---
+import { Image } from "astro:assets";
 import ScrollReveal from "@components/ScrollReveal.astro";
 import SectionHeader from "@components/SectionHeader.astro";
 import LeafletMap from "@components/LeafletMap.astro";
 import { campusLocations } from "@data/locations";
-import apuPin from "@mapsection/apu-pin2.webp";
-import sccrPin from "@mapsection/sccr-pin.webp";
-import kareninaPin from "@mapsection/karenina-pin.webp";
-import dermaninaPin from "@mapsection/dermanina-pin.webp";
-import farmPin from "@mapsection/farm-pin.webp";
-import restoPin from "@mapsection/resto-pin.webp";
+import apuPin from "@/assets/mapsection/apu-pin2.webp";
+import sccrPin from "@/assets/mapsection/sccr-pin.webp";
+import kareninaPin from "@/assets/mapsection/karenina-pin.webp";
+import dermaninaPin from "@/assets/mapsection/dermanina-pin.webp";
+import farmPin from "@/assets/mapsection/farm-pin.webp";
+import restoPin from "@/assets/mapsection/resto-pin.webp";
 
-import apuImg from "@mapsection/images/apu-background.webp";
-import sccrImg from "@mapsection/images/sccr.jpg";
-import kareninaImg from "@mapsection/images/karenina.jpg";
-import dermaninaImg from "@mapsection/images/dermanina.jpeg";
-import farmImg from "@mapsection/images/farm.jpg";
-import restoImg from "@mapsection/images/resto.jpg";
+import apuImg from "@/assets/mapsection/images/apu-background.webp";
+import sccrImg from "@/assets/mapsection/images/sccr.jpg";
+import kareninaImg from "@/assets/mapsection/images/karenina.jpg";
+import dermaninaImg from "@/assets/mapsection/images/dermanina.jpeg";
+import farmImg from "@/assets/mapsection/images/farm.jpg";
+import restoImg from "@/assets/mapsection/images/resto.jpg";
 import BackgroundBlobs from "@components/BackgroundBlobs.astro";
 
 const pinMap: Record<string, string> = {
@@ -93,9 +94,9 @@ const APU_CENTER: [number, number] = [-7.071300, 110.362306];
 
           <!-- Reactive location image -->
           <div class="ecosystem-image-wrapper relative isolate aspect-[16/10] w-full overflow-hidden rounded-[var(--apu-radius-card)] border border-[var(--apu-border)] bg-[var(--apu-surface-soft)]">
-            <img
+            <Image
               id="ecosystem-location-image"
-              src={apuImg.src}
+              src={apuImg}
               alt="APU Main Campus — APU Ecosystem"
               class="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ease-in-out"
               loading="eager"

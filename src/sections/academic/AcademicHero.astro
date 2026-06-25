@@ -1,5 +1,6 @@
 ---
-import { assetUrl } from '@lib/assets';
+import { Image } from "astro:assets";
+import akademik1 from "@/assets/images/akademik1.jpg";
 import CtaButton from "@components/CtaButton.astro";
 
 type Props = {
@@ -10,7 +11,7 @@ type Props = {
   primaryLabel: string;
   secondaryHref?: string;
   secondaryLabel?: string;
-  backgroundImage?: string;
+  backgroundImage?: ImageMetadata | string;
 };
 
 const {
@@ -21,8 +22,10 @@ const {
   primaryLabel,
   secondaryHref,
   secondaryLabel,
-  backgroundImage = assetUrl('/images/akademik1.jpg'),
+  backgroundImage = akademik1,
 } = Astro.props as Props;
+
+const isStringImage = typeof backgroundImage === "string";
 ---
 
 <section
@@ -34,13 +37,25 @@ const {
     id="akademik-hero-bg"
     class="absolute inset-0 h-dvh z-[1] will-change-transform opacity-0 "
   >
-    <img
-      src={backgroundImage}
-      alt="APU students in academic activities"
-      class="w-full h-full object-cover"
-      loading="eager"
-      id="akademik-hero-img"
-    />
+    {isStringImage ? (
+      <Image
+        src={backgroundImage as string}
+        alt="APU students in academic activities"
+        class="w-full h-full object-cover"
+        loading="eager"
+        width={1920}
+        height={1080}
+        id="akademik-hero-img"
+      />
+    ) : (
+      <Image
+        src={backgroundImage as ImageMetadata}
+        alt="APU students in academic activities"
+        class="w-full h-full object-cover"
+        loading="eager"
+        id="akademik-hero-img"
+      />
+    )}
     {/* Multi-layer overlay for depth and readability */}
     <div class="absolute inset-0 akademik-hero-overlay-base"></div>
     <div class="absolute inset-0 akademik-hero-overlay-bottom"></div>

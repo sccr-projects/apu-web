@@ -1,5 +1,6 @@
 ---
-import { assetUrl } from '@lib/assets';
+import { Image } from "astro:assets";
+import apuLogo from "@/assets/images/apu.webp";
 const HOME_PATH = "/";
 
 const normalizePath = (path: string) => {
@@ -218,11 +219,12 @@ const visibleUtilities = utilityActions.filter((item) => !item.placeholder).slic
   <div class="nav-bar">
     <div class="nav-bar-inner md:px-20">
       <a href={HOME_PATH} class="nav-brand">
-        <img
-          src={assetUrl('/images/apu.webp')}
+        <Image
+          src={apuLogo}
           alt="Agung Putra University"
           class="h-18 w-auto shrink-0"
           loading="eager"
+          fetchpriority="high"
         />
         <span class="nav-brand-copy hidden sm:flex">
             <span class="font-semibold font-epilogue text-xl">Agung Putra<br>University</span>

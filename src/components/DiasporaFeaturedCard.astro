@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { DiasporaPerson } from "@data/diaspora";
 import canada from "@/assets/images/academic/canada-bg.jpg";
 
@@ -8,18 +9,19 @@ interface Props {
 }
 
 const { person, class: className = "" } = Astro.props;
-const bgSrc = person.background_image?.src ?? canada.src;
+const bgImage = person.background_image ?? canada;
 ---
 
 <div
   class:list={["relative flex justify-center", className]}
   data-diaspora-featured-card
 >
-  <img
-    src={bgSrc}
+  <Image
+    src={bgImage}
     alt=""
     class="pointer-events-none absolute top-0 left-0 h-full w-full object-cover opacity-30"
     aria-hidden="true"
+    loading="eager"
     data-featured-background
   />
   <img
@@ -108,8 +110,8 @@ const bgSrc = person.background_image?.src ?? canada.src;
 
     <div class="relative order-1 mb-4 w-full md:order-2 md:mb-0 md:w-96">
       <div class="relative aspect-[4/5] overflow-hidden rounded-2xl md:aspect-auto md:h-full">
-        <img
-          src={person.image.src}
+        <Image
+          src={person.image}
           alt={`Portrait of ${person.name}`}
           class="h-full w-full border-0 object-cover"
           style={`object-position: ${person.position}% center;`}

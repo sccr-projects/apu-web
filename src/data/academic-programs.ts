@@ -1,5 +1,11 @@
-import { assetUrl } from "@lib/assets";
 import type { LeadershipMessage } from "@data/leadership";
+import biomedicalKaprodi from "@/assets/images/academic/biomedical-kaprodi.webp";
+import biotechnologyKaprodi from "@/assets/images/academic/biotechnology-kaprodi.webp";
+import communicationKaprodi from "@/assets/images/academic/communication-kaprodi.webp";
+import lawKaprodi from "@/assets/images/academic/law-kaprodi.jpeg";
+import managementKaprodi from "@/assets/images/academic/management-kaprodi.webp";
+import midwiferyAssociateKaprodi from "@/assets/images/academic/midwifery-associate-kaprodi.webp";
+import midwiferyBachelorKaprodi from "@/assets/images/academic/midwifery-bachelor-kaprodi.webp";
 
 export const biomedicalLeadershipMessage: LeadershipMessage = {
   kicker: "A MESSAGE",
@@ -18,7 +24,7 @@ export const biomedicalLeadershipMessage: LeadershipMessage = {
   ],
   leaderName: "Nadya Audina NS. S.Si., M.Biomed",
   leaderTitle: "Head of Biomedical Science Study Program",
-  leaderImage: assetUrl("/images/academic/biomedical-kaprodi.webp"),
+  leaderImage: biomedicalKaprodi,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -41,7 +47,7 @@ export const biotechnologyLeadershipMessage: LeadershipMessage = {
   ],
   leaderName: "Fauziah Novita Putri Rifai, S.Si, M.Biotech",
   leaderTitle: "Head of Biotechnology Study Program",
-  leaderImage: assetUrl("/images/academic/biotechnology-kaprodi.webp"),
+  leaderImage: biotechnologyKaprodi,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -65,7 +71,7 @@ export const communicationLeadershipMessage: LeadershipMessage = {
   ],
   leaderName: "Muhamad Agung Setiawan, S.sos., M.Sos",
   leaderTitle: "Head of Communication Study Program",
-  leaderImage: assetUrl("/images/academic/communication-kaprodi.webp"),
+  leaderImage: communicationKaprodi,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -91,7 +97,7 @@ export const lawLeadershipMessage: LeadershipMessage = {
   ],
   leaderName: "Dr. Erwin, S.H., M.H",
   leaderTitle: "Head of Law Study Program",
-  leaderImage: assetUrl("/images/academic/law-kaprodi.jpeg"),
+  leaderImage: lawKaprodi,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -119,7 +125,7 @@ export const managementLeadershipMessage: LeadershipMessage = {
   ],
   leaderName: "Reni Nur Arifah SE.,MM",
   leaderTitle: "Head of Management Study Program",
-  leaderImage: assetUrl("/images/academic/management-kaprodi.webp"),
+  leaderImage: managementKaprodi,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -145,7 +151,7 @@ export const midwiferyAssociateLeadershipMessage: LeadershipMessage = {
   ],
   leaderName: "Bdn, Titik Kurniawati, S.SiT., M.Kes., M.Keb",
   leaderTitle: "Head of Midwifery Associate Study Program",
-  leaderImage: assetUrl("/images/academic/midwifery-associate-kaprodi.webp"),
+  leaderImage: midwiferyAssociateKaprodi,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -169,7 +175,7 @@ export const midwiferyBachelorLeadershipMessage: LeadershipMessage = {
   ],
   leaderName: "Bd. Rizqitha, S.Tr.Keb., M.Tr.Keb",
   leaderTitle: "Head of Midwifery Bachelor Study Program",
-  leaderImage: assetUrl("/images/academic/midwifery-bachelor-kaprodi.webp"),
+  leaderImage: midwiferyBachelorKaprodi,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",

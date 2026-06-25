@@ -505,7 +505,7 @@ const toneVars = (tone: ProgramTone) => `--program-accent: ${tone.accent};`;
                         class="dsk-progdi-slide apu-interactive-card"
                         href={`${program.link}`}
                         aria-label={program.name}
-                        style={`${toneVars(getToneForProgram(program.id))} background-image:url('${program.image}')`}
+                        style={`${toneVars(getToneForProgram(program.id))} background-image:url('${program.image.src}')`}
                     >
                          <div class="dsk-progdi-text ">{program.degree}</div>
                         <div class="dsk-progdi-card">{program.name}</div>
@@ -535,7 +535,7 @@ const toneVars = (tone: ProgramTone) => `--program-accent: ${tone.accent};`;
                             id={`progdi-${program.id}`}
                             class="progdi-slide swiper-slide apu-interactive-card"
                             href={`${program.link}`}
-                            style={`${toneVars(getToneForProgram(program.id))} background-image:url('${program.image}');`}
+                            style={`${toneVars(getToneForProgram(program.id))} background-image:url('${program.image.src}');`}
                         >
                             <div class="progdi-card">
                                 <div class="progdi-label">

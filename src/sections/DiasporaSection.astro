@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import worldMap from "@/assets/images/academic/diaspora/world-map.svg";
 import { people } from "@data/diaspora";
 import ScrollReveal from "@/components/ScrollReveal.astro";
@@ -49,8 +50,8 @@ import ScrollReveal from "@/components/ScrollReveal.astro";
                   data-person-id={person.id}
                 >
                   <div class="overflow-hidden rounded-lg">
-                    <img
-                      src={person.image.src}
+                    <Image
+                      src={person.image}
                       alt={`Portrait of ${person.name}`}
                       class="h-36 w-full object-contain object-top md:h-56 "
                       style={`object-position: ${person.position}% center;`}

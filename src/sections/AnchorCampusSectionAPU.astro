@@ -1,9 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import ScrollReveal from "@components/ScrollReveal.astro";
 import CtaButton from "@components/CtaButton.astro";
 import LeafletMap from "@components/LeafletMap.astro";
 import BackgroundBlobs from "@components/BackgroundBlobs.astro";
-import apuPin from "@mapsection/apu-pin.webp";
+import apuPin from "@/assets/mapsection/apu-pin.webp";
 
 const admissionsWhatsApp =
   "https://wa.me/628113755552?text=Hello, I would like to ask about new student admission information for APU 2026/2027.";
@@ -37,8 +38,8 @@ const APU_CENTER: [number, number] = [-7.071300, 110.362306];
             class="apu-anchor-campus__pin-wrap absolute left-1/2 top-1/2 z-[4] grid aspect-square w-28 -translate-x-1/2 -translate-y-1/2 place-items-center sm:w-36 md:w-44 lg:left-[33.4%] lg:top-[50%] lg:w-80 lg:-translate-x-1/2 lg:-translate-y-1/2"
             aria-label="APU campus location pin"
           >
-            <img
-              src={apuPin.src}
+            <Image
+              src={apuPin}
               alt="APU campus location pin"
               class="apu-anchor-campus__pin-image relative z-[3] h-[92%] w-[92%] object-contain opacity-100 translate-y-[-12%]"
               loading="lazy"

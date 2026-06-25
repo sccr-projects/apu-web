@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 export interface Props {
     seed?: string;
     blobCount?: number;
@@ -14,8 +16,8 @@ import bgImage from "@/assets/images/bg-apu-main.webp";
 ---
 
 <div class:list={["apu-bg-image", className]} aria-hidden="true">
-    <img
-        src={bgImage.src}
+    <Image
+        src={bgImage}
         alt=""
         loading="lazy"
         decoding="async"

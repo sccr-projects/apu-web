@@ -1,5 +1,5 @@
 ---
-import { assetUrl } from '@lib/assets';
+import { Image } from "astro:assets";
 import type { ProgramHeroData, ProgramHeroSlug } from '@data/program-heroes';
 
 export interface Props {
@@ -44,8 +44,8 @@ const overlayEnd = overlayEndColors[data.program];
         id="hero-on-bg"
         class="absolute inset-0 z-[1] will-change-transform opacity-0 scale-[1.04]"
     >
-        <img
-            src={assetUrl(data.image)}
+        <Image
+            src={data.image}
             alt={data.imageAlt}
             class="w-full h-full object-cover translate-y-20"
             loading="eager"

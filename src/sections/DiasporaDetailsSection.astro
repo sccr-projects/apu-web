@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import ScrollReveal from "@components/ScrollReveal.astro";
 import DiasporaFeaturedCard from "@components/DiasporaFeaturedCard.astro";
 import { people } from "@data/diaspora";
@@ -97,9 +98,9 @@ const sectionTitle = "Lecturers List:";
               role="button"
             >
               <div class="mb-5 aspect-[3/4] overflow-hidden rounded-xl ">
-                <img
-                draggable="false"
-                  src={person.image.src}
+                <Image
+                  draggable="false"
+                  src={person.image}
                   alt={`Portrait of ${person.name}`}
                   class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"

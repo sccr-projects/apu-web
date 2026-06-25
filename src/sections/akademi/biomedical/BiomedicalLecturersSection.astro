@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import SectionHeader from "@components/SectionHeader.astro";
 import CtaButton from "@components/CtaButton.astro";
 import ScrollReveal from "@components/ScrollReveal.astro";
@@ -20,7 +21,7 @@ import canada from "@/assets/images/academic/canada-bg.jpg";
     {/* Featured researcher */}
     <ScrollReveal>
       <div class="apu-glass-card rounded-none lecturers-featured-card mb-10 overflow-hidden flex justify-center py-10 relative">
-          <img src={canada.src} alt={featuredPerson.name} class="pointer-events-none absolute top-0 left-0 w-full h-full object-cover opacity-10" aria-hidden="true" />
+          <Image src={canada} alt={featuredPerson.name} class="pointer-events-none absolute top-0 left-0 w-full h-full object-cover opacity-10" aria-hidden="true" loading="eager" />
         <div class="relative z-10 flex flex-row justify-center">
           <div class="order-2 w-1/2 flex flex-col justify-center md:order-1">
             <span class="apu-pill-badge mb-6 self-start">{featured.kicker}</span>
@@ -76,8 +77,8 @@ import canada from "@/assets/images/academic/canada-bg.jpg";
 
           <div class="relative order-1 md:order-2 w-96">
             <div class="relative aspect-[4/5] overflow-hidden rounded-2xl md:aspect-auto md:h-full">
-              <img
-                src={featuredPerson.image.src}
+              <Image
+                src={featuredPerson.image}
                 alt={`Portrait of ${featuredPerson.name}`}
                 class="h-full w-full object-cover border-0"
                 loading="eager"
@@ -160,8 +161,8 @@ import canada from "@/assets/images/academic/canada-bg.jpg";
           {people.map((person) => (
             <article class="group apu-glass-card apu-interactive-card w-[82%] flex-shrink-0 snap-start p-5 sm:w-[47%] lg:w-[calc(15%-0.75rem)]">
               <div class="mb-5 aspect-[3/4] overflow-hidden rounded-xl">
-                <img
-                  src={person.image.src}
+                <Image
+                  src={person.image}
                   alt={`Portrait of ${person.name}`}
                   class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"

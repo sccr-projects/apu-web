@@ -1,5 +1,6 @@
 ---
-import { assetUrl } from '@lib/assets';
+import { Image } from "astro:assets";
+import apuBackground from "@/assets/images/apu-background.webp";
 import { contact } from "@data/contact";
 import CtaButton from "@components/CtaButton.astro";
 ---
@@ -12,8 +13,8 @@ import CtaButton from "@components/CtaButton.astro";
         id="hero-on-bg"
         class="absolute inset-0 z-[1] will-change-transform opacity-0 scale-[1.04]"
     >
-        <img
-            src={assetUrl('/images/apu-background.webp')}
+        <Image
+            src={apuBackground}
             alt="Futuristic Campus of Agung Putra University"
             class="w-full h-full object-cover"
             loading="eager"

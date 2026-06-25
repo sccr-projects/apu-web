@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import ScrollReveal from "@components/ScrollReveal.astro";
 ---
 
@@ -13,11 +14,13 @@ import ScrollReveal from "@components/ScrollReveal.astro";
           <div
             class="rounded-[var(--apu-radius-surface)] overflow-hidden shadow-[var(--apu-shadow-card)]"
           >
-            <img
+            <Image
               src="https://picsum.photos/seed/apu-chairman-portrait/600/800"
               alt="Prof. Dr. dr. Agung Putra, M.Si.Med"
               class="w-full h-auto object-cover"
               loading="lazy"
+              width={600}
+              height={800}
             />
           </div>
           <div class="mt-4 text-center md:text-left">

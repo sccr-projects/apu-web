@@ -1,5 +1,6 @@
 ---
-import { assetUrl } from '@lib/assets';
+import { Image } from "astro:assets";
+import apu4k from "@/assets/images/apu-4k.webp";
 import ScrollReveal from "@components/ScrollReveal.astro";
 import SectionHeader from "@components/SectionHeader.astro";
 ---
@@ -10,7 +11,7 @@ import SectionHeader from "@components/SectionHeader.astro";
 >
   <div id="vm-logo-3d-wrapper" class="translate-scale-0.9 absolute inset-y-0 z-0 flex items-center justify-center pointer-events-none left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-5" style="perspective: 500px;">
     <div id="vm-logo-3d" class="pointer-events-none vm-logo-3d-inner w-[90vw] md:w-[50vw]">
-      <img src={assetUrl('/images/apu-4k.webp')} alt="APU Logo" class="w-full h-full object-contain" loading="lazy" decoding="async" />
+      <Image src={apu4k} alt="APU Logo" class="w-full h-full object-contain" loading="lazy" decoding="async" />
     </div>
   </div>
 

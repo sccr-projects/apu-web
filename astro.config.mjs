@@ -28,4 +28,13 @@ export default defineConfig({
     },
   },
   output: "server",
+  build: {
+    inlineStylesheets: "always",
+  },
+  image: {
+    remotePatterns: [
+      { protocol: "https", hostname: "upload.wikimedia.org" },
+      { protocol: "https", hostname: "picsum.photos" },
+    ],
+  },
 });

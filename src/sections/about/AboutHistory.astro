@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import ScrollReveal from "@components/ScrollReveal.astro";
 
 interface Milestone {
@@ -81,12 +82,14 @@ const milestones: Milestone[] = [
               <div class="absolute inset-0 z-0">
                 {milestone.image ? (
                   <>
-                    <img
+                    <Image
                       src={milestone.image}
-                      alt={milestone.imageAlt}
+                      alt={milestone.imageAlt ?? milestone.title}
                       class="w-full h-full object-cover"
                       loading={index === 0 ? "eager" : "lazy"}
                       draggable="false"
+                      width={800}
+                      height={600}
                     />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
                   </>

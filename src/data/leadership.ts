@@ -1,4 +1,6 @@
-import { assetUrl } from "@lib/assets";
+import type { ImageMetadata } from "astro";
+import profAgung from "@/assets/images/academic/diaspora/prof-agung.webp";
+
 export interface LeadershipMessage {
   kicker: string;
   title: string;
@@ -6,7 +8,7 @@ export interface LeadershipMessage {
   leaderName: string;
   leaderTitle: string;
   leaderTitle2?: string;
-  leaderImage: string;
+  leaderImage: ImageMetadata;
   cta: {
     href: string;
     label: string;
@@ -25,7 +27,7 @@ export const leadershipMessage: LeadershipMessage = {
   leaderTitle: "Founder and Commissioner SCCR Indonesia",
   leaderTitle2: "President and Founder of Agung Putra University",
 
-  leaderImage: assetUrl("/images/academic/diaspora/prof-agung.webp"),
+  leaderImage: profAgung,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",

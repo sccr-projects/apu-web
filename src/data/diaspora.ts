@@ -1,3 +1,4 @@
+import type { ImageMetadata } from "astro";
 import profAgung from "@/assets/images/academic/diaspora/prof-agung.webp";
 import mrFaris from "@/assets/images/academic/diaspora/mr-faris.webp";
 import msAdzani from "@/assets/images/academic/diaspora/ms-adzani.webp";
@@ -19,7 +20,6 @@ import ukBg from "@/assets/images/academic/diaspora/countries-bg/uk.jpg";
 import aussieBg from "@/assets/images/academic/diaspora/countries-bg/aussie.jpg";
 import usBg from "@/assets/images/academic/diaspora/countries-bg/usa.jpg";
 
-
 export interface DiasporaPerson {
   id: string;
   name: string;
@@ -30,8 +30,8 @@ export interface DiasporaPerson {
   href: string;
   google_scholar: string;
   h_index?: number;
-  image: { src: string };
-  background_image?: { src: string };
+  image: ImageMetadata;
+  background_image?: ImageMetadata;
   position: number;
   pastExperience: {
     items: string[];

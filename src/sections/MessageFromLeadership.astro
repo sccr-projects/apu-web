@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import ScrollReveal from "@components/ScrollReveal.astro";
 import CtaButton from "@components/CtaButton.astro";
 import BackgroundBlobs from "@components/BackgroundBlobs.astro";
@@ -138,7 +139,7 @@ const { kicker, title, quote, leaderName, leaderTitle,leaderTitle2, leaderImage,
               {/* Gradient fade mask on left edge */}
 
               {/* Image */}
-              <img
+              <Image
                 src={leaderImage}
                 alt={`Photo of ${leaderName}, ${leaderTitle}`}
                 class="leadership-portrait-img w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"

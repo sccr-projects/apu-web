@@ -1,5 +1,6 @@
 ---
-import { assetUrl } from '@lib/assets';
+import { Image } from "astro:assets";
+import loby1 from "@/assets/images/loby1.webp";
 import CtaButton from "@components/CtaButton.astro";
 import { contact } from "@data/contact";
 ---
@@ -13,8 +14,8 @@ import { contact } from "@data/contact";
         id="admissions-hero-bg"
         class="absolute inset-0 z-[1] will-change-transform opacity-0 scale-[1.04]"
     >
-        <img
-            src={assetUrl('/images/loby1.webp')}
+        <Image
+            src={loby1}
             alt="Futuristic Campus of Agung Putra University"
             class="w-full h-full object-cover"
             loading="eager"

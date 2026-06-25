@@ -1,3 +1,12 @@
+import type { ImageMetadata } from "astro";
+import biomedicalHeroImg from "@/assets/images/academic/biomedical.webp";
+import biotechnologyHeroImg from "@/assets/images/academic/biotechnology.webp";
+import communicationHeroImg from "@/assets/images/academic/communication.png";
+import lawHeroImg from "@/assets/images/academic/law.png";
+import managementHeroImg from "@/assets/images/academic/management.webp";
+import midwiferyAssociateHeroImg from "@/assets/images/academic/midwifery-associate.png";
+import midwiferyBachelorHeroImg from "@/assets/images/academic/midwifery-bachelor.png";
+
 export type ProgramHeroSlug =
   | "biomedical-science"
   | "biotechnology"
@@ -8,7 +17,7 @@ export type ProgramHeroSlug =
   | "midwifery-bachelor";
 
 export interface ProgramHeroData {
-  image: string;
+  image: ImageMetadata;
   imageAlt: string;
   subtitle: string;
   headline: string;
@@ -16,7 +25,7 @@ export interface ProgramHeroData {
 }
 
 export const biomedicalHero: ProgramHeroData = {
-  image: "/images/academic/biomedical.webp",
+  image: biomedicalHeroImg,
   imageAlt: "Futuristic Campus of Agung Putra University",
   subtitle:
     "A bright, future-ready university ecosystem connecting strong academics, applied research, and real industry pathways — designed for ambitious learners.",
@@ -25,7 +34,7 @@ export const biomedicalHero: ProgramHeroData = {
 };
 
 export const biotechnologyHero: ProgramHeroData = {
-  image: "/images/academic/biotechnology.webp",
+  image: biotechnologyHeroImg,
   imageAlt: "Futuristic Campus of Agung Putra University",
   subtitle:
     "Explore the future of biotechnology through modern laboratory science, genetic innovation, bioinformatics, and applied research for health, food, industry, and the environment.",
@@ -34,7 +43,7 @@ export const biotechnologyHero: ProgramHeroData = {
 };
 
 export const communicationHero: ProgramHeroData = {
-  image: "/images/academic/communication.png",
+  image: communicationHeroImg,
   imageAlt: "Futuristic Campus of Agung Putra University",
   subtitle:
     "A future-ready Communication Science program that equips students with strong skills in media, public relations, digital communication, journalism, branding, and creative content — designed for ambitious learners ready to shape the future of communication",
@@ -43,7 +52,7 @@ export const communicationHero: ProgramHeroData = {
 };
 
 export const lawHero: ProgramHeroData = {
-  image: "/images/academic/law.png",
+  image: lawHeroImg,
   imageAlt: "Futuristic Campus of Agung Putra University",
   subtitle:
     "A future-ready Law program that prepares students with strong foundations in legal knowledge, critical thinking, advocacy, ethics, and legal practice — designed for ambitious learners ready to contribute to justice, governance, business, and society.",
@@ -52,7 +61,7 @@ export const lawHero: ProgramHeroData = {
 };
 
 export const managementHero: ProgramHeroData = {
-  image: "/images/academic/management.webp",
+  image: managementHeroImg,
   imageAlt: "Futuristic Campus of Agung Putra University",
   subtitle:
     "A future-ready management program that develops strategic thinking, leadership, entrepreneurship, and decision-making skills — preparing students to thrive in today’s dynamic business world.",
@@ -61,7 +70,7 @@ export const managementHero: ProgramHeroData = {
 };
 
 export const midwiferyAssociateHero: ProgramHeroData = {
-  image: "/images/academic/midwifery-associate.png",
+  image: midwiferyAssociateHeroImg,
   imageAlt: "Futuristic Campus of Agung Putra University",
   subtitle:
     "A future-ready Midwifery Associate program that equips students with knowledge and practical skills in maternal care, childbirth, reproductive health, newborn care, clinical practice, and community health — preparing graduates to become professional and compassionate midwives.",
@@ -70,7 +79,7 @@ export const midwiferyAssociateHero: ProgramHeroData = {
 };
 
 export const midwiferyBachelorHero: ProgramHeroData = {
-  image: "/images/academic/midwifery-bachelor.png",
+  image: midwiferyBachelorHeroImg,
   imageAlt: "Futuristic Campus of Agung Putra University",
   subtitle:
     "A future-ready Midwifery Bachelor program that equips students with knowledge and practical skills in maternal care, childbirth, reproductive health, newborn care, clinical practice, and community health — preparing graduates to become professional and compassionate midwives.",
