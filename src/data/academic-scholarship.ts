@@ -105,5 +105,6 @@ export const academicScholarshipData: ScholarshipPageData = {
       },
     ],
     contactCtaText: 'Need help? Contact our admissions team via WhatsApp.',
+    contactCtaButtonLabel: 'Contact Admissions Team',
   },
 };

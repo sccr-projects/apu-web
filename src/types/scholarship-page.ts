@@ -59,5 +59,6 @@ export interface ScholarshipPageData {
       icon: string;
     }[];
     contactCtaText: string;
+    contactCtaButtonLabel: string;
   };
 }
