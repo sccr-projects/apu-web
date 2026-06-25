@@ -1,67 +1,89 @@
 ---
 import ScrollReveal from "@components/ScrollReveal.astro";
-import SectionHeader from "@components/SectionHeader.astro";
 import BackgroundBlobs from "@components/BackgroundBlobs.astro";
+import cap from "@/assets/images/scholarship/cap.webp";
+import podiumstage from "@/assets/images/scholarship/podiumstage.webp";
 ---
 
 <section
   id="about"
-  class="apu-section-shell relative isolate overflow-hidden bg-gradient-to-b from-brand-surface via-[rgb(var(--color-apu-navy)_/_0.03)] to-brand-surface-alt py-24 md:py-32 before:content-[''] before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_left,rgb(var(--color-apu-accent)_/_0.14),transparent_34%),radial-gradient(circle_at_bottom_right,rgb(var(--color-apu-navy)_/_0.16),transparent_38%)] after:content-[''] after:pointer-events-none after:absolute after:inset-x-0 after:top-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-[rgb(var(--color-apu-accent)_/_0.65)] after:to-transparent"
+  class="apu-section-shell relative isolate overflow-hidden bg-gradient-to-b from-brand-surface via-[rgb(var(--color-apu-navy)_/_0.03)] to-brand-surface-alt pt-24 md:pt-32 before:content-[''] before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_left,rgb(var(--color-apu-accent)_/_0.14),transparent_34%),radial-gradient(circle_at_bottom_right,rgb(var(--color-apu-navy)_/_0.16),transparent_38%)] after:content-[''] after:pointer-events-none after:absolute after:inset-x-0 after:top-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-[rgb(var(--color-apu-accent)_/_0.65)] after:to-transparent"
 >
-  <BackgroundBlobs seed="ScholarshipAbout" />
+    <img
+        src={podiumstage.src}
+        alt="Graduation podium stage"
+        width={podiumstage.width}
+        height={podiumstage.height}
+        loading="eager"
+        class="absolute object-cover w-full h-full top-0"
+    />
   <div class="pointer-events-none absolute inset-0 overflow-hidden">
     <div class="absolute -left-24 top-12 h-72 w-72 rounded-full bg-[rgb(var(--color-apu-accent)_/_0.14)] blur-3xl"></div>
     <div class="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-[rgb(var(--color-apu-navy)_/_0.12)] blur-3xl"></div>
   </div>
 
-  <div class="content-max relative z-10">
-    <!-- Section Header -->
-    <ScrollReveal>
-      <SectionHeader
-        kicker="ABOUT THE SCHOLARSHIP"
-        title="Support for High-Achieving Students"
-        description="The APU Academic Scholarship is designed to recognize and support high-achieving students who want to continue their studies at a quality university."
-        class="text-center mb-16"
-        titleClass="text-h2 text-[rgb(var(--color-apu-navy))] mb-4"
-      />
+  <div class="relative z-10">
+    <!-- Heading + subtitle -->
+    <ScrollReveal class="flex justify-center"}>
+      <div class="text-center mb-10 md:mb-2 backdrop-blur-sm w-fit p-6 rounded-xl self-center">
+        <h2 class="text-h2 text-apu-accent mb-4 text-shadow-sm text-shadow-blue-950">
+          We reward academic excellence
+        </h2>
+        <p class="text-body text-gray-100 text-shadow-blue-950 text-shadow-sm max-w-2xl mx-auto text-2xl font-semibold leading-relaxed">
+          The APU Academic Scholarship is designed to recognize and support high-achieving students who want to continue their studies at a quality university.
+        </p>
+      </div>
     </ScrollReveal>
 
-    <!-- Two Column Content -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <!-- Left: Description -->
-      <ScrollReveal delay={100}>
-        <div class="apu-glass-card apu-interactive-card p-8 h-full">
-          <h3 class="text-h3 text-[rgb(var(--color-apu-navy))] mb-4">
-            What is the Academic Scholarship?
-          </h3>
-          <p class="text-body text-brand-text-muted leading-relaxed mb-4">
-            The APU Academic Scholarship is a merit-based scholarship program that provides a tuition fee reduction of up to <strong class="text-[rgb(var(--color-apu-navy))]">50%</strong> for students who meet the criteria of a minimum report card average of 80.
-          </p>
-          <p class="text-body text-brand-text-muted leading-relaxed">
-            This program is open to SMA/SMK/equivalent graduates or Grade 12 students who are completing their education. With this scholarship, you can focus on self-development without a heavy financial burden.
-          </p>
+    <!-- Cap + podium illustration -->
+    <ScrollReveal delay={150}>
+      <div
+        class="flex flex-col items-center"
+        role="img"
+        aria-label="Academic scholarship podium with a graduation cap on the first place block"
+      >
+        <!-- Graduation cap -->
+        <div class="relative z-10 mb-[-1.25rem] md:mb-[-14rem]">
+          <img
+            src={cap.src}
+            alt="Graduation cap"
+            width={cap.width}
+            height={cap.height}
+            loading="eager"
+            class="w-64 h-auto md:w-[47rem] drop-shadow-lg justify-center relative"
+          />
+          <div
+            class="pointer-events-none flex flex-col text-center justify-center absolute left-1/2 top-[25%] -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-4xl md:text-9xl font-bold font-sans bg-gradient-to-r from-[rgb(var(--color-apu-accent))] to-[rgb(var(--color-semantic-accent))] backdrop-blur-sm bg-clip-text text-transparent drop-shadow-sm"
+          >
+              <p>50%</p>
+              <p class="text-lg md:text-xl ">Development Fee (SPI)</p>
+          </div>
         </div>
-      </ScrollReveal>
 
-      <!-- Right: Benefit Highlight -->
-      <ScrollReveal delay={250}>
-        <div class="apu-glass-card apu-interactive-card p-8 h-full flex flex-col items-center justify-center text-center relative overflow-hidden">
-          <!-- Decorative blur orb -->
-          <div class="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[rgb(var(--color-apu-accent)_/_0.18)] blur-2xl"></div>
-
-          <div class="apu-icon-chip w-20 h-20 mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        <!-- Podium -->
+        <div class="flex w-full items-end">
+          <!-- 2nd -->
+          <div
+            class="flex grow h-20  md:h-48  items-center justify-center border border-[rgb(var(--color-brand-border)_/_0.5)] bg-[rgb(var(--color-brand-surface-soft))] shadow-[0_8px_24px_rgb(var(--color-apu-navy)_/_0.08)]"
+          >
+            <span class="font-display text-2xl md:text-3xl font-semibold text-brand-text-muted">2</span>
           </div>
 
-          <div class="text-[5rem] font-bold leading-none text-[rgb(var(--color-apu-navy))] mb-2" style="font-family: 'Space Grotesk', sans-serif;">
-            50<span class="text-[3rem]">%</span>
+          <!-- 1st -->
+          <div
+            class="flex grow h-32 md:h-80  items-center justify-center border border-[rgb(var(--color-apu-accent)_/_0.8)] bg-[rgb(var(--color-apu-accent))] shadow-[0_12px_32px_rgb(var(--color-apu-navy)_/_0.12)]"
+          >
+            <span class="font-display text-4xl md:text-5xl font-semibold text-[rgb(var(--color-apu-navy))]">1</span>
           </div>
-          <p class="text-h3 text-[rgb(var(--color-apu-navy))] mb-2">Development Fee (SPI) Reduction</p>
-          <p class="text-body-s text-brand-text-muted max-w-xs leading-relaxed">
-            Enjoy a significant tuition fee reduction throughout your studies by meeting the applicable academic requirements.
-          </p>
+
+          <!-- 3rd -->
+          <div
+            class="flex grow h-16 md:h-36 items-center justify-center border border-[rgb(var(--color-semantic-accent)_/_0.8)] bg-[rgb(var(--color-semantic-accent))] shadow-[0_8px_24px_rgb(var(--color-apu-navy)_/_0.08)]"
+          >
+            <span class="font-display text-2xl md:text-3xl font-semibold text-[rgb(var(--color-apu-navy))]">3</span>
+          </div>
         </div>
-      </ScrollReveal>
-    </div>
+      </div>
+    </ScrollReveal>
   </div>
 </section>
