@@ -13,7 +13,21 @@ interface Props {
 
 const { variant = "dark", data = biomedicalLeadershipMessage } = Astro.props;
 
-const { kicker, title, quote, leaderName, leaderTitle, leaderTitle2, leaderImage, cta } = data;
+const { kicker, title, quote, cta } = data;
+const leader = data.leader;
+const leaderName = leader.name;
+const leaderTitle = "title" in leader ? leader.title : leader.role;
+const leaderTitle2 = "univ" in leader ? leader.univ : undefined;
+const leaderImage = leader.image;
+
+function getInitials(name: string): string {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .filter((c) => c === c.toUpperCase())
+    .slice(0, 2)
+    .join("");
+}
 ---
 
 <section
@@ -55,7 +69,7 @@ const { kicker, title, quote, leaderName, leaderTitle, leaderTitle2, leaderImage
   </div>
 
   <div
-    class="content-max relative z-10 py-24 md:py-32 lg:py-40"
+    class="px-5 md:px-20 relative z-10 py-24 md:py-32 lg:py-40"
   >
     <div
       class="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16"
@@ -126,13 +140,21 @@ const { kicker, title, quote, leaderName, leaderTitle, leaderTitle2, leaderImage
               </div>
 
               {/* Image */}
-              <Image
-                src={leaderImage}
-                alt={`Photo of ${leaderName}, ${leaderTitle}`}
-                class="leadership-portrait-img w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"
-                style="aspect-ratio: 3/4;"
-                loading="lazy"
-              />
+              {leaderImage ? (
+                <Image
+                  src={leaderImage}
+                  alt={`Photo of ${leaderName}, ${leaderTitle}`}
+                  class="leadership-portrait-img w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"
+                  style="aspect-ratio: 3/4;"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="h-full w-full bg-gradient-to-br from-[rgb(var(--color-apu-accent))] to-[rgb(var(--color-apu-navy))] flex items-center justify-center">
+                  <span class="text-white text-5xl md:text-6xl font-bold">
+                    {getInitials(leaderName)}
+                  </span>
+                </div>
+              )}
 
               {/* Subtle overlay for depth */}
               <div

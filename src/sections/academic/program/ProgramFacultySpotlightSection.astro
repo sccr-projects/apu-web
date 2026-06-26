@@ -151,9 +151,9 @@ function getInitials(name: string): string {
               class="relative h-80 md:h-96 w-full overflow-hidden rounded-2xl flex items-center justify-center"
               data-featured-visual
             >
-              {featured?.photo ? (
+              {featured?.image ? (
                 <Image
-                  src={featured.photo}
+                  src={featured.image}
                   alt={`Portrait of ${featured.name}`}
                   class="h-full w-full object-contain border-0"
                   loading="eager"
@@ -264,10 +264,10 @@ function getInitials(name: string): string {
                 role="button"
               >
                 <div class="mb-5 h-64 md:h-72 w-full overflow-hidden rounded-xl flex items-center justify-center">
-                  {member.photo ? (
+                  {member.image ? (
                     <Image
                       draggable="false"
-                      src={member.photo}
+                      src={member.image}
                       alt={`Portrait of ${member.name}`}
                       class="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
@@ -357,8 +357,8 @@ function getInitials(name: string): string {
       }
 
       if (featuredVisual) {
-        if (member.photo) {
-          featuredVisual.innerHTML = `<img src="${member.photo.src}" alt="Portrait of ${member.name}" class="h-full w-full object-contain border-0" loading="eager" data-featured-image />`;
+        if (member.image) {
+          featuredVisual.innerHTML = `<img src="${member.image.src}" alt="Portrait of ${member.name}" class="h-full w-full object-contain border-0" loading="eager" data-featured-image />`;
         } else {
           featuredVisual.innerHTML = `<div class="w-full h-full bg-gradient-to-br ${gradient} flex items-center justify-center" data-featured-initials><span class="text-white text-4xl md:text-5xl font-bold">${initials}</span></div>`;
         }

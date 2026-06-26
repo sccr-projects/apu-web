@@ -13,11 +13,7 @@ import { managementFaculty } from "./program-faculty";
 import { lawFaculty } from "./program-faculty";
 import { midwiferyAssociateFaculty } from "./program-faculty";
 import { midwiferyBachelorFaculty } from "./program-faculty";
-
-
-
-
-
+import { communicationFaculty } from "./program-faculty";
 
 export const biomedicalLeadershipMessage: LeadershipMessage = {
   kicker: "A MESSAGE",
@@ -57,9 +53,9 @@ export const biotechnologyLeadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
-  leaderName: "Fauziah Novita Putri Rifai, S.Si, M.Biotech",
-  leaderTitle: "Head of Biotechnology Study Program",
-  leaderImage: biotechnologyKaprodi,
+  leader: biotechnologyFaculty.facultyMembers.find(
+    (p) => p.id === "fauziah-novita-putri-rifai",
+  )!,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -81,9 +77,9 @@ export const communicationLeadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
-  leaderName: "Muhamad Agung Setiawan, S.sos., M.Sos",
-  leaderTitle: "Head of Communication Study Program",
-  leaderImage: communicationKaprodi,
+  leader: communicationFaculty.facultyMembers.find(
+    (p) => p.id === "muhamad-agung",
+  )!,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -107,9 +103,9 @@ export const lawLeadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
-  leaderName: "Dr. Erwin, S.H., M.H",
-  leaderTitle: "Head of Law Study Program",
-  leaderImage: lawKaprodi,
+  leader: lawFaculty.facultyMembers.find(
+    (p) => p.id === "erwin",
+  )!,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -135,9 +131,9 @@ export const managementLeadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
-  leaderName: "Reni Nur Arifah SE.,MM",
-  leaderTitle: "Head of Management Study Program",
-  leaderImage: managementKaprodi,
+  leader: managementFaculty.facultyMembers.find(
+    (p) => p.id === "reni-nur-arifah",
+  )!,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -161,9 +157,9 @@ export const midwiferyAssociateLeadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
-  leaderName: "Bdn, Titik Kurniawati, S.SiT., M.Kes., M.Keb",
-  leaderTitle: "Head of Midwifery Associate Study Program",
-  leaderImage: midwiferyAssociateKaprodi,
+  leader: midwiferyAssociateFaculty.facultyMembers.find(
+    (p) => p.id === "titik-kurniawati",
+  )!,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -185,9 +181,9 @@ export const midwiferyBachelorLeadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
-  leaderName: "Bd. Rizqitha, S.Tr.Keb., M.Tr.Keb",
-  leaderTitle: "Head of Midwifery Bachelor Study Program",
-  leaderImage: midwiferyBachelorKaprodi,
+  leader: midwiferyBachelorFaculty.facultyMembers.find(
+    (p) => p.id === "rizqitha",
+  )!,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",

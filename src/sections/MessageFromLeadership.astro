@@ -11,8 +11,21 @@ interface Props {
 
 const { variant = "dark" } = Astro.props;
 
-const { kicker, title, quote, leaderName, leaderTitle,leaderTitle2, leaderImage, cta } =
-  leadershipMessage;
+const { kicker, title, quote, cta } = leadershipMessage;
+const leader = leadershipMessage.leader;
+const leaderName = leader.name;
+const leaderTitle = "title" in leader ? leader.title : leader.role;
+const leaderTitle2 = "univ" in leader ? leader.univ : undefined;
+const leaderImage = leader.image;
+
+function getInitials(name: string): string {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .filter((c) => c === c.toUpperCase())
+    .slice(0, 2)
+    .join("");
+}
 ---
 
 <section
@@ -139,13 +152,21 @@ const { kicker, title, quote, leaderName, leaderTitle,leaderTitle2, leaderImage,
               {/* Gradient fade mask on left edge */}
 
               {/* Image */}
-              <Image
-                src={leaderImage}
-                alt={`Photo of ${leaderName}, ${leaderTitle}`}
-                class="leadership-portrait-img w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"
-                style="aspect-ratio: 3/4;"
-                loading="lazy"
-              />
+              {leaderImage ? (
+                <Image
+                  src={leaderImage}
+                  alt={`Photo of ${leaderName}, ${leaderTitle}`}
+                  class="leadership-portrait-img w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"
+                  style="aspect-ratio: 3/4;"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="h-full w-full bg-gradient-to-br from-[rgb(var(--color-apu-accent))] to-[rgb(var(--color-apu-navy))] flex items-center justify-center">
+                  <span class="text-white text-5xl md:text-6xl font-bold">
+                    {getInitials(leaderName)}
+                  </span>
+                </div>
+              )}
 
               {/* Subtle overlay for depth */}
               <div

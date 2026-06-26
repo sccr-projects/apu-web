@@ -31,9 +31,13 @@ import sriMularsih from "@/assets/images/academic/lecturer_images/bachelor_midwi
 import zain from "@/assets/images/academic/lecturer_images/law/zain.webp";
 import erwin from "@/assets/images/academic/lecturer_images/law/erwin.webp";
 
+import fauziahNovitaPutriRifai from "@/assets/images/academic/lecturer_images/biotechnology/Fauziah_Novita_Putri_Rifai.webp";
+import iffanAlif from "@/assets/images/academic/lecturer_images/biotechnology/Iffan_Alif.webp";
+import nurulHidayah from "@/assets/images/academic/lecturer_images/biotechnology/Nurul_Hidayah.webp";
+import salindriPrawitasari from "@/assets/images/academic/lecturer_images/biotechnology/Salindri_Prawitasari.webp";
 import diniCahyani from "@/assets/images/academic/lecturer_images/biotechnology/Dini_Cahyani.webp";
-
-
+import mrFaheem from "@/assets/images/academic/diaspora/mr-faheem.webp";
+import msWaheni from "@/assets/images/academic/diaspora/ms-waheni.webp";
 
 export interface FacultyMember {
   name: string;
@@ -63,6 +67,7 @@ export const biomedicalFaculty: ProgramFacultyData = {
       name: "Faheem Ahmed Khan, BSc, MS, PhD",
       title: "Lecturer",
       nidn: "-",
+      image: mrFaheem,
     },
     {
       id: "dendi-krisna-nugraha",
@@ -135,30 +140,35 @@ export const biotechnologyFaculty: ProgramFacultyData = {
       name: "Waheni Rizki Aprilia, S.Si., Ph.D.",
       title: "Vice Rector II",
       nidn: "8734771672230402",
+      image: msWaheni,
     },
     {
       id: "fauziah-novita-putri-rifai",
       name: "Fauziah Novita Putri Rifai, S.Si, M.Biotech",
       title: "Head of Biotechnology Study Program",
       nidn: "5438774675230243",
+      image: fauziahNovitaPutriRifai,
     },
     {
       id: "iffan-alif",
       name: "Iffan Alif, S.Si, M.Biotech",
       title: "Lecturer",
       nidn: "5454772673130273",
+      image: iffanAlif,
     },
     {
       id: "nurul-hidayah",
       name: "Nurul Hidayah S.Si, M.Biotech",
       title: "Lecturer",
       nidn: "6960774675230252",
+      image: nurulHidayah,
     },
     {
       id: "salindri-prawitasari",
       name: "Salindri Prawitasari, S.Si, M.Si.",
       title: "Lecturer",
       nidn: "9659774675230242",
+      image: salindriPrawitasari,
     },
     {
       id: "dini-cahyani",
