@@ -31,6 +31,8 @@ import sriMularsih from "@/assets/images/academic/lecturer_images/bachelor_midwi
 import zain from "@/assets/images/academic/lecturer_images/law/zain.webp";
 import erwin from "@/assets/images/academic/lecturer_images/law/erwin.webp";
 
+import diniCahyani from "@/assets/images/academic/lecturer_images/biotechnology/Dini_Cahyani.webp";
+
 
 
 export interface FacultyMember {
@@ -164,6 +166,7 @@ export const biotechnologyFaculty: ProgramFacultyData = {
       title: "Lecturer",
       specialization: "Immunology",
       nidn: "8237775676230193",
+      image: diniCahyani,
     },
     {
       id: "fikriya-novita-sari",
@@ -228,7 +231,7 @@ export const lawFaculty: ProgramFacultyData = {
   facultyMembers: [
     {
       id: "erwin",
-      name: "Dr. Erwin, SH., MH., MKn.",
+      name: "Dr. Erwin, S.H., M.H., M.Kn.",
       title: "Head of Law Study Program",
       nidn: "9990637233",
       image: erwin,

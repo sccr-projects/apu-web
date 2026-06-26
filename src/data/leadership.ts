@@ -1,14 +1,14 @@
 import type { ImageMetadata } from "astro";
 import profAgung from "@/assets/images/academic/diaspora/prof-agung.webp";
+import type { FacultyMember } from "./program-faculty";
+import type { DiasporaPerson } from "./diaspora";
+import { people } from "./diaspora";
 
 export interface LeadershipMessage {
   kicker: string;
   title: string;
   quote: string[];
-  leaderName: string;
-  leaderTitle: string;
-  leaderTitle2?: string;
-  leaderImage: ImageMetadata;
+  leader: FacultyMember | DiasporaPerson;
   cta: {
     href: string;
     label: string;
@@ -23,11 +23,7 @@ export const leadershipMessage: LeadershipMessage = {
     "APU is more than a campus. It is a futuristic learning ecosystem where every student is empowered to discover their best potential, supported by an innovative curriculum and an inspiring environment.",
     "Join us, and together let us realize a great dream for a better Indonesia.",
   ],
-  leaderName: "Prof. Dr. dr. Agung Putra, M.Si.Med.",
-  leaderTitle: "Founder and Commissioner SCCR Indonesia",
-  leaderTitle2: "President and Founder of Agung Putra University",
-
-  leaderImage: profAgung,
+  leader: people.find((p) => p.id === "prof-agung")!,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",

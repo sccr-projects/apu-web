@@ -6,6 +6,18 @@ import lawKaprodi from "@/assets/images/academic/law-kaprodi.jpeg";
 import managementKaprodi from "@/assets/images/academic/management-kaprodi.webp";
 import midwiferyAssociateKaprodi from "@/assets/images/academic/midwifery-associate-kaprodi.webp";
 import midwiferyBachelorKaprodi from "@/assets/images/academic/midwifery-bachelor-kaprodi.webp";
+import type { FacultyMember } from "./program-faculty";
+import { biomedicalFaculty } from "./program-faculty";
+import { biotechnologyFaculty } from "./program-faculty";
+import { managementFaculty } from "./program-faculty";
+import { lawFaculty } from "./program-faculty";
+import { midwiferyAssociateFaculty } from "./program-faculty";
+import { midwiferyBachelorFaculty } from "./program-faculty";
+
+
+
+
+
 
 export const biomedicalLeadershipMessage: LeadershipMessage = {
   kicker: "A MESSAGE",
@@ -22,9 +34,9 @@ export const biomedicalLeadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
-  leaderName: "Nadya Audina NS. S.Si., M.Biomed",
-  leaderTitle: "Head of Biomedical Science Study Program",
-  leaderImage: biomedicalKaprodi,
+  leader: biomedicalFaculty.facultyMembers.find(
+    (p) => p.id === "nadya-audina-ns",
+  )!,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
