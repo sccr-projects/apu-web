@@ -15,6 +15,8 @@ import reniNurArifah from "@/assets/images/academic/lecturer_images/management/R
 import yettyYulianyKusumaningrum from "@/assets/images/academic/lecturer_images/management/Yetty_Yuliany_Kusumaningrum.webp";
 import putriAryoJelangFitriKhothimah from "@/assets/images/academic/lecturer_images/management/Putri_Aryo_Jelang_Fitri_Khothimah.webp";
 import randikaShaflyFawwaz from "@/assets/images/academic/lecturer_images/management/Randika_Shafly_Fawwaz.webp";
+import mrAgus from "@/assets/images/academic/diaspora/mr-agus.webp";
+
 
 import titikKurniawati from "@/assets/images/academic/lecturer_images/d3_midwifery/Titik_Kurniawati.webp";
 import diahWidyatun from "@/assets/images/academic/lecturer_images/d3_midwifery/Diah_Widyatun.webp";
@@ -26,11 +28,16 @@ import rizqitha from "@/assets/images/academic/lecturer_images/bachelor_midwifer
 import marizaMustikaDewi from "@/assets/images/academic/lecturer_images/bachelor_midwifery/Mariza_Mustika_Dewi.webp";
 import sriMularsih from "@/assets/images/academic/lecturer_images/bachelor_midwifery/Sri_Mularsih.webp";
 
+import zain from "@/assets/images/academic/lecturer_images/law/zain.webp";
+import erwin from "@/assets/images/academic/lecturer_images/law/erwin.webp";
+
+
+
 export interface FacultyMember {
   name: string;
   id: string;
   title: string;
-  photo?: ImageMetadata;
+  image?: ImageMetadata;
   nidn: string;
   link?: string;
   scopus_id?: string;
@@ -61,7 +68,7 @@ export const biomedicalFaculty: ProgramFacultyData = {
       title: "Lecturer",
       specialization: "Genetic Engineering",
       nidn: "8363770671130253",
-      photo: dendiKrisnaNugraha,
+      image: dendiKrisnaNugraha,
       link: "https://scholar.google.com.my/citations?user=1uphszUAAAAJ",
     },
     {
@@ -70,7 +77,7 @@ export const biomedicalFaculty: ProgramFacultyData = {
       title: "Head of Biomedical Science Study Program",
       specialization: "Herbal Immunomodulation",
       nidn: "5960775676230172",
-      photo: nadyaAudinaNurkhafiya,
+      image: nadyaAudinaNurkhafiya,
       link: "https://scholar.google.com.my/citations?user=7bIu0yoAAAAJ&hl=en&oi=ao",
     },
     {
@@ -79,7 +86,7 @@ export const biomedicalFaculty: ProgramFacultyData = {
       title: "Vice Rector I",
       specialization: "Bioengineering",
       nidn: "0614029302",
-      photo: mohammadAriqNazar,
+      image: mohammadAriqNazar,
       link: "https://scholar.google.com/citations?user=YaYgh0AAAAAJ&hl=id",
     },
     {
@@ -88,7 +95,7 @@ export const biomedicalFaculty: ProgramFacultyData = {
       title: "Lecturer",
       specialization: "Secretome and Exosome",
       nidn: "9933777678230112",
-      photo: dianRespatiAyu,
+      image: dianRespatiAyu,
       link: "https://scholar.google.com.my/citations?user=DwjZbLMAAAAJ&hl=en&oi=ao",
     },
     {
@@ -97,7 +104,7 @@ export const biomedicalFaculty: ProgramFacultyData = {
       title: "Lecturer",
       specialization: "Stem Cell",
       nidn: "0540771672130323",
-      photo: riskyChandraSatriaIrawan,
+      image: riskyChandraSatriaIrawan,
       link: "https://scholar.google.com.my/citations?user=TAjcHpYAAAAJ&hl=en&oi=ao",
     },
 
@@ -177,7 +184,7 @@ export const communicationFaculty: ProgramFacultyData = {
       title: "Head of Communication Study Program",
       specialization: "Social Communication",
       nidn: "0610089602",
-      photo: muhamadAgungSetiawan,
+      image: muhamadAgungSetiawan,
       link: "https://scholar.google.com/citations?user=be-n4nUAAAAJ&hl=id",
     },
     {
@@ -187,7 +194,7 @@ export const communicationFaculty: ProgramFacultyData = {
       specialization: "Public Speaking",
       nidn: "0614028102",
       link: "https://scholar.google.com/citations?user=swEkGVoAAAAJ&hl=en",
-      photo: sutinnarto,
+      image: sutinnarto,
     },
     {
       id: "lakna-tulasun",
@@ -196,7 +203,7 @@ export const communicationFaculty: ProgramFacultyData = {
       specialization: "Journalism",
       nidn: "0626099702",
       link: "https://scholar.google.com/citations?user=v61mGoQAAAAJ&hl=id&authuser=2",
-      photo: laknaTulasun,
+      image: laknaTulasun,
     },
     {
       id: "rifatul-himmah",
@@ -205,7 +212,7 @@ export const communicationFaculty: ProgramFacultyData = {
       specialization: "Media and Gender",
       nidn: "2461772673230292",
       link: "https://scholar.google.com/citations?hl=id&user=80w7fDEAAAAJ",
-      photo: rifatulHimmah,
+      image: rifatulHimmah,
     },
     {
       id: "bondan-eko-suratno",
@@ -224,6 +231,7 @@ export const lawFaculty: ProgramFacultyData = {
       name: "Dr. Erwin, SH., MH., MKn.",
       title: "Head of Law Study Program",
       nidn: "9990637233",
+      image: erwin,
     },
     {
       id: "zain-arfin-utama",
@@ -232,6 +240,7 @@ export const lawFaculty: ProgramFacultyData = {
       specialization: "Criminal Law Reform",
       nidn: "0615119301",
       link: "https://scholar.google.com/citations?user=uUEzUqAAAAAJ&hl=id",
+      image: zain,
     },
     {
       id: "naufal-sebastian",
@@ -252,6 +261,7 @@ export const managementFaculty: ProgramFacultyData = {
       title: "Lecturer",
       nidn: "6137744645130133",
       scopus_id: "59912689000",
+      image: mrAgus,
     },
     {
       id: "suharto-abdul-majid",
@@ -272,7 +282,7 @@ export const managementFaculty: ProgramFacultyData = {
       title: "Head of Management Study Program",
       specialization: "Financial Management",
       nidn: "0625069301",
-      photo: reniNurArifah,
+      image: reniNurArifah,
     },
     {
       id: "yetty-yuliany",
@@ -280,7 +290,7 @@ export const managementFaculty: ProgramFacultyData = {
       title: "Lecturer",
       specialization: "Human Resource Management",
       nidn: "0605077402",
-      photo: yettyYulianyKusumaningrum,
+      image: yettyYulianyKusumaningrum,
       link: "https://scholar.google.com/citations?user=86pLtjMAAAAJ&hl=id&oi=sra",
     },
     {
@@ -289,7 +299,7 @@ export const managementFaculty: ProgramFacultyData = {
       title: "Lecturer",
       specialization: "Financial Management",
       nidn: "0601039501",
-      photo: putriAryoJelangFitriKhothimah,
+      image: putriAryoJelangFitriKhothimah,
       link: "https://scholar.google.com/citations?user=aZglriAAAAAJ&hl=id",
     },
     {
@@ -298,7 +308,7 @@ export const managementFaculty: ProgramFacultyData = {
       title: "Lecturer",
       specialization: "Human Resources",
       nidn: "2433775676130432",
-      photo: randikaShaflyFawwaz,
+      image: randikaShaflyFawwaz,
     },
     {
       id: "eva-fachria",
@@ -319,7 +329,7 @@ export const midwiferyAssociateFaculty: ProgramFacultyData = {
       title: "Head of Associate Midwifery Study Program",
       specialization: "Obstetrics",
       nidn: "0622058101",
-      photo: titikKurniawati,
+      image: titikKurniawati,
       link: "https://scholar.google.com/citations?hl=id&user=F-nyArIAAAAJ",
     },
 
@@ -330,7 +340,7 @@ export const midwiferyAssociateFaculty: ProgramFacultyData = {
       specialization:
         "Postpartum and Lactation Care / Midwifery Postpartum Care",
       nidn: "0617069002",
-      photo: diahWidyatun,
+      image: diahWidyatun,
       link: "https://scholar.google.com/citations?user=yb_RfHgAAAAJ&hl=id",
     },
     {
@@ -339,7 +349,7 @@ export const midwiferyAssociateFaculty: ProgramFacultyData = {
       title: "Lecturer",
       specialization: "Reproductive Health",
       nidn: "0611027703",
-      photo: dewiElliana,
+      image: dewiElliana,
       link: "https://scholar.google.com/citations?user=Tw4V_ykAAAAJ&hl=id",
     },
     {
@@ -347,7 +357,7 @@ export const midwiferyAssociateFaculty: ProgramFacultyData = {
       name: "dr. Rita Agustina, M.Biomed",
       title: "Lecturer",
       nidn: "4133752653230133",
-      photo: ritaAgustina,
+      image: ritaAgustina,
       link: "https://scholar.google.com.my/citations?user=2gvPGvYAAAAJ&hl=en&oi=ao",
     },
     {
@@ -356,7 +366,7 @@ export const midwiferyAssociateFaculty: ProgramFacultyData = {
       title: "Lecturer",
       specialization: "Postpartum and Infant Care",
       nidn: "0356771672230323",
-      photo: ernaSetyaningsih,
+      image: ernaSetyaningsih,
     },
   ],
 };
@@ -373,7 +383,7 @@ export const midwiferyBachelorFaculty: ProgramFacultyData = {
         "Midwifery Care for Infants, Toddlers, and Preschool Children",
       nidn: "0608049401",
       link: "https://scholar.google.com/citations?user=dHKOQMYAAAAJ&hl=en&oi=ao",
-      photo: rizqitha,
+      image: rizqitha,
     },
     {
       id: "mariza-mustika",
@@ -382,7 +392,7 @@ export const midwiferyBachelorFaculty: ProgramFacultyData = {
       specialization: "Nifas and Breastfeeding Midwifery",
       nidn: "0618039302",
       link: "https://scholar.google.com/citations?user=sMzeApYAAAAJ&hl=id&oi=ao",
-      photo: marizaMustikaDewi,
+      image: marizaMustikaDewi,
     },
     {
       id: "sri-mularsih",
@@ -391,7 +401,7 @@ export const midwiferyBachelorFaculty: ProgramFacultyData = {
       specialization: "Reproductive Health",
       nidn: "0618048001",
       link: "https://scholar.google.com/citations?user=8OnkCmsAAAAJ&hl=id",
-      photo: sriMularsih,
+      image: sriMularsih,
     },
     {
       id: "lia-ayu",

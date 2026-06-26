@@ -64,7 +64,7 @@ export const people: DiasporaPerson[] = [
   {
     id: "adzani",
     name: "Adzani Gaisani Arda, BSc,MSc.",
-    role: "TBD",
+    role: "Lecturer",
     univ: "University of Debrecen, Hungary",
     country: "Hungary",
     flag: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Flag_of_Hungary.svg",
@@ -130,7 +130,7 @@ export const people: DiasporaPerson[] = [
   {
     id: "faheem-ahmed-khan",
     name: "Dr. Faheem Ahmed Khan, B.Sc, M.S, Ph.D",
-    role: "TBD",
+    role: "Lecturer and Researcher",
     univ: "M.I.T. USA",
     country: "United States",
     flag: "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
@@ -174,7 +174,7 @@ export const people: DiasporaPerson[] = [
   {
     id:"waheni-rizki-aprilia",
     name: "Waheni Rizki Aprilia, S.Si., Ph.D.",
-    role: "TBD",
+    role: "Vice Rector II",
     univ: "Suranaree University of Technology, Thailand",
     country: "Thailand",
     flag: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_Thailand.svg",
@@ -196,7 +196,7 @@ export const people: DiasporaPerson[] = [
   {
     id: "yayuk",
     name: "Prof. Yayuk Astuti, S.Si, Ph.D",
-    role: "TBD",
+    role: "Vice Rector IV",
     univ: "Newcastle University, UK",
     country: "United Kingdom",
     flag: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
@@ -219,7 +219,7 @@ export const people: DiasporaPerson[] = [
   {
     id: "dendi-krisna-nugraha",
     name: "Dendi Krisna Nugraha, M.Sc., Ph.D.",
-    role: "TBD",
+    role: "Lecturer and Researcher",
     univ: "Research Institute of Microbial Diseases, Osaka Japan",
     country: "Japan",
     flag: "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
@@ -242,7 +242,7 @@ export const people: DiasporaPerson[] = [
   {
     id:"agus-abdillah",
     name: "Dr. Ir. Agus F. Abdillah, MBA",
-    role: "TBD",
+    role: "Lecturer",
     univ: "University of Birmingham, UK",
     country: "United Kingdom",
     flag: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
@@ -264,7 +264,7 @@ export const people: DiasporaPerson[] = [
   {
     id: "endah-agustina-lestari",
     name: "Endah Agustina Lestari BSc,MSc.",
-    role: "TBD",
+    role: "Lecturer",
     univ: "University of Queensland, Australia",
     country: "Australia",
     flag: "https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg",
