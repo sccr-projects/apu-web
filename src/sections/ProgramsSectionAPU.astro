@@ -69,14 +69,8 @@ const toneVars = (tone: ProgramTone) => `--program-accent: ${tone.accent};`;
             align-items: stretch;
         }
 
-        .desktop-only .dsk-progdi-grid > .dsk-progdi-grid-item {
+        .desktop-only .dsk-progdi-grid > a {
             display: block;
-            min-width: 0;
-        }
-
-        .desktop-only .dsk-progdi-grid > .dsk-progdi-grid-item > a {
-            display: block;
-            height: 100%;
         }
 
         .desktop-only .dsk-progdi-slide {
@@ -506,22 +500,18 @@ const toneVars = (tone: ProgramTone) => `--program-accent: ${tone.accent};`;
         <div class="dsk-progdi-grid" role="list">
             {
                 programs.map((program) => (
-                    <div
-                        class="dsk-progdi-grid-item"
-                        role="listitem"
+                    <a
+                        id={`dsk-progdi-${program.id}`}
+                        class="dsk-progdi-slide apu-interactive-card"
+                        href={`${program.link}`}
+                        aria-label={program.name}
+                        style={`${toneVars(getToneForProgram(program.id))} background-image:url('${program.image.src}')`}
                     >
-                        <a
-                            id={`dsk-progdi-${program.id}`}
-                            class="dsk-progdi-slide apu-interactive-card"
-                            href={`${program.link}`}
-                            aria-label={program.name}
-                            style={`${toneVars(getToneForProgram(program.id))} background-image:url('${program.image.src}')`}
-                        >
-                            <div class="dsk-progdi-text">{program.degree}</div>
-                            <div class="dsk-progdi-card">{program.name}</div>
-                            <div class="dsk-progdi-desc">{program.desc}</div>
-                        </a>
-                    </div>
+                         <div class="dsk-progdi-text ">{program.degree}</div>
+                        <div class="dsk-progdi-card">{program.name}</div>
+                        <div class="dsk-progdi-desc">{program.desc}</div>
+
+                    </a>
                 ))
             }
         </div>
@@ -611,9 +601,7 @@ const toneVars = (tone: ProgramTone) => `--program-accent: ${tone.accent};`;
                 ".desktop-only .dsk-progdi-grid",
             );
             if (!grid) return;
-            const slides = Array.from(
-                grid.querySelectorAll(".dsk-progdi-slide"),
-            );
+            const slides = Array.from(grid.children);
 
             function setVarsFor(index) {
                 for (let i = 0; i < count; i++) {

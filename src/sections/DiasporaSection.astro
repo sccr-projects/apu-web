@@ -5,15 +5,17 @@ import { people } from "@data/diaspora";
 import ScrollReveal from "@/components/ScrollReveal.astro";
 ---
 
+
 <section class="diaspora-hero relative overflow-hidden bg-apu-surface" aria-label="Diaspora hero">
-  <div class="pointer-events-none absolute inset-0">
     <img
-      src={worldMap.src}
-      alt=""
-      class="h-full w-full object-cover opacity-10 mix-blend-multiply"
-      aria-hidden="true"
-      loading="eager"
+        src={worldMap.src}
+        alt=""
+        class="h-full w-full absolute object-cover opacity-10 mix-blend-multiply -z-1"
+        aria-hidden="true"
+        loading="eager"
     />
+  <div class="pointer-events-none absolute inset-0">
+
     <div class="absolute inset-0 bg-apu-surface/80"></div>
     <div class="absolute inset-0 diaspora-hero-glow"></div>
     <div
@@ -22,16 +24,16 @@ import ScrollReveal from "@/components/ScrollReveal.astro";
   </div>
 
   <div class="relative z-10 flex flex-col items-center justify-center py-20 text-center md:py-28">
-    <h1 class="text-h1 text-apu-navy px-4">
-      Agung Putra University Diaspora Lecturers
-    </h1>
-      </ScrollReveal>
+    <ScrollReveal>
+      <h1 class="text-h1 text-apu-navy px-4">
+        Agung Putra University Diaspora Lecturers
+      </h1>
+    </ScrollReveal>
 
-    <span class="apu-gradient-line mx-auto mt-6 w-40"></span>
+    <span class="apu-gradient-line mx-auto mt-6 w-80"></span>
     <p class="text-body mt-6 max-w-2xl text-apu-navy/70 px-4">
       A global network of educators bringing international experience to APU classrooms.
     </p>
-    </ScrollReveal>
     <ScrollReveal delay={500}>
     <section id="diaspora-carousel" class="py-8 w-full" aria-label="Diaspora lecturers">
       <div class="flex w-full">
@@ -88,7 +90,7 @@ import ScrollReveal from "@/components/ScrollReveal.astro";
 
 <script>
   (function () {
-    let abortController = null;
+    let abortController: AbortController | null = null;
 
     function cleanup() {
       if (abortController) {
@@ -102,8 +104,8 @@ import ScrollReveal from "@/components/ScrollReveal.astro";
       abortController = new AbortController();
       const signal = abortController.signal;
 
-      const track = document.querySelector(".diaspora-track");
-      const center = document.querySelector("[data-diaspora-center]");
+      const track = document.querySelector(".diaspora-track") as HTMLElement | null;
+      const center = document.querySelector("[data-diaspora-center]") as HTMLElement | null;
       if (track && center) {
         const centerIt = () => {
           const target =
@@ -123,8 +125,8 @@ import ScrollReveal from "@/components/ScrollReveal.astro";
 
       articles.forEach((article) => {
         article.addEventListener("click", (event) => {
-          const targetEl = event.target;
-          if (targetEl.closest("a")) event.preventDefault();
+          const targetEl = event.target as HTMLElement | null;
+          if (targetEl?.closest("a")) event.preventDefault();
 
           const id = article.getAttribute("data-person-id");
           if (!id) return;
