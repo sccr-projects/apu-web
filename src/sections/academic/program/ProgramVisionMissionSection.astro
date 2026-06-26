@@ -2,6 +2,8 @@
 import ScrollReveal from "@components/ScrollReveal.astro";
 import SectionHeader from "@components/SectionHeader.astro";
 import type { ProgramDetail } from "@data/program-details";
+import BackgroundBlobs from "@components/BackgroundBlobs.astro";
+
 
 interface Props {
   data: ProgramDetail;
@@ -13,6 +15,8 @@ const { vision, mission } = data;
 ---
 
 <section id="visi-misi" class="apu-section-shell relative overflow-hidden bg-brand-surface-alt">
+    <BackgroundBlobs seed="ProgramVisionMissionSection" />
+
   <div class="content-max py-24 md:py-32">
     <ScrollReveal>
       <SectionHeader

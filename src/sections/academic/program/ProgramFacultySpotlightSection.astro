@@ -6,6 +6,8 @@ import DiasporaFeaturedCard from "@components/DiasporaFeaturedCard.astro";
 import type { ProgramFacultyData } from "@data/program-faculty";
 import { people as diasporaPeople } from "@data/diaspora";
 import canada from "@/assets/images/academic/canada-bg.jpg";
+import BackgroundBlobs from "@components/BackgroundBlobs.astro";
+
 
 interface Props {
   data: ProgramFacultyData;
@@ -53,6 +55,7 @@ function getInitials(name: string): string {
   data-diaspora-people={JSON.stringify(diasporaPeople)}
   data-default-bg={canada.src}
 >
+    <BackgroundBlobs seed="ProgramFacultySpotlightSection" />
   <div>
     <ScrollReveal>
       <SectionHeader
