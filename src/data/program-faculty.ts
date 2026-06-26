@@ -47,9 +47,9 @@ export interface FacultyMember {
   nidn: string;
   google_link?: string;
   google_index?: string;
-  scopus_id?: string;
+  scopus_link?: string;
   scopus_index?: string;
-  sinta_id?: string;
+  sinta_link?: string;
   sinta_index?: string;
   specialization?: string;
 }
@@ -308,7 +308,7 @@ export const managementFaculty: ProgramFacultyData = {
       name: "Dr. Ir. Agus F. Abdillah, MBA, ERMAP",
       title: "Lecturer",
       nidn: "6137744645130133",
-      scopus_id: "59912689000",
+      scopus_link: "59912689000",
       image: mrAgus,
       google_link: "https://scholar.google.com/citations?user=e_Xv4EwAAAAJ&hl=en",
       google_index: "1",
@@ -324,7 +324,7 @@ export const managementFaculty: ProgramFacultyData = {
       name: "Dr. Mohammad Annas, S. Tr.Par, M.M.",
       title: "Lecturer",
       nidn: "312087404",
-      scopus_id: "57886387600",
+      scopus_link: "57886387600",
       google_link: "https://scholar.google.com/citations?user=9CJNrb8AAAAJ&hl=en",
       google_index: "13",
     },

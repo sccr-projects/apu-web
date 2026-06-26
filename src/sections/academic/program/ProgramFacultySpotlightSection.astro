@@ -7,6 +7,7 @@ import type { ProgramFacultyData } from "@data/program-faculty";
 import { people as diasporaPeople } from "@data/diaspora";
 import canada from "@/assets/images/academic/canada-bg.jpg";
 import BackgroundBlobs from "@components/BackgroundBlobs.astro";
+import googleScholar from "@/assets/images/academic/google_scholar.webp";
 
 
 interface Props {
@@ -290,6 +291,18 @@ function getInitials(name: string): string {
                   {member.name}
                 </h3>
                 <p class="text-caption text-brand-text-muted">{member.title}</p>
+                <div class="flex flex-row w-full mt-2">
+                    <Image
+                      src={googleScholar}
+                      alt={`Google Scholar profile of ${member.name}`}
+                      class="w-6 object-contain border-0 mr-1"
+                      loading="lazy"
+                    />
+                    7
+
+                </div>
+
+
               </article>
             ))
           }
