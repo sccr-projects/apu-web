@@ -139,6 +139,7 @@ export const people: DiasporaPerson[] = [
     image: mrFaheem,
     background_image: usBg,
     position: 37,
+    h_index: 29,
     pastExperience: {
       items: [
         "MS and PhD in genetics/breeding and animal reproduction at Huazhong Agricultural University, China",
@@ -159,6 +160,7 @@ export const people: DiasporaPerson[] = [
     flag: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg",
     href: "#",
     google_scholar: "https://scholar.google.com/citations?user=wy-Vlt0AAAAJ",
+    h_index: 23,
     image: profAgung,
     position: 50,
     pastExperience: {
@@ -181,6 +183,7 @@ export const people: DiasporaPerson[] = [
     href: "#",
     google_scholar: "https://scholar.google.com/citations?user=K6XkHHgAAAAJ&hl=en",
     image: msWaheni,
+    h_index: 1,
     background_image: thaiBg,
     position: 62,
     pastExperience: {
@@ -202,6 +205,7 @@ export const people: DiasporaPerson[] = [
     flag: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
     href: "#",
     google_scholar: "https://scholar.google.com/citations?user=3AVmz6gAAAAJ",
+    h_index: 20,
     image: profYayuk,
     background_image: ukBg,
     position: 71,
@@ -225,6 +229,7 @@ export const people: DiasporaPerson[] = [
     flag: "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
     href: "#",
     google_scholar: "https://scholar.google.com/citations?user=1uphszUAAAAJ",
+    h_index: 4,
     image: mrDendi,
     background_image: japanBg,
     position: 79,
@@ -248,6 +253,7 @@ export const people: DiasporaPerson[] = [
     flag: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg",
     href: "#",
     google_scholar: "https://scholar.google.com/citations?hl=en&user=e_Xv4EwAAAAJ",
+    h_index: 1,
     image: mrAgus,
     background_image: ukBg,
     position: 87,
@@ -270,6 +276,7 @@ export const people: DiasporaPerson[] = [
     flag: "https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg",
     href: "#",
     google_scholar: "https://scholar.google.com/citations?user=8nkEolEAAAAJ",
+    h_index: 2,
     image: msEndah,
     background_image: aussieBg,
     position: 96,

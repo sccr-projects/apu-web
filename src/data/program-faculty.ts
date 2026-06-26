@@ -70,7 +70,7 @@ export const biomedicalFaculty: ProgramFacultyData = {
       nidn: "-",
       image: mrFaheem,
       google_link: "https://scholar.google.com/citations?user=4nfHqz8AAAAJ&hl=en",
-      google_index: "6",
+      google_index: "29",
     },
     {
       id: "dendi-krisna-nugraha",

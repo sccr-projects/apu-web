@@ -216,7 +216,7 @@ function getInitials(name: string): string {
       </ScrollReveal>
 
       <div
-        class="hidden items-center gap-2 md:flex"
+        class="flex items-center gap-2"
         data-lecturers-controls
       >
         <button
@@ -426,6 +426,8 @@ function getInitials(name: string): string {
       const dFlag = diasporaFeatured.querySelector("[data-featured-flag]");
       const dBg = diasporaFeatured.querySelector("[data-featured-background]");
       const dProfile = diasporaFeatured.querySelector("[data-featured-profile]");
+      const dGoogleLink = diasporaFeatured.querySelector("[data-featured-google-link]");
+      const dGoogleIndex = diasporaFeatured.querySelector("[data-featured-google-index]");
 
       if (dName) dName.textContent = person.name;
       if (dRole) dRole.textContent = person.role;
@@ -461,6 +463,13 @@ function getInitials(name: string): string {
 
       if (dProfile) {
         dProfile.href = person.google_scholar || "#";
+      }
+      if (dGoogleLink) {
+        dGoogleLink.href = person.google_scholar || "#";
+        dGoogleLink.classList.toggle("hidden", !person.google_scholar);
+      }
+      if (dGoogleIndex) {
+        dGoogleIndex.textContent = person.h_index != null ? String(person.h_index) : "";
       }
     };
 
@@ -544,12 +553,16 @@ function getInitials(name: string): string {
       const scrollStep = () => getCardWidth() + getGap();
 
       const updateButtons = () => {
-        if (!prev || !next) return;
+        if (!prev || !next || !controls) return;
         const maxScroll = track.scrollWidth - track.clientWidth;
-        prev.disabled = track.scrollLeft <= 0;
-        next.disabled = track.scrollLeft >= maxScroll - 1;
-        prev.style.opacity = prev.disabled ? "0.4" : "";
-        next.style.opacity = next.disabled ? "0.4" : "";
+        const scrollable = maxScroll > 0;
+        controls.style.display = scrollable ? "flex" : "none";
+        if (scrollable) {
+          prev.disabled = track.scrollLeft <= 0;
+          next.disabled = track.scrollLeft >= maxScroll - 1;
+          prev.style.opacity = prev.disabled ? "0.4" : "";
+          next.style.opacity = next.disabled ? "0.4" : "";
+        }
       };
 
       const scrollBy = (direction) => {

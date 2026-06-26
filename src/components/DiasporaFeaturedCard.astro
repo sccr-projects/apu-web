@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import type { DiasporaPerson } from "@data/diaspora";
 import canada from "@/assets/images/academic/canada-bg.jpg";
+import googleScholar from "@/assets/images/academic/google_scholar.webp";
 
 interface Props {
   person: DiasporaPerson;
@@ -67,7 +68,7 @@ const bgImage = person.background_image ?? canada;
         </ul>
       </div>
 
-      <div class="mb-8">
+      <div class="mb-4">
         <h3
           class="text-caption mb-3 uppercase tracking-widest text-white/70"
         >
@@ -80,6 +81,25 @@ const bgImage = person.background_image ?? canada;
           {person.notableResearch.text}
         </p>
       </div>
+
+      <a
+        data-featured-google-link
+        href={person.google_scholar || "#"}
+        target="_blank"
+        rel="noopener noreferrer"
+        class:list={[
+          "flex flex-row w-full mb-6 text-white",
+          { hidden: !person.google_scholar },
+        ]}
+      >
+        <Image
+          src={googleScholar}
+          alt={`Google Scholar profile of ${person.name}`}
+          class="w-6 object-contain border-0 mr-1"
+          loading="lazy"
+        />
+        <span class="text-white" data-featured-google-index>{person.h_index ?? ""}</span>
+      </a>
 
       <div class="flex flex-wrap items-center gap-4">
         <a
