@@ -45,7 +45,8 @@ export interface FacultyMember {
   title: string;
   image?: ImageMetadata;
   nidn: string;
-  link?: string;
+  google_link?: string;
+  google_index?: string;
   scopus_id?: string;
   scopus_index?: string;
   sinta_id?: string;
@@ -68,6 +69,8 @@ export const biomedicalFaculty: ProgramFacultyData = {
       title: "Lecturer",
       nidn: "-",
       image: mrFaheem,
+      google_link: "https://scholar.google.com/citations?user=4nfHqz8AAAAJ&hl=en",
+      google_index: "6",
     },
     {
       id: "dendi-krisna-nugraha",
@@ -76,7 +79,8 @@ export const biomedicalFaculty: ProgramFacultyData = {
       specialization: "Genetic Engineering",
       nidn: "8363770671130253",
       image: dendiKrisnaNugraha,
-      link: "https://scholar.google.com.my/citations?user=1uphszUAAAAJ",
+      google_link: "https://scholar.google.com.my/citations?user=1uphszUAAAAJ",
+      google_index: "4",
     },
     {
       id: "nadya-audina-ns",
@@ -85,7 +89,8 @@ export const biomedicalFaculty: ProgramFacultyData = {
       specialization: "Herbal Immunomodulation",
       nidn: "5960775676230172",
       image: nadyaAudinaNurkhafiya,
-      link: "https://scholar.google.com.my/citations?user=7bIu0yoAAAAJ&hl=en&oi=ao",
+      google_link: "https://scholar.google.com.my/citations?user=7bIu0yoAAAAJ&hl=en&oi=ao",
+      google_index: "2",
     },
     {
       id: "mohammad-ariq-nazar",
@@ -94,7 +99,8 @@ export const biomedicalFaculty: ProgramFacultyData = {
       specialization: "Bioengineering",
       nidn: "0614029302",
       image: mohammadAriqNazar,
-      link: "https://scholar.google.com/citations?user=YaYgh0AAAAAJ&hl=id",
+      google_link: "https://scholar.google.com/citations?user=YaYgh0AAAAAJ&hl=id",
+      google_index: "4",
     },
     {
       id: "dian-respati-ayu",
@@ -103,7 +109,8 @@ export const biomedicalFaculty: ProgramFacultyData = {
       specialization: "Secretome and Exosome",
       nidn: "9933777678230112",
       image: dianRespatiAyu,
-      link: "https://scholar.google.com.my/citations?user=DwjZbLMAAAAJ&hl=en&oi=ao",
+      google_link: "https://scholar.google.com.my/citations?user=DwjZbLMAAAAJ&hl=en&oi=ao",
+      google_index: "1",
     },
     {
       id: "risky-chandra-satria-irawan",
@@ -112,7 +119,8 @@ export const biomedicalFaculty: ProgramFacultyData = {
       specialization: "Stem Cell",
       nidn: "0540771672130323",
       image: riskyChandraSatriaIrawan,
-      link: "https://scholar.google.com.my/citations?user=TAjcHpYAAAAJ&hl=en&oi=ao",
+      google_link: "https://scholar.google.com.my/citations?user=TAjcHpYAAAAJ&hl=en&oi=ao",
+      google_index: "4",
     },
 
 
@@ -121,12 +129,16 @@ export const biomedicalFaculty: ProgramFacultyData = {
       name: "Naufal Sebastian Anggoro, S.Si., M.Si",
       title: "Lecturer",
       nidn: "1149776677130313",
+      google_link: "https://scholar.google.com/citations?user=ACiCpMsAAAAJ&hl=en",
+      google_index: "2",
     },
     {
       id: "endah-agustina-lestari",
       name: "Endah Agustina Lestari, S.Si, M.Mol.Biol.",
       title: "Lecturer",
       nidn: "7134765666230333",
+      google_link: "https://scholar.google.com/citations?user=8nkEolEAAAAJ&hl=en",
+      google_index: "2",
     },
   ],
 };
@@ -141,6 +153,8 @@ export const biotechnologyFaculty: ProgramFacultyData = {
       title: "Vice Rector II",
       nidn: "8734771672230402",
       image: msWaheni,
+      google_link: "https://scholar.google.com/citations?hl=en&user=K6XkHHgAAAAJ",
+      google_index: "1",
     },
     {
       id: "fauziah-novita-putri-rifai",
@@ -148,6 +162,8 @@ export const biotechnologyFaculty: ProgramFacultyData = {
       title: "Head of Biotechnology Study Program",
       nidn: "5438774675230243",
       image: fauziahNovitaPutriRifai,
+      google_link: "https://scholar.google.com/citations?hl=en&user=1UJe3asAAAAJ",
+      google_index: "2",
     },
     {
       id: "iffan-alif",
@@ -155,6 +171,8 @@ export const biotechnologyFaculty: ProgramFacultyData = {
       title: "Lecturer",
       nidn: "5454772673130273",
       image: iffanAlif,
+      google_link: "https://scholar.google.com/citations?user=3djlgEEAAAAJ&hl=en&oi=sra",
+      google_index: "10",
     },
     {
       id: "nurul-hidayah",
@@ -162,6 +180,8 @@ export const biotechnologyFaculty: ProgramFacultyData = {
       title: "Lecturer",
       nidn: "6960774675230252",
       image: nurulHidayah,
+      google_link: "https://scholar.google.com/citations?user=hGchFnoAAAAJ&hl=en",
+      google_index: "4",
     },
     {
       id: "salindri-prawitasari",
@@ -169,6 +189,8 @@ export const biotechnologyFaculty: ProgramFacultyData = {
       title: "Lecturer",
       nidn: "9659774675230242",
       image: salindriPrawitasari,
+      google_link: "https://scholar.google.com/citations?hl=en&user=kRILrrwAAAAJ",
+      google_index: "3",
     },
     {
       id: "dini-cahyani",
@@ -177,12 +199,16 @@ export const biotechnologyFaculty: ProgramFacultyData = {
       specialization: "Immunology",
       nidn: "8237775676230193",
       image: diniCahyani,
+      google_link: "https://scholar.google.com/citations?hl=en&user=8lhVAWkAAAAJ",
+      google_index: "1",
     },
     {
       id: "fikriya-novita-sari",
       name: "Fikriya Novita Sari, M.Si",
       title: "Lecturer",
       nidn: "1459777678230243",
+      google_link: "https://scholar.google.com/citations?user=CgzGGz0AAAAJ",
+      google_index: "2",
     },
   ],
 };
@@ -198,7 +224,8 @@ export const communicationFaculty: ProgramFacultyData = {
       specialization: "Social Communication",
       nidn: "0610089602",
       image: muhamadAgungSetiawan,
-      link: "https://scholar.google.com/citations?user=be-n4nUAAAAJ&hl=id",
+      google_link: "https://scholar.google.com/citations?user=be-n4nUAAAAJ&hl=id",
+      google_index: "2",
     },
     {
       id: "sutinnarto",
@@ -206,8 +233,9 @@ export const communicationFaculty: ProgramFacultyData = {
       title: "Lecturer",
       specialization: "Public Speaking",
       nidn: "0614028102",
-      link: "https://scholar.google.com/citations?user=swEkGVoAAAAJ&hl=en",
       image: sutinnarto,
+      google_link: "https://scholar.google.com/citations?user=swEkGVoAAAAJ&hl=en",
+      google_index: "3",
     },
     {
       id: "lakna-tulasun",
@@ -215,8 +243,9 @@ export const communicationFaculty: ProgramFacultyData = {
       title: "Lecturer",
       specialization: "Journalism",
       nidn: "0626099702",
-      link: "https://scholar.google.com/citations?user=v61mGoQAAAAJ&hl=id&authuser=2",
       image: laknaTulasun,
+      google_link: "https://scholar.google.com/citations?user=v61mGoQAAAAJ&hl=id&authuser=2",
+      google_index: "2",
     },
     {
       id: "rifatul-himmah",
@@ -224,14 +253,17 @@ export const communicationFaculty: ProgramFacultyData = {
       title: "Lecturer",
       specialization: "Media and Gender",
       nidn: "2461772673230292",
-      link: "https://scholar.google.com/citations?hl=id&user=80w7fDEAAAAJ",
       image: rifatulHimmah,
+      google_link: "https://scholar.google.com/citations?hl=id&user=80w7fDEAAAAJ",
+      google_index: "1",
     },
     {
       id: "bondan-eko-suratno",
       name: "Bondan Eko Suratno, M.Hum",
       title: "Lecturer",
       nidn: "610108603",
+      google_link: "https://scholar.google.com/citations?user=dmbqZSIAAAAJ&hl=en",
+      google_index: "1",
     },
   ],
 };
@@ -245,6 +277,8 @@ export const lawFaculty: ProgramFacultyData = {
       title: "Head of Law Study Program",
       nidn: "9990637233",
       image: erwin,
+      google_link: "https://scholar.google.com/citations?user=Ov4mPDsAAAAJ&hl=en",
+      google_index: "2",
     },
     {
       id: "zain-arfin-utama",
@@ -252,8 +286,9 @@ export const lawFaculty: ProgramFacultyData = {
       title: "Lecturer",
       specialization: "Criminal Law Reform",
       nidn: "0615119301",
-      link: "https://scholar.google.com/citations?user=uUEzUqAAAAAJ&hl=id",
       image: zain,
+      google_link: "https://scholar.google.com/citations?user=uUEzUqAAAAAJ&hl=id",
+      google_index: "2",
     },
     {
       id: "naufal-sebastian",
@@ -275,6 +310,8 @@ export const managementFaculty: ProgramFacultyData = {
       nidn: "6137744645130133",
       scopus_id: "59912689000",
       image: mrAgus,
+      google_link: "https://scholar.google.com/citations?user=e_Xv4EwAAAAJ&hl=en",
+      google_index: "1",
     },
     {
       id: "suharto-abdul-majid",
@@ -288,6 +325,8 @@ export const managementFaculty: ProgramFacultyData = {
       title: "Lecturer",
       nidn: "312087404",
       scopus_id: "57886387600",
+      google_link: "https://scholar.google.com/citations?user=9CJNrb8AAAAJ&hl=en",
+      google_index: "13",
     },
     {
       id: "reni-nur-arifah",
@@ -296,6 +335,8 @@ export const managementFaculty: ProgramFacultyData = {
       specialization: "Financial Management",
       nidn: "0625069301",
       image: reniNurArifah,
+      google_link: "https://scholar.google.com/citations?user=eaGmE2AAAAAJ&hl=id",
+      google_index: "1",
     },
     {
       id: "yetty-yuliany",
@@ -304,7 +345,8 @@ export const managementFaculty: ProgramFacultyData = {
       specialization: "Human Resource Management",
       nidn: "0605077402",
       image: yettyYulianyKusumaningrum,
-      link: "https://scholar.google.com/citations?user=86pLtjMAAAAJ&hl=id&oi=sra",
+      google_link: "https://scholar.google.com/citations?user=86pLtjMAAAAJ&hl=id&oi=sra",
+      google_index: "1",
     },
     {
       id: "putri-aryo-jelang-fitri-khothimah",
@@ -313,7 +355,8 @@ export const managementFaculty: ProgramFacultyData = {
       specialization: "Financial Management",
       nidn: "0601039501",
       image: putriAryoJelangFitriKhothimah,
-      link: "https://scholar.google.com/citations?user=aZglriAAAAAJ&hl=id",
+      google_link: "https://scholar.google.com/citations?user=aZglriAAAAAJ&hl=id",
+      google_index: "2",
     },
     {
       id: "randika-shafly-fawwaz",
@@ -322,12 +365,16 @@ export const managementFaculty: ProgramFacultyData = {
       specialization: "Human Resources",
       nidn: "2433775676130432",
       image: randikaShaflyFawwaz,
+      google_link: "https://scholar.google.com/citations?user=PmlArwYAAAAJ&hl=en",
+      google_index: "1",
     },
     {
       id: "eva-fachria",
       name: "Eva Fachria, S.E., M.S.M",
       title: "Lecturer",
       nidn: "9053772673230383",
+      google_link: "https://scholar.google.com/citations?user=E1NJcz0AAAAJ&hl=en",
+      google_index: "2",
     },
   ],
 };
@@ -343,7 +390,8 @@ export const midwiferyAssociateFaculty: ProgramFacultyData = {
       specialization: "Obstetrics",
       nidn: "0622058101",
       image: titikKurniawati,
-      link: "https://scholar.google.com/citations?hl=id&user=F-nyArIAAAAJ",
+      google_link: "https://scholar.google.com/citations?hl=id&user=F-nyArIAAAAJ",
+      google_index: "9",
     },
 
     {
@@ -354,7 +402,8 @@ export const midwiferyAssociateFaculty: ProgramFacultyData = {
         "Postpartum and Lactation Care / Midwifery Postpartum Care",
       nidn: "0617069002",
       image: diahWidyatun,
-      link: "https://scholar.google.com/citations?user=yb_RfHgAAAAJ&hl=id",
+      google_link: "https://scholar.google.com/citations?user=yb_RfHgAAAAJ&hl=id",
+      google_index: "3",
     },
     {
       id: "dewi-elliana",
@@ -363,7 +412,8 @@ export const midwiferyAssociateFaculty: ProgramFacultyData = {
       specialization: "Reproductive Health",
       nidn: "0611027703",
       image: dewiElliana,
-      link: "https://scholar.google.com/citations?user=Tw4V_ykAAAAJ&hl=id",
+      google_link: "https://scholar.google.com/citations?user=Tw4V_ykAAAAJ&hl=id",
+      google_index: "7",
     },
     {
       id: "rita-agustina",
@@ -371,7 +421,8 @@ export const midwiferyAssociateFaculty: ProgramFacultyData = {
       title: "Lecturer",
       nidn: "4133752653230133",
       image: ritaAgustina,
-      link: "https://scholar.google.com.my/citations?user=2gvPGvYAAAAJ&hl=en&oi=ao",
+      google_link: "https://scholar.google.com.my/citations?user=2gvPGvYAAAAJ&hl=en&oi=ao",
+      google_index: "6",
     },
     {
       id: "erna-setyaningsih",
@@ -395,8 +446,9 @@ export const midwiferyBachelorFaculty: ProgramFacultyData = {
       specialization:
         "Midwifery Care for Infants, Toddlers, and Preschool Children",
       nidn: "0608049401",
-      link: "https://scholar.google.com/citations?user=dHKOQMYAAAAJ&hl=en&oi=ao",
       image: rizqitha,
+      google_link: "https://scholar.google.com/citations?user=dHKOQMYAAAAJ&hl=en&oi=ao",
+      google_index: "2",
     },
     {
       id: "mariza-mustika",
@@ -404,8 +456,9 @@ export const midwiferyBachelorFaculty: ProgramFacultyData = {
       title: "Lecturer",
       specialization: "Nifas and Breastfeeding Midwifery",
       nidn: "0618039302",
-      link: "https://scholar.google.com/citations?user=sMzeApYAAAAJ&hl=id&oi=ao",
       image: marizaMustikaDewi,
+      google_link: "https://scholar.google.com/citations?user=sMzeApYAAAAJ&hl=id&oi=ao",
+      google_index: "5",
     },
     {
       id: "sri-mularsih",
@@ -413,8 +466,9 @@ export const midwiferyBachelorFaculty: ProgramFacultyData = {
       title: "Lecturer",
       specialization: "Reproductive Health",
       nidn: "0618048001",
-      link: "https://scholar.google.com/citations?user=8OnkCmsAAAAJ&hl=id",
       image: sriMularsih,
+      google_link: "https://scholar.google.com/citations?user=8OnkCmsAAAAJ&hl=id",
+      google_index: "8",
     },
     {
       id: "lia-ayu",
@@ -422,6 +476,8 @@ export const midwiferyBachelorFaculty: ProgramFacultyData = {
       title: "Lecturer",
       specialization: "",
       nidn: "",
+      google_link: "https://scholar.google.com/citations?user=7k52NB8AAAAJ&hl=en",
+      google_index: "0",
     },
   ],
 };
