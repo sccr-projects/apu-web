@@ -13,13 +13,13 @@ const bgImage = person.background_image ?? canada;
 ---
 
 <div
-  class:list={["relative flex justify-center w-full py-6", className]}
+  class:list={["relative flex justify-center w-full py-8", className]}
   data-diaspora-featured-card
 >
   <Image
     src={bgImage}
     alt=""
-    class="pointer-events-none absolute top-0 left-0 h-full w-full object-cover opacity-30"
+    class="pointer-events-none absolute top-0 left-0 h-full w-full object-cover opacity-10"
     aria-hidden="true"
     loading="eager"
     data-featured-background
@@ -43,7 +43,7 @@ const bgImage = person.background_image ?? canada;
         {person.role}
       </p>
 
-      <div class="mb-6 backdrop-blur-md">
+      <div class="mb-6">
         <p class="text-body mb-6 text-apu-accent" data-featured-univ>
           {person.univ}
         </p>
@@ -67,7 +67,7 @@ const bgImage = person.background_image ?? canada;
         </ul>
       </div>
 
-      <div class="mb-8 backdrop-blur-md">
+      <div class="mb-8">
         <h3
           class="text-caption mb-3 uppercase tracking-widest text-white/70"
         >
