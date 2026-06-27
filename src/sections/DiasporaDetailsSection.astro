@@ -7,6 +7,7 @@ const people = getDiasporaLecturers();
 const featuredLecturer = people.find((p) => p.id === "prof-agung") ?? people[0];
 import canada from "@/assets/images/academic/canada-bg.jpg";
 import BackgroundBlobs from "@/components/BackgroundBlobs.astro";
+import googleScholar from "@/assets/images/academic/google_scholar.webp";
 
 const directoryTitle = "Faculty Directory";
 const sectionTitle = "Diaspora Lecturers List:";
@@ -117,6 +118,26 @@ const sectionTitle = "Diaspora Lecturers List:";
                 <p class="text-caption text-brand-text-muted mb-4">
                   {person.university}
                 </p>
+                {
+                  person.googleScholar && (
+                    <a
+                      draggable="false"
+                      href={person.googleScholar}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 text-sm text-brand-text-muted hover:text-brand-primary"
+                    >
+                      <Image
+                        draggable="false"
+                        src={googleScholar}
+                        alt="Google Scholar"
+                        class="h-5 w-5 object-contain"
+                        loading="lazy"
+                      />
+                      <span>{person.googleIndex}</span>
+                    </a>
+                  )
+                }
               </article>
             );
           })}
