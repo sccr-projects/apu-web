@@ -2,7 +2,8 @@
 import { Image } from "astro:assets";
 import ScrollReveal from "@components/ScrollReveal.astro";
 import DiasporaFeaturedCard from "@components/DiasporaFeaturedCard.astro";
-import { people } from "@data/diaspora";
+import { getDiasporaLecturers } from "@data/lecturers";
+const people = getDiasporaLecturers();
 const featuredLecturer = people.find((p) => p.id === "prof-agung") ?? people[0];
 import canada from "@/assets/images/academic/canada-bg.jpg";
 import BackgroundBlobs from "@/components/BackgroundBlobs.astro";
@@ -90,32 +91,35 @@ const sectionTitle = "Diaspora Lecturers List:";
           tabindex="0"
           aria-label="Faculty directory carousel"
         >
-          {people.map((person) => (
-            <article
-              class="group apu-corner-accent--tr apu-glass-card apu-interactive-card w-[82%] flex-shrink-0 snap-start cursor-pointer p-4 sm:p-5 sm:w-[47%] lg:w-[calc(15%-0.75rem)]"
-              data-person-id={person.id}
-              tabindex="0"
-              role="button"
-            >
-              <div class="mb-5 aspect-[3/4] overflow-hidden rounded-xl ">
-                <Image
-                  draggable="false"
-                  src={person.image}
-                  alt={`Portrait of ${person.name}`}
-                  class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-              <h3 draggable="false" class="text-2xl font-semibold text-brand-text mb-1">
-                <a draggable="false" href={person.href} class="hover:underline">
-                  {person.name}
-                </a>
-              </h3>
-              <p class="text-caption text-brand-text-muted mb-4">
-                {person.univ}
-              </p>
-            </article>
-          ))}
+          {people.map((person) => {
+            const portrait = person.diasporaImage ?? person.image;
+            return (
+              <article
+                class="group apu-corner-accent--tr apu-glass-card apu-interactive-card w-[82%] flex-shrink-0 snap-start cursor-pointer p-4 sm:p-5 sm:w-[47%] lg:w-[calc(15%-0.75rem)]"
+                data-person-id={person.id}
+                tabindex="0"
+                role="button"
+              >
+                <div class="mb-5 aspect-[3/4] overflow-hidden rounded-xl ">
+                  <Image
+                    draggable="false"
+                    src={portrait}
+                    alt={`Portrait of ${person.name}`}
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 draggable="false" class="text-2xl font-semibold text-brand-text mb-1">
+                  <a draggable="false" href={person.href} class="hover:underline">
+                    {person.name}
+                  </a>
+                </h3>
+                <p class="text-caption text-brand-text-muted mb-4">
+                  {person.university}
+                </p>
+              </article>
+            );
+          })}
         </div>
       </div>
     </ScrollReveal>
@@ -150,11 +154,11 @@ const sectionTitle = "Diaspora Lecturers List:";
 
       if (featuredName) featuredName.textContent = person.name;
       if (featuredRole) featuredRole.textContent = person.role;
-      if (featuredUniv) featuredUniv.textContent = person.univ;
-      if (featuredResearch) featuredResearch.textContent = person.notableResearch.text;
+      if (featuredUniv) featuredUniv.textContent = person.university;
+      if (featuredResearch) featuredResearch.textContent = person.notableResearch;
 
       if (featuredPast) {
-        featuredPast.innerHTML = person.pastExperience.items
+        featuredPast.innerHTML = (person.pastExperience || [])
           .map(
             (item) =>
               `<li class="text-body-s flex items-start gap-3 text-white/90"><span class="mt-2 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-apu-accent" aria-hidden="true"></span>${item}</li>`
@@ -163,9 +167,10 @@ const sectionTitle = "Diaspora Lecturers List:";
       }
 
       if (featuredImage) {
-        featuredImage.src = person.image.src;
+        const portrait = person.diasporaImage || person.image;
+        featuredImage.src = portrait?.src || "";
         featuredImage.alt = `Portrait of ${person.name}`;
-        featuredImage.style.objectPosition = `${person.position}% center`;
+        featuredImage.style.objectPosition = `${person.position ?? 50}% center`;
       }
 
       if (featuredFlag) {
@@ -174,12 +179,12 @@ const sectionTitle = "Diaspora Lecturers List:";
       }
 
       if (featuredBackground) {
-        featuredBackground.src = person.background_image?.src || defaultBg;
+        featuredBackground.src = person.backgroundImage?.src || defaultBg;
         featuredBackground.alt = person.name;
       }
 
       if (featuredProfile) {
-        featuredProfile.href = person.google_scholar || "#";
+        featuredProfile.href = person.googleScholar || "#";
       }
     };
 

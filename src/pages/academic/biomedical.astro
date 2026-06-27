@@ -15,8 +15,12 @@ import { biomedicalStrengthsBento } from "@data/program-strengths-bento";
 import { biomedicalProgram } from "@data/program-details";
 import { biomedicalHero } from "@data/program-heroes";
 import { biomedicalCareers } from "@data/program-careers";
-import { biomedicalFaculty } from "@data/program-faculty";
+import { getLecturersByProgram } from "@data/lecturers";
+import { programFacultyDescriptions } from "@data/academic-programs";
 import { biomedicalValues } from "@data/program-values";
+
+const lecturers = getLecturersByProgram("biomedical");
+const description = programFacultyDescriptions.biomedical;
 
 ---
 
@@ -33,7 +37,7 @@ import { biomedicalValues } from "@data/program-values";
   <ProgramVisionMissionSection data={biomedicalProgram} />
   <!-- <ProgramValuesSection data={biomedicalValues} /> -->
   <ProgramCareersSection data={biomedicalCareers} />
-  <ProgramFacultySpotlightSection data={biomedicalFaculty} />
+  <ProgramFacultySpotlightSection lecturers={lecturers} description={description} />
   <ContactSection />
   <Footer />
 </MainLayout>

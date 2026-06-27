@@ -1,8 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import worldMap from "@/assets/images/academic/diaspora/world-map.svg";
-import { people } from "@data/diaspora";
+import { getDiasporaLecturers } from "@data/lecturers";
 import ScrollReveal from "@/components/ScrollReveal.astro";
+
+const people = getDiasporaLecturers();
 ---
 
 
@@ -41,6 +43,7 @@ import ScrollReveal from "@/components/ScrollReveal.astro";
           {
             people.map((person, index) => {
               const isCenter = person.id === "prof-agung";
+              const portrait = person.diasporaImage ?? person.image;
               return (
                 <article
                   class:list={[
@@ -53,10 +56,10 @@ import ScrollReveal from "@/components/ScrollReveal.astro";
                 >
                   <div class="overflow-hidden rounded-lg">
                     <Image
-                      src={person.image}
+                      src={portrait}
                       alt={`Portrait of ${person.name}`}
                       class="h-36 w-full object-contain object-top md:h-56 "
-                      style={`object-position: ${person.position}% center;`}
+                      style={`object-position: ${person.position ?? 50}% center;`}
                       loading="lazy"
                     />
                   </div>
@@ -67,7 +70,7 @@ import ScrollReveal from "@/components/ScrollReveal.astro";
                     {person.name}
                   </a>
 
-                  <p class="text-xs text-center px-4 text-gray-600 sm:text-sm">{person.univ}</p>
+                  <p class="text-xs text-center px-4 text-gray-600 sm:text-sm">{person.university}</p>
                   <img
                     src={person.flag}
                     alt={`Flag of ${person.country}`}

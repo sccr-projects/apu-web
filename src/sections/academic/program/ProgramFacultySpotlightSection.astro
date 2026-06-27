@@ -3,21 +3,23 @@ import { Image } from "astro:assets";
 import ScrollReveal from "@components/ScrollReveal.astro";
 import SectionHeader from "@components/SectionHeader.astro";
 import DiasporaFeaturedCard from "@components/DiasporaFeaturedCard.astro";
-import type { ProgramFacultyData } from "@data/program-faculty";
-import { people as diasporaPeople } from "@data/diaspora";
+import type { Lecturer } from "@data/lecturers";
+import { getDiasporaLecturers } from "@data/lecturers";
 import canada from "@/assets/images/academic/canada-bg.jpg";
 import BackgroundBlobs from "@components/BackgroundBlobs.astro";
 import googleScholar from "@/assets/images/academic/google_scholar.webp";
 
 
 interface Props {
-  data: ProgramFacultyData;
+  lecturers: Lecturer[];
+  description: string;
 }
 
-const { data } = Astro.props;
-const members = data.facultyMembers;
+const { lecturers, description } = Astro.props;
+const members = lecturers;
 const featured = members[0];
 
+const diasporaPeople = getDiasporaLecturers();
 const diasporaIds = new Set(diasporaPeople.map((p) => p.id));
 const isFeaturedDiaspora = featured ? diasporaIds.has(featured.id) : false;
 const initialDiasporaPerson = isFeaturedDiaspora
@@ -62,7 +64,7 @@ function getInitials(name: string): string {
       <SectionHeader
         kicker="LECTURER SPOTLIGHT"
         title="Meet Our Expert Lecturers"
-        description={data.description}
+        description={description}
         class="text-center mb-16"
         titleClass="text-h2 text-brand-primary-deep mb-4"
       />
@@ -120,12 +122,12 @@ function getInitials(name: string): string {
 
             <a
               data-featured-google-link
-              href={featured?.google_link || "#"}
+              href={featured?.googleScholar || "#"}
               target="_blank"
               rel="noopener noreferrer"
               class:list={[
                 "flex flex-row w-full mt-3 mb-6 text-white",
-                { hidden: !featured?.google_link },
+                { hidden: !featured?.googleScholar },
               ]}
             >
               <Image
@@ -134,7 +136,7 @@ function getInitials(name: string): string {
                 class="w-6 object-contain border-0 mr-1"
                 loading="lazy"
               />
-              <span data-featured-google-index>{featured?.google_index ?? ""}</span>
+              <span data-featured-google-index>{featured?.googleIndex ?? ""}</span>
             </a>
 
             <div data-featured-link-wrapper class="flex flex-wrap items-center gap-4">
@@ -263,9 +265,9 @@ function getInitials(name: string): string {
                 </h3>
                 <p class="text-caption text-brand-text-muted">{member.title}</p>
                 {
-                  member.google_link && (
+                  member.googleScholar && (
                     <a
-                      href={member.google_link}
+                      href={member.googleScholar}
                       target="_blank"
                       rel="noopener noreferrer"
                       class="flex flex-row w-full mt-2"
@@ -276,7 +278,7 @@ function getInitials(name: string): string {
                         class="w-6 object-contain border-0 mr-1"
                         loading="lazy"
                       />
-                      {member.google_index}
+                      {member.googleIndex}
                     </a>
                   )
                 }
@@ -349,11 +351,11 @@ function getInitials(name: string): string {
       }
 
       if (featuredGoogleLink) {
-        featuredGoogleLink.href = member.google_link || "#";
-        featuredGoogleLink.classList.toggle("hidden", !member.google_link);
+        featuredGoogleLink.href = member.googleScholar || "#";
+        featuredGoogleLink.classList.toggle("hidden", !member.googleScholar);
       }
       if (featuredGoogleIndex) {
-        featuredGoogleIndex.textContent = member.google_index || "";
+        featuredGoogleIndex.textContent = member.googleIndex || "";
       }
 
       if (featuredVisual) {
@@ -383,11 +385,11 @@ function getInitials(name: string): string {
 
       if (dName) dName.textContent = person.name;
       if (dRole) dRole.textContent = person.role;
-      if (dUniv) dUniv.textContent = person.univ;
-      if (dResearch) dResearch.textContent = person.notableResearch?.text || "";
+      if (dUniv) dUniv.textContent = person.university;
+      if (dResearch) dResearch.textContent = person.notableResearch || "";
 
       if (dPast) {
-        dPast.innerHTML = (person.pastExperience?.items || [])
+        dPast.innerHTML = (person.pastExperience || [])
           .map(
             (item) =>
               `<li class="text-body-s flex items-start gap-3 text-white/90"><span class="mt-2 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-apu-accent" aria-hidden="true"></span>${item}</li>`
@@ -396,7 +398,8 @@ function getInitials(name: string): string {
       }
 
       if (dImage) {
-        dImage.src = person.image.src;
+        const portrait = person.diasporaImage || person.image;
+        dImage.src = portrait?.src || "";
         dImage.alt = `Portrait of ${person.name}`;
         if (typeof person.position === "number") {
           dImage.style.objectPosition = `${person.position}% center`;
@@ -409,19 +412,19 @@ function getInitials(name: string): string {
       }
 
       if (dBg) {
-        dBg.src = person.background_image?.src || defaultBg;
+        dBg.src = person.backgroundImage?.src || defaultBg;
         dBg.alt = person.name;
       }
 
       if (dProfile) {
-        dProfile.href = person.google_scholar || "#";
+        dProfile.href = person.googleScholar || "#";
       }
       if (dGoogleLink) {
-        dGoogleLink.href = person.google_scholar || "#";
-        dGoogleLink.classList.toggle("hidden", !person.google_scholar);
+        dGoogleLink.href = person.googleScholar || "#";
+        dGoogleLink.classList.toggle("hidden", !person.googleScholar);
       }
       if (dGoogleIndex) {
-        dGoogleIndex.textContent = person.h_index != null ? String(person.h_index) : "";
+        dGoogleIndex.textContent = person.googleIndex != null ? String(person.googleIndex) : "";
       }
     };
 

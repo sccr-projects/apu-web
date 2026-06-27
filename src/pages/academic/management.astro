@@ -15,9 +15,13 @@ import { managementProgram } from "@data/program-details";
 import { managementLeadershipMessage as leadershipMessage } from "@data/academic-programs";
 import { managementHero } from "@data/program-heroes";
 import { managementCareers } from "@data/program-careers";
-import { managementFaculty } from "@data/program-faculty";
+import { getLecturersByProgram } from "@data/lecturers";
+import { programFacultyDescriptions } from "@data/academic-programs";
 import { managementValues } from "@data/program-values";
 import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
+
+const lecturers = getLecturersByProgram("management");
+const description = programFacultyDescriptions.management;
 
 ---
 
@@ -34,7 +38,7 @@ import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalG
   <ProgramVisionMissionSection data={managementProgram} variant="management" />
   <!-- <ProgramValuesSection data={managementValues} /> -->
   <!-- <ProgramCareersSection data={managementCareers} /> -->
-  <ProgramFacultySpotlightSection data={managementFaculty} />
+  <ProgramFacultySpotlightSection lecturers={lecturers} description={description} />
   <ContactSection />
   <Footer />
 </MainLayout>

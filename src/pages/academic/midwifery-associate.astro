@@ -15,9 +15,13 @@ import { midwiferyAssociateProgram } from "@data/program-details";
 import { midwiferyAssociateLeadershipMessage as leadershipMessage } from "@data/academic-programs";
 import { midwiferyAssociateHero } from "@data/program-heroes";
 import { midwiferyAssociateCareers } from "@data/program-careers";
-import { midwiferyAssociateFaculty } from "@data/program-faculty";
+import { getLecturersByProgram } from "@data/lecturers";
+import { programFacultyDescriptions } from "@data/academic-programs";
 import { midwiferyAssociateValues } from "@data/program-values";
 import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
+
+const lecturers = getLecturersByProgram("midwifery-associate");
+const description = programFacultyDescriptions["midwifery-associate"];
 
 ---
 
@@ -34,7 +38,7 @@ import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalG
   <ProgramVisionMissionSection data={midwiferyAssociateProgram} />
   <!-- <ProgramValuesSection data={midwiferyAssociateValues} /> -->
   <ProgramCareersSection data={midwiferyAssociateCareers} />
-  <ProgramFacultySpotlightSection data={midwiferyAssociateFaculty} />
+  <ProgramFacultySpotlightSection lecturers={lecturers} description={description} />
   <ContactSection />
   <Footer />
 </MainLayout>

@@ -15,9 +15,13 @@ import { lawProgram } from "@data/program-details";
 import { lawLeadershipMessage as leadershipMessage } from "@data/academic-programs";
 import { lawHero } from "@data/program-heroes";
 import { lawCareers } from "@data/program-careers";
-import { lawFaculty } from "@data/program-faculty";
+import { getLecturersByProgram } from "@data/lecturers";
+import { programFacultyDescriptions } from "@data/academic-programs";
 import { lawValues } from "@data/program-values";
 import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
+
+const lecturers = getLecturersByProgram("law");
+const description = programFacultyDescriptions.law;
 
 ---
 
@@ -34,7 +38,7 @@ import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalG
   <ProgramVisionMissionSection data={lawProgram} />
   <!-- <ProgramValuesSection data={lawValues} /> -->
   <!-- <ProgramCareersSection data={lawCareers} /> -->
-  <ProgramFacultySpotlightSection data={lawFaculty} />
+  <ProgramFacultySpotlightSection lecturers={lecturers} description={description} />
   <ContactSection />
   <Footer />
 </MainLayout>

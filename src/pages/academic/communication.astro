@@ -15,9 +15,13 @@ import { communicationProgram } from "@data/program-details";
 import { communicationLeadershipMessage as leadershipMessage } from "@data/academic-programs";
 import { communicationHero } from "@data/program-heroes";
 import { communicationCareers } from "@data/program-careers";
-import { communicationFaculty } from "@data/program-faculty";
+import { getLecturersByProgram } from "@data/lecturers";
+import { programFacultyDescriptions } from "@data/academic-programs";
 import { communicationValues } from "@data/program-values";
 import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
+
+const lecturers = getLecturersByProgram("communication");
+const description = programFacultyDescriptions.communication;
 
 ---
 
@@ -34,7 +38,7 @@ import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalG
   <ProgramVisionMissionSection data={communicationProgram} variant="communication" />
   <!-- <ProgramValuesSection data={communicationValues} /> -->
   <ProgramCareersSection data={communicationCareers} />
-  <ProgramFacultySpotlightSection data={communicationFaculty} />
+  <ProgramFacultySpotlightSection lecturers={lecturers} description={description} />
   <ContactSection />
   <Footer />
 </MainLayout>

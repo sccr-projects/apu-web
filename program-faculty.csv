@@ -1,40 +1,41 @@
 program,name,id,title,photo,nidn,link,scopus_id,scopus_index,sinta_id,sinta_index,specialization
-biomedical,"Nadya Audina NS. S.Si., M.Biomed",nadya-audina-ns,Head of Biomedical Science Study Program,/images/academic/lecturer_images/biomedic/Nadya_Audina_Nurkhafiya.webp,5960775676230172,https://scholar.google.com.my/citations?user=7bIu0yoAAAAJ&hl=en&oi=ao,,,,,Herbal Immunomodulation
-biomedical,"Mohammad Ariq Nazar, S.Si, M.Biomed",mohammad-ariq-nazar,Vice Rector I,/images/academic/lecturer_images/biomedic/Mohammad_Ariq_Nazar.webp,0614029302,https://scholar.google.com/citations?user=YaYgh0AAAAAJ&hl=id,,,,,Bioengineering
-biomedical,"Dian Respati Ayu, S.Si., M.Biomed",dian-respati-ayu,Lecturer,/images/academic/lecturer_images/biomedic/Dian_Respati_Ayu.webp,9933777678230112,https://scholar.google.com.my/citations?user=DwjZbLMAAAAJ&hl=en&oi=ao,,,,,Secretome and Exosome
-biomedical,"Risky Chandra Satria Irawan S.Si, M.Biomed",risky-chandra-satria-irawan,Lecturer,/images/academic/lecturer_images/biomedic/Risky_Chandra_Satria_Irawan.webp,0540771672130323,https://scholar.google.com.my/citations?user=TAjcHpYAAAAJ&hl=en&oi=ao,,,,,Stem Cell
-biomedical,"Dendi Krisna Nugraha, M.Sc., Ph.D.",dendi-krisna-nugraha,Lecturer,/images/academic/lecturer_images/biomedic/Dendi_Krisna_Nugraha.webp,8363770671130253,https://scholar.google.com.my/citations?user=1uphszUAAAAJ,,,,,Genetic Engineering
 biomedical,"Faheem Ahmed Khan, BSc, MS, PhD",faheem-ahmed-khan,Lecturer,,-,,,,,,
+biomedical,"Dendi Krisna Nugraha, M.Sc., Ph.D.",dendi-krisna-nugraha,Lecturer,,8363770671130253,,,,,,Genetic Engineering
+biomedical,"Nadya Audina NS. S.Si., M.Biomed",nadya-audina-ns,Head of Biomedical Science Study Program,,5960775676230172,,,,,,Herbal Immunomodulation
+biomedical,"Mohammad Ariq Nazar, S.Si, M.Biomed",mohammad-ariq-nazar,Vice Rector I,,0614029302,,,,,,Bioengineering
+biomedical,"Dian Respati Ayu, S.Si., M.Biomed",dian-respati-ayu,Lecturer,,9933777678230112,,,,,,Secretome and Exosome
+biomedical,"Risky Chandra Satria Irawan S.Si, M.Biomed",risky-chandra-satria-irawan,Lecturer,,0540771672130323,,,,,,Stem Cell
 biomedical,"Naufal Sebastian Anggoro, S.Si., M.Si",naufal-sebastian-anggoro,Lecturer,,1149776677130313,,,,,,
 biomedical,"Endah Agustina Lestari, S.Si, M.Mol.Biol.",endah-agustina-lestari,Lecturer,,7134765666230333,,,,,,
-biotechnology,"Fauziah Novita Putri Rifai, S.Si, M.Biotech",fauziah-novita-putri-rifai,Head of Biotechnology Study Program,,5438774675230243,,,,,,
 biotechnology,"Waheni Rizki Aprilia, S.Si., Ph.D.",waheni-rizki-aprilia,Vice Rector II,,8734771672230402,,,,,,
+biotechnology,"Fauziah Novita Putri Rifai, S.Si, M.Biotech",fauziah-novita-putri-rifai,Head of Biotechnology Study Program,,5438774675230243,,,,,,
 biotechnology,"Iffan Alif, S.Si, M.Biotech",iffan-alif,Lecturer,,5454772673130273,,,,,,
 biotechnology,"Nurul Hidayah S.Si, M.Biotech",nurul-hidayah,Lecturer,,6960774675230252,,,,,,
 biotechnology,"Salindri Prawitasari, S.Si, M.Si.",salindri-prawitasari,Lecturer,,9659774675230242,,,,,,
 biotechnology,"Dini Cahyani, S.Si, M.Biotech",dini-cahyani,Lecturer,,8237775676230193,,,,,,Immunology
 biotechnology,"Fikriya Novita Sari, M.Si",fikriya-novita-sari,Lecturer,,1459777678230243,,,,,,
-communication,"Muhamad Agung S, S.Sos., M.Sos",muhamad-agung,Head of Communication Study Program,/images/academic/lecturer_images/communication/Muhamad_Agung_Setiawan.webp,0610089602,https://scholar.google.com/citations?user=be-n4nUAAAAJ&hl=id,,,,,Social Communication
-communication,"Sutinnarto, S.I.Kom., M.I.Kom",sutinnarto,Lecturer,/images/academic/lecturer_images/communication/Sutinnarto.webp,0614028102,https://scholar.google.com/citations?user=swEkGVoAAAAJ&hl=en,,,,,Public Speaking
-communication,"Lakna Tulas'un, S.Sos, M.I.Kom",lakna-tulasun,Lecturer,/images/academic/lecturer_images/communication/Lakna_Tulasun.webp,0626099702,https://scholar.google.com/citations?user=v61mGoQAAAAJ&hl=id&authuser=2,,,,,Journalism
-communication,"Rif'atul Himmah, S.Sos. M.I.Kom.",rifatul-himmah,Lecturer,/images/academic/lecturer_images/communication/Rifatul_Himmah.webp,2461772673230292,https://scholar.google.com/citations?hl=id&user=80w7fDEAAAAJ,,,,,Media and Gender
+communication,"Muhamad Agung S, S.Sos., M.Sos",muhamad-agung,Head of Communication Study Program,,0610089602,,,,,,Social Communication
+communication,"Sutinnarto, S.I.Kom., M.I.Kom",sutinnarto,Lecturer,,0614028102,,,,,,Public Speaking
+communication,"Lakna Tulas'un, S.Sos, M.I.Kom",lakna-tulasun,Lecturer,,0626099702,,,,,,Journalism
+communication,"Rif'atul Himmah, S.Sos. M.I.Kom.",rifatul-himmah,Lecturer,,2461772673230292,,,,,,Media and Gender
 communication,"Bondan Eko Suratno, M.Hum",bondan-eko-suratno,Lecturer,,610108603,,,,,,
-law,"Dr. Erwin, SH., MH., MKn.",erwin,Head of Law Study Program,,9990637233,,,,,,
-law,"Zain Arfin Utama, S.H., M.H.",zain-arfin-utama,Lecturer,,0615119301,https://scholar.google.com/citations?user=uUEzUqAAAAAJ&hl=id,,,,,Criminal Law Reform
+law,"Dr. Erwin, S.H., M.H., M.Kn.",erwin,Head of Law Study Program,,9990637233,,,,,,
+law,"Zain Arfin Utama, S.H., M.H.",zain-arfin-utama,Lecturer,,0615119301,,,,,,Criminal Law Reform
 law,"Naufal Sebastian, S.H.,M.H.",naufal-sebastian,Lecturer,,7435775676130282,,,,,,
 management,"Dr. Ir. Agus F. Abdillah, MBA, ERMAP",agus-abdillah,Lecturer,,6137744645130133,,59912689000,,,,
 management,"Dr. Suharto Abdul Majid, AMTrU, S.Sos, M.M.",suharto-abdul-majid,Lecturer,,315037102,,,,,,
 management,"Dr. Mohammad Annas, S. Tr.Par, M.M.",mohammad-annas,Lecturer,,312087404,,57886387600,,,,
-management,"Reni Nur Arifah, S.E., M.M.",reni-nur-arifah,Head of Management Study Program,/images/academic/lecturer_images/management/Reni_Nur_Arifah.webp,0625069301,,,,,,Financial Management
-management,"Yetty Yuliany K, S.E., M.M",yetty-yuliany,Lecturer,/images/academic/lecturer_images/management/Yetty_Yuliany_Kusumaningrum.webp,0605077402,https://scholar.google.com/citations?user=86pLtjMAAAAJ&hl=id&oi=sra,,,,,Human Resource Management
-management,"Putri Aryo Jelang Fitri Khothimah, S.E., M.M.",putri-aryo-jelang-fitri-khothimah,Lecturer,/images/academic/lecturer_images/management/Putri_Aryo_Jelang_Fitri_Khothimah.webp,0601039501,https://scholar.google.com/citations?user=aZglriAAAAAJ&hl=id,,,,,Financial Management
-management,"Randika Shafly Fawwaz, S.M., M.M",randika-shafly-fawwaz,Lecturer,/images/academic/lecturer_images/management/Randika_Shafly_Fawwaz.webp,2433775676130432,,,,,,Human Resources
+management,"Reni Nur Arifah, S.E., M.M.",reni-nur-arifah,Head of Management Study Program,,0625069301,,,,,,Financial Management
+management,"Yetty Yuliany K, S.E., M.M",yetty-yuliany,Lecturer,,0605077402,,,,,,Human Resource Management
+management,"Putri Aryo Jelang Fitri Khothimah, S.E., M.M.",putri-aryo-jelang-fitri-khothimah,Lecturer,,0601039501,,,,,,Financial Management
+management,"Randika Shafly Fawwaz, S.M., M.M",randika-shafly-fawwaz,Lecturer,,2433775676130432,,,,,,Human Resources
 management,"Eva Fachria, S.E., M.S.M",eva-fachria,Lecturer,,9053772673230383,,,,,,
-midwifery-associate,"Rizqitha, S.Tr.Keb., M.Tr.Keb",rizqitha,Head of Bachelor Midwifery Program ,,0608049401,https://scholar.google.com/citations?user=dHKOQMYAAAAJ&hl=en&oi=ao,,,,,"Midwifery Care for Infants, Toddlers, and Preschool Children"
-midwifery-associate,"Diah Widyatun, S.S.T., M.Tr.Keb",diah-widyatun,Lecturer,/images/academic/lecturer_images/d3_midwifery/Diah_Widyatun.webp,0617069002,https://scholar.google.com/citations?user=yb_RfHgAAAAJ&hl=id,,,,,Postpartum and Lactation Care / Midwifery Postpartum Care
-midwifery-associate,"Bdn. Sri Mularsih, S.SiT, M.Kes",sri-mularsih,Lecturer,,0618048001,https://scholar.google.com/citations?user=8OnkCmsAAAAJ&hl=id,,,,,Reproductive Health
-midwifery-associate,"Dewi Elliana, SKM, S.Tr.Keb, M.Kes",dewi-elliana,Lecturer,/images/academic/lecturer_images/d3_midwifery/Dewi_Elliana.webp,0611027703,https://scholar.google.com/citations?user=Tw4V_ykAAAAJ&hl=id,,,,,Reproductive Health
-midwifery-associate,"dr. Rita Agustina, M.Biomed",rita-agustina,Lecturer,/images/academic/lecturer_images/d3_midwifery/Rita_Agustina.webp,4133752653230133,https://scholar.google.com.my/citations?user=2gvPGvYAAAAJ&hl=en&oi=ao,,,,,
-midwifery-associate,"Erna Setyaningsih, S.S.T.,M.Tr.Keb",erna-setyaningsih,Lecturer,/images/academic/lecturer_images/d3_midwifery/Erna_Setyaningsih.webp,0356771672230323,,,,,,Postpartum and Infant Care
-midwifery-bachelor,"Bd. Mariza Mustika D, S.Tr.Keb., M.Tr.Keb",mariza-mustika,Lecturer,,0618039302,https://scholar.google.com/citations?user=sMzeApYAAAAJ&hl=id&oi=ao,,,,,Nifas and Breastfeeding Midwifery
-midwifery-bachelor,"Bdn. Titik Kurniawati, S.SiT, M.Kes, M.Keb",titik-kurniawati,Lecturer,/images/academic/lecturer_images/d3_midwifery/Titik_Kurniawati.webp,0622058101,https://scholar.google.com/citations?hl=id&user=F-nyArIAAAAJ,,,,,Obstetrics
+midwifery-associate,"Bdn. Titik Kurniawati, S.SiT, M.Kes, M.Keb",titik-kurniawati,Head of Associate Midwifery Study Program,,0622058101,,,,,,Obstetrics
+midwifery-associate,"Diah Widyatun, S.S.T., M.Tr.Keb",diah-widyatun,Lecturer,,0617069002,,,,,,Postpartum and Lactation Care / Midwifery Postpartum Care
+midwifery-associate,"Dewi Elliana, SKM, S.Tr.Keb, M.Kes",dewi-elliana,Lecturer,,0611027703,,,,,,Reproductive Health
+midwifery-associate,"dr. Rita Agustina, M.Biomed",rita-agustina,Lecturer,,4133752653230133,,,,,,
+midwifery-associate,"Erna Setyaningsih, S.S.T.,M.Tr.Keb",erna-setyaningsih,Lecturer,,0356771672230323,,,,,,Postpartum and Infant Care
+midwifery-bachelor,"Rizqitha, S.Tr.Keb., M.Tr.Keb",rizqitha,Head of Bachelor Midwifery Program ,,0608049401,,,,,,"Midwifery Care for Infants, Toddlers, and Preschool Children"
+midwifery-bachelor,"Bd. Mariza Mustika D, S.Tr.Keb., M.Tr.Keb",mariza-mustika,Lecturer,,0618039302,,,,,,Nifas and Breastfeeding Midwifery
+midwifery-bachelor,"Bdn. Sri Mularsih, S.SiT, M.Kes",sri-mularsih,Lecturer,,0618048001,,,,,,Reproductive Health
+midwifery-bachelor,"Bdn. Lia Ayu Kusumawardani, S.ST., M.Tr.Keb",lia-ayu,Lecturer,,,,,,,,

@@ -1,16 +1,17 @@
 ---
 import { Image } from "astro:assets";
-import type { DiasporaPerson } from "@data/diaspora";
+import type { Lecturer } from "@data/lecturers";
 import canada from "@/assets/images/academic/canada-bg.jpg";
 import googleScholar from "@/assets/images/academic/google_scholar.webp";
 
 interface Props {
-  person: DiasporaPerson;
+  person: Lecturer;
   class?: string;
 }
 
 const { person, class: className = "" } = Astro.props;
-const bgImage = person.background_image ?? canada;
+const bgImage = person.backgroundImage ?? canada;
+const portrait = (person.diasporaImage ?? person.image)!;
 ---
 
 <div
@@ -46,7 +47,7 @@ const bgImage = person.background_image ?? canada;
 
       <div class="mb-6">
         <p class="text-body mb-6 text-apu-accent" data-featured-univ>
-          {person.univ}
+          {person.university}
         </p>
         <h3
           class="text-caption mb-3 uppercase tracking-widest text-white/70"
@@ -55,7 +56,7 @@ const bgImage = person.background_image ?? canada;
         </h3>
         <ul class="space-y-2" data-featured-past-experience>
           {
-            person.pastExperience.items.map((item) => (
+            (person.pastExperience ?? []).map((item) => (
               <li class="text-body-s flex items-start gap-3 text-white/90">
                 <span
                   class="mt-2 inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-apu-accent"
@@ -78,18 +79,18 @@ const bgImage = person.background_image ?? canada;
           class="text-body-s leading-relaxed text-white/90"
           data-featured-notable-research
         >
-          {person.notableResearch.text}
+          {person.notableResearch}
         </p>
       </div>
 
       <a
         data-featured-google-link
-        href={person.google_scholar || "#"}
+        href={person.googleScholar || "#"}
         target="_blank"
         rel="noopener noreferrer"
         class:list={[
           "flex flex-row w-full mb-6 text-white",
-          { hidden: !person.google_scholar },
+          { hidden: !person.googleScholar },
         ]}
       >
         <Image
@@ -98,12 +99,12 @@ const bgImage = person.background_image ?? canada;
           class="w-6 object-contain border-0 mr-1"
           loading="lazy"
         />
-        <span class="text-white" data-featured-google-index>{person.h_index ?? ""}</span>
+        <span class="text-white" data-featured-google-index>{person.googleIndex ?? ""}</span>
       </a>
 
       <div class="flex flex-wrap items-center gap-4">
         <a
-          href={person.google_scholar}
+          href={person.googleScholar}
           target="_blank"
           rel="noopener noreferrer"
           class="apu-btn apu-btn--primary inline-flex items-center gap-2"
@@ -131,10 +132,10 @@ const bgImage = person.background_image ?? canada;
     <div class="relative order-1 mb-4 w-full md:order-2 md:mb-0 md:w-96">
       <div class="relative aspect-[4/5] overflow-hidden rounded-2xl md:aspect-auto md:h-full">
         <Image
-          src={person.image}
+          src={portrait}
           alt={`Portrait of ${person.name}`}
           class="h-full w-full border-0 object-cover"
-          style={`object-position: ${person.position}% center;`}
+          style={`object-position: ${person.position ?? 50}% center;`}
           loading="eager"
           data-featured-image
         />

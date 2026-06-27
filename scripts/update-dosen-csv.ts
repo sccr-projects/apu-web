@@ -2,21 +2,15 @@ import * as fs from "fs";
 import Papa from "papaparse";
 
 const CSV_PATH = "data-dosen.csv";
-const DIASPORA_PATH = "src/data/diaspora.ts";
-const FACULTY_PATH = "src/data/program-faculty.ts";
+const LECTURERS_PATH = "src/data/lecturers.ts";
 
-interface DiasporaRecord {
+interface LecturerRecord {
   name: string;
-  google_scholar?: string;
-  h_index?: number;
-}
-
-interface FacultyRecord {
-  name: string;
+  googleScholar?: string;
+  googleIndex?: string;
   nidn?: string;
-  link?: string;
-  scopus_id?: string;
-  scopus_index?: string;
+  scopusLink?: string;
+  scopusIndex?: string;
 }
 
 function normalizeName(name: string): string {
@@ -37,8 +31,8 @@ function extractStringLiteral(text: string, key: string): string | undefined {
   return match ? match[2] : undefined;
 }
 
-function extractDiasporaRecords(text: string): DiasporaRecord[] {
-  const records: DiasporaRecord[] = [];
+function extractLecturerRecords(text: string): LecturerRecord[] {
+  const records: LecturerRecord[] = [];
   const objectRegex =
     /\{\s*id:\s*["'][^"']+["'][^}]*name:\s*["']([^"']+)["'][^}]*\}/gs;
   let match;
@@ -46,51 +40,26 @@ function extractDiasporaRecords(text: string): DiasporaRecord[] {
     const block = match[0];
     const name = extractStringLiteral(block, "name");
     if (!name) continue;
-    const google_scholar = extractStringLiteral(block, "google_scholar");
-    const hIndexMatch = block.match(/h_index\s*:\s*(\d+)/);
     records.push({
       name,
-      google_scholar,
-      h_index: hIndexMatch ? parseInt(hIndexMatch[1], 10) : undefined,
+      googleScholar: extractStringLiteral(block, "googleScholar"),
+      googleIndex: extractStringLiteral(block, "googleIndex"),
+      nidn: extractStringLiteral(block, "nidn"),
+      scopusLink: extractStringLiteral(block, "scopusLink"),
+      scopusIndex: extractStringLiteral(block, "scopusIndex"),
     });
   }
   return records;
 }
 
-function extractFacultyRecords(text: string): FacultyRecord[] {
-  const records: FacultyRecord[] = [];
-  const objectRegex =
-    /\{\s*id:\s*["'][^"']+["'][^}]*name:\s*["']([^"']+)["'][^}]*\}/gs;
-  let match;
-  while ((match = objectRegex.exec(text)) !== null) {
-    const block = match[0];
-    const name = extractStringLiteral(block, "name");
-    if (!name) continue;
-    const nidn = extractStringLiteral(block, "nidn");
-    const link = extractStringLiteral(block, "link");
-    const scopus_id = extractStringLiteral(block, "scopus_id");
-    const scopus_index = extractStringLiteral(block, "scopus_index");
-    records.push({ name, nidn, link, scopus_id, scopus_index });
-  }
-  return records;
-}
+const lecturersText = fs.readFileSync(LECTURERS_PATH, "utf-8");
+const lecturerRecords = extractLecturerRecords(lecturersText);
 
-const diasporaText = fs.readFileSync(DIASPORA_PATH, "utf-8");
-const facultyText = fs.readFileSync(FACULTY_PATH, "utf-8");
-
-const diasporaRecords = extractDiasporaRecords(diasporaText);
-const facultyRecords = extractFacultyRecords(facultyText);
-
-const facultyByNidn = new Map<string, FacultyRecord>();
-const facultyByName = new Map<string, FacultyRecord>();
-for (const f of facultyRecords) {
-  if (f.nidn && f.nidn !== "-") facultyByNidn.set(f.nidn, f);
-  facultyByName.set(normalizeName(f.name), f);
-}
-
-const diasporaByName = new Map<string, DiasporaRecord>();
-for (const p of diasporaRecords) {
-  diasporaByName.set(normalizeName(p.name), p);
+const lecturerByNidn = new Map<string, LecturerRecord>();
+const lecturerByName = new Map<string, LecturerRecord>();
+for (const l of lecturerRecords) {
+  if (l.nidn && l.nidn !== "-") lecturerByNidn.set(l.nidn, l);
+  lecturerByName.set(normalizeName(l.name), l);
 }
 
 const raw = fs.readFileSync(CSV_PATH, "utf-8");
@@ -127,8 +96,7 @@ function findOrCreateColumnIndices(row: string[]): {
   return { gsProfile: 6, gsIndex: 7, scopusProfile: 8, scopusIndex: 9, insert: true };
 }
 
-let matchedFaculty = 0;
-let matchedDiaspora = 0;
+let matchedLecturer = 0;
 
 const headerIndices = findOrCreateColumnIndices(rows[0]);
 
@@ -169,26 +137,19 @@ for (let i = 1; i < rows.length; i++) {
   let scopusProfile = "";
   let scopusIndex = "";
 
-  let faculty = facultyByNidn.get(nidn);
-  if (!faculty && normName) faculty = facultyByName.get(normName);
+  let lecturer = lecturerByNidn.get(nidn);
+  if (!lecturer && normName) lecturer = lecturerByName.get(normName);
 
-  if (faculty) {
-    matchedFaculty++;
-    if (faculty.link) gsProfile = faculty.link;
-    if (faculty.scopus_id) {
-      scopusProfile =
-        `https://www.scopus.com/authid/detail.uri?authorId=${faculty.scopus_id}`;
+  if (lecturer) {
+    matchedLecturer++;
+    if (lecturer.googleScholar) gsProfile = lecturer.googleScholar;
+    if (lecturer.googleIndex) gsIndex = lecturer.googleIndex;
+    if (lecturer.scopusLink) {
+      scopusProfile = lecturer.scopusLink.startsWith("http")
+        ? lecturer.scopusLink
+        : `https://www.scopus.com/authid/detail.uri?authorId=${lecturer.scopusLink}`;
     }
-    if (faculty.scopus_index) scopusIndex = faculty.scopus_index;
-  }
-
-  const diaspora = diasporaByName.get(normName);
-  if (diaspora && diaspora.google_scholar) {
-    matchedDiaspora++;
-    gsProfile = diaspora.google_scholar;
-    if (diaspora.h_index !== undefined) {
-      gsIndex = String(diaspora.h_index);
-    }
+    if (lecturer.scopusIndex) scopusIndex = lecturer.scopusIndex;
   }
 
   row[headerIndices.gsProfile] = gsProfile;
@@ -205,5 +166,4 @@ const output = Papa.unparse(rows, {
 
 fs.writeFileSync(CSV_PATH, output, "utf-8");
 console.log(`Updated ${CSV_PATH}`);
-console.log(`Matched faculty: ${matchedFaculty}`);
-console.log(`Matched diaspora: ${matchedDiaspora}`);
+console.log(`Matched lecturer: ${matchedLecturer}`);

@@ -6,14 +6,23 @@ import lawKaprodi from "@/assets/images/academic/law-kaprodi.jpeg";
 import managementKaprodi from "@/assets/images/academic/management-kaprodi.webp";
 import midwiferyAssociateKaprodi from "@/assets/images/academic/midwifery-associate-kaprodi.webp";
 import midwiferyBachelorKaprodi from "@/assets/images/academic/midwifery-bachelor-kaprodi.webp";
-import type { FacultyMember } from "./program-faculty";
-import { biomedicalFaculty } from "./program-faculty";
-import { biotechnologyFaculty } from "./program-faculty";
-import { managementFaculty } from "./program-faculty";
-import { lawFaculty } from "./program-faculty";
-import { midwiferyAssociateFaculty } from "./program-faculty";
-import { midwiferyBachelorFaculty } from "./program-faculty";
-import { communicationFaculty } from "./program-faculty";
+import { getLecturerById } from "./lecturers";
+
+export const programFacultyDescriptions: Record<string, string> = {
+  biomedical:
+    "Internationally qualified faculty guiding students in research and innovation",
+  biotechnology:
+    "Internationally qualified faculty guiding students in research and innovation",
+  communication:
+    "Internationally qualified faculty guiding students in communication science",
+  law: "Internationally qualified faculty guiding students in law",
+  management:
+    "Internationally qualified faculty guiding students in research and innovation",
+  "midwifery-associate":
+    "Internationally qualified faculty guiding students in midwifery",
+  "midwifery-bachelor":
+    "Internationally qualified faculty guiding students in midwifery",
+};
 
 export const biomedicalLeadershipMessage: LeadershipMessage = {
   kicker: "A MESSAGE",
@@ -30,9 +39,7 @@ export const biomedicalLeadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
-  leader: biomedicalFaculty.facultyMembers.find(
-    (p) => p.id === "nadya-audina-ns",
-  )!,
+  leader: getLecturerById("nadya-audina-ns")!,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -53,9 +60,7 @@ export const biotechnologyLeadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
-  leader: biotechnologyFaculty.facultyMembers.find(
-    (p) => p.id === "fauziah-novita-putri-rifai",
-  )!,
+  leader: getLecturerById("fauziah-novita-putri-rifai")!,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -77,9 +82,7 @@ export const communicationLeadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
-  leader: communicationFaculty.facultyMembers.find(
-    (p) => p.id === "muhamad-agung",
-  )!,
+  leader: getLecturerById("muhamad-agung")!,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -103,9 +106,7 @@ export const lawLeadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
-  leader: lawFaculty.facultyMembers.find(
-    (p) => p.id === "erwin",
-  )!,
+  leader: getLecturerById("erwin")!,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -131,9 +132,7 @@ export const managementLeadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
-  leader: managementFaculty.facultyMembers.find(
-    (p) => p.id === "reni-nur-arifah",
-  )!,
+  leader: getLecturerById("reni-nur-arifah")!,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -157,9 +156,7 @@ export const midwiferyAssociateLeadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
-  leader: midwiferyAssociateFaculty.facultyMembers.find(
-    (p) => p.id === "titik-kurniawati",
-  )!,
+  leader: getLecturerById("titik-kurniawati")!,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",
@@ -181,9 +178,7 @@ export const midwiferyBachelorLeadershipMessage: LeadershipMessage = {
     "",
     "Wassalamualaikum warahmatullahi wabarakatuh",
   ],
-  leader: midwiferyBachelorFaculty.facultyMembers.find(
-    (p) => p.id === "rizqitha",
-  )!,
+  leader: getLecturerById("rizqitha")!,
   cta: {
     href: "/academic",
     label: "Discover the Campus Vision",

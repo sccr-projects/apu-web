@@ -15,9 +15,13 @@ import { biotechnologyProgram } from "@data/program-details";
 import { biotechnologyLeadershipMessage as leadershipMessage } from "@data/academic-programs";
 import { biotechnologyHero } from "@data/program-heroes";
 import { biotechnologyCareers } from "@data/program-careers";
-import { biotechnologyFaculty } from "@data/program-faculty";
+import { getLecturersByProgram } from "@data/lecturers";
+import { programFacultyDescriptions } from "@data/academic-programs";
 import { biotechnologyValues } from "@data/program-values";
 import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalGamePreviewSection.astro";
+
+const lecturers = getLecturersByProgram("biotechnology");
+const description = programFacultyDescriptions.biotechnology;
 
 ---
 
@@ -34,7 +38,7 @@ import BiomedicalGamePreviewSection from "@sections/academic/program/BiomedicalG
   <ProgramVisionMissionSection data={biotechnologyProgram} variant="biotechnology" />
   <!-- <ProgramValuesSection data={biotechnologyValues} /> -->
   <!-- <ProgramCareersSection data={biotechnologyCareers} /> -->
-  <ProgramFacultySpotlightSection data={biotechnologyFaculty} />
+  <ProgramFacultySpotlightSection lecturers={lecturers} description={description} />
   <ContactSection />
   <Footer />
 </MainLayout>

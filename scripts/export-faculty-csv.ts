@@ -1,36 +1,16 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 
-const srcFile = path.resolve(process.cwd(), "src/data/program-faculty.ts");
-const tmpFile = path.resolve(process.cwd(), "scripts/.program-faculty-export.ts");
-
-let source = fs.readFileSync(srcFile, "utf-8");
-source = source.replace(
-  /import\s+\{\s*assetUrl\s*\}\s+from\s+["']@lib\/assets["'];?/,
-  "const assetUrl = (path: string): string => path;"
-);
-fs.writeFileSync(tmpFile, source);
-
-const {
-  biomedicalFaculty,
-  biotechnologyFaculty,
-  communicationFaculty,
-  lawFaculty,
-  managementFaculty,
-  midwiferyAssociateFaculty,
-  midwiferyBachelorFaculty,
-} = await import(tmpFile);
-
-fs.unlinkSync(tmpFile);
+import { allLecturers } from "../src/data/lecturers";
 
 const programs = [
-  ["biomedical", biomedicalFaculty],
-  ["biotechnology", biotechnologyFaculty],
-  ["communication", communicationFaculty],
-  ["law", lawFaculty],
-  ["management", managementFaculty],
-  ["midwifery-associate", midwiferyAssociateFaculty],
-  ["midwifery-bachelor", midwiferyBachelorFaculty],
+  "biomedical",
+  "biotechnology",
+  "communication",
+  "law",
+  "management",
+  "midwifery-associate",
+  "midwifery-bachelor",
 ] as const;
 
 const fields = [
@@ -55,11 +35,29 @@ function escapeCsv(value: unknown): string {
   return text;
 }
 
+const fieldGetters: Record<
+  (typeof fields)[number],
+  (member: (typeof allLecturers)[number]) => unknown
+> = {
+  name: (m) => m.name,
+  id: (m) => m.id,
+  title: (m) => m.title,
+  photo: () => "",
+  nidn: (m) => m.nidn,
+  link: () => "",
+  scopus_id: (m) => m.scopusLink,
+  scopus_index: (m) => m.scopusIndex,
+  sinta_id: (m) => m.sintaLink,
+  sinta_index: (m) => m.sintaIndex,
+  specialization: (m) => m.specialization,
+};
+
 const rows: string[][] = [["program", ...fields]];
 
-for (const [programKey, data] of programs) {
-  for (const member of data.facultyMembers) {
-    rows.push([programKey, ...fields.map((field) => member[field] ?? "")]);
+for (const programKey of programs) {
+  for (const member of allLecturers) {
+    if (!member.programs.includes(programKey)) continue;
+    rows.push([programKey, ...fields.map((field) => fieldGetters[field](member) ?? "")]);
   }
 }
 
