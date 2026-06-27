@@ -147,6 +147,8 @@ const sectionTitle = "Diaspora Lecturers List:";
     const featuredBackground = section?.querySelector("[data-featured-background]");
     const defaultBg = section?.getAttribute("data-default-bg") || "";
     const featuredProfile = section?.querySelector("[data-featured-profile]");
+    const featuredGoogleLink = section?.querySelector("[data-featured-google-link]");
+    const featuredGoogleIndex = section?.querySelector("[data-featured-google-index]");
 
     const updateFeatured = (id) => {
       const person = peopleData.find((p) => p.id === id);
@@ -185,6 +187,13 @@ const sectionTitle = "Diaspora Lecturers List:";
 
       if (featuredProfile) {
         featuredProfile.href = person.googleScholar || "#";
+      }
+      if (featuredGoogleLink) {
+        featuredGoogleLink.href = person.googleScholar || "#";
+        featuredGoogleLink.classList.toggle("hidden", !person.googleScholar);
+      }
+      if (featuredGoogleIndex) {
+        featuredGoogleIndex.textContent = person.googleIndex != null ? String(person.googleIndex) : "";
       }
     };
 
