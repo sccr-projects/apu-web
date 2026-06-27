@@ -483,7 +483,7 @@ export const allLecturers: Lecturer[] = [
     name: "Eva Fachria, S.E., M.S.M",
     title: "Lecturer",
     nidn: "9053772673230383",
-    googleScholar: "https://scholar.google.com/citations?user=E1NJcz0AAAAJ&hl=en",
+    googleScholar: "https://scholar.google.com/citations?user=AXHcedAAAAAJ&hl=en",
     googleIndex: "2",
     programs: ["management"],
   },
