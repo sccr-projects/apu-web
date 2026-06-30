@@ -71,7 +71,7 @@ export interface Lecturer {
 
   googleScholar?: string;
   googleIndex?: string;
-  scopusLink?: string;
+  scopusId?: string;
   scopusIndex?: string;
   sintaLink?: string;
   sintaIndex?: string;
@@ -399,7 +399,7 @@ export const allLecturers: Lecturer[] = [
     diasporaImage: mrAgus,
     title: "Lecturer",
     nidn: "6137744645130133",
-    scopusLink: "59912689000",
+    scopusId: "59912689000",
     googleScholar: "https://scholar.google.com/citations?hl=en&user=e_Xv4EwAAAAJ",
     googleIndex: "1",
     role: "Lecturer",
@@ -423,14 +423,14 @@ export const allLecturers: Lecturer[] = [
     title: "Lecturer",
     nidn: "315037102",
     programs: ["management"],
-    scopusLink:"https://www.scopus.com/authid/detail.uri?authorId=57203243853"
+    scopusId: "59912689000",
   },
   {
     id: "mohammad-annas",
     name: "Dr. Mohammad Annas, S. Tr.Par, M.M.",
     title: "Lecturer",
     nidn: "312087404",
-    scopusLink: "57886387600",
+    scopusId: "57886387600",
     googleScholar: "https://scholar.google.com/citations?user=9CJNrb8AAAAJ&hl=en",
     googleIndex: "13",
     programs: ["management"],

@@ -170,6 +170,9 @@ const sectionTitle = "Diaspora Lecturers List:";
     const featuredProfile = section?.querySelector("[data-featured-profile]");
     const featuredGoogleLink = section?.querySelector("[data-featured-google-link]");
     const featuredGoogleIndex = section?.querySelector("[data-featured-google-index]");
+    const featuredScopusLink = section?.querySelector("[data-featured-scopus-link]");
+    const featuredScopusIndex = section?.querySelector("[data-featured-scopus-index]");
+    const scopusBaseUrl = "https://www.scopus.com/authid/detail.uri?authorId=";
 
     const updateFeatured = (id) => {
       const person = peopleData.find((p) => p.id === id);
@@ -215,6 +218,13 @@ const sectionTitle = "Diaspora Lecturers List:";
       }
       if (featuredGoogleIndex) {
         featuredGoogleIndex.textContent = person.googleIndex != null ? String(person.googleIndex) : "";
+      }
+      if (featuredScopusLink) {
+        featuredScopusLink.href = person.scopusId ? `${scopusBaseUrl}${person.scopusId}` : "#";
+        featuredScopusLink.classList.toggle("hidden", !person.scopusId);
+      }
+      if (featuredScopusIndex) {
+        featuredScopusIndex.textContent = person.scopusIndex != null ? String(person.scopusIndex) : "";
       }
     };
 

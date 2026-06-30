@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import type { Lecturer } from "@data/lecturers";
 import canada from "@/assets/images/academic/canada-bg.jpg";
 import googleScholar from "@/assets/images/academic/google_scholar.webp";
+import scopus from "@/assets/images/academic/scopus.webp";
 
 interface Props {
   person: Lecturer;
@@ -12,6 +13,9 @@ interface Props {
 const { person, class: className = "" } = Astro.props;
 const bgImage = person.backgroundImage ?? canada;
 const portrait = (person.diasporaImage ?? person.image)!;
+const scopusHref = person.scopusId
+  ? `https://www.scopus.com/authid/detail.uri?authorId=${person.scopusId}`
+  : "#";
 ---
 
 <div
@@ -69,7 +73,7 @@ const portrait = (person.diasporaImage ?? person.image)!;
         </ul>
       </div>
 
-      <div class="mb-4">
+      <div class="mb-2">
         <h3
           class="text-caption mb-3 uppercase tracking-widest text-white/70"
         >
@@ -83,24 +87,56 @@ const portrait = (person.diasporaImage ?? person.image)!;
         </p>
       </div>
 
-      <a
-        data-featured-google-link
-        href={person.googleScholar || "#"}
-        target="_blank"
-        rel="noopener noreferrer"
-        class:list={[
-          "flex flex-row w-full mb-6 text-white",
-          { hidden: !person.googleScholar },
-        ]}
-      >
-        <Image
-          src={googleScholar}
-          alt={`Google Scholar profile of ${person.name}`}
-          class="w-6 object-contain border-0 mr-1"
-          loading="lazy"
-        />
-        <span class="text-white" data-featured-google-index>{person.googleIndex ?? ""}</span>
-      </a>
+      <p class="mb-4 text-caption text-white/60 ">NIDN {person.nidn}</p>
+
+      <div class="flex flex-row gap-3">
+          <div>
+              <a
+                data-featured-google-link
+                href={person.googleScholar || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                class:list={[
+                  "flex flex-row w-full mb-6 text-white",
+                  { hidden: !person.googleScholar },
+                ]}
+              >
+                <Image
+                  src={googleScholar}
+                  alt={`Google Scholar profile of ${person.name}`}
+                  class="w-6 object-contain border-0 mr-1"
+                  loading="lazy"
+                />
+                <span class="text-white" data-featured-google-index>{person.googleIndex ?? ""}</span>
+              </a>
+          </div>
+
+          <div>
+              <a
+                data-featured-scopus-link
+                href={scopusHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                class:list={[
+                  "flex flex-row w-full mb-6 text-white",
+                  { hidden: !person.scopusId },
+                ]}
+              >
+                <Image
+                  src={scopus}
+                  alt={`Scopus profile of ${person.name}`}
+                  class="w-6 object-contain border-0 mr-1"
+                  loading="lazy"
+                />
+                <span class="text-white" data-featured-scopus-index>{person.scopusIndex ?? ""}</span>
+              </a>
+          </div>
+
+      </div>
+
+
+
+
 
       <div class="flex flex-wrap items-center gap-4">
         <a
