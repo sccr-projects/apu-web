@@ -423,6 +423,7 @@ export const allLecturers: Lecturer[] = [
     title: "Lecturer",
     nidn: "315037102",
     programs: ["management"],
+    scopusLink:"https://www.scopus.com/authid/detail.uri?authorId=57203243853"
   },
   {
     id: "mohammad-annas",
