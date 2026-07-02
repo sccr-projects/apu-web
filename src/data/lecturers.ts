@@ -713,7 +713,13 @@ export function getLecturersByProgram(slug: string): Lecturer[] {
 }
 
 export function getDiasporaLecturers(): Lecturer[] {
-  return allLecturers.filter((l) => l.programs.includes("diaspora"));
+  const order = [
+    "faris", "adzani", "dina", "jutadi", "faheem-ahmed-khan",
+    "prof-agung", "agus-abdillah", "yayuk", "waheni-rizki-aprilia",
+    "endah-agustina-lestari", "dendi-krisna-nugraha",
+  ];
+  const map = new Map(allLecturers.filter((l) => l.programs.includes("diaspora")).map((l) => [l.id, l]));
+  return order.map((id) => map.get(id)).filter(Boolean) as Lecturer[];
 }
 
 export function getLecturerById(id: string): Lecturer | undefined {
