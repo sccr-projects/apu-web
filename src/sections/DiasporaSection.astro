@@ -183,8 +183,14 @@ const people = getDiasporaLecturers();
   }
   .diaspora-card {
     transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1),
-      box-shadow 250ms cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform;
+      box-shadow 250ms cubic-bezier(0.16, 1, 0.3, 1),
+      filter 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, filter;
+  }
+  @media (hover: hover) {
+    .diaspora-track:hover .diaspora-card:not(:hover):not([data-diaspora-center]) {
+      filter: blur(4px);
+    }
   }
   .diaspora-card:hover {
     transform: scale(1.05);
